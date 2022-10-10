@@ -8,9 +8,9 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/abhiyantaabhishek
+      - icon: linkedin
+        href: https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/
 format:
   html:
     theme: cosmo
