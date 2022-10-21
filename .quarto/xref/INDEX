@@ -1,6 +1,7 @@
 {
   "posts/CS5590/2022-08-06-CS5590-week1.ipynb": {
-    "2022-08-06-cs5590-week1.html": "f0529601"
+    "2022-08-06-cs5590-week1.html": "f0529601",
+    "2022-08-06-CS5590-week1.html": "ae639479"
   },
   "about.qmd": {
     "about.html": "af83cb3b"
@@ -12,51 +13,77 @@
     "2022-08-20-cs6660-quiz-1.html": "a9933892"
   },
   "posts/CS6660/2022-08-13-CS6660-week2.ipynb": {
-    "2022-08-13-cs6660-week2.html": "cfcb6578"
+    "2022-08-13-cs6660-week2.html": "cfcb6578",
+    "2022-08-13-CS6660-week2.html": "4a644a2b"
   },
   "posts/CS6660/2022-10-01-CS6660-week6.ipynb": {
-    "2022-10-01-cs6660-week6.html": "d6069325"
+    "2022-10-01-cs6660-week6.html": "d6069325",
+    "2022-10-01-CS6660-week6.html": "83fd762c"
   },
   "posts/CS6660/2022-08-06-CS6660-week1.ipynb": {
-    "2022-08-06-cs6660-week1.html": "17b11c83"
+    "2022-08-06-cs6660-week1.html": "17b11c83",
+    "2022-08-06-CS6660-week1.html": "7c57f967"
   },
   "posts/CS6660/2022-09-24-CS6660-week5.ipynb": {
-    "2022-09-24-cs6660-week5.html": "9d01ad63"
+    "2022-09-24-cs6660-week5.html": "9d01ad63",
+    "2022-09-24-CS6660-week5.html": "8407f8e4"
   },
   "posts/CS6660/2022-09-17-CS6660-week4_2.ipynb": {
-    "2022-09-17-cs6660-week2.html": "cba42d5d"
+    "2022-09-17-cs6660-week2.html": "cba42d5d",
+    "2022-09-17-CS6660-week4_2.html": "f9a4f554"
   },
   "posts/CS6660/2022-09-17-CS6660-week4_1.ipynb": {
-    "2022-09-17-cs6660-week1.html": "cb4fdd4f"
+    "2022-09-17-cs6660-week1.html": "cb4fdd4f",
+    "2022-09-17-CS6660-week4_1.html": "3bd3cec1"
   },
   "posts/CS6660/2022-09-03-CS6660-week3.ipynb": {
-    "2022-09-03-cs6660-week3.html": "a15d841a"
+    "2022-09-03-cs6660-week3.html": "a15d841a",
+    "2022-09-03-CS6660-week3.html": "fff1f39a"
   },
   "posts/post-with-code/index.qmd": {
     "index.html": "fb0a9453"
   },
   "posts/CS5590/2022-09-28-CS5590-Assignment-2.ipynb": {
-    "2022-09-28-cs5590-assignment-2.html": "7c42301f"
+    "2022-09-28-cs5590-assignment-2.html": "7c42301f",
+    "2022-09-28-CS5590-Assignment-2.html": "f16c2095"
   },
   "posts/CS5590/2022-08-20-CS5590-Assignment-0.ipynb": {
     "2022-08-20-cs5590-assignment-0.html": "b02f1159"
   },
   "posts/CS5590/2022-08-20-CS5590-week2.ipynb": {
-    "2022-08-20-cs5590-week2.html": "b3f894ba"
+    "2022-08-20-cs5590-week2.html": "b3f894ba",
+    "2022-08-20-CS5590-week2.html": "5f7c09e9"
   },
   "posts/CS5590/2022-08-26-CS5590-Assignment-1.ipynb": {
     "2022-08-26-cs5590-assignment-1.html": "ae75ef04"
   },
   "posts/CS5590/2022-09-10-CS5590-week4.ipynb": {
-    "2022-09-10-cs5590-week4.html": "3cb21ca7"
+    "2022-09-10-cs5590-week4.html": "3cb21ca7",
+    "2022-09-10-CS5590-week4.html": "87a0d2da"
   },
   "posts/CS5590/2022-08-27-CS5590-week3.ipynb": {
-    "2022-08-27-cs5590-week3.html": "0583acb2"
+    "2022-08-27-cs5590-week3.html": "0583acb2",
+    "2022-08-27-CS5590-week3.html": "d124ba9d"
   },
   "posts/CS5590/2022-09-24-CS5590-week5.ipynb": {
-    "2022-09-24-cs5590-week5.html": "a307e384"
+    "2022-09-24-cs5590-week5.html": "a307e384",
+    "2022-09-24-CS5590-week5.html": "30eba9ed"
   },
   "index.qmd": {
     "index.html": "c9764f21"
+  },
+  "posts/CS6660/2022-10-06-CS5590-Assignment-1.ipynb": {
+    "2022-10-06-cs6660-assignment-2.html": "aa4ed3d3"
+  },
+  "posts/CS6660/2022-10-06-CS6660-Assignment-1.ipynb": {
+    "2022-10-06-cs6660-assignment-2.html": "f63ca208",
+    "2022-10-06-cs6660-assignment-1.html": "0ca44d1c",
+    "2022-10-06-CS6660-Assignment-1.html": "add8a9d5"
+  },
+  "posts/CS5590/2022_09_28_CS5590_Assignment_2.ipynb": {
+    "2022-09-28-cs5590-assignment-2.html": "dc0a6498"
+  },
+  "posts/CS5590/2022_09_28_CS5590_Assignment-2.ipynb": {
+    "2022-09-28-cs5590-assignment-2.html": "fd533a96"
   }
 }

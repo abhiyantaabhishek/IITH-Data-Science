@@ -90,12 +90,27 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -131,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
       <h1 class="title">IITH-Data-Science</h1>
@@ -148,9 +163,9 @@ ul.task-list li input[type="checkbox"] {
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
+  
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
     <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="Foundations of Machine Learning">Foundations of Machine Learning <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Mathematical Foundations of Data Science">Mathematical Foundations of Data Science <span class="quarto-category-count">(7)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
@@ -164,16 +179,16 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1664562600000" data-listing-file-modified-sort="1665402801605" data-listing-reading-time-sort="6.095">
+<div class="quarto-post image-right" data-index="0" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1664562600000" data-listing-file-modified-sort="1666295369790" data-listing-reading-time-sort="6.095">
 <div class="thumbnail">
-<a href="./posts/CS6660/2022-10-01-cs6660-week6.html">
+<a href="./posts/CS6660/2022-10-01-CS6660-week6.html">
 <div class="thumbnail-image">
 
 </div>
-</a><p><a href="./posts/CS6660/2022-10-01-cs6660-week6.html"></a></p>
+</a><p><a href="./posts/CS6660/2022-10-01-CS6660-week6.html"></a></p>
 </div>
 <div class="body">
-<a href="./posts/CS6660/2022-10-01-cs6660-week6.html">
+<a href="./posts/CS6660/2022-10-01-CS6660-week6.html">
 <h3 class="no-anchor listing-title">
 Linear Algebra CS6660 week 6
 </h3>
@@ -186,14 +201,14 @@ Linear Algebra CS6660 week 6
 Mathematical Foundations of Data Science
 </div>
 </div>
-<a href="./posts/CS6660/2022-10-01-cs6660-week6.html">
+<a href="./posts/CS6660/2022-10-01-CS6660-week6.html">
 <div class="listing-description">
 <p>Mathematical Foundations of Data Science CS6660 week 6</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/CS6660/2022-10-01-cs6660-week6.html">
+<a href="./posts/CS6660/2022-10-01-CS6660-week6.html">
 <div class="listing-date">
 Oct 1, 2022
 </div>
@@ -203,12 +218,12 @@ Abhishek Kumar Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1663957800000" data-listing-file-modified-sort="1665404076829" data-listing-reading-time-sort="10.455">
+<div class="quarto-post image-right" data-index="1" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1663957800000" data-listing-file-modified-sort="1666295351338" data-listing-reading-time-sort="10.455">
 <div class="thumbnail">
-<p><a href="./posts/CS6660/2022-09-24-cs6660-week5.html"> <img src="./posts/CS6660/CS6660_images/chrome_pPYR2UCfXR.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/CS6660/2022-09-24-CS6660-week5.html"> <img src="./posts/CS6660/CS6660_images/chrome_pPYR2UCfXR.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
-<a href="./posts/CS6660/2022-09-24-cs6660-week5.html">
+<a href="./posts/CS6660/2022-09-24-CS6660-week5.html">
 <h3 class="no-anchor listing-title">
 Probability Theory CS6660 week 5
 </h3>
@@ -221,14 +236,14 @@ Probability Theory CS6660 week 5
 Mathematical Foundations of Data Science
 </div>
 </div>
-<a href="./posts/CS6660/2022-09-24-cs6660-week5.html">
+<a href="./posts/CS6660/2022-09-24-CS6660-week5.html">
 <div class="listing-description">
 <p>Mathematical Foundations of Data Science CS6660 week 5</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/CS6660/2022-09-24-cs6660-week5.html">
+<a href="./posts/CS6660/2022-09-24-CS6660-week5.html">
 <div class="listing-date">
 Sep 24, 2022
 </div>
@@ -238,12 +253,12 @@ Abhishek Kumar Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Foundations of Machine Learning" data-listing-date-sort="1663957800000" data-listing-file-modified-sort="1665343692228" data-listing-reading-time-sort="12.11">
+<div class="quarto-post image-right" data-index="2" data-categories="Foundations of Machine Learning" data-listing-date-sort="1663957800000" data-listing-file-modified-sort="1666295499228" data-listing-reading-time-sort="12.11">
 <div class="thumbnail">
-<p><a href="./posts/CS5590/2022-09-24-cs5590-week5.html"> <img src="./posts/CS5590/CS5590_images/Acrobat_EZY9SgFMeU.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/CS5590/2022-09-24-CS5590-week5.html"> <img src="./posts/CS5590/CS5590_images/Acrobat_EZY9SgFMeU.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
-<a href="./posts/CS5590/2022-09-24-cs5590-week5.html">
+<a href="./posts/CS5590/2022-09-24-CS5590-week5.html">
 <h3 class="no-anchor listing-title">
 Neural Networks CS5590 week 5
 </h3>
@@ -256,14 +271,14 @@ Neural Networks CS5590 week 5
 Foundations of Machine Learning
 </div>
 </div>
-<a href="./posts/CS5590/2022-09-24-cs5590-week5.html">
+<a href="./posts/CS5590/2022-09-24-CS5590-week5.html">
 <div class="listing-description">
 <p>Foundations of Machine Learning CS5590 week 5</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/CS5590/2022-09-24-cs5590-week5.html">
+<a href="./posts/CS5590/2022-09-24-CS5590-week5.html">
 <div class="listing-date">
 Sep 24, 2022
 </div>
@@ -273,18 +288,18 @@ Abhishek Kumar Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1663353000000" data-listing-file-modified-sort="1665404653765" data-listing-reading-time-sort="8.82">
+<div class="quarto-post image-right" data-index="3" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1663353000000" data-listing-file-modified-sort="1666295254189" data-listing-reading-time-sort="8.82">
 <div class="thumbnail">
-<a href="./posts/CS6660/2022-09-17-cs6660-week2.html">
+<a href="./posts/CS6660/2022-09-17-CS6660-week4_2.html">
 <div class="thumbnail-image">
 
 </div>
-</a><p><a href="./posts/CS6660/2022-09-17-cs6660-week2.html"></a></p>
+</a><p><a href="./posts/CS6660/2022-09-17-CS6660-week4_2.html"></a></p>
 </div>
 <div class="body">
-<a href="./posts/CS6660/2022-09-17-cs6660-week2.html">
+<a href="./posts/CS6660/2022-09-17-CS6660-week4_2.html">
 <h3 class="no-anchor listing-title">
-Linear Algebra CS6660 week 4
+Linear Algebra CS6660 week 4_2
 </h3>
 <div class="listing-subtitle">
 
@@ -295,14 +310,14 @@ Linear Algebra CS6660 week 4
 Mathematical Foundations of Data Science
 </div>
 </div>
-<a href="./posts/CS6660/2022-09-17-cs6660-week2.html">
+<a href="./posts/CS6660/2022-09-17-CS6660-week4_2.html">
 <div class="listing-description">
-<p>Mathematical Foundations of Data Science CS6660 week 4</p>
+<p>Mathematical Foundations of Data Science CS6660 week 4_2</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/CS6660/2022-09-17-cs6660-week2.html">
+<a href="./posts/CS6660/2022-09-17-CS6660-week4_2.html">
 <div class="listing-date">
 Sep 17, 2022
 </div>
@@ -312,14 +327,14 @@ Abhishek Kumar Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1663353000000" data-listing-file-modified-sort="1665407259298" data-listing-reading-time-sort="15.7">
+<div class="quarto-post image-right" data-index="4" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1663353000000" data-listing-file-modified-sort="1666295236445" data-listing-reading-time-sort="15.775">
 <div class="thumbnail">
-<p><a href="./posts/CS6660/2022-09-17-cs6660-week1.html"> <img src="./posts/CS6660/CS6660_images/chrome_pPYR2UCfXR.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/CS6660/2022-09-17-CS6660-week4_1.html"> <img src="./posts/CS6660/CS6660_images/chrome_pPYR2UCfXR.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
-<a href="./posts/CS6660/2022-09-17-cs6660-week1.html">
+<a href="./posts/CS6660/2022-09-17-CS6660-week4_1.html">
 <h3 class="no-anchor listing-title">
-Probability Theory CS6660 week 4
+Probability Theory CS6660 week 4_1
 </h3>
 <div class="listing-subtitle">
 
@@ -330,14 +345,14 @@ Probability Theory CS6660 week 4
 Mathematical Foundations of Data Science
 </div>
 </div>
-<a href="./posts/CS6660/2022-09-17-cs6660-week1.html">
+<a href="./posts/CS6660/2022-09-17-CS6660-week4_1.html">
 <div class="listing-description">
-<p>Mathematical Foundations of Data Science CS6660 week 4</p>
+<p>Mathematical Foundations of Data Science CS6660 week 4_1</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/CS6660/2022-09-17-cs6660-week1.html">
+<a href="./posts/CS6660/2022-09-17-CS6660-week4_1.html">
 <div class="listing-date">
 Sep 17, 2022
 </div>
@@ -347,12 +362,12 @@ Abhishek Kumar Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Foundations of Machine Learning" data-listing-date-sort="1662748200000" data-listing-file-modified-sort="1665339627478" data-listing-reading-time-sort="18.455">
+<div class="quarto-post image-right" data-index="5" data-categories="Foundations of Machine Learning" data-listing-date-sort="1662748200000" data-listing-file-modified-sort="1666295478799" data-listing-reading-time-sort="18.475">
 <div class="thumbnail">
-<p><a href="./posts/CS5590/2022-09-10-cs5590-week4.html"> <img src="./posts/CS5590/CS5590_images/Acrobat_vct8kMqVEu.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/CS5590/2022-09-10-CS5590-week4.html"> <img src="./posts/CS5590/CS5590_images/Acrobat_vct8kMqVEu.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
-<a href="./posts/CS5590/2022-09-10-cs5590-week4.html">
+<a href="./posts/CS5590/2022-09-10-CS5590-week4.html">
 <h3 class="no-anchor listing-title">
 Support Vector Machines CS5590 week 4
 </h3>
@@ -365,14 +380,14 @@ Support Vector Machines CS5590 week 4
 Foundations of Machine Learning
 </div>
 </div>
-<a href="./posts/CS5590/2022-09-10-cs5590-week4.html">
+<a href="./posts/CS5590/2022-09-10-CS5590-week4.html">
 <div class="listing-description">
 <p>Foundations of Machine Learning CS5590 week 4</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/CS5590/2022-09-10-cs5590-week4.html">
+<a href="./posts/CS5590/2022-09-10-CS5590-week4.html">
 <div class="listing-date">
 Sep 10, 2022
 </div>
@@ -382,12 +397,12 @@ Abhishek Kumar Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1662143400000" data-listing-file-modified-sort="1665407845501" data-listing-reading-time-sort="2.27">
+<div class="quarto-post image-right" data-index="6" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1662143400000" data-listing-file-modified-sort="1666295329845" data-listing-reading-time-sort="2.27">
 <div class="thumbnail">
-<p><a href="./posts/CS6660/2022-09-03-cs6660-week3.html"> <img src="./posts/CS6660/CS6660_images/Acrobat_DdKtM5v6Sg.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/CS6660/2022-09-03-CS6660-week3.html"> <img src="./posts/CS6660/CS6660_images/Acrobat_DdKtM5v6Sg.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
-<a href="./posts/CS6660/2022-09-03-cs6660-week3.html">
+<a href="./posts/CS6660/2022-09-03-CS6660-week3.html">
 <h3 class="no-anchor listing-title">
 Linear Algebra CS6660 week 3
 </h3>
@@ -400,14 +415,14 @@ Linear Algebra CS6660 week 3
 Mathematical Foundations of Data Science
 </div>
 </div>
-<a href="./posts/CS6660/2022-09-03-cs6660-week3.html">
+<a href="./posts/CS6660/2022-09-03-CS6660-week3.html">
 <div class="listing-description">
 <p>Mathematical Foundations of Data Science CS6660 week 3</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/CS6660/2022-09-03-cs6660-week3.html">
+<a href="./posts/CS6660/2022-09-03-CS6660-week3.html">
 <div class="listing-date">
 Sep 3, 2022
 </div>
@@ -417,12 +432,12 @@ Abhishek Kumar Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="Foundations of Machine Learning" data-listing-date-sort="1661538600000" data-listing-file-modified-sort="1665336290247" data-listing-reading-time-sort="6.175">
+<div class="quarto-post image-right" data-index="7" data-categories="Foundations of Machine Learning" data-listing-date-sort="1661538600000" data-listing-file-modified-sort="1666295454376" data-listing-reading-time-sort="6.175">
 <div class="thumbnail">
-<p><a href="./posts/CS5590/2022-08-27-cs5590-week3.html"> <img src="./posts/CS5590/CS5590_images/Code_GehOQCy4hw.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/CS5590/2022-08-27-CS5590-week3.html"> <img src="./posts/CS5590/CS5590_images/Code_GehOQCy4hw.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
-<a href="./posts/CS5590/2022-08-27-cs5590-week3.html">
+<a href="./posts/CS5590/2022-08-27-CS5590-week3.html">
 <h3 class="no-anchor listing-title">
 Decision Trees, Naive Bayes CS5590 week 3
 </h3>
@@ -435,14 +450,14 @@ Decision Trees, Naive Bayes CS5590 week 3
 Foundations of Machine Learning
 </div>
 </div>
-<a href="./posts/CS5590/2022-08-27-cs5590-week3.html">
+<a href="./posts/CS5590/2022-08-27-CS5590-week3.html">
 <div class="listing-description">
 <p>Foundations of Machine Learning CS5590 week 3</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/CS5590/2022-08-27-cs5590-week3.html">
+<a href="./posts/CS5590/2022-08-27-CS5590-week3.html">
 <div class="listing-date">
 Aug 27, 2022
 </div>
@@ -452,12 +467,12 @@ Abhishek Kumar Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="Foundations of Machine Learning" data-listing-date-sort="1660933800000" data-listing-file-modified-sort="1665334464574" data-listing-reading-time-sort="6.11">
+<div class="quarto-post image-right" data-index="8" data-categories="Foundations of Machine Learning" data-listing-date-sort="1660933800000" data-listing-file-modified-sort="1666295434836" data-listing-reading-time-sort="6.11">
 <div class="thumbnail">
-<p><a href="./posts/CS5590/2022-08-20-cs5590-week2.html"> <img src="./posts/CS5590/CS5590_images/chrome_CNeo323E9V.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/CS5590/2022-08-20-CS5590-week2.html"> <img src="./posts/CS5590/CS5590_images/chrome_CNeo323E9V.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
-<a href="./posts/CS5590/2022-08-20-cs5590-week2.html">
+<a href="./posts/CS5590/2022-08-20-CS5590-week2.html">
 <h3 class="no-anchor listing-title">
 Machine Learning Model Evaluation Measures and KNN CS5590 week 2
 </h3>
@@ -470,14 +485,14 @@ Machine Learning Model Evaluation Measures and KNN CS5590 week 2
 Foundations of Machine Learning
 </div>
 </div>
-<a href="./posts/CS5590/2022-08-20-cs5590-week2.html">
+<a href="./posts/CS5590/2022-08-20-CS5590-week2.html">
 <div class="listing-description">
 <p>Foundations of Machine Learning CS5590 week 2</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/CS5590/2022-08-20-cs5590-week2.html">
+<a href="./posts/CS5590/2022-08-20-CS5590-week2.html">
 <div class="listing-date">
 Aug 20, 2022
 </div>
@@ -487,12 +502,12 @@ Abhishek Kumar Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1660329000000" data-listing-file-modified-sort="1665408015144" data-listing-reading-time-sort="2.16">
+<div class="quarto-post image-right" data-index="9" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1660329000000" data-listing-file-modified-sort="1666295306993" data-listing-reading-time-sort="2.16">
 <div class="thumbnail">
-<p><a href="./posts/CS6660/2022-08-13-cs6660-week2.html"> <img src="./posts/CS6660/CS6660_images/2022-08-13-CS6660-week2-preview.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/CS6660/2022-08-13-CS6660-week2.html"> <img src="./posts/CS6660/CS6660_images/2022-08-13-CS6660-week2-preview.jpg" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
-<a href="./posts/CS6660/2022-08-13-cs6660-week2.html">
+<a href="./posts/CS6660/2022-08-13-CS6660-week2.html">
 <h3 class="no-anchor listing-title">
 Probability Theory CS6660 week 2
 </h3>
@@ -505,14 +520,14 @@ Probability Theory CS6660 week 2
 Mathematical Foundations of Data Science
 </div>
 </div>
-<a href="./posts/CS6660/2022-08-13-cs6660-week2.html">
+<a href="./posts/CS6660/2022-08-13-CS6660-week2.html">
 <div class="listing-description">
 <p>Mathematical Foundations of Data Science CS6660 week 2</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/CS6660/2022-08-13-cs6660-week2.html">
+<a href="./posts/CS6660/2022-08-13-CS6660-week2.html">
 <div class="listing-date">
 Aug 13, 2022
 </div>
@@ -522,12 +537,12 @@ Abhishek Kumar Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1659724200000" data-listing-file-modified-sort="1665424239614" data-listing-reading-time-sort="4.79">
+<div class="quarto-post image-right" data-index="10" data-categories="Mathematical Foundations of Data Science" data-listing-date-sort="1659724200000" data-listing-file-modified-sort="1666313046174" data-listing-reading-time-sort="4.79">
 <div class="thumbnail">
-<p><a href="./posts/CS6660/2022-08-06-cs6660-week1.html"> <img src="./posts/CS6660/CS6660_images/2022-08-06-CS6660-week1-preview.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/CS6660/2022-08-06-CS6660-week1.html"> <img src="./posts/CS6660/CS6660_images/2022-08-06-CS6660-week1-preview.jpg" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
-<a href="./posts/CS6660/2022-08-06-cs6660-week1.html">
+<a href="./posts/CS6660/2022-08-06-CS6660-week1.html">
 <h3 class="no-anchor listing-title">
 Probability Theory CS6660 week 1
 </h3>
@@ -540,14 +555,14 @@ Probability Theory CS6660 week 1
 Mathematical Foundations of Data Science
 </div>
 </div>
-<a href="./posts/CS6660/2022-08-06-cs6660-week1.html">
+<a href="./posts/CS6660/2022-08-06-CS6660-week1.html">
 <div class="listing-description">
 <p>Mathematical Foundations of Data Science CS6660 week 1</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/CS6660/2022-08-06-cs6660-week1.html">
+<a href="./posts/CS6660/2022-08-06-CS6660-week1.html">
 <div class="listing-date">
 Aug 6, 2022
 </div>
@@ -557,12 +572,12 @@ Abhishek Kumar Dubey
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="Foundations of Machine Learning" data-listing-date-sort="1659724200000" data-listing-file-modified-sort="1665317145389" data-listing-reading-time-sort="1.865">
+<div class="quarto-post image-right" data-index="11" data-categories="Foundations of Machine Learning" data-listing-date-sort="1659724200000" data-listing-file-modified-sort="1666295414944" data-listing-reading-time-sort="1.865">
 <div class="thumbnail">
-<p><a href="./posts/CS5590/2022-08-06-cs5590-week1.html"> <img src="./posts/CS5590/CS5590_images/MATLAB_ljcLgT0iTJ.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/CS5590/2022-08-06-CS5590-week1.html"> <img src="./posts/CS5590/CS5590_images/MATLAB_ljcLgT0iTJ.png" class="thumnail-image"> </a></p>
 </div>
 <div class="body">
-<a href="./posts/CS5590/2022-08-06-cs5590-week1.html">
+<a href="./posts/CS5590/2022-08-06-CS5590-week1.html">
 <h3 class="no-anchor listing-title">
 Machine Learning Introduction CS5590 week 1
 </h3>
@@ -575,14 +590,14 @@ Machine Learning Introduction CS5590 week 1
 Foundations of Machine Learning
 </div>
 </div>
-<a href="./posts/CS5590/2022-08-06-cs5590-week1.html">
+<a href="./posts/CS5590/2022-08-06-CS5590-week1.html">
 <div class="listing-description">
 <p>Foundations of Machine Learning CS5590 week 1</p>
 </div>
 </a>
 </div>
 <div class="metadata">
-<a href="./posts/CS5590/2022-08-06-cs5590-week1.html">
+<a href="./posts/CS5590/2022-08-06-CS5590-week1.html">
 <div class="listing-date">
 Aug 6, 2022
 </div>

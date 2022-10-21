@@ -13,8 +13,11 @@ website:
         href: https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/
 format:
   html:
+    toc: true
+    toc-location: left  
     theme: cosmo
     css: styles.css
+    html-math-method: katex
 
 
 

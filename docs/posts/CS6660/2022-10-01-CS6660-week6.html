@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Abhishek Kumar Dubey">
+<meta name="dcterms.date" content="2022-10-01">
+<meta name="description" content="Mathematical Foundations of Data Science CS6660 week 6">
+
+<title>IITH-Data-Science - Linear Algebra CS6660 week 6</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">IITH-Data-Science</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Linear Algebra CS6660 week 6</h1>
+                  <div>
+        <div class="description">
+          Mathematical Foundations of Data Science CS6660 week 6
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Mathematical Foundations of Data Science</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Abhishek Kumar Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 1, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#linear-independence" id="toc-linear-independence" class="nav-link active" data-scroll-target="#linear-independence">Linear Independence</a></li>
+  <li><a href="#generating-set-and-basis" id="toc-generating-set-and-basis" class="nav-link" data-scroll-target="#generating-set-and-basis">Generating Set and Basis</a></li>
+  <li><a href="#basis-and-dimension" id="toc-basis-and-dimension" class="nav-link" data-scroll-target="#basis-and-dimension">Basis and Dimension</a>
+  <ul class="collapse">
+  <li><a href="#how-to-find-basis" id="toc-how-to-find-basis" class="nav-link" data-scroll-target="#how-to-find-basis">How to find Basis</a></li>
+  </ul></li>
+  <li><a href="#null-space-row-space-column-space" id="toc-null-space-row-space-column-space" class="nav-link" data-scroll-target="#null-space-row-space-column-space">Null space, Row Space, Column Space</a></li>
+  <li><a href="#rank" id="toc-rank" class="nav-link" data-scroll-target="#rank">Rank</a></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="linear-independence" class="level1">
+<h1>Linear Independence</h1>
+<ul>
+<li><p>How to find if vectors are linearly independent</p>
+<ul>
+<li>write all the vectors as a column of the the matrix.</li>
+<li>Perform Gaussian elimination until the matrix is in row echelon form</li>
+<li>The reduced row echelon form is not necessary here.</li>
+<li>The pivot columns indicate the vectors, which are linearly independent of the vectors on the left, Note that there is an ordering of vectors when the matrix is built.</li>
+<li>The non pivot columns can be expressed as linear combinations of the pivot columns on their left.</li>
+</ul></li>
+<li><p>If we have a matrix <span class="math inline">B</span> of all independent column vectors <span class="math inline">b_i</span>, and we multiply it with with <span class="math inline">j</span> <strong>independent column vectors</strong> <span class="math inline">\lambda_j, \;\;j=1,\dots ,j</span> then we get new set of <strong>independent columns vectors</strong> <span class="math inline">x_j, \;\;j=1, \dots ,j</span></p></li>
+<li><p>Example <br> consider a set of linearly independent vectors <span class="math inline">b_1,b_2,b_3,b_4 \in \mathbb{R}^n</span><br> <span class="math inline">\begin{array}{l l l l l l}  x_1 &amp; = &amp; +b_1 &amp; -2b_2 &amp; + b_3 &amp; -b_4 \\  x_2 &amp; = &amp; -4b_1 &amp; -2b_2 &amp; &amp; +4b_4 \\  x_3 &amp; = &amp; +2b_1 &amp; +3b_2 &amp; - b_3 &amp; -3b_4 \\  x_4 &amp; = &amp; +17b_1 &amp;-102b_2 &amp; + 11b_3 &amp;+b_4 \\  \end{array}</span><br> Are vectors <span class="math inline">x_1, \dots , x_4 \in \mathbb{R}^n</span> linearly independent? <br><br> As the matrix <span class="math inline">B</span> has all independent vectors, <span class="math inline">x_1, \dots , x_4</span> will be independent if the vectors formed by coefficients of equation are independent, so we create the coefficient matrix <span class="math inline">A</span> and perform the gaussian elimination, if we find no non-pivot column we can say <span class="math inline">x_1, \dots , x_4</span> are independent.<br><br> <span class="math inline">\left\{ \left[ \begin{array}{r}1\\-2\\1\\-1\end{array}\right],  \left[ \begin{array}{r}4\\-2\\0\\4\end{array}\right],  \left[ \begin{array}{r}2\\3\\-1\\-3\end{array}\right],  \left[ \begin{array}{r}17\\-10\\11\\1\end{array}\right] \right\}</span><br><br> <span class="math inline">A = \left[ \begin{array}{r r r r }  1 &amp; 4 &amp; 2 &amp; 17 \\  -2 &amp; -2 &amp; 3 &amp; -10 \\  1 &amp; 0 &amp; -1 &amp; 11 \\  -1 &amp; 4 &amp; -3 &amp; 1 \end{array}\right]</span><br><br> After performing gaussian elimination we get row echelon form <br><br> <span class="math inline">A = \left[ \begin{array}{r r r r }  1 &amp; 0 &amp; 0 &amp; -7 \\  0 &amp; 1 &amp; 0 &amp; -15 \\  0 &amp; 0 &amp; 1 &amp; -18 \\  0 &amp; 0 &amp; 0 &amp; 0 \end{array}\right]</span><br><br> Here we got last column as non pivot column, hence we can say that <span class="math inline">x_1, \dots , x_4</span> are not linearly independent.</p></li>
+</ul>
+</section>
+<section id="generating-set-and-basis" class="level1">
+<h1>Generating Set and Basis</h1>
+<ul>
+<li>Definition (Generating Set and Span): Consider a vector space <span class="math inline">V = (V,+,\cdot )</span> and a set of vectors <span class="math inline">A =\{ x_1, \dots , x_k\}</span>, If every vector <span class="math inline">v \in V</span> can be expressed as a linear combination of <span class="math inline">x_1, \dots , x_k,</span> <span class="math inline">A</span> is called a <strong>generating set</strong> of <span class="math inline">V</span> . The set of all linear combinations of vectors in <span class="math inline">A</span> is called the span of <span class="math inline">A</span>. If <span class="math inline">A</span> spans the vector space <span class="math inline">V,</span> we write <span class="math inline">V = \text{span}[A]</span> or <span class="math inline">V = \text{span}[ x_1, \dots , x_k]</span></li>
+<li>Definition (Basis): Consider a vector space <span class="math inline">V = (V,+,\cdot )</span> and <span class="math inline">A \subseteq V</span>. A generating set <span class="math inline">A</span> of <span class="math inline">V</span> is called minimal if there exists no smaller set <span class="math inline">A \subsetneq A \subseteq V</span> that spans <span class="math inline">V</span>. Every linearly independent generating set of <span class="math inline">V</span> is minimal and is called a basis of <span class="math inline">V</span>.</li>
+<li>Basis need not be orthogonal,also there can be multiple basis of a given vector space.<br></li>
+<li>Let <span class="math inline">V = (V,+,\cdot )</span> be a vector space and <span class="math inline">B \subseteq V, B \ne \phi</span>, Then the following statements are equivalent:
+<ul>
+<li><span class="math inline">B</span> is a basis of <span class="math inline">V</span>.</li>
+<li><span class="math inline">B</span> is a minimal generating set.</li>
+<li><span class="math inline">B</span> is a maximal linearly independent set of vectors in <span class="math inline">V</span>, i.e., adding any other vector to this set will make it linearly dependent.</li>
+<li>Every vector <span class="math inline">x \in V</span> si a linear combination of vectors from <span class="math inline">B</span>, and every linear combination is unique.</li>
+</ul></li>
+<li>Every vector space <span class="math inline">V</span> possesses a basis <span class="math inline">B</span>. There can be many bases of a vector space <span class="math inline">V</span>, i.e.&nbsp;there is no unique basis.</li>
+</ul>
+</section>
+<section id="basis-and-dimension" class="level1">
+<h1>Basis and Dimension</h1>
+<ul>
+<li>Any vector space <span class="math inline">V</span> has a basis.</li>
+<li>All bases for <span class="math inline">V</span> are of the same cardinality.</li>
+<li>A set of m vectors from <span class="math inline">\mathbb{R}^n</span>, with <span class="math inline">m&lt;n</span> can not span <span class="math inline">\mathbb{R}^n</span>, and hence can not be a basis for <span class="math inline">\mathbb{R}^n</span>.</li>
+<li>A set of m vectors from <span class="math inline">\mathbb{R}^n</span>, with <span class="math inline">m&gt;n</span> is not linearly independent set, and hence can not be a basis for <span class="math inline">\mathbb{R}^n</span>.</li>
+<li>Every basis of the vector space <span class="math inline">\mathbb{R}^n</span> consists of <span class="math inline">n</span> vectors.</li>
+<li>The dimension of a vector space <span class="math inline">V</span>, denoted <span class="math inline">\text{dim}V</span>, is the cardinality of its bases.</li>
+</ul>
+<section id="how-to-find-basis" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-find-basis">How to find Basis</h2>
+<ul>
+<li>A basis of a subspace <span class="math inline">U = \text{span}[x_1, \dots , x_m] \subseteq \mathbb{R}^n</span> can be found by executing the following steps:
+<ul>
+<li>Write the spanning vectors as columns of a matrix <span class="math inline">A</span></li>
+<li>Determine the row echelon form of <span class="math inline">A</span>.</li>
+<li>The spanning vectors associated with the pivot columns are basis of <span class="math inline">U</span>.</li>
+</ul></li>
+<li>Remarks : The dimension of a vector space is not necessarily the number of elements in a vector, For instance, the vector space <span class="math inline">V = \text{span}\left[ \begin{array}{c} 0\\1 \end{array}\right]</span> is one dimensional, although the basis vector possesses two elements.</li>
+</ul>
+</section>
+</section>
+<section id="null-space-row-space-column-space" class="level1">
+<h1>Null space, Row Space, Column Space</h1>
+<ul>
+<li>Let <span class="math inline">A</span> be an <span class="math inline">m \times n</span> matrix.
+<ul>
+<li>The subspace of <span class="math inline">\mathbb{R}^n</span> spanned by the row vectors of <span class="math inline">A</span> is called the row space of <span class="math inline">A</span>.</li>
+<li>The subspace of <span class="math inline">\mathbb{R}^n</span> spanned by column vectors of <span class="math inline">A</span> is called the column space of <span class="math inline">A</span>
+<ul>
+<li>Recall: Determine whether <span class="math inline">Ax=b</span> has a solution thus amounts to testing whether <span class="math inline">b</span> is in the span of the columns of <span class="math inline">A</span> ( called the column space of <span class="math inline">A</span>)</li>
+</ul></li>
+<li>The Null space of <span class="math inline">A</span> denoted <span class="math inline">\text{Null} \;A</span> is the set of all solutions to homogenous equation <span class="math inline">Ax=0</span>, written in set notation, we have <span class="math inline">\text{Null} \;A = \{ x:x \in \mathbb{R}^n \text{ and } Ax=0\}</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="rank" class="level1">
+<h1>Rank</h1>
+<ul>
+<li>Th rank of a matrix is size of the largest subset of columns of <span class="math inline">A</span> that constitute linearly independent set.</li>
+<li>Often referred to as simply the number of linearly independent columns of <span class="math inline">A</span></li>
+<li>Note that rank(<span class="math inline">A</span>) = rank(<span class="math inline">A^T</span>). This means that column rank = row rank.</li>
+<li>For <span class="math inline">A \in \mathbb{R}^{m\times n},</span> rank <span class="math inline">(A) \le\min(m,n)</span>. If rank <span class="math inline">(A)=\min(m,n)</span>, then <span class="math inline">A</span> is said to be full rank.</li>
+<li>The column of <span class="math inline">A \in \mathbb{R}^{m\times n}</span> span a subspace <span class="math inline">U \subseteq \mathbb{R}^m</span> with <span class="math inline">\text{dim}(U)=rk(A)</span>. Later we will call this subspace the image or range. A basis of <span class="math inline">U</span> can be found by applying gaussian elimination to <span class="math inline">A</span> to identify the pivot columns.</li>
+<li>The row of <span class="math inline">A \in \mathbb{R}^{m\times n}</span> span a subspace <span class="math inline">W \subseteq \mathbb{R}^n</span> with <span class="math inline">\text{dim}(W)=rk(A)</span>. A bais of <span class="math inline">W</span> can be found by applying gaussian elimination to <span class="math inline">A</span>.</li>
+<li>For all <span class="math inline">A \in \mathbb{R}^{m\times n}</span> it holds that <span class="math inline">A</span> is regular (invertible) if and only if <span class="math inline">rk(A)=n.</span></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
