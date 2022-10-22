@@ -9,7 +9,8 @@ website:
     right:
       - href: index.qmd
         text: Home    
-      - about.qmd
+      - href: about.qmd
+        text: About 
       - icon: github
         href: https://github.com/abhiyantaabhishek
       - icon: linkedin
