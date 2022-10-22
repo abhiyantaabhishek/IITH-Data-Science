@@ -39,12 +39,13 @@ sidebar: false
    <button class="btn" style="width:100%"><i class="fa fa-download"></i> Download Resume </button>
 </form>
 <br><br>
+
+</body>
+</html>
+::: column-screen-inset-shaded
 <object 
     width="100%" 
     height="900" 
     data="https://docs.google.com/gview?embedded=true&url=https://abhiyantaabhishek.github.io/MDS-IIT/_pages/about.pdf">
 </object>
-
-
-</body>
-</html>
+:::
