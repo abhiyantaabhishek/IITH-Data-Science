@@ -11,6 +11,8 @@ website:
         text: Home    
       - href: about.qmd
         text: About 
+      - href: about.qmd
+        text: About2         
       - icon: github
         href: https://github.com/abhiyantaabhishek
       - icon: linkedin
