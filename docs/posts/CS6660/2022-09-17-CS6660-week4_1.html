@@ -8,9 +8,9 @@
 
 <meta name="author" content="Abhishek Kumar Dubey">
 <meta name="dcterms.date" content="2022-09-17">
-<meta name="description" content="Mathematical Foundations of Data Science CS6660 week 4_1">
+<meta name="description" content="Binomial, Poisson">
 
-<title>IITH-Data-Science - Probability Theory CS6660 week 4_1</title>
+<title>IITH-Data-Science - Probability Theory 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -96,6 +96,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../posts/CS6660/2022-09-24-CS6660-week5.html" rel="next">
+<link href="../../posts/CS6660/2022-08-13-CS6660-week2.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -179,19 +181,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Probability Theory 3</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Probability Theory CS6660 week 4_1</h1>
+      <h1 class="title d-none d-lg-block">Probability Theory 3</h1>
                   <div>
         <div class="description">
-          Mathematical Foundations of Data Science CS6660 week 4_1
+          Binomial, Poisson
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Mathematical Foundations of Data Science</div>
+                <div class="quarto-category">Probability Theory</div>
               </div>
                   </div>
   </div>
@@ -219,7 +229,129 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">CS6660</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Probability Theory</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">Probability Theory 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link active">Probability Theory 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">Probability Theory 5</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Linear Algebra</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">CS5590</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">Machine Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">Machine Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -240,12 +372,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   </ul>
 </nav>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
@@ -366,33 +495,35 @@ Let <span class="math inline">X</span> be multiple copies of independent <span c
 </ul>
 </section>
 </section>
-<section id="geometric" class="level1">
+<section id="geometric" class="level1 page-columns page-full">
 <h1>Geometric</h1>
 <ul>
 <li>Definition <br> Suppose that independent trials, each succeeding with probability <span class="math inline">p</span>, are repeated until the first success. The total number <span class="math inline">X</span> of trials made has the <span class="math inline">\mathrm{Geometric}(p)</span> distribution (in short, <span class="math inline">X \sim \mathrm{Geom}(p)</span>). <br> <span class="math inline">X</span> can take on positive integers, with probabilities <br><br> <span class="math inline">\boxed{ \displaystyle \rho(i) = (1-p)^{i-1} \cdot p}</span> <span class="math inline">\;\;\;\;\; i=1,2,3,\dots</span><br><br> That is a function, we verify by <span class="math inline">\rho(i) \ge 0</span> and <br><br> <span class="math inline">\displaystyle \sum_{i=1}^\infty \rho(i) = \sum_{i=1}^\infty (1-p)^{i-1} \cdot p = \frac{p}{1-(1-p)}=1</span><br><br></li>
 <li>Remarks <br> For a Geometric<span class="math inline">(p)</span> random variable and any <span class="math inline">k \ge 1</span> we have <br> <span class="math inline">P \left\{ X \ge k \right\}=(1-p)^{k-1}</span> (We have at least <span class="math inline">k-1</span> failures).</li>
 <li>Corollary <br> The Geometric random variable is (discrete) memory-less :for every <span class="math inline">k \ge 1 , n \ge 0</span><br><br> <span class="math inline">\displaystyle P \left\{ X \ge n + k \mid X&gt;n \right\}=P \left\{ X \ge k \right\}</span><br><br> Proof : <br> <span class="math inline">\displaystyle P \left\{ X \ge n + k \mid X&gt;n \right\}= \frac {P\left\{ X \ge n + k \right\} \cap P\left\{X&gt;n \right\}}{P\left\{X&gt;n \right\}}</span><br> if <span class="math inline">X \ge n+k</span> then <span class="math inline">X</span> is also greater than <span class="math inline">n</span> as <span class="math inline">k</span> is at least <span class="math inline">1</span><br> <span class="math inline">\displaystyle P \left\{ X \ge n + k \mid X&gt;n \right\}= \frac {P\left\{ X \ge n + k \right\} }{P\left\{X&gt;n \right\}}</span><br> <span class="math inline">\displaystyle P \left\{ X \ge n + k \mid X&gt;n \right\}= \frac {(1-p)^{n+k-1} }{(1-p)^n}= (1-p)^{k-1}=P \left\{ X&gt;k \right\}</span><br></li>
 </ul>
-<section id="expectation-displaystyle-ex-frac1p" class="level2">
+<section id="expectation-displaystyle-ex-frac1p" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="expectation-displaystyle-ex-frac1p">Expectation <span class="math inline">\displaystyle EX =\frac{1}{p}</span></h2>
-<ul>
-<li><span class="math inline">\boxed {EX = \frac{1}{p}}</span><br><br>
-<ul>
+<ul class="page-columns page-full">
+<li class="page-columns page-full"><span class="math inline">\boxed {EX = \frac{1}{p}}</span><br><br>
+<ul class="page-columns page-full">
 <li><p>proof (using trick): <br><br> Trick : <span class="math inline">\displaystyle i=\frac{d}{dt}{{t}}^{i}{\Big|}_{t=1}\,</span> <br><br> <span class="math inline">\displaystyle EX = \sum_{i=1}^\infty i \cdot (1-p)^{i-1} \cdot p</span> <br><br> <span class="math inline">\displaystyle EX = \sum_{i=0}^\infty \frac{d}{dt}{t}^{i}{\Big|}_{t=1} (1-p)^{i-1} \cdot p</span> <br><br> <span class="math inline">\displaystyle EX = \frac{d}{dt} \left( \sum_{i=0}^\infty {t}^{i} (1-p)^{i-1} \cdot p \right) {\Bigg|}_{t=1}</span><br><br> <span class="math inline">\displaystyle EX = \frac{d}{dt} \left( \frac{p}{1-p}\sum_{i=0}^\infty {t}^{i} (1-p)^{i} \right) {\Bigg|}_{t=1}</span><br><br> <span class="math inline">\displaystyle EX = \frac{p}{1-p} \cdot \frac{d}{dt} \left( \frac{1}{1-t(1-p)} \right) {\Bigg|}_{t=1}</span><br><br> <span class="math inline">\displaystyle EX = \frac{p}{1-p} \cdot \left( \frac{1-p}{\left(1-t(1-p)\right)^2} \right) {\Bigg|}_{t=1}</span><br><br> <span class="math inline">\displaystyle EX = \frac{1}{p}</span></p></li>
-<li><p>Proof (normal way):<br><br> <span class="math inline">\displaystyle EX = \sum_{i=1}^\infty i \cdot (1-p)^{i-1} \cdot p</span> <br><br></p>
+<li class="page-columns page-full"><p>Proof (normal way):<br><br> <span class="math inline">\displaystyle EX = \sum_{i=1}^\infty i \cdot (1-p)^{i-1} \cdot p</span> <br><br></p>
+<div class="column-screen-inset">
 <p><span class="math display">\begin{align*}{}
-EX &amp;=  p + 2 \cdot (1-p)\cdot p + 3 \cdot (1-p)^2 \cdot p+\cdots  &amp;  \qquad (1) \\
-EX(1-p) &amp;= \qquad\;\;\; (1-p)\cdot p + 2 \cdot (1-p)^2\cdot p + 3 \cdot (1-p)^3 \cdot p +\cdots &amp; \qquad (2)
+EX &amp;=   p + 2 \cdot (1-p)\cdot p + 3 \cdot (1-p)^2 \cdot p+\cdots  &amp;   \qquad (1) \\
+EX(1-p) &amp;=  \qquad\;\;\; (1-p)\cdot p + 2 \cdot (1-p)^2\cdot p + 3 \cdot (1-p)^3 \cdot p +\cdots &amp;  \qquad (2)
 \end{align*}</span></p>
+</div>
 <p>Subtracting equation <span class="math inline">(1)</span> from <span class="math inline">(2)</span> we get <br><br> <span class="math inline">\displaystyle p \cdot EX = p + (1-p)\cdot p + (1-p)^2 \cdot p +\cdots</span><br><br> <span class="math inline">\displaystyle EX = 1 + (1-p) + (1-p)^2 +\cdots</span><br><br> <span class="math inline">\displaystyle EX = \frac{1}{1-(1-p)}</span><br><br> <span class="math inline">\displaystyle EX = \frac{1}{p}</span></p></li>
 </ul></li>
 </ul>
 </section>
-<section id="variance-displaystyle-mathrmvar-x-frac1-pp2" class="level2">
+<section id="variance-displaystyle-mathrmvar-x-frac1-pp2" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-frac1-pp2">Variance <span class="math inline">\displaystyle \mathrm{Var} X = \frac{1-p}{p^2}</span></h2>
-<ul>
-<li><span class="math inline">\boxed {\mathrm{Var} X = \frac{1-p}{p^2}}</span> <br><br>
-<ul>
+<ul class="page-columns page-full">
+<li class="page-columns page-full"><span class="math inline">\boxed {\mathrm{Var} X = \frac{1-p}{p^2}}</span> <br><br>
+<ul class="page-columns page-full">
 <li><p>Proof (using trick);<br><br> Trick : <span class="math inline">\displaystyle i(i-1)=\frac{d}{dt^2}{{t}}^{i}{\Big|}_{t=1}\,</span> <br><br> First find <span class="math inline">E[X(X-1)]</span><br><br> <span class="math inline">\displaystyle E[X(X-1)] =\sum_{i=1}^\infty i\times(i-1) \times (1-p)^{i-1} \times p</span> <br><br><br>
 <span class="math inline">\displaystyle E[X(X-1)] =\sum_{i=1}^\infty \frac{d}{dt^2}{t}^{i}{\Big|}_{t=1} \times (1-p)^{i-1} \times p</span> <br><br><br>
 <span class="math inline">\displaystyle E[X(X-1)] =p \frac{d}{dt^2} \left( \sum_{i=1}^\infty{t}^{i}(1-p)^{i-1} \right) {\Bigg|}_{t=1}</span> <br><br><br>
@@ -400,11 +531,14 @@ EX(1-p) &amp;= \qquad\;\;\; (1-p)\cdot p + 2 \cdot (1-p)^2\cdot p + 3 \cdot (1-p
 <span class="math inline">\displaystyle E[X(X-1)] = \frac{p}{1-p} \cdot \frac{d}{dt^2} \left( \frac{1}{1-t(1-p)} \right) {\Bigg|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] = \frac{p}{1-p} \cdot \left( \frac{2(1-p)(1-p)}{(\left( 1-t(1-p) \right)^3 } \right) {\Bigg|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] = \frac{p}{1-p} \cdot \left( \frac{2(1-p)(1-p)}{p^3 } \right)</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] = \left( \frac{2(1-p)}{p^2 } \right)</span> <br><br> Now, <br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E(X^2)-(EX)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E\left[X(X-1)\right] +EX-(EX)^2</span><br><br><br>
 <span class="math inline">\displaystyle \mathrm{Var}X = \left( \frac{2(1-p)}{p^2 } \right) + \frac{1}{p} -\left( \frac{1}{p} \right)^2</span><br><br><br>
 <span class="math inline">\displaystyle \mathrm{Var}X = \left( \frac{2-2p}{p^2 } \right) + \frac{1}{p} -\left( \frac{1}{p} \right)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \frac{2-2p+p-1}{p^2}</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \frac{1-p}{p^2}</span><br><br></p></li>
-<li><p>proof (normal way):<br><br> we first solve for <span class="math inline">E(X^2)</span><br><br> <span class="math inline">\displaystyle E(X^2) = \left( \sum_{i=1}^\infty i^2 \times (1-p)^{i-1} \times p \right)</span> <br><br></p>
+<li class="page-columns page-full"><p>proof (normal way):<br><br> we first solve for <span class="math inline">E(X^2)</span><br><br> <span class="math inline">\displaystyle E(X^2) = \left( \sum_{i=1}^\infty i^2 \times (1-p)^{i-1} \times p \right)</span> <br><br></p>
+<div class="column-screen-inset">
 <p><span class="math display">\begin{align*}{}
-E(X^2) &amp;= p + 4 \cdot (1-p) \cdot p + 9 \cdot (1-p)^2 \cdot p + \cdots  &amp;  \qquad (3) \\
-(1-p) E(X^2) &amp;= \qquad\;\;\; \;(1-p) \cdot p + 4 \cdot (1-p)^2 \cdot p + 9 \cdot (1-p)^3 \cdot p + \cdots  &amp; \qquad (4)
-\end{align*}</span> <br><br> subtracting eqution <span class="math inline">(4)</span> from equation <span class="math inline">(3)</span> <br><br><br>
+  E(X^2) &amp;=   p + 4 \cdot (1-p) \cdot p + 9 \cdot (1-p)^2 \cdot p + \cdots  &amp;     (3) \\
+  (1-p) E(X^2) &amp;=  \qquad\;\;\; \;(1-p) \cdot p + 4 \cdot (1-p)^2 \cdot p + 9 \cdot (1-p)^3 \cdot p + \cdots  &amp;    (4)
+\end{align*}</span></p>
+</div>
+<p><br><br> subtracting eqution <span class="math inline">(4)</span> from equation <span class="math inline">(3)</span> <br><br><br>
 <span class="math inline">\displaystyle E(X^2) = p+3 \cdot (1-p) + 5 \cdot (1-p)^2 + 7 \cdot (1-p)^3 + \cdots</span><br><br> This is AGP, the sum is given by <span class="math inline">s_{\infty}=\frac{a}{1-r}+\frac{dr}{(1-r)^2}, \;\;\;\;</span> for <span class="math inline">r&lt;1</span><br><br> In our case <span class="math inline">r=(1-p),\;a=1,\;d=2\;</span> so we get, <br><br> <span class="math inline">\displaystyle E(X^2) =\frac{1}{1-(1-p)}+\frac{2\cdot (1-p)}{(1-(1-p))^2}</span><br><br> <span class="math inline">\displaystyle E(X^2) =\frac{1}{p}+\frac{2-2p}{p^2}</span><br><br> <span class="math inline">\displaystyle E(X^2) =\frac{p+2-2p}{p^2}</span><br><br> <span class="math inline">\displaystyle E(X^2) =\frac{2-p}{p^2}</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E(X^2) - (EX)^2</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \frac{2-p}{p^2} - \left(\frac{1}{p}\right)^2</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \frac{1-p}{p^2}</span> <br><br></p></li>
 </ul></li>
 </ul>
@@ -512,7 +646,40 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../posts/CS6660/2022-08-13-CS6660-week2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Probability Theory 2</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../posts/CS6660/2022-09-24-CS6660-week5.html" class="pagination-link">
+        <span class="nav-page-text">Probability Theory 4</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2021, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

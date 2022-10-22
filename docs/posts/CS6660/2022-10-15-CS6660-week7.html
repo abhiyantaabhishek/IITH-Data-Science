@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Abhishek Kumar Dubey">
+<meta name="dcterms.date" content="2022-10-15">
+<meta name="description" content="Joint, Conditional, Marginal, Discrete Convolution">
+
+<title>IITH-Data-Science - Probability Theory 5</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../posts/CS6660/2022-09-03-CS6660-week3.html" rel="next">
+<link href="../../posts/CS6660/2022-09-24-CS6660-week5.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">IITH-Data-Science</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Probability Theory 5</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Probability Theory 5</h1>
+                  <div>
+        <div class="description">
+          Joint, Conditional, Marginal, Discrete Convolution
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Probability Theory</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Abhishek Kumar Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 15, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">CS6660</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Probability Theory</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">Probability Theory 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">Probability Theory 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link active">Probability Theory 5</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Linear Algebra</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">CS5590</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">Machine Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">Machine Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#joint-mass-function" id="toc-joint-mass-function" class="nav-link active" data-scroll-target="#joint-mass-function">Joint mass function</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition</a></li>
+  <li><a href="#marginal-mass-functions" id="toc-marginal-mass-functions" class="nav-link" data-scroll-target="#marginal-mass-functions">Marginal mass functions</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  </ul></li>
+  <li><a href="#conditional-mass-function" id="toc-conditional-mass-function" class="nav-link" data-scroll-target="#conditional-mass-function">Conditional mass function</a>
+  <ul class="collapse">
+  <li><a href="#definition-1" id="toc-definition-1" class="nav-link" data-scroll-target="#definition-1">Definition</a>
+  <ul class="collapse">
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#independent-random-variable" id="toc-independent-random-variable" class="nav-link" data-scroll-target="#independent-random-variable">Independent Random Variable</a>
+  <ul class="collapse">
+  <li><a href="#definition-2" id="toc-definition-2" class="nav-link" data-scroll-target="#definition-2">Definition</a></li>
+  <li><a href="#discrete-convolution" id="toc-discrete-convolution" class="nav-link" data-scroll-target="#discrete-convolution">Discrete Convolution</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="joint-mass-function" class="level1">
+<h1>Joint mass function</h1>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Most examples will involve two random variables, but everything can be generalized for more of them.</p>
+</div>
+</div>
+<section id="definition" class="level2">
+<h2 class="anchored" data-anchor-id="definition">Definition</h2>
+<p>Suppose two discrete random variables <span class="math inline">X</span> and <span class="math inline">Y</span> are defined on a common probability space, and can take on values <span class="math inline">x_1, x_2, \dots</span> and <span class="math inline">y_1, y_2, \dots,</span> respectively. The joint probability mass function of them is defined as <br> <span class="math display">p(x_i , y_j ) = P{X = x_i , Y = y_j}, i = 1, 2, \dots , j = 1, 2, \dots .</span> This function contains all information about the joint distribution of <span class="math inline">X</span> and <span class="math inline">Y</span>.<br> Any joint mass function satisfies : <span class="math display">p(x,y)\ge 0, \; \forall x,y \in\mathbb{R}</span> <span class="math display">\sum_{i,j}p(x_i,j_j)=1</span> Any function with above properties is a joint probability mass function.</p>
+</section>
+<section id="marginal-mass-functions" class="level2">
+<h2 class="anchored" data-anchor-id="marginal-mass-functions">Marginal mass functions</h2>
+<p>Marginal mass functions are <br> <span class="math display">p_X(x_i):=P\{X=x_i\}</span> and <span class="math display">p_Y(y_i):=P\{Y=y_i\}</span> Also <span class="math display">p_X(x_i)=\sum_jp(x_i,j_j)</span> and <span class="math display">p_Y(y_j)=\sum_ip(x_i,j_j)</span></p>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>An urn has <span class="math inline">3</span> red, <span class="math inline">4</span> white, <span class="math inline">5</span> black balls. Drawing <span class="math inline">3</span> at once, let <span class="math inline">X</span> be the number of red, <span class="math inline">Y</span> the number of white balls drawn. The joint mass function is:</p>
+<table class="table">
+<caption>Table shows Joint probability distribution.</caption>
+<colgroup>
+<col style="width: 19%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">Y \downarrow</span> <span class="math inline">X \rightarrow</span></th>
+<th style="text-align: left;">0</th>
+<th style="text-align: right;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+<th style="text-align: center;"><span class="math inline">p_Y(\cdot)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>0</strong></td>
+<td style="text-align: left;"><span class="math inline">\displaystyle \frac{\binom{5}{3}}{\binom{12}{3}}</span></td>
+<td style="text-align: right;"><span class="math inline">\displaystyle \frac{\binom{3}{1}\binom{5}{2}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{3}{2}\binom{5}{1}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{3}{3}\binom{5}{0}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{8}{3}}{\binom{12}{3}}</span></td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td style="text-align: left;"><span class="math inline">\displaystyle \frac{\binom{4}{1}\binom{5}{2}}{\binom{12}{3}}</span></td>
+<td style="text-align: right;"><span class="math inline">\displaystyle \frac{\binom{4}{1}\binom{3}{1}\binom{5}{1}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{4}{1}\binom{3}{2}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{4}{1}\binom{8}{2}}{\binom{12}{3}}</span></td>
+</tr>
+<tr class="odd">
+<td><strong>2</strong></td>
+<td style="text-align: left;"><span class="math inline">\displaystyle \frac{\binom{4}{2}\binom{5}{1}}{\binom{12}{3}}</span></td>
+<td style="text-align: right;"><span class="math inline">\displaystyle \frac{\binom{4}{2}\binom{3}{1}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{4}{2}\binom{8}{1}}{\binom{12}{3}}</span></td>
+</tr>
+<tr class="even">
+<td><strong>3</strong></td>
+<td style="text-align: left;"><span class="math inline">\displaystyle \frac{\binom{4}{3}}{\binom{12}{3}}</span></td>
+<td style="text-align: right;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{4}{3}}{\binom{12}{3}}</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">p_X(\cdot)</span></td>
+<td style="text-align: left;"><span class="math inline">\displaystyle \frac{\binom{9}{3}}{\binom{12}{3}}</span></td>
+<td style="text-align: right;"><span class="math inline">\displaystyle \frac{\binom{3}{1}\binom{9}{2}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{3}{2}\binom{9}{1}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{3}{3}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="conditional-mass-function" class="level1">
+<h1>Conditional mass function</h1>
+<section id="definition-1" class="level2">
+<h2 class="anchored" data-anchor-id="definition-1">Definition</h2>
+<p>suppose <span class="math inline">p_Y(y_j)&gt;0</span>. The conditional mass function of <span class="math inline">X</span> given <span class="math inline">Y=y_j</span> is defined by <span class="math display">p_{X \mid Y}(x \mid y_i):= P\{X=x \mid Y=y_j\}=\frac{\overbrace{p(x,y_i)}^{\text{joint}} }{\underbrace{p_Y(y_i)}_{\text{marginal}} }</span> As the conditional probability was a proper probability, this is a proper mass function: <span class="math inline">\forall x,y_i</span> <span class="math display">p_{X \mid Y}(x \mid y_j) \ge 0, \qquad \sum_i p_{X|Y}(x_i \mid y_j)=1</span></p>
+<section id="example-1" class="level3">
+<h3 class="anchored" data-anchor-id="example-1">Example</h3>
+<p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> have joint mass function</p>
+<table class="table">
+<caption>joint distribution</caption>
+<thead>
+<tr class="header">
+<th><span class="math inline">X \downarrow</span> <span class="math inline">Y \rightarrow</span></th>
+<th style="text-align: left;">0</th>
+<th style="text-align: right;">1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>0</strong></td>
+<td style="text-align: left;">0.4</td>
+<td style="text-align: right;">0.2</td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td style="text-align: left;">0.1</td>
+<td style="text-align: right;">0.3</td>
+</tr>
+</tbody>
+</table>
+<p>The conditional distribution of <span class="math inline">X</span> given <span class="math inline">Y=0</span> is <span class="math display">p_{X\mid Y}(0 \mid 0)= \frac{p(0,0)}{p_Y(0)}= \frac{p(0,0)}{p(0,0)+p(1,0)}=\frac{0.4}{0.4+0.1}=\frac{4}{5}</span> <span class="math display">p_{X\mid Y}(1 \mid 0)= \frac{p(1,0)}{p_Y(0)}= \frac{p(1,0)}{p(0,0)+p(1,0)}=\frac{0.1}{0.4+0.1}=\frac{1}{5}</span></p>
+</section>
+</section>
+</section>
+<section id="independent-random-variable" class="level1">
+<h1>Independent Random Variable</h1>
+<section id="definition-2" class="level2">
+<h2 class="anchored" data-anchor-id="definition-2">Definition</h2>
+<p>Random variables <span class="math inline">X</span> and <span class="math inline">Y</span> are independent, if events formulated with them are so, That is, if for every <span class="math inline">A, B \sube \mathbb{R}</span> <span class="math display">P\{X\in A,Y\in B\}=P\{X\in A\} \cdot P \{ Y \in B\} </span></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The abbreviation i.i.d. is used for independent and identically distributed random variables.</p>
+</div>
+</div>
+<p>Two random variables <span class="math inline">X</span> and <span class="math inline">Y</span> are independent if and only if their joint mass function factorizes into the product of the marginals : <span class="math display">p(x_i,y_i)=p_X(x_i)\cdot p_Y(y_i), \qquad \forall x_i,y_i</span></p>
+</section>
+<section id="discrete-convolution" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-convolution">Discrete Convolution</h2>
+<p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be independent, integer valued random variables with respective mass functions <span class="math inline">p_X</span> and <span class="math inline">p_Y</span> . Then <span class="math display">p_{X+Y}(k) = \sum_{i=-\infty}^\infty p_X(k − i) \cdot p_Y (i), \qquad (\forall k \in \mathbb{Z})</span> This formula is called discrete convolution of the mass function <span class="math inline">p_X</span> and <span class="math inline">p_Y</span></p>
+<ul>
+<li>Proof <span class="math display">\begin{align*}
+p_{X+Y}(K)&amp;=P\{X+Y=K\}\\
+&amp;=\sum_{i=-\infty}^\infty P\{X=k-i,Y=i\}\\
+&amp;=\sum_{i=-\infty}^\infty P_X(k-i)\cdot p_Y(i)
+\end{align*}</span></li>
+</ul>
+<p>Let <span class="math inline">X \sim \textrm{Poi}(\lambda)</span> and <span class="math inline">Y \sim \textrm{Poi}(\mu)</span> be independent than: <br> <span class="math inline">X+Y \sim \textrm{Poi}(\lambda+\mu)</span></p>
+<ul>
+<li>proof <span class="math display">\begin{align*}
+p_{X+Y}(K)&amp;=\sum_{i=-\infty}^\infty P_X(k-i)\cdot p_Y(i) \\
+&amp;= \sum_{i=-\infty}^\infty \frac{\lambda^{(k-i)}}{(k-i)!}e^{-\lambda}\cdot \frac{\mu^i}{i!}e^{-\mu} \\
+&amp;= e^{-\lambda - \mu}\frac{1}{k!}\sum_{i=-\infty}^\infty \frac{k!}{(k-i)!\cdot i!}\lambda^{(k-i)} \cdot \mu^i \\
+&amp;= e^{-\lambda - \mu}\frac{1}{k!}\sum_{i=-\infty}^\infty \binom{k}{i} \lambda^{(k-i)} \cdot \mu^i \\
+&amp;= e^{-(\lambda + \mu)}\frac{1}{k!}(\lambda + \mu)^k \\
+&amp;=\textrm{Poi}(\lambda+\mu)
+\end{align*}</span></li>
+</ul>
+<p>Let <span class="math inline">X,Y</span> be i.i.d. <span class="math inline">\textrm{Geom}(p)</span> variables then: <br> <span class="math inline">X+Y</span> is not geometric.</p>
+<ul>
+<li>proof <span class="math display">\begin{align*}
+p_{X+Y}(K)&amp;=\sum_{i=-\infty}^\infty P_X(k-i)\cdot p_Y(i) \\
+&amp;=\sum_{i=1}^{k-1}(1-p)^{k-i-1}p\cdot (1-p)^{i-1}p \\
+&amp;=(k-1)(1-p)^{k-2}p^2
+\end{align*}</span><br>
+Hence <span class="math inline">X+Y</span> is not Geometric, <em>it’s actually called Negative Binomial.</em></li>
+</ul>
+<p>Let <span class="math inline">X \sim \textrm{Binom}(n,p)</span> and <span class="math inline">Y \sim \textrm{Binom}(m,p)</span> be independent (<strong>notice the same</strong> <span class="math inline">\mathbf p</span>) then :<br> <span class="math inline">X+Y \sim \textrm{Binom}(n+m,p)</span></p>
+<ul>
+<li>proof <span class="math display">\begin{align*}
+p_{X+Y}(K)&amp;=\sum_{i=-\infty}^\infty P_X(k-i)\cdot p_Y(i) \\
+&amp;=\sum_{i=0}^k \binom{n}{k-i}p^{k-i}(1-p)^{n-k+i}\cdot \binom{m}{i}p^i(1-p)^{m-i} \\
+&amp;=\sum_{i=0}^k \binom{n}{k-i} \binom{m}{i} p^k(1-p)^{m+n-k} \\
+&amp;=\sum_{i=0}^k \binom{m+n}{k}  p^k(1-p)^{m+n-k} \\
+&amp;=\textrm{Binom}(n+m,p)
+\end{align*}</span><br>
+To prove above equaiton uwe used the fact that <span class="math inline">\binom{n}{k-i} \binom{m}{i}=\binom{m+n}{k}</span></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../posts/CS6660/2022-09-24-CS6660-week5.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Probability Theory 4</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../posts/CS6660/2022-09-03-CS6660-week3.html" class="pagination-link">
+        <span class="nav-page-text">Linear Algebra 1</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2021, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -11,10 +11,46 @@ website:
         href: https://github.com/abhiyantaabhishek
       - icon: linkedin
         href: https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/
+  sidebar:
+    contents: 
+      - section: "CS6660"
+        contents:
+          - section: "Probability Theory"
+            contents:
+              - posts/CS6660/2022-08-06-CS6660-week1.ipynb
+              - posts/CS6660/2022-08-13-CS6660-week2.ipynb
+              - posts/CS6660/2022-09-17-CS6660-week4_1.ipynb
+              - posts/CS6660/2022-09-24-CS6660-week5.ipynb
+              - posts/CS6660/2022-10-15-CS6660-week7.ipynb
+          - section: "Linear Algebra"
+            contents: 
+              - posts/CS6660/2022-09-03-CS6660-week3.ipynb
+              - posts/CS6660/2022-09-17-CS6660-week4_2.ipynb
+              - posts/CS6660/2022-10-01-CS6660-week6.ipynb             
+      - section: "CS5590"
+        contents:
+          - section: "Machine Learning"
+            contents: 
+              - posts/CS5590/2022-08-06-CS5590-week1.ipynb
+              - posts/CS5590/2022-08-20-CS5590-week2.ipynb
+              - posts/CS5590/2022-08-27-CS5590-week3.ipynb
+              - posts/CS5590/2022-09-10-CS5590-week4.ipynb
+              - posts/CS5590/2022-09-24-CS5590-week5.ipynb
+  page-navigation: true
+  reader-mode: true
+  page-footer: 
+    left: "Copyright 2021, Abhishek Kumar Dubey" 
+    right: 
+      - icon: github
+        href: https://github.com/abhiyantaabhishek
+      - icon: linkedin
+        href: https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/
+    background: light
+
 format:
   html:
     toc: true
-    toc-location: left  
+    toc-location: right  
     theme: cosmo
     css: styles.css
     html-math-method: katex
