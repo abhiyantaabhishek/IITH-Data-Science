@@ -9,6 +9,7 @@ about:
     - icon: github
       text: Github
       href: https://github.com/abhiyantaabhishek
+sidebar: false
 ---
 
 <html>
@@ -34,7 +35,7 @@ about:
 </head>
 <body>
 
-<form method="get" action="about.pdf">
+<form method="get" action="https://abhiyantaabhishek.github.io/MDS-IIT/_pages/about.pdf">
    <button class="btn" style="width:100%"><i class="fa fa-download"></i> Download Resume </button>
 </form>
 <br><br>
