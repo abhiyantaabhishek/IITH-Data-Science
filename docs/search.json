@@ -42,6 +42,20 @@
     "text": "Discrete Convolution\nLet X and Y be independent, integer valued random variables with respective mass functions p_X and p_Y . Then p_{X+Y}(k) = \\sum_{i=-\\infty}^\\infty p_X(k − i) \\cdot p_Y (i), \\qquad (\\forall k \\in \\mathbb{Z}) This formula is called discrete convolution of the mass function p_X and p_Y\n\nProof \\begin{align*}\np_{X+Y}(K)&=P\\{X+Y=K\\}\\\\\n&=\\sum_{i=-\\infty}^\\infty P\\{X=k-i,Y=i\\}\\\\\n&=\\sum_{i=-\\infty}^\\infty P_X(k-i)\\cdot p_Y(i)\n\\end{align*}\n\nLet X \\sim \\textrm{Poi}(\\lambda) and Y \\sim \\textrm{Poi}(\\mu) be independent than:  X+Y \\sim \\textrm{Poi}(\\lambda+\\mu)\n\nproof \\begin{align*}\np_{X+Y}(K)&=\\sum_{i=-\\infty}^\\infty P_X(k-i)\\cdot p_Y(i) \\\\\n&= \\sum_{i=-\\infty}^\\infty \\frac{\\lambda^{(k-i)}}{(k-i)!}e^{-\\lambda}\\cdot \\frac{\\mu^i}{i!}e^{-\\mu} \\\\\n&= e^{-\\lambda - \\mu}\\frac{1}{k!}\\sum_{i=-\\infty}^\\infty \\frac{k!}{(k-i)!\\cdot i!}\\lambda^{(k-i)} \\cdot \\mu^i \\\\\n&= e^{-\\lambda - \\mu}\\frac{1}{k!}\\sum_{i=-\\infty}^\\infty \\binom{k}{i} \\lambda^{(k-i)} \\cdot \\mu^i \\\\\n&= e^{-(\\lambda + \\mu)}\\frac{1}{k!}(\\lambda + \\mu)^k \\\\\n&=\\textrm{Poi}(\\lambda+\\mu)\n\\end{align*}\n\nLet X,Y be i.i.d. \\textrm{Geom}(p) variables then:  X+Y is not geometric.\n\nproof \\begin{align*}\np_{X+Y}(K)&=\\sum_{i=-\\infty}^\\infty P_X(k-i)\\cdot p_Y(i) \\\\\n&=\\sum_{i=1}^{k-1}(1-p)^{k-i-1}p\\cdot (1-p)^{i-1}p \\\\\n&=(k-1)(1-p)^{k-2}p^2\n\\end{align*}\nHence X+Y is not Geometric, it’s actually called Negative Binomial.\n\nLet X \\sim \\textrm{Binom}(n,p) and Y \\sim \\textrm{Binom}(m,p) be independent (notice the same \\mathbf p) then : X+Y \\sim \\textrm{Binom}(n+m,p)\n\nproof \\begin{align*}\np_{X+Y}(K)&=\\sum_{i=-\\infty}^\\infty P_X(k-i)\\cdot p_Y(i) \\\\\n&=\\sum_{i=0}^k \\binom{n}{k-i}p^{k-i}(1-p)^{n-k+i}\\cdot \\binom{m}{i}p^i(1-p)^{m-i} \\\\\n&=p^k(1-p)^{m+n-k}\\sum_{i=0}^k \\binom{n}{k-i} \\binom{m}{i}  \\\\\n&=\\binom{m+n}{k}  p^k(1-p)^{m+n-k} \\\\\n&=\\textrm{Binom}(n+m,p)\n\\end{align*}\nTo prove above equation we used the fact that \\sum_{i=0}^k \\binom{n}{k-i} \\binom{m}{i}=\\binom{m+n}{k}"
   },
   {
+    "objectID": "posts/CS6660/2022-10-15-CS6660-week7.html#continuous-convolution",
+    "href": "posts/CS6660/2022-10-15-CS6660-week7.html#continuous-convolution",
+    "title": "Probability Theory 5",
+    "section": "Continuous convolution",
+    "text": "Continuous convolution\nSuppose X and Y are independent continuous random variables with respective densities f_X and f_Y. Then their sum is a continuous random variable with density f_{X+Y}(a)=\\int_{- \\infty} ^ \\infty f_X(a-y)\\cdot f_Y(y)dy, \\qquad (\\forall a \\in \\mathbb{R})"
+  },
+  {
+    "objectID": "posts/CS6660/2022-10-15-CS6660-week7.html#gamma-distribution",
+    "href": "posts/CS6660/2022-10-15-CS6660-week7.html#gamma-distribution",
+    "title": "Probability Theory 5",
+    "section": "Gamma distribution",
+    "text": "Gamma distribution\nLet X and Y be i.i.d. \\mathrm{Exp}(\\lambda), and the density of their sum (a\\ge 0)\n\\begin{align*}\nf_{X+Y}(a)&=\\int_{\\infty}^\\infty f_X(a-y) \\cdot f_Y(y)dy \\\\\n&=\\int_{\\infty}^\\infty \\lambda e^{-\\lambda (a-y)}\\cdot \\lambda e^{-\\lambda y}dy \\\\\n&= \\lambda^2 a \\cdot e^{-\\lambda a}\n\\end{align*} This density is called \\mathrm{Gamma}(2,\\lambda)"
+  },
+  {
     "objectID": "posts/CS6660/2022-08-13-CS6660-week2.html",
     "href": "posts/CS6660/2022-08-13-CS6660-week2.html",
     "title": "Probability Theory 2",
@@ -481,19 +495,5 @@
     "title": "Machine Learning 5",
     "section": "Backpropagation Form lecture PDF",
     "text": "Backpropagation Form lecture PDF\nIt also has same points as per PRML but from different angle. But DIFFERENT TERMINOLOGY IS USED HERE SO BE CAREFUL\n\n  \n\\mathbf{\\text{Alert !!!}}\n\n\nSOME NOTATION IS WRONG IN THIS SECTION. DO NOT READ THIS SECTION, ALL CONCEPTS ARE ALREADY EXPLAINED \n\nTerminology  g is activation function  y=g(z)  E = (t_i-y_i)^2  z_i = a_j\\times w_{ij}\nAdd a dimension for the observed error\nTry to minimize your position on the “error surface”\nCompute :  \\text{Grad}_E = \\left[ \\frac{dE}{dW_1},\\frac{dE}{dW_2},\\dots , \\frac{dE}{dW_n} \\right]\nChange i_{th} weight by  \\Delta W_i = -\\alpha \\frac{dE}{dW_i}\nWe also use activation function at the end of every node.\nconsider g(z)=y where g is sigmoid activation function.\ng'(z)=g(z)\\times (1-g(z))=y(1-y)\nActivation function must be continuous, differential, non-decreasing, and easy to compute.\nWe want activation function to be non-decreasing because, so that it should not increase value in some reason and decrease it in some other reason.\n\n\nUpdating Hidden-to-Output\n\nUpdating Hidden-to-Output \\frac{\\partial E}{\\partial W_ij}= \\frac{\\partial E}{\\partial y} \\times \\frac{\\partial y}{\\partial z} \\times \\frac{\\partial z}{\\partial W_ij} \\Delta W_{ij} = \\alpha \\times \\underbrace{(t_i -y_i)}_{\\frac{\\partial E}{\\partial y} } \\times \\underbrace{g'(z_i)}_{\\frac{\\partial y}{\\partial z} } \\times \\underbrace{a_j}_{\\frac{\\partial z}{\\partial W_ij}} \\Delta W_{ij} = \\overbrace{\\alpha}^{\\text{learning rate}} \\times \\underbrace{(\\overbrace{t_i}^{\\text{Teacher supplied}} -y_i)}_{\\text{miss}} \\times \\overbrace{g'(z_i)}^{\\text{derivatve of acitvation function}} \\times \\underbrace{a_j}_{\\text{previous layer output}} \\Delta W_{ij} = \\alpha \\times (t_i -y_i) \\times y_i \\times (1-y_i)\\times a_j \n\n\n\nUpdating interior weights\n\nUpdating interior weights Layer k units provide values to all layers k+1 units. “miss” is sum of the misses from all units on k+1 \\displaystyle \\text{miss}_j = \\sum \\left[ a_j(1-a_j)(t_i-a_j)w_{ji} \\right] \\displaystyle \\frac{\\partial E}{\\partial W_kj}= \\left( \\sum \\frac{\\partial E}{\\partial y_i} \\times \\frac{\\partial y_i}{\\partial z_i} \\times \\frac{\\partial z_i}{\\partial a_j} \\right) \\times \\frac{\\partial a_j}{\\partial l_j} \\times \\frac{\\partial l_j}{\\partial W_ij} \\displaystyle \\frac{\\partial E}{\\partial W_kj}= \\left( \\sum \\underbrace{\\frac{\\partial E}{\\partial y_i}}_{t_i-y_i} \\times \\overbrace{\\frac{\\partial y_i}{\\partial z_i}}^{y_i(1-y_i)} \\times \\underbrace{\\frac{\\partial z_i}{\\partial a_j}}_{w_ji} \\right) \\times \\underbrace{\\frac{\\partial a_j}{\\partial l_j}}_{a_j(1-a_j)} \\times \\overbrace{\\frac{\\partial l_j}{\\partial W_ij}}^{l_k} \\displaystyle \\frac{\\partial E}{\\partial W_kj} = \\left( \\sum y_i \\times (1-y_i) \\times (t_i-y_i) \\times w_{ji}\\right) \\times l_k \\times a_j \\times (1-a_j)"
-  },
-  {
-    "objectID": "posts/CS6660/2022-10-15-CS6660-week7.html#continuous-convolution",
-    "href": "posts/CS6660/2022-10-15-CS6660-week7.html#continuous-convolution",
-    "title": "Probability Theory 5",
-    "section": "Continuous convolution",
-    "text": "Continuous convolution\nSuppose X and Y are independent continuous random variables with respective densities f_X and f_Y. Then their sum is a continuous random variable with density f_{X+Y}(a)=\\int_{- \\infty} ^ \\infty f_X(a-y)\\cdot f_Y(y)dy, \\qquad (\\forall a \\in \\mathbb{R})"
-  },
-  {
-    "objectID": "posts/CS6660/2022-10-15-CS6660-week7.html#gamma-distribution",
-    "href": "posts/CS6660/2022-10-15-CS6660-week7.html#gamma-distribution",
-    "title": "Probability Theory 5",
-    "section": "Gamma distribution",
-    "text": "Gamma distribution\nLet X and Y be i.i.d. \\mathrm{Exp}(\\lambda), and the density of their sum (a\\ge 0)\n\\begin{align*}\nf_{X+Y}(a)&=\\int_{\\infty}^\\infty f_X(a-y) \\cdot f_Y(y)dy \\\\\n&=\\int_{\\infty}^\\infty \\lambda e^{-\\lambda (a-y)}\\cdot \\lambda e^{-\\lambda y}dy \\\\\n&= \\lambda^2 a \\cdot e^{-\\lambda a}\n\\end{align*}"
   }
 ]
