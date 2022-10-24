@@ -63,6 +63,15 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
+</script>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -327,6 +336,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#continuous-convolution" id="toc-continuous-convolution" class="nav-link" data-scroll-target="#continuous-convolution">Continuous convolution</a></li>
   <li><a href="#gamma-distribution" id="toc-gamma-distribution" class="nav-link" data-scroll-target="#gamma-distribution">Gamma distribution</a></li>
   </ul></li>
+  <li><a href="#expectation-covariance" id="toc-expectation-covariance" class="nav-link" data-scroll-target="#expectation-covariance">Expectation, covariance</a>
+  <ul class="collapse">
+  <li><a href="#expectation" id="toc-expectation" class="nav-link" data-scroll-target="#expectation">Expectation</a>
+  <ul class="collapse">
+  <li><a href="#properties-of-expectation" id="toc-properties-of-expectation" class="nav-link" data-scroll-target="#properties-of-expectation">Properties of Expectation</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -531,12 +547,74 @@ To prove above equation we used the fact that <span class="math inline">\sum_{i=
 <h2 class="anchored" data-anchor-id="gamma-distribution">Gamma distribution</h2>
 <p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be i.i.d. <span class="math inline">\mathrm{Exp}(\lambda),</span> and the density of their sum <span class="math inline">(a\ge 0)</span></p>
 <p><span class="math display">\begin{align*}
-f_{X+Y}(a)&amp;=\int_{\infty}^\infty f_X(a-y) \cdot f_Y(y)dy \\
-&amp;=\int_{\infty}^\infty \lambda e^{-\lambda (a-y)}\cdot \lambda e^{-\lambda y}dy \\
+f_{X+Y}(a)&amp;=\int_{-\infty}^\infty f_X(a-y) \cdot f_Y(y)dy \\
+&amp;=\int_{0}^a \lambda e^{-\lambda (a-y)}\cdot \lambda e^{-\lambda y}dy \\
+&amp;=\lambda^2 e^{-\lambda a}\cdot y \Big |_0^a \\
 &amp;= \lambda^2 a \cdot e^{-\lambda a}
 \end{align*}</span> This density is called <span class="math inline">\mathrm{Gamma}(2,\lambda)</span></p>
+<p><br><br></p>
+<p>Let <span class="math inline">X \sim \mathrm{Exp}(\lambda)</span> and <span class="math inline">Y \sim \mathrm{Gamma}(2,\lambda)</span> be i.i.d. again</p>
+<p><span class="math display">\begin{align*}
+f_{X+Y}(a)&amp;=\int_{-\infty}^\infty f_X(a-y) \cdot f_Y(y)dy \\
+&amp;=\int_{0}^a \lambda e^{-\lambda (a-y)}\cdot \lambda^2 y \cdot e^{-\lambda y}dy \\
+&amp;=\lambda^3 e^{-\lambda a}\cdot \frac{y^2}{2} \Big |_0^a \\
+&amp;= \frac{\lambda^3 a^2 \cdot e^{-\lambda a}}{2}
+\end{align*}</span> This density is called <span class="math inline">\mathrm{Gamma}(3,\lambda)</span></p>
+<p><br><br></p>
+<p>Let <span class="math inline">X \sim \mathrm{Exp}(\lambda)</span> and <span class="math inline">Y \sim \mathrm{Gamma}(3,\lambda)</span> be i.i.d. again</p>
+<p><span class="math display">\begin{align*}
+f_{X+Y}(a)&amp;=\int_{-\infty}^\infty f_X(a-y) \cdot f_Y(y)dy \\
+&amp;=\int_{0}^a \lambda e^{-\lambda (a-y)}\cdot\frac{\lambda^3 y^2 \cdot e^{-\lambda y}}{2}dy \\
+&amp;=\lambda^3 e^{-\lambda a}\cdot \frac{y^3}{2\cdot 3} \Big |_0^a \\
+&amp;= \frac{\lambda^4 a^3 \cdot e^{-\lambda a}}{2\cdot 3} \\
+&amp;= \frac{\lambda^4 a^3 \cdot e^{-\lambda a}}{3!}
+\end{align*}</span> This density is called <span class="math inline">\mathrm{Gamma}(4,\lambda)</span></p>
+<p><br><br><br> The convolution of <span class="math inline">n</span> i.i.d. <span class="math inline">\mathrm{Exp}(\lambda)</span> distributions results in the <span class="math inline">\mathrm{Gamma}(n,\lambda)</span> density:</p>
+<p><span class="math display">f(X)=\frac{\lambda^n X^{n-1} \cdot e^{-\lambda X}}{(n-1)!},\qquad \forall X\ge 0 \tag{1}</span> and zero otherwise. <br><br><br><br> This is the density of the sum of n i.i.d. <span class="math inline">\mathrm{Exp}(\lambda)</span> random variables. In particular, <span class="math inline">\mathrm{Gamma}(1,\lambda) \equiv \mathrm{Exp}(\lambda)</span> <br><br><br><br></p>
+<p>Now if we integrate <span class="math inline">f(X)</span> it should equal to <span class="math inline">1</span> <span class="math display">\begin{align*}
+\int_{-\infty}^\infty f(x) &amp;= \int_{-\infty}^\infty \frac{\lambda^n X^{n-1} \cdot e^{-\lambda X}}{(n-1)!} dx \\
+&amp;=  \int_{-\infty}^\infty \frac{ (\lambda X)^{n-1} \cdot e^{-\lambda X}}{(n-1)!} \lambda dx \\
+&amp;=1
+\end{align*}</span> Now we write <span class="math inline">Z= \lambda X, \;dZ=\lambda dX</span>,from above equation we get: <span class="math display">(n-1)! = \int_{-\infty}^\infty  (Z)^{n-1} \cdot e^{-Z}  dZ </span></p>
+<p>The Gamma function is defined for every <span class="math inline">\alpha &gt; 0</span> real numbers, by <span class="math display">\Gamma(\alpha) :=\int_{-\infty}^\infty  Z^{\alpha-1} \cdot e^{-Z}  dZ</span> In particular, <span class="math inline">\Gamma(n)=(n-1)!</span> for positive integer <span class="math inline">n</span> <br><br> Using equation <span class="math inline">(1)</span> we can write Gamma distribution</p>
+<p><span class="math display">f(X)=\frac{\lambda^n X^{n-1} \cdot e^{-\lambda X}}{\Gamma(n)}, \qquad \forall X\ge 0</span> and zero otherwise.</p>
+<p><br><br> If <span class="math inline">X \sim \mathrm{Gamma}(\alpha , \lambda),</span> then</p>
+<p><span class="math display">EX= \frac{\alpha}{\lambda}, \qquad \mathrm{Var}X=\frac{\alpha}{\lambda ^2}</span></p>
+</section>
+</section>
+<section id="expectation-covariance" class="level1">
+<h1>Expectation, covariance</h1>
+<section id="expectation" class="level2">
+<h2 class="anchored" data-anchor-id="expectation">Expectation</h2>
+<p>Expectation is defined as <span class="math display">EX = \sum_i X_i\cdot p(X_i), \qquad EX=\int_{-\infty}^\infty Xf(X)dX</span></p>
+<section id="properties-of-expectation" class="level3">
+<h3 class="anchored" data-anchor-id="properties-of-expectation">Properties of Expectation</h3>
+<ul>
+<li>Simple monotonicity property : If <span class="math inline">a \le X \le b</span> then, <span class="math inline">a \le EX \le b</span> <br> Proof:<br> <span class="math display">\begin{align*}
+&amp; a =a\cdot 1 =a \sum_i p(X_i) \\
+&amp; \le\sum_i X_i p(X_i) \le \\
+&amp; b \sum_i p(X_i) =b \cdot 1=b
+\end{align*}</span></li>
+<li>Expectation of <em>functions of variables</em><br> Let <span class="math inline">X</span> and <span class="math inline">Y</span> be the random variables and <span class="math inline">g: \mathbb{R}\times \mathbb{R} \rightarrow \mathbb{R}</span> function then <span class="math display">\mathbf{E}g(X,Y)=\sum_{i,j}g(X_i,Y_j)\cdot p(X_i,Y_j)</span></li>
+<li>Expectation of sums and differences:<br>
+<ul>
+<li>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be the random variables then <span class="math inline">E(X+Y)=EX+EY</span> and <span class="math inline">E(X-Y)=EX-EY</span><br> Proof: <span class="math display">\begin{align*}
+E(X\pm Y) &amp;= \sum _{i,j}(X_i \pm Y_j)\cdot P(X_i, Y_j) \\
+&amp;=\sum_i \sum_j X_i \cdot P(X_i, Y_j) + \sum_i \sum_j Y_j \cdot P(X_i, Y_j) \\
+&amp;=\sum_i X_i\cdot p_X(X_i) \pm \sum_j Y_j\cdot p_Y(Y_j)\\
+&amp;=EX \pm EY
+\end{align*}</span></li>
+<li>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be the random variable such that <span class="math inline">X \le Y</span>, then <span class="math inline">EX \le EY</span><br> Proof: <br> The difference <span class="math inline">Y-X</span> is non negative and difference of it’s expectation is also non negative <span class="math display">\begin{align*}
+&amp; &amp;E(Y-X) &amp;\ge0 \\
+&amp; \Rightarrow &amp; EY-EX &amp;\ge 0 \\
+&amp; \Rightarrow &amp; -EX &amp;\ge -EY \\
+&amp;\Rightarrow &amp; EX &amp;\le EY \\
+\end{align*}</span></li>
+</ul></li>
+</ul>
 
 
+</section>
 </section>
 </section>
 
@@ -656,7 +734,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Copyright 2021, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

@@ -4,6 +4,7 @@ project:
 
 website:
   title: "IITH-Data-Science"
+  google-analytics: "G-5ZQX02R26E"
   navbar:
     search: true
     right:
@@ -44,7 +45,7 @@ website:
   page-navigation: true
   reader-mode: true
   page-footer: 
-    left: "Copyright 2021, Abhishek Kumar Dubey" 
+    left: "Copyright 2022, Abhishek Kumar Dubey" 
     right: 
       - icon: github
         href: https://github.com/abhiyantaabhishek
