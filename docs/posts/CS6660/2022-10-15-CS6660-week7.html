@@ -342,6 +342,18 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <ul class="collapse">
   <li><a href="#properties-of-expectation" id="toc-properties-of-expectation" class="nav-link" data-scroll-target="#properties-of-expectation">Properties of Expectation</a></li>
   </ul></li>
+  <li><a href="#covariance" id="toc-covariance" class="nav-link" data-scroll-target="#covariance">Covariance</a></li>
+  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance">Variance</a></li>
+  <li><a href="#cauchy-schwarz-inequality" id="toc-cauchy-schwarz-inequality" class="nav-link" data-scroll-target="#cauchy-schwarz-inequality">Cauchy-Schwarz inequality</a></li>
+  </ul></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation">Correlation</a></li>
+  <li><a href="#conditional-expectation" id="toc-conditional-expectation" class="nav-link" data-scroll-target="#conditional-expectation">Conditional expectation</a></li>
+  <li><a href="#tower-rule" id="toc-tower-rule" class="nav-link" data-scroll-target="#tower-rule">Tower rule</a></li>
+  <li><a href="#todo" id="toc-todo" class="nav-link" data-scroll-target="#todo">TODO</a></li>
+  <li><a href="#concentration-bounds" id="toc-concentration-bounds" class="nav-link" data-scroll-target="#concentration-bounds">Concentration Bounds</a>
+  <ul class="collapse">
+  <li><a href="#markovs-inequality" id="toc-markovs-inequality" class="nav-link" data-scroll-target="#markovs-inequality">Markov’s inequality</a></li>
+  <li><a href="#chebyshevs-inequality" id="toc-chebyshevs-inequality" class="nav-link" data-scroll-target="#chebyshevs-inequality">Chebyshev’s inequality</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -373,7 +385,7 @@ Note
 </section>
 <section id="marginal-mass-functions" class="level2">
 <h2 class="anchored" data-anchor-id="marginal-mass-functions">Marginal mass functions</h2>
-<p>Marginal mass functions are <br> <span class="math display">p_X(x_i):=P\{X=x_i\}</span> and <span class="math display">p_Y(y_i):=P\{Y=y_i\}</span> Also <span class="math display">p_X(x_i)=\sum_jp(x_i,j_j)</span> and <span class="math display">p_Y(y_j)=\sum_ip(x_i,j_j)</span></p>
+<p>Marginal mass functions are <br> <span class="math display">p_X(x_i):=P\{X=x_i\}</span> and <span class="math display">p_Y(y_i):=P\{Y=y_i\}</span> Also <span class="math display">p_X(x_i)=\sum_jp(x_i,y_j)</span> and <span class="math display">p_Y(y_j)=\sum_ip(x_i,y_j)</span></p>
 </section>
 <section id="example" class="level2">
 <h2 class="anchored" data-anchor-id="example">Example</h2>
@@ -598,23 +610,274 @@ f_{X+Y}(a)&amp;=\int_{-\infty}^\infty f_X(a-y) \cdot f_Y(y)dy \\
 <li>Expectation of <em>functions of variables</em><br> Let <span class="math inline">X</span> and <span class="math inline">Y</span> be the random variables and <span class="math inline">g: \mathbb{R}\times \mathbb{R} \rightarrow \mathbb{R}</span> function then <span class="math display">\mathbf{E}g(X,Y)=\sum_{i,j}g(X_i,Y_j)\cdot p(X_i,Y_j)</span></li>
 <li>Expectation of sums and differences:<br>
 <ul>
-<li>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be the random variables then <span class="math inline">E(X+Y)=EX+EY</span> and <span class="math inline">E(X-Y)=EX-EY</span><br> Proof: <span class="math display">\begin{align*}
+<li><p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be the random variables then <span class="math inline">E(X+Y)=EX+EY</span> and <span class="math inline">E(X-Y)=EX-EY</span><br> Proof: <span class="math display">\begin{align*}
 E(X\pm Y) &amp;= \sum _{i,j}(X_i \pm Y_j)\cdot P(X_i, Y_j) \\
 &amp;=\sum_i \sum_j X_i \cdot P(X_i, Y_j) + \sum_i \sum_j Y_j \cdot P(X_i, Y_j) \\
 &amp;=\sum_i X_i\cdot p_X(X_i) \pm \sum_j Y_j\cdot p_Y(Y_j)\\
 &amp;=EX \pm EY
-\end{align*}</span></li>
-<li>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be the random variable such that <span class="math inline">X \le Y</span>, then <span class="math inline">EX \le EY</span><br> Proof: <br> The difference <span class="math inline">Y-X</span> is non negative and difference of it’s expectation is also non negative <span class="math display">\begin{align*}
+\end{align*}</span></p></li>
+<li><p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be the random variable such that <span class="math inline">X \le Y</span>, then <span class="math inline">EX \le EY</span><br> Proof: <br> The difference <span class="math inline">Y-X</span> is non negative and difference of it’s expectation is also non negative <span class="math display">\begin{align*}
 &amp; &amp;E(Y-X) &amp;\ge0 \\
 &amp; \Rightarrow &amp; EY-EX &amp;\ge 0 \\
 &amp; \Rightarrow &amp; -EX &amp;\ge -EY \\
 &amp;\Rightarrow &amp; EX &amp;\le EY \\
-\end{align*}</span></li>
+\end{align*}</span></p></li>
+<li><p><strong>Example</strong> (sample mean) <br> Let <span class="math inline">X_1,X_2, \dots , X_n</span> be identically distributed random variables with mean <span class="math inline">\mu</span>. Their sample mean is <span class="math display">\bar{X}:=\frac{1}{n}\sum_{i=1}^nX_i</span> It’s expectation is <span class="math display">\begin{align*}
+E\bar{X}&amp;=E\left(\frac{1}{n}\sum_{i=1}^nX_i\right)\\
+&amp;=\frac{1}{n}E\left(\sum_{i=1}^nX_i\right)\\
+&amp;=\frac{1}{n}\sum_{i=1}^nE\left(X_i\right)\\
+&amp;=\frac{1}{n}\sum_{i=1}^n\mu\\
+&amp;=\mu
+\end{align*}</span></p></li>
 </ul></li>
+</ul>
+</section>
+</section>
+<section id="covariance" class="level2">
+<h2 class="anchored" data-anchor-id="covariance">Covariance</h2>
+<p><strong>Independence</strong><br> Let <span class="math inline">X</span> and <span class="math inline">Y</span> be independent random variables, and <span class="math inline">g,h</span> be functions. Then <span class="math display">\mathbf{E}(g(X)\cdot h(Y))= \mathbf{E}g(X)\cdot \mathbf{E}h(Y) \tag{2}</span> proof: <br> <span class="math display">\begin{align*}
+\mathbf{E}(g(X)\cdot h(Y))&amp;=\int \int g(X)h(Y)p_{XY}(X,Y)dXdY \\
+&amp;=\int \int g(X)h(Y)p_{X}(X)p_{Y}(Y)dXdY \\
+&amp;=\int  g(X)p_{X}(X)dX\int h(Y)p_{Y}(Y)dXdY \\
+&amp;=\mathbf{E}g(X)\cdot \mathbf{E}h(Y)
+\end{align*}</span> Here we used the fact that the joint probability distribution factorizes <span class="math inline">(p_{XY}(x,y)=p_{X}(x)p_{Y}(y))</span> as <span class="math inline">X</span> and <span class="math inline">Y</span> are independent</p>
+<p><br><br> <strong>Covariance</strong> <br> The covariance of the random variable <span class="math inline">X</span> and <span class="math inline">Y</span> is <span class="math display">\mathbf{Cov}(X,Y)=\mathbf{E}[(X-\mathbf{E}X)\cdot (Y-\mathbf{E}Y)]</span> Another form of the above formula <span class="math display">\mathbf{Cov}(X,Y)=\mathbf{E}(XY)-\mathbf{E}X\mathbf{E}Y \tag{3}</span> Proof: <span class="math display">\begin{align*}
+\mathbf{E}[(X-\mathbf{E}X)\cdot (Y-\mathbf{E}Y)]&amp;=\mathbf{E}[XY-Y\mathbf{E}X-X\mathbf{E}Y+\mathbf{E}X\mathbf{E}Y]\\
+&amp;=\mathbf{E}(XY)-\mathbf{E}Y\mathbf{E}X-\mathbf{E}X\mathbf{E}Y+\mathbf{E}X\mathbf{E}Y \\
+&amp;= \mathbf{E}(XY)-\mathbf{E}X\mathbf{E}Y
+\end{align*}</span></p>
+<p>Now we know that <span class="math display">\mathbf{Cov}(X,Y)=\mathbf{E}(XY)-\mathbf{E}X\mathbf{E}Y</span> Using equation <span class="math inline">(2)</span> and <span class="math inline">(3)</span> we can say for independent random variables <span class="math inline">X</span> and <span class="math inline">Y,\;</span> <span class="math inline">\mathbf{Cov}(X,Y)=0,</span> as <span class="math inline">\mathbf{E}(XY)=\mathbf{E}X\mathbf{E}Y</span> <span class="math display">\mathbf{Cov}(X,Y)=\mathbf{E}(XY)-\mathbf{E}X\mathbf{E}Y=0</span> But this is not true other way around. <em>covariance zero doesn’t necessarily mean random variables are independent</em>.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>If random variables <span class="math inline">X</span> and <span class="math inline">Y</span> are independent, then <span class="math inline">\mathbf{Cov}(X,Y)=0</span> <br></li>
+<li>But if <span class="math inline">\mathbf{Cov}(X,Y)=0,</span> doesn’t necessarily mean <span class="math inline">X</span> and <span class="math inline">Y</span> are independent.</li>
+</ul>
+</div>
+</div>
+<p><br></p>
+<ul>
+<li>Properties <br>
+<ul>
+<li>Covariance is positive semidefinite: <span class="math inline">\mathbf{Cov}(X,X)=\mathbf{Var}(X)\ge0,</span></li>
+<li>Covariance is symmetric: <span class="math inline">\mathbf{Cov}(X,Y)=\mathbf{Cov}(Y,X)</span></li>
+<li>Almost bilinear:<br> Fix <span class="math inline">a_i , b, c_j , d</span> real numbers. Covariance is <span class="math display">\mathbf{Cov}\left(\sum_ia_iX_i+b,\sum_jc_jY_j+d \right)=\sum_{i,j}a_ic_j\mathbf{Cov}(X_i,Y_j)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="variance" class="level2">
+<h2 class="anchored" data-anchor-id="variance">Variance</h2>
+<p>Let <span class="math inline">X_1, X_2, \dots , X_n</span> be random variables. Then <span class="math display">\mathbf{Var}\sum_{i=1}^n X_i =\sum_{i=1}^n \mathbf{Var}\left(X_i \right)+2\sum_{1\le i\le j\le n} \mathbf{Cov}\left(X_i ,X_j \right)</span> In particular, variances of <strong>independent</strong> random variables are additive. <br><br> Proof: <span class="math display">\begin{align*}{}
+\mathbf{Var}\sum_{i=1}^n X_i &amp;=\mathbf{Cov}\left(\sum_{i=1}^n X_i ,\sum_{j=1}^n X_j \right)\\
+&amp;=\sum_{i=1,j=1}^n \mathbf{Cov}\left(X_i ,X_j \right)\\
+&amp;=\sum_{i=1}^n \mathbf{Cov}\left(X_i ,X_i \right)+\sum_{i\not= j} \mathbf{Cov}\left(X_i ,X_j \right)\\
+&amp;=\sum_{i=1}^n \mathbf{Var}\left(X_i \right)+\sum_{i&lt;j} \mathbf{Cov}\left(X_i ,X_j \right)+\sum_{i&gt;j} \mathbf{Cov}\left(X_i ,X_j \right)\\
+&amp;=\sum_{i=1}^n \mathbf{Var}\left(X_i \right)+2\sum_{1\le i\le j\le n} \mathbf{Cov}\left(X_i ,X_j \right)
+\end{align*}</span></p>
+<p>Notice that for <strong>independent</strong> variables. <span class="math display">\begin{align*}{}
+\mathbf{Var}\left(X-Y\right)&amp;=\mathbf{Var}\left(X+-\left(Y\right)\right)\\
+&amp;=\mathbf{Var}\left(X\right)+\mathbf{Var}\left(-Y\right)+2\mathbf{Cov}\left(X,-Y\right)\\
+&amp;=\mathbf{Var}\left(X\right)+\mathbf{Var}\left(Y\right)-2\mathbf{Cov}\left(X,Y\right)\\
+&amp;=\mathbf{Var}\left(X\right)+\mathbf{Var}\left(Y\right)
+\end{align*}</span></p>
+<p>Above used the fact that <br> <span class="math inline">\mathbf{Var}\left(X+Y\right)=\mathbf{Var}\left(X\right)+\mathbf{Var}\left(Y\right)+2\mathbf{Cov}\left(X,Y\right)</span>, Here is the proof:</p>
+<p><span class="math display">\begin{align*}{}
+\mathbf{Var}\left(X+Y\right)&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(X+Y\right)}^2 \right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack X+Y\right\rbrack \right)}^2 \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack X^2 +Y^2 +2\mathrm{XY}\right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack X\right\rbrack +\mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \right)}^2 \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack +2\mathit{\mathbf{E}}\left\lbrack X Y\right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack X\right\rbrack \right)}^2 -{\left(\mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \right)}^2 -2\mathit{\mathbf{E}}\left\lbrack X\right\rbrack \mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \\
+&amp;=\left(\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack X\right\rbrack \right)}^2 \right)+\left(\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \right)}^2 \right)+2\left(\mathit{\mathbf{E}}\left\lbrack XY\right\rbrack -\mathit{\mathbf{E}}\left\lbrack X\right\rbrack \mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \right)\\
+&amp;=\mathbf{Var}\left(X\right)+\mathbf{Var}\left(Y\right)+2\mathbf{Cov}\left(X,Y\right)
+\end{align*}</span></p>
+<ul>
+<li><p><strong>Example</strong> (variance of the sample mean)<br> Suppose that <span class="math inline">X_j</span>’s are i.i.d. each with variance <span class="math inline">\sigma^2</span>, The sample mean is <br> <span class="math display">\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i</span> It’s Variance is <span class="math display">\begin{align*}{}
+\mathbf{Var}\left(\bar{X} \right)&amp;=\mathbf{Var}\left(\frac{1}{n}\sum_{i=1}^n X_i \right)\\
+&amp;=\frac{1}{n^2 }\mathbf{Var}\left(\sum_{i=1}^n X_i \right)\\
+&amp;=\frac{1}{n^2 }\left(\sum_{i=1}^n \mathbf{Var}\left(X_i \right)\right)\\
+&amp;=\frac{1}{n^2 }n\sigma^2 \\
+&amp;=\frac{\sigma^2 }{n}
+\end{align*}</span> <em>Variance of the sample mean decreases with <span class="math inline">n</span>, that’s why we like sample averages.</em><br></p></li>
+<li><p><strong>Example</strong> (unbiased sample variance) <br> Suppose we are given the values of <span class="math inline">X_1,X_2,\dots X_n</span> of an i.i.d. sequence of random variables with mean <span class="math inline">\mu</span> and variance <span class="math inline">\sigma^2</span>.<br> We know that the sample mean <span class="math inline">\bar{X}</span> <br> has mean <span class="math inline">\mu</span> and <br> small variance <span class="math inline">\frac{\sigma^2}{n}</span> <br> Therefore it serves as a good estimator for the value of <span class="math inline">\mu</span>. But what should we use to estimate the variance <span class="math inline">\sigma^2</span>? This quantity is the unbiased sample variance: <span class="math display">S^2 :=\frac{1}{n-1}\sum_{i=1}^n {\left(X-\bar{X} \right)}^2</span> Now we compute the expected value of sample variance <span class="math display">\begin{align*}{}
+{\mathrm{ES}}^2 &amp;=\mathit{\mathbf{E}}\left\lbrack \frac{1}{n-1}\sum_{i=1}^n {\left(X-\bar{X} \right)}^2 \right\rbrack \\
+&amp;=\frac{1}{n-1}\sum_{i=1}^n \mathit{\mathbf{E}}\left\lbrack {\left(X-\bar{X} \right)}^2 \right\rbrack \\
+&amp;=\frac{n}{n-1}\mathit{\mathbf{E}}\left\lbrack {\left(X-\bar{X} \right)}^2 \right\rbrack
+\end{align*}</span> we get <span class="math display">{\mathrm{ES}}^2=\frac{n}{n-1}\mathit{\mathbf{E}}\left\lbrack {\left(X-\bar{X} \right)}^2 \right\rbrack \tag{4}</span> Next notice that <span class="math display">\mathit{\mathbf{E}}\left\lbrack X-\bar{X} \right\rbrack =\mathit{\mathbf{E}}\left\lbrack X\right\rbrack -\mathit{\mathbf{E}}\left\lbrack \bar{X} \right\rbrack =\mu -\mu =0</span> also <span class="math display">\begin{align*}{}
+\mathbf{Var}\left(X-\bar{X} \right)&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(X-\bar{X} \right)}^2 \right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack X-\bar{X} \right\rbrack \right)}^2 \\
+\mathbf{Var}\left(X-\bar{X} \right)&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(X-\bar{X} \right)}^2 \right\rbrack \\
+\Rightarrow \mathit{\mathbf{E}}\left\lbrack {\left(X-\bar{X} \right)}^2 \right\rbrack &amp;=\mathbf{Var}\left(X-\bar{X} \right)\\
+&amp;=\mathbf{Var}\left(X\right)+\mathbf{Var}\left(\bar{X} \right)-2\mathbf{Cov}\left(X,\bar{X} \right)
+\end{align*}</span> Now , <span class="math display">\begin{align*}{}
+\mathbf{Cov}\left(X,\bar{X} \right)&amp;=\mathbf{Cov}\left(X,\frac{1}{n}\sum_j X_j \right)\\
+&amp;=\frac{1}{n}\sum_j \mathbf{Cov}\left(X,X_j \right)\\
+&amp;=\frac{1}{n}\mathbf{Cov}\left(X,X\right)\\
+&amp;=\frac{\sigma^2 }{n}
+\end{align*}</span> we have now <span class="math display">\mathbf{Var}\left(X\right)=\sigma^2 ,\mathbf{Var}\left(\bar{X} \right)=\frac{\sigma^2 }{n},\mathbf{Cov}\left(X,\bar{X} \right)=\frac{\sigma^2 }{n}</span><br>
+Putting it all back in equation <span class="math inline">(4)</span> we get <span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack S^2 \right\rbrack &amp;=\frac{n}{n-1}\left(\sigma^2 +\frac{\sigma^2 }{n}-2\frac{\sigma^2 }{n}\right)\\
+&amp;=\frac{n}{n-1}\left(\sigma^2 -\frac{\sigma^2 }{n}\right)\\
+&amp;=\frac{n}{n-1}\frac{\left(n-1\right)\sigma^2 }{n}\\
+&amp;=\sigma^2
+\end{align*}</span></p></li>
+<li><p><strong>Example</strong> (Binomal distribution)<br> Suppose that <span class="math inline">n</span> independent trails are made, each succeeding with probability <span class="math inline">p</span>. Define <span class="math inline">X_i</span> as the indicator of success in the <span class="math inline">i^{\text{th}}</span> trail, <span class="math inline">i=1,2,\dots ,n</span>. Then <span class="math display">X=\sum_{i=1}^n X_i</span> Counts the total number of success, therefore <span class="math inline">X \sim \mathrm{Binom}(n,p)</span>. It’s variance is</p>
+<p><span class="math display">\begin{align*}{}
+\mathbf{Var}\left(X\right)&amp;=\mathbf{Var}\left(\sum_{i=1}^n X_i \right)\\
+&amp;=\sum_{i=1}^n \mathbf{Var}\left(X_i \right)\\
+&amp;=\sum_{i=1}^n p\left(1-p\right)\\
+&amp;=n\cdot p\left(1-p\right)
+\end{align*}</span></p></li>
+<li><p><strong>Example</strong> (Gamma distribution) <br> Let <span class="math inline">n</span> be a positive integer, <span class="math inline">\lambda &gt; 0</span> real, and <span class="math inline">X \sim \mathrm{Gamma}(n,\lambda)</span>, Then we know <br> <span class="math display">X\overset{d}{=} \sum_{i=1}^n X_i</span> where <span class="math inline">X_1,X_2,\dots, X_n</span> are i.i.d. <span class="math inline">\mathrm{Exp}(\lambda)</span>. Therefore <span class="math display">\begin{align*}{}
+\mathbf{Var}\left(X\right)&amp;=\mathbf{Var}\left(\sum_{i=1}^n X_i \right)\\
+&amp;=\sum_{i=1}^n \mathbf{Var}\left(X_i \right)\\
+&amp;=\sum_{i=1}^n \frac{1}{\lambda^2 }\\
+&amp;=\frac{n}{\lambda^2 }
+\end{align*}</span> Here <span class="math inline">\overset{d}{=}</span> means “equal in distribution”.</p></li>
+</ul>
+</section>
+<section id="cauchy-schwarz-inequality" class="level2">
+<h2 class="anchored" data-anchor-id="cauchy-schwarz-inequality">Cauchy-Schwarz inequality</h2>
+<p>For every <span class="math inline">X</span> and <span class="math inline">Y</span> <span class="math display">|\mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack |\le \sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack }\cdot \sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }</span> with equality iff <span class="math inline">Y=\text{Const}. \cdot X \text{a.s.}</span></p>
+<p>Proof:</p>
+<p><span class="math display">\begin{align*}{}
+0 &amp;\le {\mathit{\mathbf{E}}\left\lbrack \frac{X}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack }}\pm \frac{Y}{\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack }^2 \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack \frac{X^2 }{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack }\right\rbrack +\mathit{\mathbf{E}}\left\lbrack \frac{Y^2 }{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }\right\rbrack \pm 2\mathit{\mathbf{E}}\left\lbrack \frac{\mathrm{XY}}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack \\
+&amp;=2\pm 2\mathit{\mathbf{E}}\left\lbrack \frac{\mathrm{XY}}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack
+\end{align*}</span></p>
+<p>For <span class="math inline">-</span> case:</p>
+<p><span class="math display">\begin{align*}{}
+&amp;&amp;0 &amp;\le 2-2\mathit{\mathbf{E}}\left\lbrack \frac{\mathrm{XY}}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack \\
+&amp;\Rightarrow &amp; -2 &amp;\le -2\mathit{\mathbf{E}}\left\lbrack \frac{\mathrm{XY}}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack \\
+&amp;\Rightarrow &amp; -\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack } &amp; \le -\mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack \\
+&amp;\Rightarrow &amp; \sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }&amp; \ge \mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack \\
+&amp;\Rightarrow &amp; \mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack &amp;\le \sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }
+\end{align*}</span></p>
+<p>For <span class="math inline">+</span> case: <span class="math display">\begin{align*}{}
+&amp;&amp;0 &amp;\le 2+2\mathit{\mathbf{E}}\left\lbrack \frac{\mathrm{XY}}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack \\
+&amp;\Rightarrow &amp; -2 &amp;\le +2\mathit{\mathbf{E}}\left\lbrack \frac{\mathrm{XY}}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack \\
+&amp;\Rightarrow &amp; -\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack } &amp;\le \mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack \\
+&amp;\Rightarrow &amp; \mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack &amp;\ge -\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }
+\end{align*}</span></p>
+<p>Using Cauchy-Schwarz inequality we can get below important relations:</p>
+<ul>
+<li><p><span class="math inline">\mathit{\mathbf{E}}\left\lbrack |\mathrm{XY}|\right\rbrack \le \sqrt {\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack }\cdot \sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }</span><br> Proof:</p>
+<p><span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack |\mathrm{XY}|\right\rbrack &amp;=\mathit{\mathbf{E}}\left\lbrack |X|\cdot |Y|\right\rbrack \\
+&amp;\le \sqrt{\mathit{\mathbf{E}}\left\lbrack {|X|}^2 \right\rbrack }\cdot \sqrt{\mathit{\mathbf{E}}\left\lbrack {|Y|}^2 \right\rbrack }\\
+&amp;=\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack }\cdot \sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }
+\end{align*}</span></p></li>
+<li><p><span class="math inline">\big|\mathbf{Cov}\left(X,Y\right)\big|\le \mathrm{SD}\;X\cdot \mathrm{SD}\;Y</span> <br> Proof: <span class="math display">\begin{align*}{}
+\big|\mathbf{Cov}\left(X,Y\right)\big|&amp;=\big|\mathit{\mathbf{E}}\left\lbrack \left(X-\mathit{\mathbf{E}}\left\lbrack X\right\rbrack \right)\left(Y-\mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \right)\right\rbrack \big|\\
+&amp;\le \sqrt{\mathit{\mathbf{E}}\left\lbrack {\left(X-\mathit{\mathbf{E}}\left\lbrack X\right\rbrack \right)}^2 \right\rbrack }\cdot \sqrt{\mathit{\mathbf{E}}\left\lbrack {\left(Y-\mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \right)}^2 \right\rbrack }\\
+&amp;=\mathrm{SD}\;X\cdot \mathrm{SD}\;Y
+\end{align*}</span></p></li>
+</ul>
+</section>
+</section>
+<section id="correlation" class="level1">
+<h1>Correlation</h1>
+<p>The correlation coefficient of random variables <span class="math inline">X</span> and <span class="math inline">Y</span> is <span class="math display">\rho \left(X,Y\right):=\frac{\mathbf{Cov}\left(X,Y\right)}{\mathrm{SD}\;X\cdot \mathrm{SD}\;Y}</span></p>
+<ul>
+<li><span class="math inline">-1 \le \rho(X,Y) \le 1</span><br> Proof : <span class="math display">\begin{align*}{}
+&amp;&amp;\big|\mathbf{Cov}\left(X,Y\right)\big| &amp;\le \mathrm{SD}\;X\cdot \mathrm{SD}\;Y\\
+\Rightarrow &amp;&amp;\frac{\big|\mathbf{Cov}\left(X,Y\right)\big|}{\mathrm{SD}\;X\cdot \mathrm{SD}\;Y}&amp;\le 1\\
+\Rightarrow &amp;&amp;-1\le \frac{\mathbf{Cov}\left(X,Y\right)}{\mathrm{SD}\;X\cdot \mathrm{SD}\;Y}&amp;\le \\
+\Rightarrow &amp;&amp;-1 \le \rho(X,Y) &amp;\le 1
+\end{align*}</span> and the “equality iff” part of Cauchy-Schwarz implies that we have equality iff <span class="math inline">Y = aX</span>, that is, <span class="math inline">Y = aX +b</span> for some fixed <span class="math inline">a, b</span>.</li>
+</ul>
+</section>
+<section id="conditional-expectation" class="level1">
+<h1>Conditional expectation</h1>
+<p>The conditional expectation of <span class="math inline">X</span>, given <span class="math inline">Y = y_j</span> is <span class="math display">\mathbf{E}(X \mid Y=y_j):=\sum_i X_i \times \underbrace{ p_{X\mid Y}(x_i\mid y_j)}_{\text{conditional mass function}}</span></p>
+<ul>
+<li>Example :<br> Let <span class="math inline">X</span> and <span class="math inline">Y</span> be independent <span class="math inline">\text{Poi}(\lambda)</span> and <span class="math inline">\text{Poi}(\mu)</span> variables, and <span class="math inline">Z = X + Y</span>. Find the conditional expectation <span class="math inline">\mathbf {E}(X \mid Z = k)</span>.<br> Conditional mass function for <span class="math inline">0\le i\le k</span> is : <br> <span class="math display">p_{X\mid Z} \left(i\mid k\right)=\frac{p\left(i,k\right)}{p_Z \left(k\right)}</span> where <span class="math inline">p(i, k)</span> is the joint mass function of <span class="math inline">X</span> and <span class="math inline">Z</span> at <span class="math inline">(i, k)</span>.<br> Now, <span class="math display">\begin{align*}{}
+p\left(i,k\right)&amp;=P\left\lbrace X=i,Z=k\right\rbrace \\
+&amp;=P\left\lbrace X=i,X+Y=k\right\rbrace \\
+&amp;=P\left\lbrace X=i,Y=k-i\right\rbrace \\
+&amp;=e^{-\lambda } \frac{\lambda^i }{i!}\cdot e^{-\mu } \frac{\mu^{\left(k-i\right)} }{\left(k-i\right)!}
+\end{align*}</span> We know that <span class="math display">Z=X+Y\sim \mathrm{Poi}\left(\lambda +\mu \right)</span> so, <span class="math display">p_Z \left(k\right)=e^{-\left(\lambda +\mu \right)} \frac{{\left(\lambda +\mu \right)}^k }{k!}</span> Now using these values we can compute conditional mass function <span class="math display">\begin{align*}{}
+p_{X|Z} \left(i|k\right)&amp;=\frac{p\left(i,k\right)}{p_Z \left(k\right)}\\
+&amp;=e^{-\lambda } \frac{\lambda^i }{i!}\cdot e^{-\mu } \frac{\mu^{\left(k-i\right)} }{\left(k-i\right)!}\times \frac{1}{e^{-\left(\lambda +\mu \right)} \frac{{\left(\lambda +\mu \right)}^k }{k!}}\\
+&amp;=e^{-\lambda } \frac{\lambda^i }{i!}\cdot e^{-\mu } \frac{\mu^{\left(k-i\right)} }{\left(k-i\right)!}\times \frac{k!}{e^{-\left(\lambda +\mu \right)} {\left(\lambda +\mu \right)}^k }\\
+&amp;=\frac{k!}{\left(k-i\right)!\cdot i!}e^{-\left(\lambda +\mu \right)} \times \frac{{\lambda^i \mu }^{\left(k-i\right)} }{e^{-\left(\lambda +\mu \right)} {\left(\lambda +\mu \right)}^k }\\
+&amp;={\left({{k}\atop{i}}\right)}\times \frac{{\lambda^i \mu }^{\left(k-i\right)} }{{\left(\lambda +\mu \right)}^k }\\
+&amp;={\left({{k}\atop{i}}\right)}\times \frac{{\lambda^i \mu }^{\left(k-i\right)} }{{\left(\lambda +\mu \right)}^k }\\
+&amp;={\left({{k}\atop{i}}\right)}\times \frac{{\lambda^i \mu }^{\left(k-i\right)} }{{\left(\lambda +\mu \right)}^i {\left(\lambda +\mu \right)}^{k-i} }\\
+&amp;={\left({{k}\atop{i}}\right)}\times {\left(\frac{\lambda }{\lambda +\mu }\right)}^i \times {\left(\frac{\mu }{\lambda +\mu }\right)}^{k-1} \\
+&amp;={\left({{k}\atop{i}}\right)}\times p^i \times \left(1-p\right)^{k-i}
+\end{align*}</span> where <span class="math inline">p=\left(\frac{\lambda }{\lambda +\mu }\right)</span><br> We conclude <span class="math inline">(X \mid Z = k) \sim \text{Binom}(k, p),</span><br> Therefore <span class="math display">\mathbf {E}(X \mid Z = k)=kp=k\cdot \frac{\lambda }{\lambda +\mu }</span> We abbreviate above expression as <span class="math display">\mathbf {E}(X \mid Z )=Z\cdot \frac{\lambda }{\lambda +\mu }</span> Notice <span class="math inline">\mathbf {E}(X \mid Z )</span> dependts only on <span class="math inline">Z</span> not on <span class="math inline">X</span></li>
+</ul>
+</section>
+<section id="tower-rule" class="level1">
+<h1>Tower rule</h1>
+<p><span class="math inline">\mathit{\mathbf{E}}\left\lbrack \mathit{\mathbf{E}}\left\lbrack X\mid Y\right\rbrack \right\rbrack =\mathit{\mathbf{E}}\left\lbrack X\right\rbrack</span><br> Intution on <a href="https://math.stackexchange.com/a/41543/738892">stack overflow.</a><br> Proof:</p>
+<p><span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack \mathit{\mathbf{E}}\left\lbrack X\mid Y\right\rbrack \right\rbrack &amp;=\sum_j E\left\lbrack X\mid Y=y_j \right\rbrack {\cdot p}_Y \left(y_j \right)\\
+&amp;=\sum_j \left(\sum_i x_i \cdot p_{x\mid y} \left(x_i ,y_j \right)\right){\cdot p}_Y \left(y_j \right)\\
+&amp;=\sum_j \sum_i x\cdot p_{x\mid y} \left(x_i ,y_j \right){\cdot p}_Y \left(y_j \right)\\
+&amp;=\sum_j \sum_i x_i p\left(x_i ,y_j \right)\\
+&amp;=\sum_i x_i \sum_j p\left(x_i ,y_j \right)\\
+&amp;=\sum_i x_i p_X \left(x_i \right)\\
+&amp;=\mathit{\mathbf{E}}\left\lbrack X\right\rbrack
+\end{align*}</span></p>
+</section>
+<section id="todo" class="level1">
+<h1>TODO</h1>
+<p>Below topics are skipped, complete it later:</p>
+<ul>
+<li>Conditional variance</li>
+<li>Random sums</li>
+<li>Moment generating functions</li>
+<li>Independent sums</li>
+</ul>
+</section>
+<section id="concentration-bounds" class="level1">
+<h1>Concentration Bounds</h1>
+<section id="markovs-inequality" class="level2">
+<h2 class="anchored" data-anchor-id="markovs-inequality">Markov’s inequality</h2>
+<p>Let <span class="math inline">X</span> be a <strong>non-negative</strong> random variable. Then for all <span class="math inline">a &gt; 0</span> reals, <span class="math display">\mathit{\mathbf{P}}\left\lbrace X\ge a\right\rbrace \le \frac{\mathit{\mathbf{E}}\left\lbrack X\right\rbrack }{a}</span> Of course this inequality is useless for $a ≤ X$.<br> Proof: <br> Let indicator random variable <span class="math inline">I</span> be defined as <span class="math display">I = \begin{cases}
+   1 &amp;\text{if } X\ge a \\
+   0 &amp;\text{if } X&lt;a
+\end{cases}</span> Then <span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack I\right\rbrack &amp;=1\cdot \mathit{\mathbf{P}}\left(X\ge a\right)+0\cdot P\left(X&lt;a\right)\\
+&amp;=\mathit{\mathbf{P}}\left(X\ge a\right)
+\end{align*}</span> Also if we look at Indicator random variable we can say that <span class="math inline">I\le \frac{X}{a}</span> Because if <span class="math inline">X\ge a</span> then <span class="math inline">\frac{X}{a}\ge 1</span>, when <span class="math inline">0\le X&lt;a</span> then <span class="math inline">0\le\frac{X}{a}&lt;1</span></p>
+<p>Hence</p>
+<p><span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack \mathrm{I}\right\rbrack &amp;\le \frac{\mathit{\mathbf{E}}\left\lbrack X\right\rbrack }{a}\\
+\Rightarrow P\left\lbrace X\ge a\right\rbrace &amp;\le \frac{\mathit{\mathbf{E}}\left\lbrack X\right\rbrack }{a}
+\end{align*}</span></p>
+<ul>
+<li>Example <br> A coin is flipped <span class="math inline">n</span> times what is the probability of getting <span class="math inline">90\%</span> heads. Using Markov’s inequality <span class="math display">P\left\lbrace X\ge 0\ldotp 9\right\rbrace \le \frac{\mathit{\mathbf{E}}\left\lbrack X\right\rbrack }{a}=\frac{\frac{n}{2}}{0\ldotp 9n}=\frac{5}{9}</span></li>
+</ul>
+</section>
+<section id="chebyshevs-inequality" class="level2">
+<h2 class="anchored" data-anchor-id="chebyshevs-inequality">Chebyshev’s inequality</h2>
+<p>Let <span class="math inline">X</span> be a random variable with mean <span class="math inline">\mu</span> and variance <span class="math inline">\sigma^2</span> both finite. Then for all <span class="math inline">b &gt; 0</span> reals, <span class="math display">\mathit{\mathbf{P}}\left\lbrace |X-\mu |\ge b\right\rbrace \le \frac{\mathbf{Var}\left(X\right)}{b^2 }</span> Of course this inequality is useless for <span class="math inline">b ≤ \mathbf{SD}X</span>.<br> Proof:<br> Apply Markov’s inequality on the random variable <span class="math inline">(X − \mu)^2 \ge 0</span></p>
+<p><span class="math display">\begin{align*}{}
+\mathit{\mathbf{P}}\left\lbrace |X-\mu |\ge b\right\rbrace &amp;=\mathit{\mathbf{P}}\left\lbrace {\left(X-\mu \right)}^2 \ge b^2 \right\rbrace \\
+&amp;\le \frac{\mathit{\mathbf{E}}\left\lbrack {\left(X-\mu \right)}^2 \right\rbrack }{b^2 }=\frac{\mathbf{Var}\left(X\right)}{b^2 }
+\end{align*}</span></p>
+<ul>
+<li><p>Example <br> A coin is flipped <span class="math inline">n</span> times what is the probability of getting <span class="math inline">90\%</span> heads.<br> Chebyshev’s inequality<br> Consider <span class="math inline">X_1,X_2,\dots,X_n,</span> Each <span class="math inline">X_i=1</span> if the <span class="math inline">i^{\text{th}}</span> toss is head and <span class="math inline">X_i=0</span> if <span class="math inline">i^{\text{th}}</span> toss is tail.<br> <span class="math display">\mathit{\mathbf{E}}\left\lbrack X_i \right\rbrack =\frac{1}{2}</span> <span class="math display">\mathit{\mathbf{E}}\left\lbrack X_i^2 \right\rbrack =\frac{1}{2}</span> Now we find variance <span class="math display">\mathbf{Var}\left(X_i \right)=\mathit{\mathbf{E}}\left\lbrack X_i^2 \right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack X_i \right\rbrack \right)}^2 =\frac{1}{2}-\frac{1}{4}=\frac{1}{4}</span> Now, <span class="math display">\begin{align*}{}
+|X| &amp;\ge 0\ldotp 9\\
+\Rightarrow |X-\mu |&amp;\ge 0\ldotp 9-\mu \\
+\Rightarrow |X-\mu |&amp;\ge 0\ldotp 9-0\ldotp 5\\
+\Rightarrow |X-\mu |&amp;\ge 0\ldotp 4
+\end{align*}</span> Now can use Chebyshev’s inequality</p>
+<p><span class="math display">\begin{align*}{}
+\mathit{\mathbf{P}}\left\lbrace |X-\mu |  \ge b\right\rbrace &amp;\le \frac{\mathbf{Var}\left(X\right)}{b^2 }\\
+\mathit{\mathbf{P}}\left\lbrace |X-\mu | \ge 0\ldotp 4\right\rbrace &amp;\le \frac{\frac{1}{4}n}{{\left(0\ldotp 4n\right)}^2 }\\
+&amp;=\frac{\frac{1}{4}n}{0\ldotp 16n^2 }=\frac{25}{16n}
+\end{align*}</span> So <span class="math display">|X|\ge0.9=\frac{25}{16n}</span> We can see that Chebyshev’s inequality provides better bound than Markov’s inequality and the bound becomes better as <span class="math inline">n</span> increases.</p></li>
 </ul>
 
 
-</section>
 </section>
 </section>
 
