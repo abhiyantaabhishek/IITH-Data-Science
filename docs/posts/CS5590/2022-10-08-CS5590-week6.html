@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Abhishek Kumar Dubey">
-<meta name="dcterms.date" content="2022-08-06">
-<meta name="description" content="Training Error, Generalization Error">
+<meta name="dcterms.date" content="2022-10-08">
+<meta name="description" content="Ensemble Classifier">
 
-<title>IITH-Data-Science - Machine Learning 1</title>
+<title>IITH-Data-Science - Machine Learning 6</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../posts/CS5590/2022-08-20-CS5590-week2.html" rel="next">
-<link href="../../posts/CS6660/2022-10-01-CS6660-week6.html" rel="prev">
+<link href="../../posts/CS5590/2022-10-15-CS5590-week7.html" rel="next">
+<link href="../../posts/CS5590/2022-09-24-CS5590-week5.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -139,7 +139,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Machine Learning 1</h1>
+      <h1 class="quarto-secondary-nav-title">Machine Learning 6</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -150,10 +150,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Machine Learning 1</h1>
+      <h1 class="title d-none d-lg-block">Machine Learning 6</h1>
                   <div>
         <div class="description">
-          Training Error, Generalization Error
+          Ensemble Classifier
         </div>
       </div>
                           <div class="quarto-categories">
@@ -175,7 +175,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 6, 2022</p>
+        <p class="date">October 8, 2022</p>
       </div>
     </div>
       
@@ -280,7 +280,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/CS5590/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link active">Machine Learning 1</a>
+  <a href="../../posts/CS5590/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -305,7 +305,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/CS5590/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">Machine Learning 6</a>
+  <a href="../../posts/CS5590/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link active">Machine Learning 6</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -326,12 +326,28 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#types-of-ml" id="toc-types-of-ml" class="nav-link active" data-scroll-target="#types-of-ml">Types of ML</a></li>
-  <li><a href="#iid-assumption" id="toc-iid-assumption" class="nav-link" data-scroll-target="#iid-assumption">IID Assumption</a></li>
-  <li><a href="#types-of-models" id="toc-types-of-models" class="nav-link" data-scroll-target="#types-of-models">Types of Models</a></li>
-  <li><a href="#classifier-evaluation" id="toc-classifier-evaluation" class="nav-link" data-scroll-target="#classifier-evaluation">Classifier evaluation</a></li>
-  <li><a href="#stratified-sampling" id="toc-stratified-sampling" class="nav-link" data-scroll-target="#stratified-sampling">Stratified sampling</a></li>
-  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model Selection</a></li>
+  <li><a href="#types-of-ensemble-classifiers" id="toc-types-of-ensemble-classifiers" class="nav-link active" data-scroll-target="#types-of-ensemble-classifiers">Types of Ensemble Classifiers</a></li>
+  <li><a href="#bagging" id="toc-bagging" class="nav-link" data-scroll-target="#bagging">Bagging</a>
+  <ul class="collapse">
+  <li><a href="#example-random-forests" id="toc-example-random-forests" class="nav-link" data-scroll-target="#example-random-forests">Example: Random Forests</a>
+  <ul class="collapse">
+  <li><a href="#random-forests-algorithm" id="toc-random-forests-algorithm" class="nav-link" data-scroll-target="#random-forests-algorithm">Random Forests: Algorithm</a></li>
+  <li><a href="#features-of-random-forests" id="toc-features-of-random-forests" class="nav-link" data-scroll-target="#features-of-random-forests">Features of Random Forests</a></li>
+  </ul></li>
+  <li><a href="#bagging-when" id="toc-bagging-when" class="nav-link" data-scroll-target="#bagging-when">Bagging: when</a></li>
+  <li><a href="#bagging-why" id="toc-bagging-why" class="nav-link" data-scroll-target="#bagging-why">Bagging: Why</a></li>
+  </ul></li>
+  <li><a href="#boosting" id="toc-boosting" class="nav-link" data-scroll-target="#boosting">Boosting</a>
+  <ul class="collapse">
+  <li><a href="#key-idea" id="toc-key-idea" class="nav-link" data-scroll-target="#key-idea">Key Idea</a></li>
+  <li><a href="#adaboost-algorithm" id="toc-adaboost-algorithm" class="nav-link" data-scroll-target="#adaboost-algorithm">Adaboost Algorithm</a></li>
+  <li><a href="#a-good-weak-learner" id="toc-a-good-weak-learner" class="nav-link" data-scroll-target="#a-good-weak-learner">A good weak learner</a></li>
+  <li><a href="#gradient-boosting" id="toc-gradient-boosting" class="nav-link" data-scroll-target="#gradient-boosting">Gradient Boosting</a>
+  <ul class="collapse">
+  <li><a href="#gradient-boosting-algorithm" id="toc-gradient-boosting-algorithm" class="nav-link" data-scroll-target="#gradient-boosting-algorithm">Gradient Boosting Algorithm</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#stacking-stacked-generalization" id="toc-stacking-stacked-generalization" class="nav-link" data-scroll-target="#stacking-stacked-generalization">Stacking (stacked generalization)</a></li>
   </ul>
 </nav>
     </div>
@@ -341,84 +357,205 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="types-of-ml" class="level2">
-<h2 class="anchored" data-anchor-id="types-of-ml">Types of ML</h2>
 <ul>
-<li>Supervised Learning
+<li>Ensemble classification combines multiple classifiers to improve accuracy</li>
+<li>Advantage
 <ul>
-<li>classification, regression</li>
-</ul></li>
-<li>Unsupervised learning</li>
-<li>Other settings of ML
-<ul>
-<li>Reinforcement learning</li>
-<li>Semi-supervised learning</li>
-<li>Active learning,Transfer learning,Structured learning</li>
-</ul></li>
-<li>Dimensionality Reduction (unsupervised Learning)
-<ul>
-<li>Large sample size is required for high dimensional data</li>
-<li>Query accuracy and efficiency degrade rapidly as the dimension increases</li>
-<li>strategies:
-<ul>
-<li>Feature reduction, Feature selection, Manifold learning, Kernel learning</li>
-</ul></li>
+<li>Large datasets: if dataset is too large we can train different models on subset of the data.</li>
+<li>Small datasets: Can handle them with bootstrapping (random sampling)</li>
+<li>Can solve complected problems which can’t be solved using single classifier.</li>
 </ul></li>
 </ul>
-<p><img src="CS5590_images/MATLAB_z9KdPL77lT.png" class="img-fluid"></p>
-</section>
-<section id="iid-assumption" class="level2">
-<h2 class="anchored" data-anchor-id="iid-assumption">IID Assumption</h2>
+<section id="types-of-ensemble-classifiers" class="level1">
+<h1>Types of Ensemble Classifiers</h1>
 <ul>
-<li>Identically independently distributed : This is the assumption that the training data and testing data comes from the same distribution</li>
-</ul>
-</section>
-<section id="types-of-models" class="level2">
-<h2 class="anchored" data-anchor-id="types-of-models">Types of Models</h2>
+<li>Bagging (bootstrap aggregating)
 <ul>
-<li>Induction : Model Learns by Induction, ( creating it’s own rules for example, if we do extensive research while buying mobile, we create set rules, it is called induction).</li>
-<li>Transductions: Model learns from references ( for example, if we ask our friends about mobile and we buy according to their suggestion, it is called Transduction).</li>
-<li>Online : data could be a stream, data keeps coming over time.</li>
-<li>Offline: data is already acquired and trained offline.</li>
-<li>Generative: Learns the distribution, the model learns joint probability distribution.</li>
-<li>Discriminative:Learns to discriminate without learning distribution.</li>
-<li>Parametric : The model have parameters like <span class="math inline">\mu</span> and <span class="math inline">\sigma</span></li>
-<li>Non parametric: The model doesn’t have parameters, as in K nearest neighbor (KNN)</li>
-</ul>
-</section>
-<section id="classifier-evaluation" class="level2">
-<h2 class="anchored" data-anchor-id="classifier-evaluation">Classifier evaluation</h2>
-<p><img src="CS5590_images/MATLAB_ljcLgT0iTJ.png" class="img-fluid"></p>
-<ul>
-<li>Training Error
-<ul>
-<li>Not very useful</li>
-<li>Relatively easy to obtain low error</li>
-<li><span class="math inline">E_{\mathrm{train}} =\frac{1}{n}\sum_{i=1}^n \mathrm{error}\left(f_D \left(X_i \right),y_i \right)</span></li>
+<li>Train several models using bootstrapped datasets</li>
+<li>The majority classification is selected</li>
 </ul></li>
-<li>Generalization Error
+<li>Boosting
 <ul>
-<li>Measure of how well do we do on unseen data</li>
-<li><span class="math inline">E_{\mathrm{gen}} =\int \mathrm{error}\left(f_D \left(X\right),y\right)p\left(y,X\right)\mathrm{dX}</span></li>
+<li>Use several weak classifiers to create a strong classifier</li>
+<li>Resample previously misclassified points</li>
+</ul></li>
+<li>Stacking (stacked generalization)
+<ul>
+<li>Train multiple tiers of classifiers</li>
+<li>Higher tiers can correct lower tiers</li>
 </ul></li>
 </ul>
 </section>
-<section id="stratified-sampling" class="level2">
-<h2 class="anchored" data-anchor-id="stratified-sampling">Stratified sampling</h2>
+<section id="bagging" class="level1">
+<h1>Bagging</h1>
 <ul>
-<li>First stratify instances by class, then randomly select instances from each class proportionally</li>
-<li>It ensures that the proportion of each class remains same in training and validation set.</li>
+<li>Problem: we have only one dataset.</li>
+<li>Solution: generate new ones of size n by <strong>bootstrapping</strong>, i.e.&nbsp;sampling it with replacement</li>
+<li>Bagging works because it <strong>reduces variance</strong> by voting/averaging</li>
+<li>Usually, the more classifiers the better</li>
+<li>Some candidates:
+<ul>
+<li>Decision tree, decision stump, SVMs.</li>
+<li>Can do this with regression too: Regression tree, linear regression</li>
+</ul></li>
+</ul>
+<section id="example-random-forests" class="level2">
+<h2 class="anchored" data-anchor-id="example-random-forests">Example: Random Forests</h2>
+<ul>
+<li>Random forests (RF) are a combination of tree predictors, it’s a variant of bagging.</li>
+<li>Extremely successful, especially on Kaggle challenges.</li>
+<li>Each tree depends on the values of a random vector sampled independently</li>
+<li>The generalization error depends on the strength of the individual trees and the correlation between them</li>
+<li>Using a random selection of features yields results robust w.r.t. noise</li>
+</ul>
+<section id="random-forests-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="random-forests-algorithm">Random Forests: Algorithm</h3>
+<ul>
+<li>Given a training set <span class="math inline">S</span></li>
+<li>For <span class="math inline">i = 1</span> to <span class="math inline">k</span> do:
+<ul>
+<li>Build subset <span class="math inline">S_i</span> by sampling with replacement from <span class="math inline">S</span></li>
+<li>Learn tree <span class="math inline">T_i</span> from <span class="math inline">S_i</span>
+<ul>
+<li>At each node:
+<ul>
+<li>Choose best split from random subset of <span class="math inline">F</span> features</li>
+</ul></li>
+<li>Each tree grows to the largest extent, and no pruning</li>
+</ul></li>
+</ul></li>
+<li>Make predictions according to majority vote of the set of <span class="math inline">k</span> trees.</li>
+<li>If there are <span class="math inline">M</span> input variables, a number <span class="math inline">m</span> is specified such that at each node, <span class="math inline">m</span> variables are selected at random out of the <span class="math inline">M</span> and the best split on these <span class="math inline">m</span> is used to split the node. The value of <span class="math inline">m</span> is held constant during the forest growing.</li>
+<li>Depending upon the value of <span class="math inline">m</span>, there are three slightly different systems:
+<ul>
+<li>Random splitter selection: <span class="math inline">m =1</span></li>
+<li>Breiman’s bagger: <span class="math inline">m =</span> total number of predictor variables</li>
+<li>Random forest: <span class="math inline">m &lt;&lt;</span> number of predictor variables. Breiman suggests three possible values for <span class="math inline">m:\frac{1}{2}\sqrt{M}, \sqrt{M}, \text{ and } 2\sqrt{M}</span></li>
+</ul></li>
 </ul>
 </section>
-<section id="model-selection" class="level2">
-<h2 class="anchored" data-anchor-id="model-selection">Model Selection</h2>
+<section id="features-of-random-forests" class="level3">
+<h3 class="anchored" data-anchor-id="features-of-random-forests">Features of Random Forests</h3>
 <ul>
-<li>Re-Substitution : not useful as it suggests to re- substitute the train data for validation as well</li>
-<li>K - Fold cross-validation : Divide the data in K fold using stratified sampling, and the select some set for training and some for validation in each iteration.</li>
-<li>Leave-one-out
+<li>One of the best in the business</li>
+<li>It runs efficiently on large data bases</li>
+<li>It can handle thousands of input variables without variable deletion/reduction</li>
+<li>It gives estimates of what variables are important in the classification</li>
+<li><em>Does not overfit by design</em></li>
+<li>The generalization error of a forest of tree classifiers depends on the strength of the individual trees in the forest and the correlation between them. ( if correlation is high it means trees are similar and not so useful)</li>
+</ul>
+</section>
+</section>
+<section id="bagging-when" class="level2">
+<h2 class="anchored" data-anchor-id="bagging-when">Bagging: when</h2>
 <ul>
-<li>N-fold cross-validation</li>
+<li>Can help if data is noisy.</li>
+<li>If learning algorithm is unstable, i.e.&nbsp;if small changes to the training set cause large changes in the learned classifier.</li>
+</ul>
+</section>
+<section id="bagging-why" class="level2">
+<h2 class="anchored" data-anchor-id="bagging-why">Bagging: Why</h2>
+<ul>
+<li>Let <span class="math inline">S= \{(x , y ), i=1\dots N\}</span> be the training dataset</li>
+<li>Let <span class="math inline">\{S_k \}</span> be a sequence of training sets containing a sub-set of <span class="math inline">S</span></li>
+<li>Let <span class="math inline">P</span> be the underlying distribution of <span class="math inline">S</span>.</li>
+<li>Bagging replaces the prediction of the model with the majority of the predictions given by the classifiers <span class="math inline">S</span>. <span class="math display">\phi(x,P)=E_s(\phi (x,S_k))</span></li>
+</ul>
+</section>
+</section>
+<section id="boosting" class="level1">
+<h1>Boosting</h1>
+<ul>
+<li>Use several weak classifiers to create a strong classifier</li>
+<li>Resample previously misclassified points. (This is not done by bagging)</li>
+<li>Strong Learner: This is the objective of machine learning where we take labelled data for training and produce classifier which can be <strong>arbitrarily accurate</strong>.</li>
+<li>Weak Learner: Take labelled data for training and produce a classifier which is <strong>more accurate than random guessing</strong>.</li>
+</ul>
+<p>Can a set of weak learners create a single strong learner?</p>
+<section id="key-idea" class="level2">
+<h2 class="anchored" data-anchor-id="key-idea">Key Idea</h2>
+<ul>
+<li>An algorithm for constructing a “strong” classifier as linear combination of “simple” “weak” classifier <span class="math display">f(x)=\sum_{t=1}^T \alpha_th_t(x)</span></li>
+<li>Final classification based on weighted vote of weak classifiers</li>
+</ul>
+</section>
+<section id="adaboost-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="adaboost-algorithm">Adaboost Algorithm</h2>
+<p>Given <span class="math inline">(x_1,y_1),\dots (x_m,y_m)</span> where <span class="math inline">x_i \in X,y_i \in Y =\{-1,+1\}</span><br><br> Initialize <span class="math inline">D(i)=\frac{1}{m}</span><br><br> For <span class="math inline">t=1,\dots T</span>:</p>
+<ul>
+<li>Find the classifier <span class="math inline">h_t:X \rightarrow \{-1,+1\}</span> that minimizes the error with respect to the distribution <span class="math inline">D_t</span>:<br> <span class="math inline">\displaystyle h_t = \argmin _{h_j \in H} \epsilon_j</span>, where <span class="math inline">\displaystyle\epsilon_j=\sum_{i=1}^m D_t(i)[y_i \ne h_j(x_i)]</span></li>
+<li>Prerequisite: <span class="math inline">\epsilon_t&lt;0.5</span>, otherwise stop.</li>
+<li>Choose <span class="math inline">\alpha_t \in \mathbb{R}</span>, typically <span class="math inline">\displaystyle \alpha_t=\frac{1}{2}\ln \frac{1-\epsilon_t}{\epsilon_t}</span>, where <span class="math inline">\epsilon_t</span> is the weighted error rate of the classifier <span class="math inline">h_t</span><br> <span class="math inline">\boxed{\alpha_t \text{ stays same for all data points}}</span></li>
+<li>Update <br> <span class="math display">D_{t+1} \left(i\right)=\frac{D_t \left(i\right)\exp \left(-\alpha_t y_t h_t \left(x_i \right)\right)}{Z_t }</span> where <span class="math inline">Z_t</span> is a normalization factor (chosen such that <span class="math inline">D_{t+1}</span> will be a distribution)</li>
+</ul>
+<p>output of the final classifier :<br> <span class="math display">H(x)=\text{Sign}\sum_{t=1}^T\alpha_t h_t(x)</span></p>
+<p>Reweighting<br><br> <span class="math display">\begin{align*}{}
+D_{t+1} \left(i\right)&amp;=\frac{D_t \left(i\right)\exp \left(-\alpha_t y_t h_t \left(x_i \right)\right)}{Z_t }\\
+&amp;=\frac{D_t \left(i\right)\exp \left(-y_i \sum_{q=1}^t \alpha_q h_q \left(x_i \right)\right)}{m\prod_{q=1}^t Z_q }
+\end{align*}</span></p>
+<p>Notice</p>
+<p><span class="math display">\exp \left(-\alpha_t y_t h_t \left(x_i \right)\right)  \begin{cases}
+    \le1 &amp;\text{if } y_t=h_t(x_i) \xleftarrow{y\times h(x)=1} \\
+    &gt;1 &amp;\text{if } y_t\ne h_t(x_i) \xleftarrow{y\times h(x)=-1}
+\end{cases}</span></p>
+<p>we can see that weight of wrongly classified example is increased and weight of correctly classified example is decreased.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Adaboost vs Random Forests
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dietterich (1998) showed that when a fraction of the output labels in the training set are randomly altered, the accuracy of Adaboost degenerates, while bagging is more immune to the noise.</p>
+</div>
+</div>
+</section>
+<section id="a-good-weak-learner" class="level2">
+<h2 class="anchored" data-anchor-id="a-good-weak-learner">A good weak learner</h2>
+<ul>
+<li>The set of weak rules (features) should be <strong>flexible enough to be (weakly) correlated</strong> with most conceivable relations between feature vector and label.</li>
+<li><strong>Small enough to allow exhaustive search</strong> for the minimal weighted training error.</li>
+<li><strong>Small enough to avoid over-fitting.</strong></li>
+<li>Should be able to <strong>calculate predicted label very efficiently</strong></li>
+<li>Rules can be <strong>“specialists”</strong> – predict only on a small subset of the input space and <strong>abstain from predicting</strong> on the rest (output 0).</li>
+</ul>
+</section>
+<section id="gradient-boosting" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-boosting">Gradient Boosting</h2>
+<p>Gradient Boosting = Gradient Descent + Boosting - Fit an additive model (ensemble) in a forward stage-wise manner. - In each stage, introduce a weak learner to compensate the shortcomings of existing weak learners. - In Gradient Boosting, “shortcomings” are identified by gradients. - Recall that, in Adaboost, “shortcomings” are identified by high-weight data points. - Both high-weight data points and gradients tell us how to improve our model.</p>
+<section id="gradient-boosting-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="gradient-boosting-algorithm">Gradient Boosting Algorithm</h3>
+<p>Input: Training set <span class="math inline">{\left\lbrace \left(x_i ,y_i \right)\right\rbrace }_{i=1}^n</span>, a differentiable loss function <span class="math inline">L(y,F(x))</span>,Number of iteration <span class="math inline">M</span> <br><br> Algorithm: <br> - Initialize model with constant value:<br></p>
+<p><span class="math display">F_0(x)=\argmin_\gamma \sum_{i=1}^nL(y_i,\gamma)</span></p>
+<ul>
+<li>For <span class="math inline">m=1</span> to <span class="math inline">M</span>
+<ul>
+<li>Compute pseudo-residuals: <span class="math display">r_{im}=-\left[\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)} \right]_{F(x)=F_{m-1}(x)}\;\text{for }i=1,\dots,n</span></li>
+<li>Fit a base lerner (e.g.&nbsp;tree) <span class="math inline">h_m(x)</span> to pseudo-residual, i.e.&nbsp;train it using the set <span class="math inline">{\left\lbrace \left(x_i ,\boxed{r_{im}} \right)\right\rbrace }_{i=1}^n</span></li>
+<li>Compute multiplier <span class="math inline">\gamma_m</span> by solving the following one-dimensional optimization problem: <span class="math display">\gamma_m=\argmin_\gamma \sum_{i=1}^nL(y_i,\underbrace{F_{m-1}(x_i)}_{\text{previous model}}+\gamma \times \underbrace{h_m(x_i)}_{\text{current model}})</span></li>
+<li>Update the model: <span class="math display">F_m(x)=F_{m-1}(x)+\gamma h_m(x)</span></li>
 </ul></li>
+<li>Output <span class="math inline">F_M(x)</span></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="stacking-stacked-generalization" class="level1">
+<h1>Stacking (stacked generalization)</h1>
+<ul>
+<li>Train multiple tiers of classifiers</li>
+<li>Higher tiers can correct lower tiers</li>
+<li>Combiner <span class="math inline">f ()</span> is another learner (Wolpert, 1992)</li>
+<li>Idea:
+<ul>
+<li>Generate component (level 0) classifiers with part of the data (half, three quarters)</li>
+<li>Train combiner (level 1) classifier to combine predictions of components using remaining data</li>
+<li>Retrain component classifiers with all of training data</li>
+</ul></li>
+<li>In practice, often equivalent to voting <br><br> <img src="CS5590_images/Acrobat_2wGlX14eBZ.png" class="img-fluid"></li>
 </ul>
 
 
@@ -527,13 +664,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../posts/CS6660/2022-10-01-CS6660-week6.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Linear Algebra 3</span>
+      <a href="../../posts/CS5590/2022-09-24-CS5590-week5.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Machine Learning 5</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../posts/CS5590/2022-08-20-CS5590-week2.html" class="pagination-link">
-        <span class="nav-page-text">Machine Learning 2</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../posts/CS5590/2022-10-15-CS5590-week7.html" class="pagination-link">
+        <span class="nav-page-text">Machine Learning 7</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

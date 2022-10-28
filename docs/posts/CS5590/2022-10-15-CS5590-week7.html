@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Abhishek Kumar Dubey">
+<meta name="dcterms.date" content="2022-10-15">
+<meta name="description" content="Classifier System Design">
+
+<title>IITH-Data-Science - Machine Learning 7</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../posts/CS5590/2022-10-08-CS5590-week6.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
+</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">IITH-Data-Science</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Machine Learning 7</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Machine Learning 7</h1>
+                  <div>
+        <div class="description">
+          Classifier System Design
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Machine Learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Abhishek Kumar Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 15, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">CS6660</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Probability Theory</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">Probability Theory 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">Probability Theory 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">Probability Theory 5</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Linear Algebra</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS6660/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">CS5590</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Machine Learning</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">Machine Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">Machine Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">Machine Learning 6</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/CS5590/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link active">Machine Learning 7</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#pre-processing" id="toc-pre-processing" class="nav-link active" data-scroll-target="#pre-processing">Pre-Processing</a></li>
+  <li><a href="#feature-extraction-from-data" id="toc-feature-extraction-from-data" class="nav-link" data-scroll-target="#feature-extraction-from-data">Feature Extraction from Data</a></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
+  <li><a href="#class-imbalance" id="toc-class-imbalance" class="nav-link" data-scroll-target="#class-imbalance">Class Imbalance</a>
+  <ul class="collapse">
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  </ul></li>
+  <li><a href="#smote" id="toc-smote" class="nav-link" data-scroll-target="#smote">SMOTE</a></li>
+  <li><a href="#using-large-datasets" id="toc-using-large-datasets" class="nav-link" data-scroll-target="#using-large-datasets">Using Large Datasets</a></li>
+  <li><a href="#generalization-error" id="toc-generalization-error" class="nav-link" data-scroll-target="#generalization-error">Generalization Error</a>
+  <ul class="collapse">
+  <li><a href="#bias-variance-tradeoff" id="toc-bias-variance-tradeoff" class="nav-link" data-scroll-target="#bias-variance-tradeoff">Bias variance tradeoff</a></li>
+  </ul></li>
+  <li><a href="#measuring-bias-and-variance" id="toc-measuring-bias-and-variance" class="nav-link" data-scroll-target="#measuring-bias-and-variance">Measuring Bias and Variance</a></li>
+  <li><a href="#some-inferences" id="toc-some-inferences" class="nav-link" data-scroll-target="#some-inferences">Some Inferences</a></li>
+  <li><a href="#regularizers" id="toc-regularizers" class="nav-link" data-scroll-target="#regularizers">Regularizers</a></li>
+  <li><a href="#model-based-machine-learning" id="toc-model-based-machine-learning" class="nav-link" data-scroll-target="#model-based-machine-learning">Model-based Machine Learning</a>
+  <ul class="collapse">
+  <li><a href="#regularization-in-model-based-ml" id="toc-regularization-in-model-based-ml" class="nav-link" data-scroll-target="#regularization-in-model-based-ml">Regularization in Model based ML</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="pre-processing" class="level1">
+<h1>Pre-Processing</h1>
+<ul>
+<li>Numeric
+<ul>
+<li>Zero mean, unit variance: <span class="math inline">x’= (x-\mu)/ \sigma</span></li>
+<li>In interval <span class="math inline">[0,1]: x'=(x -\min)/(\max - \min)</span></li>
+</ul></li>
+<li>Categorical
+<ul>
+<li>Encoded as number in such a way that there is no sense of ordering, for e.g.&nbsp;if there are 3 classes apple, orange and banana, and encoded as <span class="math inline">1,2,3</span> respectively, it appears as apple comes first than orange, which is not correct. So the correct way to encode is one hot encoding.</li>
+<li>Also here only equality testing is meaningful.</li>
+</ul></li>
+<li>Ordinal
+<ul>
+<li>Encoded as numbers to preserve ordering</li>
+<li><span class="math inline">\le, \ge</span> operations meaningful</li>
+</ul></li>
+</ul>
+</section>
+<section id="feature-extraction-from-data" class="level1">
+<h1>Feature Extraction from Data</h1>
+<ul>
+<li>Images
+<ul>
+<li>Pixel values, Segment and extract features, Handcrafted features: HOG, SIFT,etc</li>
+<li>Deep learned features!</li>
+</ul></li>
+<li>Text
+<ul>
+<li>Bag of words, Ngrams</li>
+<li>Deep learned features!</li>
+</ul></li>
+<li>Speech
+<ul>
+<li>Mel Frequency Cepstral Coefficients (MFCCs), Other frequency based features</li>
+<li>Deep learned features!</li>
+</ul></li>
+<li>Time varying sensor Data
+<ul>
+<li>Statistical and moment based features (mean, variance, etc</li>
+</ul></li>
+</ul>
+</section>
+<section id="challenges" class="level1">
+<h1>Challenges</h1>
+<ul>
+<li>Structured input/Structured output
+<ul>
+<li>One fix: Attribute = root-to-leaf paths</li>
+</ul></li>
+<li>Missing data
+<ul>
+<li>Fix: Fill in the value, Introduce special label, remove instance, remove attribute, Use classifiers that can handle missing values</li>
+</ul></li>
+<li>Outliers
+<ul>
+<li>Fix: Remove, Threshold, Visualize!</li>
+</ul></li>
+<li>Data assumptions
+<ul>
+<li>Generated how? Sources?</li>
+<li>Smooth? Linear? Noise?</li>
+</ul></li>
+</ul>
+</section>
+<section id="class-imbalance" class="level1">
+<h1>Class Imbalance</h1>
+<p>Almost all classifiers attempt to reduce global quantities such as the error rate, not taking the data distribution into consideration.</p>
+<p>As a result, examples from the overwhelming class are well classified whereas examples from the minority class tend to be misclassified.</p>
+<ul>
+<li>Are all classifiers sensitive to class imbalance?
+<ul>
+<li>Decision Tree:Very sensitive to class imbalances. This is because the algorithm works globally, not paying attention to specific data points.</li>
+<li>Multi Layer perceptrons (MLPs): are less prone to the class imbalance problem. This is because of their flexibility: their solution gets adjusted by each data point in a bottom up manner as well as by the overall data set in a top down manner.</li>
+<li>Support Vector Machines (SVMs) SVMs are even less prone to the class imbalance problem than MLPs because they are only concerned with a few support vectors, the data points located close to the boundaries.</li>
+</ul></li>
+</ul>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<ul>
+<li>Collect more data!</li>
+<li>Change your performance metric:
+<ul>
+<li>Confusion Matrix, Precision Recall, F1 score, etc.</li>
+</ul></li>
+<li>Resample dataset</li>
+<li>Generate synthetic samples</li>
+<li>Try penalized models</li>
+<li>Try a different perspective anomaly/change detection <br><br></li>
+<li>At the data Level: Re Sampling
+<ul>
+<li>Oversampling (Random or Directed)</li>
+<li>Under-sampling (Random or Directed), (not good for model performance)</li>
+<li>Active Sampling</li>
+</ul></li>
+<li>At the Algorithmic Level:
+<ul>
+<li>Adjusting the Costs</li>
+<li>Adjusting the decision threshold / probabilistic estimate at the tree leaf <br><br></li>
+</ul></li>
+<li>Under-sampling (random and directed) is not effective and can even hurt performance.</li>
+<li>Random oversampling helps quite dramatically. Directed oversampling makes a bit of a difference by helping slightly more.</li>
+<li>Cost adjusting is about as effective as Directed oversampling. Generally, however, it is found to be slightly more useful.</li>
+</ul>
+</section>
+</section>
+<section id="smote" class="level1">
+<h1>SMOTE</h1>
+<p>SMOTE = Synthetic Minority Oversampling Technique</p>
+<ul>
+<li>For each minority example <span class="math inline">k</span>, compute nearest minority class examples <span class="math inline">(i,j,l,n,m)</span></li>
+<li>Synthetically generate event <span class="math inline">k_1</span> such that <span class="math inline">k_1</span> lies between <span class="math inline">k</span> and <span class="math inline">i</span></li>
+<li>Randomly chose an example out of <span class="math inline">5</span> closest points.</li>
+</ul>
+</section>
+<section id="using-large-datasets" class="level1">
+<h1>Using Large Datasets</h1>
+<ul>
+<li>At large data scales, the performance of different algorithms converge such that performance differences virtually disappear.</li>
+<li>Given a large enough data set, the algorithm you’d want to use is the one that is computationally less expensive.</li>
+<li>It’s only at smaller data scales that the performance differences between algorithms matter.</li>
+<li>CPUs vs GPUs
+<ul>
+<li>Deep learning has greatly benefited from GPUs</li>
+</ul></li>
+<li>Map Reduce/ Hadoop , Apache Spark, Vowpal Wabbit frameworks
+<ul>
+<li>Many learning algorithms amenable to partitioning of computations</li>
+</ul></li>
+</ul>
+</section>
+<section id="generalization-error" class="level1">
+<h1>Generalization Error</h1>
+<ul>
+<li><p>Components of generalization error</p></li>
+<li><p>Bias: how much the average model over all training sets differ from the true model?</p>
+<ul>
+<li>Error due to inaccurate assumptions/simplifications made by the model</li>
+</ul></li>
+<li><p>Variance: how much models estimated from different training sets differ from each other</p></li>
+<li><p>MSE in terms of bias and variance<br><br> <span class="math display">\color{blue} \text{MSE}=\color{red} \underbrace{\text{Bias}^2}_{\text{error due to incorrect assumption}} + \color{green} \underbrace{\text{Variance}}_{\text{error due to variance in training}} + \color{purple} \underbrace{\text{Noise}}_{\text{Unavoidable error}} \tag{1}</span> <br><br> Consider True function <span class="math inline">q</span> and Estimator <span class="math inline">f_i = f(X_i)</span> on sample <span class="math inline">X_i</span><br> Bias = <span class="math inline">{\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack -q\right)}^2</span><br> Variance = <span class="math inline">\mathit{\mathbf{E}}\left\lbrack {\left(f-\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2 \right\rbrack</span><br> <span class="math inline">\mathit{\mathbf{E}}\left\lbrack {\left(f-q\right)}^2 \right\rbrack ={\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack -q\right)}^2 +\mathit{\mathbf{E}}\left\lbrack {\left(f-\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2 \right\rbrack</span><br> Proof:<br> <strong>LHS</strong>: <br> <span class="math display">\begin{align*}{}
+\text{LHS} &amp;=\mathit{\mathbf{E}}\left\lbrack {\left(f-q\right)}^2 \right\rbrack \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack f^2 +q^2 -2f\cdot q\right\rbrack \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack f^2 \right\rbrack +q^2 -2\cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack \cdot q
+\end{align*}</span> <strong>RHS</strong>: <span class="math display">\begin{align*}{}
+\text{RHS} &amp;={\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack -q\right)}^2 +\mathit{\mathbf{E}}\left\lbrack {\left(f-\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2 \right\rbrack
+\\
+&amp;={\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2 +q^2 -2\cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack \cdot q+\mathit{\mathbf{E}}\left\lbrack f^2 +{\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2 -2\cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack \cdot f\right\rbrack \\
+&amp;=\cancel{{\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2} +q^2 -2\cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack \cdot q+\mathit{\mathbf{E}}\left\lbrack f^2 \right\rbrack +\cancel{{\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2} -\cancel{2\cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack \cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack} \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack f^2 \right\rbrack +q^2 -2\cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack \cdot q
+\end{align*}</span> LHS=RHS hence proved</p></li>
+</ul>
+<section id="bias-variance-tradeoff" class="level2">
+<h2 class="anchored" data-anchor-id="bias-variance-tradeoff">Bias variance tradeoff</h2>
+<p>From equation <span class="math inline">(1)</span> we can see that when MSE is constant and if we try to reduce the variance Bias has to increase and vice versa.</p>
+<ul>
+<li>Models with too few parameters are inaccurate because of a <strong>large bias</strong> bias (not enough flexibility).</li>
+<li>Models with too many parameters are inaccurate because of a <strong>large variance</strong> (too much sensitivity to the sample).</li>
+<li><strong>Underfitting</strong>: Model is too “simple” to represent all the relevant class characteristics
+<ul>
+<li>High bias and low variance</li>
+<li>High training error and high test error</li>
+</ul></li>
+<li><strong>Overfitting</strong>: Model is too “complex” and fits irrelevant characteristics (noise) in the data
+<ul>
+<li>Low bias and high variance</li>
+<li>Low training error and high test error</li>
+</ul></li>
+</ul>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In case of classification, variance dominates bias. Very roughly, this is because we only need to make a discrete decision rather than get an exact value.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="measuring-bias-and-variance" class="level1">
+<h1>Measuring Bias and Variance</h1>
+<ul>
+<li>Create multiple training set using bootstrap replicates.</li>
+<li>Apply learning algorithm on each replicates to obtain hypothesis.</li>
+<li>compute predicted value for each hypothesis on the data which did not appear on the bootstrap replicate the hypothesis was trained on.</li>
+<li>compute the average prediction</li>
+<li>Estimate bias</li>
+<li>Estimate variance.</li>
+<li>Assume noise is 0
+<ul>
+<li>If we have multiple data points with the same <span class="math inline">x</span> value, then we can estimate the noise not generally available in machine learning</li>
+</ul></li>
+</ul>
+</section>
+<section id="some-inferences" class="level1">
+<h1>Some Inferences</h1>
+<ul>
+<li>How to reduce variance of classifier
+<ul>
+<li>Choose a simpler classifier</li>
+<li>Regularize the parameters</li>
+<li>Get more training data</li>
+</ul></li>
+<li>Training Error and Cross Validation
+<ul>
+<li>Suppose we use the training error to estimate the difference between the true model prediction and the learned model prediction.</li>
+<li>The training error is <em>downward biased</em>: on average it <em>underestimates</em> the generalization error.</li>
+<li>Cross validation is nearly unbiased; it <em>slightly</em> <em>overestimates</em> the generalization error.</li>
+</ul></li>
+</ul>
+</section>
+<section id="regularizers" class="level1">
+<h1>Regularizers</h1>
+<ul>
+<li>KNN
+<ul>
+<li>Choose higher <span class="math inline">k</span></li>
+</ul></li>
+<li>Decision Trees
+<ul>
+<li>Pruning</li>
+</ul></li>
+<li>Naïve Bayes
+<ul>
+<li>Parametric models automatically act as regularizers</li>
+</ul></li>
+<li>SVMs
+<ul>
+<li>Control <span class="math inline">c</span> value</li>
+</ul></li>
+</ul>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If the wight value is high the model is likely to over fit, so we want weight to be small. Consider a dataset in <span class="math inline">2</span>-D, Hiving large variance across <span class="math inline">y</span>-axis, now consider a model which overfits to these data, as do so <span class="math inline">W</span> has to be larger because for very small change in <span class="math inline">x,\;y</span> will have to change by very high amount (due to such data distribution) which can be achieved only if <span class="math inline">W</span> is large. It is shown in the below pic.</p>
+</div>
+</div>
+<p><br> <img src="CS5590_images/mspaint_AEgund0GVg.png" class="img-fluid"><br><br></p>
+</section>
+<section id="model-based-machine-learning" class="level1">
+<h1>Model-based Machine Learning</h1>
+<ul>
+<li>pick a model</li>
+<li>pick a criteria to optimize (aka objective function)</li>
+<li>develop a learning algorithm (aka Find <span class="math inline">W</span> and <span class="math inline">b</span> that minimizes the loss)</li>
+<li>Generally, we don’t want huge weights
+<ul>
+<li>If weights are large, a small change in a feature can result in a large change in the prediction</li>
+<li>Also, can give too much weight to any one feature</li>
+</ul></li>
+</ul>
+<section id="regularization-in-model-based-ml" class="level2">
+<h2 class="anchored" data-anchor-id="regularization-in-model-based-ml">Regularization in Model based ML</h2>
+<ul>
+<li>A regularizer is an additional criteria to the loss function to make sure that we don’t overfit</li>
+<li>It’s called a regularizer since it tries to keep the parameters more normal/regular</li>
+<li>It is a bias (inductive bias) on the model forces the learning to prefer certain types (smaller) of weights over others (larger). <span class="math display">\argmin_{w,b} \sum_{i=1}^n \mathrm{loss}\left(y,y^{\prime } \right)+\lambda \cdot \boxed{\mathrm{regulizer}\left(w,b\right)}</span></li>
+<li>Type of norm regularizer
+<ul>
+<li>1-norm ( sum of weights ) <span class="math display">r(w,b)=\sum_{w_j} \left\lvert w_j \right\rvert </span></li>
+<li>2-norm ( sum of squared weights ) <span class="math display">r(w,b)=\sum_{w_j} \sqrt{\left\lvert w_j \right\rvert^2} </span><br>
+</li>
+<li><span class="math inline">p</span>-norm ( sum of squared weights ) <span class="math display">r(w,b)=\sum_{w_j} \sqrt[p]{\left\lvert w_j \right\rvert^p}=\left\lVert w\right\rVert ^p</span></li>
+</ul></li>
+</ul>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Smaller values of <span class="math inline">p, (p &lt; 2)</span> encourage sparser vectors<br></li>
+<li>Larger values of <span class="math inline">p</span> discourage large weights more.</li>
+<li>All <span class="math inline">p</span> norms penalize larger weights.</li>
+<li><span class="math inline">p &lt; 2</span> tends to create sparse i.e.&nbsp;lots of <span class="math inline">0</span> weights)</li>
+</ul>
+<p>Notice below pic</p>
+</div>
+</div>
+<p><img src="CS5590_images/Acrobat_DOQ241iPvG.png" class="img-fluid"></p>
+<ul>
+<li>L1 is popular because it tends to result in sparse solutions (i.e.&nbsp;lots of zero weights)</li>
+<li>However, it is not differentiable, so it only works for gradient descent solvers</li>
+<li>L2 is also popular because for some loss functions, it can be solved directly (no gradient descent required, though often iterative solvers still)</li>
+<li>Lp is less popular since they don’t tend to shrink the weights enough</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="abhiyantaabhishek/IITH-Data-Science" data-repo-id="R_kgDOILoB8A" data-category="Announcements" data-category-id="DIC_kwDOILoB8M4CSJcL" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../posts/CS5590/2022-10-08-CS5590-week6.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Machine Learning 6</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

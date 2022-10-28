@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "IITH-Data-Science",
     "section": "",
-    "text": "Probability Theory\n\n\n\n\nJoint, Conditional, Marginal, Discrete Convolution\n\n\n\n\n\n\nOct 15, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nIndependence, Basis, Space\n\n\n\n\n\n\nOct 1, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nUniform, Exponential, Normal\n\n\n\n\n\n\nSep 24, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nMulti Layer Perceptrons\n\n\n\n\n\n\nSep 24, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nGaussian Elimination, Row-Echelon, Minus 1 Trick\n\n\n\n\n\n\nSep 17, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nBinomial, Poisson\n\n\n\n\n\n\nSep 17, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nSVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick\n\n\n\n\n\n\nSep 10, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nSystem of equation\n\n\n\n\n\n\nSep 3, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nDecision Trees, Naive Bayes, Bayesian Belief network\n\n\n\n\n\n\nAug 27, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nClassification Error, ROC/PR curve, KNN\n\n\n\n\n\n\nAug 20, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nMass Function\n\n\n\n\n\n\nAug 13, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nBasics, Bayes Theorem\n\n\n\n\n\n\nAug 6, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nTraining Error, Generalization Error\n\n\n\n\n\n\nAug 6, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\nNo matching items"
+    "text": "Probability Theory\n\n\n\n\nJoint, Conditional, Marginal, Discrete Convolution\n\n\n\n\n\n\nOct 15, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nClassifier System Design\n\n\n\n\n\n\nOct 15, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nEnsemble Classifier\n\n\n\n\n\n\nOct 8, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nIndependence, Basis, Space\n\n\n\n\n\n\nOct 1, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nUniform, Exponential, Normal\n\n\n\n\n\n\nSep 24, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nMulti Layer Perceptrons\n\n\n\n\n\n\nSep 24, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nGaussian Elimination, Row-Echelon, Minus 1 Trick\n\n\n\n\n\n\nSep 17, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nBinomial, Poisson\n\n\n\n\n\n\nSep 17, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nSVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick\n\n\n\n\n\n\nSep 10, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nSystem of equation\n\n\n\n\n\n\nSep 3, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nDecision Trees, Naive Bayes, Bayesian Belief network\n\n\n\n\n\n\nAug 27, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nClassification Error, ROC/PR curve, KNN\n\n\n\n\n\n\nAug 20, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nMass Function\n\n\n\n\n\n\nAug 13, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nBasics, Bayes Theorem\n\n\n\n\n\n\nAug 6, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nTraining Error, Generalization Error\n\n\n\n\n\n\nAug 6, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/CS6660/2022-10-15-CS6660-week7.html",
@@ -502,6 +502,90 @@
     "title": "Machine Learning 3",
     "section": "Naive Bayes Classifier category",
     "text": "Naive Bayes Classifier category\n\nIt is an Inductive Learning.\nIt is a generative Modeling.\nIt can be Parametric or Non-parametric Models.\nIt can be online or offline Models."
+  },
+  {
+    "objectID": "posts/CS5590/2022-10-08-CS5590-week6.html",
+    "href": "posts/CS5590/2022-10-08-CS5590-week6.html",
+    "title": "Machine Learning 6",
+    "section": "",
+    "text": "Ensemble classification combines multiple classifiers to improve accuracy\nAdvantage\n\nLarge datasets: if dataset is too large we can train different models on subset of the data.\nSmall datasets: Can handle them with bootstrapping (random sampling)\nCan solve complected problems which can’t be solved using single classifier."
+  },
+  {
+    "objectID": "posts/CS5590/2022-10-08-CS5590-week6.html#example-random-forests",
+    "href": "posts/CS5590/2022-10-08-CS5590-week6.html#example-random-forests",
+    "title": "Machine Learning 6",
+    "section": "Example: Random Forests",
+    "text": "Example: Random Forests\n\nRandom forests (RF) are a combination of tree predictors, it’s a variant of bagging.\nExtremely successful, especially on Kaggle challenges.\nEach tree depends on the values of a random vector sampled independently\nThe generalization error depends on the strength of the individual trees and the correlation between them\nUsing a random selection of features yields results robust w.r.t. noise\n\n\nRandom Forests: Algorithm\n\nGiven a training set S\nFor i = 1 to k do:\n\nBuild subset S_i by sampling with replacement from S\nLearn tree T_i from S_i\n\nAt each node:\n\nChoose best split from random subset of F features\n\nEach tree grows to the largest extent, and no pruning\n\n\nMake predictions according to majority vote of the set of k trees.\nIf there are M input variables, a number m is specified such that at each node, m variables are selected at random out of the M and the best split on these m is used to split the node. The value of m is held constant during the forest growing.\nDepending upon the value of m, there are three slightly different systems:\n\nRandom splitter selection: m =1\nBreiman’s bagger: m = total number of predictor variables\nRandom forest: m << number of predictor variables. Breiman suggests three possible values for m:\\frac{1}{2}\\sqrt{M}, \\sqrt{M}, \\text{ and } 2\\sqrt{M}\n\n\n\n\nFeatures of Random Forests\n\nOne of the best in the business\nIt runs efficiently on large data bases\nIt can handle thousands of input variables without variable deletion/reduction\nIt gives estimates of what variables are important in the classification\nDoes not overfit by design\nThe generalization error of a forest of tree classifiers depends on the strength of the individual trees in the forest and the correlation between them. ( if correlation is high it means trees are similar and not so useful)"
+  },
+  {
+    "objectID": "posts/CS5590/2022-10-08-CS5590-week6.html#bagging-when",
+    "href": "posts/CS5590/2022-10-08-CS5590-week6.html#bagging-when",
+    "title": "Machine Learning 6",
+    "section": "Bagging: when",
+    "text": "Bagging: when\n\nCan help if data is noisy.\nIf learning algorithm is unstable, i.e. if small changes to the training set cause large changes in the learned classifier."
+  },
+  {
+    "objectID": "posts/CS5590/2022-10-08-CS5590-week6.html#bagging-why",
+    "href": "posts/CS5590/2022-10-08-CS5590-week6.html#bagging-why",
+    "title": "Machine Learning 6",
+    "section": "Bagging: Why",
+    "text": "Bagging: Why\n\nLet S= \\{(x , y ), i=1\\dots N\\} be the training dataset\nLet \\{S_k \\} be a sequence of training sets containing a sub-set of S\nLet P be the underlying distribution of S.\nBagging replaces the prediction of the model with the majority of the predictions given by the classifiers S. \\phi(x,P)=E_s(\\phi (x,S_k))"
+  },
+  {
+    "objectID": "posts/CS5590/2022-10-08-CS5590-week6.html#key-idea",
+    "href": "posts/CS5590/2022-10-08-CS5590-week6.html#key-idea",
+    "title": "Machine Learning 6",
+    "section": "Key Idea",
+    "text": "Key Idea\n\nAn algorithm for constructing a “strong” classifier as linear combination of “simple” “weak” classifier f(x)=\\sum_{t=1}^T \\alpha_th_t(x)\nFinal classification based on weighted vote of weak classifiers"
+  },
+  {
+    "objectID": "posts/CS5590/2022-10-08-CS5590-week6.html#adaboost-algorithm",
+    "href": "posts/CS5590/2022-10-08-CS5590-week6.html#adaboost-algorithm",
+    "title": "Machine Learning 6",
+    "section": "Adaboost Algorithm",
+    "text": "Adaboost Algorithm\nGiven (x_1,y_1),\\dots (x_m,y_m) where x_i \\in X,y_i \\in Y =\\{-1,+1\\} Initialize D(i)=\\frac{1}{m} For t=1,\\dots T:\n\nFind the classifier h_t:X \\rightarrow \\{-1,+1\\} that minimizes the error with respect to the distribution D_t: \\displaystyle h_t = \\argmin _{h_j \\in H} \\epsilon_j, where \\displaystyle\\epsilon_j=\\sum_{i=1}^m D_t(i)[y_i \\ne h_j(x_i)]\nPrerequisite: \\epsilon_t<0.5, otherwise stop.\nChoose \\alpha_t \\in \\mathbb{R}, typically \\displaystyle \\alpha_t=\\frac{1}{2}\\ln \\frac{1-\\epsilon_t}{\\epsilon_t}, where \\epsilon_t is the weighted error rate of the classifier h_t \\boxed{\\alpha_t \\text{ stays same for all data points}}\nUpdate  D_{t+1} \\left(i\\right)=\\frac{D_t \\left(i\\right)\\exp \\left(-\\alpha_t y_t h_t \\left(x_i \\right)\\right)}{Z_t } where Z_t is a normalization factor (chosen such that D_{t+1} will be a distribution)\n\noutput of the final classifier : H(x)=\\text{Sign}\\sum_{t=1}^T\\alpha_t h_t(x)\nReweighting \\begin{align*}{}\nD_{t+1} \\left(i\\right)&=\\frac{D_t \\left(i\\right)\\exp \\left(-\\alpha_t y_t h_t \\left(x_i \\right)\\right)}{Z_t }\\\\\n&=\\frac{D_t \\left(i\\right)\\exp \\left(-y_i \\sum_{q=1}^t \\alpha_q h_q \\left(x_i \\right)\\right)}{m\\prod_{q=1}^t Z_q }\n\\end{align*}\nNotice\n\\exp \\left(-\\alpha_t y_t h_t \\left(x_i \\right)\\right)  \\begin{cases}\n    \\le1 &\\text{if } y_t=h_t(x_i) \\xleftarrow{y\\times h(x)=1} \\\\\n    >1 &\\text{if } y_t\\ne h_t(x_i) \\xleftarrow{y\\times h(x)=-1}\n\\end{cases}\nwe can see that weight of wrongly classified example is increased and weight of correctly classified example is decreased.\n\n\n\n\n\n\nAdaboost vs Random Forests\n\n\n\nDietterich (1998) showed that when a fraction of the output labels in the training set are randomly altered, the accuracy of Adaboost degenerates, while bagging is more immune to the noise."
+  },
+  {
+    "objectID": "posts/CS5590/2022-10-08-CS5590-week6.html#a-good-weak-learner",
+    "href": "posts/CS5590/2022-10-08-CS5590-week6.html#a-good-weak-learner",
+    "title": "Machine Learning 6",
+    "section": "A good weak learner",
+    "text": "A good weak learner\n\nThe set of weak rules (features) should be flexible enough to be (weakly) correlated with most conceivable relations between feature vector and label.\nSmall enough to allow exhaustive search for the minimal weighted training error.\nSmall enough to avoid over-fitting.\nShould be able to calculate predicted label very efficiently\nRules can be “specialists” – predict only on a small subset of the input space and abstain from predicting on the rest (output 0)."
+  },
+  {
+    "objectID": "posts/CS5590/2022-10-08-CS5590-week6.html#gradient-boosting",
+    "href": "posts/CS5590/2022-10-08-CS5590-week6.html#gradient-boosting",
+    "title": "Machine Learning 6",
+    "section": "Gradient Boosting",
+    "text": "Gradient Boosting\nGradient Boosting = Gradient Descent + Boosting - Fit an additive model (ensemble) in a forward stage-wise manner. - In each stage, introduce a weak learner to compensate the shortcomings of existing weak learners. - In Gradient Boosting, “shortcomings” are identified by gradients. - Recall that, in Adaboost, “shortcomings” are identified by high-weight data points. - Both high-weight data points and gradients tell us how to improve our model.\n\nGradient Boosting Algorithm\nInput: Training set {\\left\\lbrace \\left(x_i ,y_i \\right)\\right\\rbrace }_{i=1}^n, a differentiable loss function L(y,F(x)),Number of iteration M  Algorithm:  - Initialize model with constant value:\nF_0(x)=\\argmin_\\gamma \\sum_{i=1}^nL(y_i,\\gamma)\n\nFor m=1 to M\n\nCompute pseudo-residuals: r_{im}=-\\left[\\frac{\\partial L(y_i,F(x_i))}{\\partial F(x_i)} \\right]_{F(x)=F_{m-1}(x)}\\;\\text{for }i=1,\\dots,n\nFit a base lerner (e.g. tree) h_m(x) to pseudo-residual, i.e. train it using the set {\\left\\lbrace \\left(x_i ,\\boxed{r_{im}} \\right)\\right\\rbrace }_{i=1}^n\nCompute multiplier \\gamma_m by solving the following one-dimensional optimization problem: \\gamma_m=\\argmin_\\gamma \\sum_{i=1}^nL(y_i,\\underbrace{F_{m-1}(x_i)}_{\\text{previous model}}+\\gamma \\times \\underbrace{h_m(x_i)}_{\\text{current model}})\nUpdate the model: F_m(x)=F_{m-1}(x)+\\gamma h_m(x)\n\nOutput F_M(x)"
+  },
+  {
+    "objectID": "posts/CS5590/2022-10-15-CS5590-week7.html",
+    "href": "posts/CS5590/2022-10-15-CS5590-week7.html",
+    "title": "Machine Learning 7",
+    "section": "",
+    "text": "Numeric\n\nZero mean, unit variance: x’= (x-\\mu)/ \\sigma\nIn interval [0,1]: x'=(x -\\min)/(\\max - \\min)\n\nCategorical\n\nEncoded as number in such a way that there is no sense of ordering, for e.g. if there are 3 classes apple, orange and banana, and encoded as 1,2,3 respectively, it appears as apple comes first than orange, which is not correct. So the correct way to encode is one hot encoding.\nAlso here only equality testing is meaningful.\n\nOrdinal\n\nEncoded as numbers to preserve ordering\n\\le, \\ge operations meaningful"
+  },
+  {
+    "objectID": "posts/CS5590/2022-10-15-CS5590-week7.html#solution",
+    "href": "posts/CS5590/2022-10-15-CS5590-week7.html#solution",
+    "title": "Machine Learning 7",
+    "section": "Solution",
+    "text": "Solution\n\nCollect more data!\nChange your performance metric:\n\nConfusion Matrix, Precision Recall, F1 score, etc.\n\nResample dataset\nGenerate synthetic samples\nTry penalized models\nTry a different perspective anomaly/change detection \nAt the data Level: Re Sampling\n\nOversampling (Random or Directed)\nUnder-sampling (Random or Directed), (not good for model performance)\nActive Sampling\n\nAt the Algorithmic Level:\n\nAdjusting the Costs\nAdjusting the decision threshold / probabilistic estimate at the tree leaf \n\nUnder-sampling (random and directed) is not effective and can even hurt performance.\nRandom oversampling helps quite dramatically. Directed oversampling makes a bit of a difference by helping slightly more.\nCost adjusting is about as effective as Directed oversampling. Generally, however, it is found to be slightly more useful."
+  },
+  {
+    "objectID": "posts/CS5590/2022-10-15-CS5590-week7.html#bias-variance-tradeoff",
+    "href": "posts/CS5590/2022-10-15-CS5590-week7.html#bias-variance-tradeoff",
+    "title": "Machine Learning 7",
+    "section": "Bias variance tradeoff",
+    "text": "Bias variance tradeoff\nFrom equation (1) we can see that when MSE is constant and if we try to reduce the variance Bias has to increase and vice versa.\n\nModels with too few parameters are inaccurate because of a large bias bias (not enough flexibility).\nModels with too many parameters are inaccurate because of a large variance (too much sensitivity to the sample).\nUnderfitting: Model is too “simple” to represent all the relevant class characteristics\n\nHigh bias and low variance\nHigh training error and high test error\n\nOverfitting: Model is too “complex” and fits irrelevant characteristics (noise) in the data\n\nLow bias and high variance\nLow training error and high test error\n\n\n\n\n\n\n\n\nTip\n\n\n\nIn case of classification, variance dominates bias. Very roughly, this is because we only need to make a discrete decision rather than get an exact value."
+  },
+  {
+    "objectID": "posts/CS5590/2022-10-15-CS5590-week7.html#regularization-in-model-based-ml",
+    "href": "posts/CS5590/2022-10-15-CS5590-week7.html#regularization-in-model-based-ml",
+    "title": "Machine Learning 7",
+    "section": "Regularization in Model based ML",
+    "text": "Regularization in Model based ML\n\nA regularizer is an additional criteria to the loss function to make sure that we don’t overfit\nIt’s called a regularizer since it tries to keep the parameters more normal/regular\nIt is a bias (inductive bias) on the model forces the learning to prefer certain types (smaller) of weights over others (larger). \\argmin_{w,b} \\sum_{i=1}^n \\mathrm{loss}\\left(y,y^{\\prime } \\right)+\\lambda \\cdot \\boxed{\\mathrm{regulizer}\\left(w,b\\right)}\nType of norm regularizer\n\n1-norm ( sum of weights ) r(w,b)=\\sum_{w_j} \\left\\lvert w_j \\right\\rvert \n2-norm ( sum of squared weights ) r(w,b)=\\sum_{w_j} \\sqrt{\\left\\lvert w_j \\right\\rvert^2} \n\np-norm ( sum of squared weights ) r(w,b)=\\sum_{w_j} \\sqrt[p]{\\left\\lvert w_j \\right\\rvert^p}=\\left\\lVert w\\right\\rVert ^p\n\n\n\n\n\n\n\n\nTip\n\n\n\n\nSmaller values of p, (p < 2) encourage sparser vectors\nLarger values of p discourage large weights more.\nAll p norms penalize larger weights.\np < 2 tends to create sparse i.e. lots of 0 weights)\n\nNotice below pic\n\n\n\n\nL1 is popular because it tends to result in sparse solutions (i.e. lots of zero weights)\nHowever, it is not differentiable, so it only works for gradient descent solvers\nL2 is also popular because for some loss functions, it can be solved directly (no gradient descent required, though often iterative solvers still)\nLp is less popular since they don’t tend to shrink the weights enough"
   },
   {
     "objectID": "posts/CS5590/2022-09-24-CS5590-week5.html",
