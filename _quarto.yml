@@ -65,6 +65,7 @@ format:
     theme: cosmo
     css: styles.css
     html-math-method: katex
+    fig-align: center
 
 
 

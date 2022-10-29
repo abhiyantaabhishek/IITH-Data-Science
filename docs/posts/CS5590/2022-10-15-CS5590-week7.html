@@ -8,7 +8,7 @@
 
 <meta name="author" content="Abhishek Kumar Dubey">
 <meta name="dcterms.date" content="2022-10-15">
-<meta name="description" content="Classifier System Design">
+<meta name="description" content="Classifier System Design,Introduction to Learning Theory">
 
 <title>IITH-Data-Science - Machine Learning 7</title>
 <style>
@@ -152,7 +152,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <h1 class="title d-none d-lg-block">Machine Learning 7</h1>
                   <div>
         <div class="description">
-          Classifier System Design
+          Classifier System Design,Introduction to Learning Theory
         </div>
       </div>
                           <div class="quarto-categories">
@@ -344,6 +344,15 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <li><a href="#model-based-machine-learning" id="toc-model-based-machine-learning" class="nav-link" data-scroll-target="#model-based-machine-learning">Model-based Machine Learning</a>
   <ul class="collapse">
   <li><a href="#regularization-in-model-based-ml" id="toc-regularization-in-model-based-ml" class="nav-link" data-scroll-target="#regularization-in-model-based-ml">Regularization in Model based ML</a></li>
+  </ul></li>
+  <li><a href="#introduction-to-learning-theory" id="toc-introduction-to-learning-theory" class="nav-link" data-scroll-target="#introduction-to-learning-theory">Introduction to Learning Theory</a>
+  <ul class="collapse">
+  <li><a href="#optimality-of-bayes-decision-rule" id="toc-optimality-of-bayes-decision-rule" class="nav-link" data-scroll-target="#optimality-of-bayes-decision-rule">Optimality of Bayes Decision Rule</a></li>
+  </ul></li>
+  <li><a href="#towards-formalizing-learning" id="toc-towards-formalizing-learning" class="nav-link" data-scroll-target="#towards-formalizing-learning">Towards formalizing ‘learning’</a>
+  <ul class="collapse">
+  <li><a href="#the-basic-process-of-learning" id="toc-the-basic-process-of-learning" class="nav-link" data-scroll-target="#the-basic-process-of-learning">The basic process of learning</a></li>
+  <li><a href="#a-statistical-machinery-for-learning" id="toc-a-statistical-machinery-for-learning" class="nav-link" data-scroll-target="#a-statistical-machinery-for-learning">A statistical machinery for learning</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -657,6 +666,92 @@ Tip
 <li>However, it is not differentiable, so it only works for gradient descent solvers</li>
 <li>L2 is also popular because for some loss functions, it can be solved directly (no gradient descent required, though often iterative solvers still)</li>
 <li>Lp is less popular since they don’t tend to shrink the weights enough</li>
+</ul>
+</section>
+</section>
+<section id="introduction-to-learning-theory" class="level1">
+<h1>Introduction to Learning Theory</h1>
+<section id="optimality-of-bayes-decision-rule" class="level2">
+<h2 class="anchored" data-anchor-id="optimality-of-bayes-decision-rule">Optimality of Bayes Decision Rule</h2>
+<ul>
+<li>Let <span class="math inline">X</span> be a random variable over a space <span class="math inline">\Omega</span></li>
+<li>Two category decision problem:<br> <span class="math inline">H_1:X \in \omega_1</span><br> <span class="math inline">H_2:X \in \omega_2</span><br></li>
+<li>optimal decision is <br>
+<ul>
+<li>Chose <span class="math inline">H_1</span> when <span class="math inline">p(x \mid \omega_1)p(\omega_1)\ge p(x \mid \omega_2)p(\omega_2)</span></li>
+<li>Chose <span class="math inline">H_2</span> when <span class="math inline">p(x \mid \omega_1)p(\omega_1) &lt; p(x \mid \omega_2)p(\omega_2)</span></li>
+</ul></li>
+<li>Consider the partition of reason <span class="math inline">\Omega</span> as shown below, <span class="math inline">\mathcal{R}_1,\mathcal{R}_2,\Omega_1,\Omega_2</span> are partitions of <span class="math inline">\Omega</span>. Every thing outside of <span class="math inline">\mathcal{R}_1</span> is <span class="math inline">\mathcal{R}_2</span> and everything outside of <span class="math inline">\Omega_1</span> is <span class="math inline">\Omega_2</span><br><br> <img src="CS5590_images/ApplicationFrameHost_r01wS0Cy4S.png" class="img-fluid"> <img src="CS5590_images/ApplicationFrameHost_bShObAKBRQ.png" class="img-fluid"> <img src="CS5590_images/ApplicationFrameHost_lGXEWFz8BX.png" class="img-fluid"> <img src="CS5590_images/ApplicationFrameHost_NxoXTrbauD.png" class="img-fluid"></li>
+</ul>
+<p>Consider arbitrary decision rule: - partition <span class="math inline">\Omega</span> into two disjoint regions: <span class="math inline">\mathcal{R}_1</span> and <span class="math inline">\mathcal{R}_2</span><br> choose <span class="math inline">H_1</span> if <span class="math inline">X \in \mathcal{R}_1</span><br> choose <span class="math inline">H_2</span> if <span class="math inline">X \in \mathcal{R}_2</span><br></p>
+<p>Consider bayesian decision rule:</p>
+<ul>
+<li>partition <span class="math inline">\Omega</span> into two disjoint regions: <span class="math inline">\Omega_1</span> and <span class="math inline">\Omega_2</span><br> choose <span class="math inline">H_1</span> if <span class="math inline">X \in \Omega_1</span><br> choose <span class="math inline">H_2</span> if <span class="math inline">X \in \Omega_2</span><br></li>
+<li>where <br> <span class="math inline">\Omega_1 = \{x \in \Omega : p(x \mid \omega_1)p(\omega_1)\ge p(x \mid \omega_2)p(\omega_2)\}</span><br> <span class="math inline">\Omega_2 = \{x \in \Omega : p(x \mid \omega_1)p(\omega_1)&lt; p(x \mid \omega_2)p(\omega_2)\}</span></li>
+</ul>
+<p>Now,<br> For the arbitrary decision rule:</p>
+<p><span class="math display">\begin{align*}
+p(\text{error})&amp;=p(X\in \mathcal{R}_1,\omega_2)+p(X\in \mathcal{R}_2,\omega_1) \\
+&amp;= p(X\in \mathcal{R}_1\mid \omega_2)p(\omega_2)+p(X\in \mathcal{R}_2\mid \omega_1)p(\omega_1) \\
+&amp;= \int_{\mathcal{R}_1} p(x\mid \omega_2)p(\omega_2)dx + \int_{\mathcal{R}_2} p(x\mid \omega_1)p(\omega_1)dx \\
+\end{align*}</span></p>
+<p>Similarly we can write for Bayesian decision rule:</p>
+<p><span class="math display">\begin{align*}
+p(\text{error}_\text{Bayes})&amp;=p(X\in \Omega_1,\omega_2)+p(X\in \Omega_2,\omega_1) \\
+&amp;= p(X\in \Omega_1\mid \omega_2)p(\omega_2)+p(X\in \Omega_2\mid \omega_1)p(\omega_1) \\
+&amp;= \int_{\Omega_1} p(x\mid \omega_2)p(\omega_2)dx + \int_{\Omega_2} p(x\mid \omega_1)p(\omega_1)dx \\
+\end{align*}</span></p>
+<p>Let <span class="math display">\Delta(\text{error})=p(\text{error})-p(\text{error}_\text{Bayes}) \tag{2}</span> <br> If we can prove that <span class="math inline">\Delta(\text{error})</span> is always positive, it means <span class="math inline">p(\text{error}_\text{Bayes})</span> is the optimal error (least error we can get).</p>
+<ul>
+<li><p>With reference of the above figure we can write:<br> <span class="math inline">\mathcal{R}_1=(\mathcal{R}_1\cap \Omega_1)\cup (\mathcal{R}_1 \cap \Omega_2)</span><br> <span class="math inline">\mathcal{R}_2=(\mathcal{R}_2\cap \Omega_1)\cup (\mathcal{R}_2 \cap \Omega_2)</span><br></p>
+<p><span class="math inline">\Omega_1=( \Omega_1 \cap \mathcal{R}_1)\cup (\Omega_1 \cap \mathcal{R}_2)</span><br> <span class="math inline">\Omega_2=( \Omega_2 \cap \mathcal{R}_1)\cup (\Omega_2 \cap \mathcal{R}_2)</span><br><br>
+</p></li>
+<li><p>From above points we can write:<br> <span class="math display">\mathcal{R}_1-\Omega_1 = (\mathcal{R}_1 \cap \Omega_2)-(\Omega_1 \cap \mathcal{R}_2) \tag{3}</span> <span class="math display">\mathcal{R}_2-\Omega_2=(\mathcal{R}_2\cap \Omega_1)-( \Omega_2 \cap \mathcal{R}_1) \tag{4}</span></p></li>
+</ul>
+<p>substituting values in equation <span class="math inline">(2)</span></p>
+<p><span class="math display">\begin{align*}
+\Delta(\text{error})&amp;=\int_{\mathcal{R}_1} p(x\mid \omega_2)p(\omega_2)dx + \int_{\mathcal{R}_2} p(x\mid \omega_1)p(\omega_1)dx - \int_{\Omega_1} p(x\mid \omega_2)p(\omega_2)dx - \int_{\Omega_2} p(x\mid \omega_1)p(\omega_1)dx \\
+&amp;=p(\omega_2)\left [\int_{\mathcal{R}_1} p(x\mid \omega_2)dx- \int_{\Omega_1} p(x\mid \omega_2)dx \right ]  + p(\omega_1)\left [\int_{\mathcal{R}_2} p(x\mid \omega_1)dx  - \int_{\Omega_2} p(x\mid \omega_1)dx \right] \\
+&amp;=p(\omega_2)\left [\int_{ (\mathcal{R}_1 \cap \Omega_2)} p(x\mid \omega_2)dx- \int_{(\Omega_1 \cap \mathcal{R}_2)} p(x\mid \omega_2)dx \right ]  + p(\omega_1)\left [\int_{(\mathcal{R}_2\cap \Omega_1)} p(x\mid \omega_1)dx  - \int_{( \Omega_2 \cap \mathcal{R}_1)} p(x\mid \omega_1)dx \right] \;\;\text{Using eq } (3) \text{ and } (4)\\
+&amp;=\left\lbrack \int_{({\mathcal{R}}_1 \cap \Omega_2 )} p(x\mid \omega_2 )p(\omega_2 )dx-\int_{({\mathcal{R}}_1 \cap \Omega_2 )} p(x\mid \omega_1 )p(\omega_1 )dx\right\rbrack +\left\lbrack \int_{(\Omega_1 \cap {\mathcal{R}}_2 )} p(x\mid \omega_1 )p(\omega_1 )dx-\int_{(\Omega_1 \cap {\mathcal{R}}_2 )} p(x\mid \omega_2 )p(\omega_2 )dx\right\rbrack\\
+&amp;=\underbrace{\int_{({\mathcal{R}}_1 \cap \Omega_2 )} \left\lbrack p(x\mid \omega_2 )p(\omega_2 )-p(x\mid \omega_1 )p(\omega_1 )\right\rbrack dx}_{\ge0}  +  \underbrace{\int_{(\Omega_1 \cap {\mathcal{R}}_2 )} \left\lbrack p(x\mid \omega_1 )p(\omega_1 )-p(x\mid \omega_2 )p(\omega_2 )\right\rbrack dx}_{\ge0} \\
+\Delta(\text{error})&amp;\ge 0
+\end{align*}</span></p>
+<p>In above two terms are zero due to below reason <span class="math display">\begin{align*}
+  \Omega_1 = \{x \in \Omega : p(x \mid \omega_1)p(\omega_1)\ge p(x \mid \omega_2)p(\omega_2)\} \Rightarrow \int_{(\Omega_1 \cap {\mathcal{R}}_2 )} \left\lbrack p(x\mid \omega_1 )p(\omega_1 )-p(x\mid \omega_2 )p(\omega_2 )\right\rbrack dx \ge 0 \\
+  \Omega_2 = \{x \in \Omega : p(x \mid \omega_1)p(\omega_1)&lt; p(x \mid \omega_2)p(\omega_2)\} \Rightarrow \int_{({\mathcal{R}}_1 \cap \Omega_2 )} \left\lbrack p(x\mid \omega_2 )p(\omega_2 )-p(x\mid \omega_1 )p(\omega_1 )\right\rbrack dx \ge 0
+  \end{align*}</span></p>
+<p><span class="math display">\begin{align*}
+  &amp;&amp;\Delta(\text{error})&amp;\ge0\\
+  &amp;\Rightarrow &amp;p(\text{error})-p(\text{error}_\text{Bayes}) &amp;\ge 0 \\
+  &amp;\Rightarrow &amp;p(\text{error}) &amp;\ge p(\text{error}_\text{Bayes})
+  \end{align*}</span></p>
+</section>
+</section>
+<section id="towards-formalizing-learning" class="level1">
+<h1>Towards formalizing ‘learning’</h1>
+<section id="the-basic-process-of-learning" class="level2">
+<h2 class="anchored" data-anchor-id="the-basic-process-of-learning">The basic process of learning</h2>
+<ul>
+<li>Observe a phenomenon</li>
+<li>Construct a model from observations</li>
+<li>Use that model to make decisions/predictions</li>
+</ul>
+</section>
+<section id="a-statistical-machinery-for-learning" class="level2">
+<h2 class="anchored" data-anchor-id="a-statistical-machinery-for-learning">A statistical machinery for learning</h2>
+<p>Phenomenon of interest:</p>
+<ul>
+<li>Input space: <span class="math inline">X</span>; Output space: <span class="math inline">Y</span></li>
+<li>There is an unknown distribution <span class="math inline">D</span> over <span class="math inline">(X,Y)</span></li>
+<li>The learner observes <span class="math inline">m</span> examples <span class="math inline">(x_1 ,y_1,\dots, x_m ,y_m )</span> drawn from <span class="math inline">D</span></li>
+</ul>
+<p>Construct a model:</p>
+<ul>
+<li>Let <span class="math inline">F</span> be a collection of models, where each <span class="math inline">f: X \rightarrow Y</span> predicts <span class="math inline">y</span> given <span class="math inline">x</span></li>
+<li>From <span class="math inline">m</span> observations, select a model <span class="math inline">f_m</span> in <span class="math inline">F</span> which predicts well.</li>
+<li>Generalization error of <span class="math inline">f</span>: <span class="math display">\mathrm{err}(f):=\mathbb{P}_{(x,y)\sim D}\left[f(x)\ne y\right]</span></li>
+<li>We can say that we have learned a phenomenon if <span class="math display">\mathrm{err}(f_m)-\mathrm{err}(f^*)\le \epsilon \quad f^*:=\argmin_{f \in F}\mathrm{err}(f)</span> for any tolerance level <span class="math inline">\epsilon</span> of our choice.</li>
 </ul>
 
 
