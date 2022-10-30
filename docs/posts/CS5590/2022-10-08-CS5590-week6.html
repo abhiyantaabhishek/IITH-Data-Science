@@ -363,7 +363,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <ul>
 <li>Large datasets: if dataset is too large we can train different models on subset of the data.</li>
 <li>Small datasets: Can handle them with bootstrapping (random sampling)</li>
-<li>Can solve complected problems which can’t be solved using single classifier.</li>
+<li>Can solve complicated problems which can’t be solved using single classifier.</li>
 </ul></li>
 </ul>
 <section id="types-of-ensemble-classifiers" class="level1">
@@ -525,20 +525,28 @@ Adaboost vs Random Forests
 </section>
 <section id="gradient-boosting" class="level2">
 <h2 class="anchored" data-anchor-id="gradient-boosting">Gradient Boosting</h2>
-<p>Gradient Boosting = Gradient Descent + Boosting - Fit an additive model (ensemble) in a forward stage-wise manner. - In each stage, introduce a weak learner to compensate the shortcomings of existing weak learners. - In Gradient Boosting, “shortcomings” are identified by gradients. - Recall that, in Adaboost, “shortcomings” are identified by high-weight data points. - Both high-weight data points and gradients tell us how to improve our model.</p>
+<p>Gradient Boosting = Gradient Descent + Boosting</p>
+<ul>
+<li>Fit an additive model (ensemble) in a forward stage-wise manner.</li>
+<li>In each stage, introduce a weak learner to compensate the shortcomings of existing weak learners.</li>
+<li>In Gradient Boosting, “shortcomings” are identified by gradients.</li>
+<li>Recall that, in Adaboost, “shortcomings” are identified by high-weight data points.</li>
+<li>Both high-weight data points and gradients tell us how to improve our model.</li>
+</ul>
 <section id="gradient-boosting-algorithm" class="level3">
 <h3 class="anchored" data-anchor-id="gradient-boosting-algorithm">Gradient Boosting Algorithm</h3>
-<p>Input: Training set <span class="math inline">{\left\lbrace \left(x_i ,y_i \right)\right\rbrace }_{i=1}^n</span>, a differentiable loss function <span class="math inline">L(y,F(x))</span>,Number of iteration <span class="math inline">M</span> <br><br> Algorithm: <br> - Initialize model with constant value:<br></p>
-<p><span class="math display">F_0(x)=\argmin_\gamma \sum_{i=1}^nL(y_i,\gamma)</span></p>
+<p>Input: Training set <span class="math inline">{\left\lbrace \left(x_i ,y_i \right)\right\rbrace }_{i=1}^n</span>, a differentiable loss function <span class="math inline">L(y,F(x))</span>,Number of iteration <span class="math inline">M</span> <br><br> Algorithm: <br></p>
 <ul>
-<li>For <span class="math inline">m=1</span> to <span class="math inline">M</span>
+<li><p>Initialize model with constant value:<br></p>
+<p><span class="math display">F_0(x)=\argmin_\gamma \sum_{i=1}^nL(y_i,\gamma)</span></p></li>
+<li><p>For <span class="math inline">m=1</span> to <span class="math inline">M</span></p>
 <ul>
 <li>Compute pseudo-residuals: <span class="math display">r_{im}=-\left[\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)} \right]_{F(x)=F_{m-1}(x)}\;\text{for }i=1,\dots,n</span></li>
-<li>Fit a base lerner (e.g.&nbsp;tree) <span class="math inline">h_m(x)</span> to pseudo-residual, i.e.&nbsp;train it using the set <span class="math inline">{\left\lbrace \left(x_i ,\boxed{r_{im}} \right)\right\rbrace }_{i=1}^n</span></li>
+<li>Fit a base lerner (e.g.&nbsp;tree) <span class="math inline">h_m(x)</span> to pseudo-residual, i.e.&nbsp;train it using the set <span class="math inline">{\left\lbrace \left(x_i ,\boxed{r_{im}} \right)\right\rbrace }_{i=1}^n\;\;</span> <strong>Notice the training set now contains residual instead of original data</strong>.</li>
 <li>Compute multiplier <span class="math inline">\gamma_m</span> by solving the following one-dimensional optimization problem: <span class="math display">\gamma_m=\argmin_\gamma \sum_{i=1}^nL(y_i,\underbrace{F_{m-1}(x_i)}_{\text{previous model}}+\gamma \times \underbrace{h_m(x_i)}_{\text{current model}})</span></li>
 <li>Update the model: <span class="math display">F_m(x)=F_{m-1}(x)+\gamma h_m(x)</span></li>
 </ul></li>
-<li>Output <span class="math inline">F_M(x)</span></li>
+<li><p>Output <span class="math inline">F_M(x)</span></p></li>
 </ul>
 </section>
 </section>

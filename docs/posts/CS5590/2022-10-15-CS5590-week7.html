@@ -403,7 +403,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 <li>Time varying sensor Data
 <ul>
-<li>Statistical and moment based features (mean, variance, etc</li>
+<li>Statistical and moment based features (mean, variance) etc</li>
 </ul></li>
 </ul>
 </section>
@@ -610,7 +610,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If the wight value is high the model is likely to over fit, so we want weight to be small. Consider a dataset in <span class="math inline">2</span>-D, Hiving large variance across <span class="math inline">y</span>-axis, now consider a model which overfits to these data, as do so <span class="math inline">W</span> has to be larger because for very small change in <span class="math inline">x,\;y</span> will have to change by very high amount (due to such data distribution) which can be achieved only if <span class="math inline">W</span> is large. It is shown in the below pic.</p>
+<p>If the wight value is high the model is likely to over fit, so we want weight to be small. Consider a dataset in <span class="math inline">2</span>-D, Hiving large variance across <span class="math inline">y</span>-axis, now consider a model which overfits to these data, to do so <span class="math inline">W</span> has to be larger because for very small change in <span class="math inline">x,\;y</span> will have to change by very high amount (due to such data distribution) which can be achieved only if <span class="math inline">W</span> is large. It is shown in the below pic.</p>
 </div>
 </div>
 <p><br> <img src="CS5590_images/mspaint_AEgund0GVg.png" class="img-fluid"><br><br></p>
@@ -632,14 +632,13 @@ Tip
 <ul>
 <li>A regularizer is an additional criteria to the loss function to make sure that we don’t overfit</li>
 <li>It’s called a regularizer since it tries to keep the parameters more normal/regular</li>
-<li>It is a bias (inductive bias) on the model forces the learning to prefer certain types (smaller) of weights over others (larger). <span class="math display">\argmin_{w,b} \sum_{i=1}^n \mathrm{loss}\left(y,y^{\prime } \right)+\lambda \cdot \boxed{\mathrm{regulizer}\left(w,b\right)}</span></li>
+<li>It is a bias (inductive bias) on the model that forces the learning to prefer certain types (smaller) of weights over others (larger). <span class="math display">\argmin_{w,b} \sum_{i=1}^n \mathrm{loss}\left(y,y^{\prime } \right)+\lambda \times \boxed{\mathrm{regulizer}\left(w,b\right)}</span></li>
 <li>Type of norm regularizer
 <ul>
 <li>1-norm ( sum of weights ) <span class="math display">r(w,b)=\sum_{w_j} \left\lvert w_j \right\rvert </span></li>
 <li>2-norm ( sum of squared weights ) <span class="math display">r(w,b)=\sum_{w_j} \sqrt{\left\lvert w_j \right\rvert^2} </span><br>
 </li>
 <li><span class="math inline">p</span>-norm ( sum of squared weights ) <span class="math display">r(w,b)=\sum_{w_j} \sqrt[p]{\left\lvert w_j \right\rvert^p}=\left\lVert w\right\rVert ^p</span></li>
-</ul></li>
 </ul>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -652,16 +651,14 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Smaller values of <span class="math inline">p, (p &lt; 2)</span> encourage sparser vectors<br></li>
-<li>Larger values of <span class="math inline">p</span> discourage large weights more.</li>
-<li>All <span class="math inline">p</span> norms penalize larger weights.</li>
-<li><span class="math inline">p &lt; 2</span> tends to create sparse i.e.&nbsp;lots of <span class="math inline">0</span> weights)</li>
+<li><p>Smaller values of <span class="math inline">p, (p &lt; 2)</span> encourage sparser vectors<br></p></li>
+<li><p>Larger values of <span class="math inline">p</span> discourage large weights more.</p></li>
+<li><p>All <span class="math inline">p</span> norms penalize larger weights.</p></li>
+<li><p><span class="math inline">p &lt; 2</span> tends to create sparse i.e.&nbsp;lots of <span class="math inline">0</span> weights</p>
+<p><img src="CS5590_images/Acrobat_DOQ241iPvG.png" class="img-fluid"></p></li>
 </ul>
-<p>Notice below pic</p>
 </div>
-</div>
-<p><img src="CS5590_images/Acrobat_DOQ241iPvG.png" class="img-fluid"></p>
-<ul>
+</div></li>
 <li>L1 is popular because it tends to result in sparse solutions (i.e.&nbsp;lots of zero weights)</li>
 <li>However, it is not differentiable, so it only works for gradient descent solvers</li>
 <li>L2 is also popular because for some loss functions, it can be solved directly (no gradient descent required, though often iterative solvers still)</li>
