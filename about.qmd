@@ -36,7 +36,7 @@ sidebar: false
 </head>
 <body>
 
-<form method="get" action="about.pdf">
+<form method="get" action="https://abhiyantaabhishek.github.io/IITH-Data-Science//about.pdf">
    <button class="btn" style="width:100%"><i class="fa fa-download"></i> Download Resume </button>
 </form>
 <br><br>
@@ -47,6 +47,6 @@ sidebar: false
 <object 
     width="100%" 
     height="900" 
-    data="https://docs.google.com/gview?embedded=true&url=about.pdf">
+    data="https://docs.google.com/gview?embedded=true&url=https://abhiyantaabhishek.github.io/IITH-Data-Science//about.pdf">
 </object>
 :::
