@@ -154,6 +154,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="IITH-Data-Science - Machine Learning 4">
+<meta property="og:description" content="SVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick">
+<meta property="og:image" content="CS5590_images/Acrobat_vct8kMqVEu.png">
+<meta property="og:site-name" content="IITH-Data-Science">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -389,26 +393,26 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview-and-history" id="toc-overview-and-history" class="nav-link active" data-scroll-target="#overview-and-history">Overview and History</a></li>
-  <li><a href="#maximum-margin-classifier" id="toc-maximum-margin-classifier" class="nav-link" data-scroll-target="#maximum-margin-classifier">Maximum Margin Classifier</a></li>
-  <li><a href="#estimate-the-margin" id="toc-estimate-the-margin" class="nav-link" data-scroll-target="#estimate-the-margin">Estimate the Margin</a></li>
-  <li><a href="#maximize-the-margin" id="toc-maximize-the-margin" class="nav-link" data-scroll-target="#maximize-the-margin">Maximize the Margin</a></li>
-  <li><a href="#using-lagrange-multipliers" id="toc-using-lagrange-multipliers" class="nav-link" data-scroll-target="#using-lagrange-multipliers">Using Lagrange Multipliers</a>
+  <li><a href="#overview-and-history" id="toc-overview-and-history" class="nav-link active" data-scroll-target="#overview-and-history"><span class="toc-section-number">1</span>  Overview and History</a></li>
+  <li><a href="#maximum-margin-classifier" id="toc-maximum-margin-classifier" class="nav-link" data-scroll-target="#maximum-margin-classifier"><span class="toc-section-number">2</span>  Maximum Margin Classifier</a></li>
+  <li><a href="#estimate-the-margin" id="toc-estimate-the-margin" class="nav-link" data-scroll-target="#estimate-the-margin"><span class="toc-section-number">3</span>  Estimate the Margin</a></li>
+  <li><a href="#maximize-the-margin" id="toc-maximize-the-margin" class="nav-link" data-scroll-target="#maximize-the-margin"><span class="toc-section-number">4</span>  Maximize the Margin</a></li>
+  <li><a href="#using-lagrange-multipliers" id="toc-using-lagrange-multipliers" class="nav-link" data-scroll-target="#using-lagrange-multipliers"><span class="toc-section-number">5</span>  Using Lagrange Multipliers</a>
   <ul class="collapse">
-  <li><a href="#basics-of-lagrange-multipliers" id="toc-basics-of-lagrange-multipliers" class="nav-link" data-scroll-target="#basics-of-lagrange-multipliers">Basics of Lagrange Multipliers</a></li>
-  <li><a href="#svm-standard-primal-form" id="toc-svm-standard-primal-form" class="nav-link" data-scroll-target="#svm-standard-primal-form">SVM standard (primal) form</a></li>
-  <li><a href="#svm-dual" id="toc-svm-dual" class="nav-link" data-scroll-target="#svm-dual">SVM Dual</a></li>
-  <li><a href="#solving-using-kkt-condition" id="toc-solving-using-kkt-condition" class="nav-link" data-scroll-target="#solving-using-kkt-condition">Solving using KKT condition</a></li>
+  <li><a href="#basics-of-lagrange-multipliers" id="toc-basics-of-lagrange-multipliers" class="nav-link" data-scroll-target="#basics-of-lagrange-multipliers"><span class="toc-section-number">5.1</span>  Basics of Lagrange Multipliers</a></li>
+  <li><a href="#svm-standard-primal-form" id="toc-svm-standard-primal-form" class="nav-link" data-scroll-target="#svm-standard-primal-form"><span class="toc-section-number">5.2</span>  SVM standard (primal) form</a></li>
+  <li><a href="#svm-dual" id="toc-svm-dual" class="nav-link" data-scroll-target="#svm-dual"><span class="toc-section-number">5.3</span>  SVM Dual</a></li>
+  <li><a href="#solving-using-kkt-condition" id="toc-solving-using-kkt-condition" class="nav-link" data-scroll-target="#solving-using-kkt-condition"><span class="toc-section-number">5.4</span>  Solving using KKT condition</a></li>
   </ul></li>
-  <li><a href="#soft-margin-svm" id="toc-soft-margin-svm" class="nav-link" data-scroll-target="#soft-margin-svm">Soft Margin SVM</a>
+  <li><a href="#soft-margin-svm" id="toc-soft-margin-svm" class="nav-link" data-scroll-target="#soft-margin-svm"><span class="toc-section-number">6</span>  Soft Margin SVM</a>
   <ul class="collapse">
-  <li><a href="#lagrangian-for-soft-margin-svm" id="toc-lagrangian-for-soft-margin-svm" class="nav-link" data-scroll-target="#lagrangian-for-soft-margin-svm">Lagrangian for Soft Margin SVM</a></li>
+  <li><a href="#lagrangian-for-soft-margin-svm" id="toc-lagrangian-for-soft-margin-svm" class="nav-link" data-scroll-target="#lagrangian-for-soft-margin-svm"><span class="toc-section-number">6.1</span>  Lagrangian for Soft Margin SVM</a></li>
   </ul></li>
-  <li><a href="#multi-class-classification-with-svms" id="toc-multi-class-classification-with-svms" class="nav-link" data-scroll-target="#multi-class-classification-with-svms">Multi-class Classification with SVMs</a></li>
-  <li><a href="#kernel-trick" id="toc-kernel-trick" class="nav-link" data-scroll-target="#kernel-trick">Kernel Trick</a>
+  <li><a href="#multi-class-classification-with-svms" id="toc-multi-class-classification-with-svms" class="nav-link" data-scroll-target="#multi-class-classification-with-svms"><span class="toc-section-number">7</span>  Multi-class Classification with SVMs</a></li>
+  <li><a href="#kernel-trick" id="toc-kernel-trick" class="nav-link" data-scroll-target="#kernel-trick"><span class="toc-section-number">8</span>  Kernel Trick</a>
   <ul class="collapse">
-  <li><a href="#why-do-we-require-the-kernel-trick" id="toc-why-do-we-require-the-kernel-trick" class="nav-link" data-scroll-target="#why-do-we-require-the-kernel-trick">Why do we require the Kernel Trick</a></li>
-  <li><a href="#how-do-we-do-the-kernel-trick" id="toc-how-do-we-do-the-kernel-trick" class="nav-link" data-scroll-target="#how-do-we-do-the-kernel-trick">How do we do the kernel Trick</a></li>
+  <li><a href="#why-do-we-require-the-kernel-trick" id="toc-why-do-we-require-the-kernel-trick" class="nav-link" data-scroll-target="#why-do-we-require-the-kernel-trick"><span class="toc-section-number">8.1</span>  Why do we require the Kernel Trick</a></li>
+  <li><a href="#how-do-we-do-the-kernel-trick" id="toc-how-do-we-do-the-kernel-trick" class="nav-link" data-scroll-target="#how-do-we-do-the-kernel-trick"><span class="toc-section-number">8.2</span>  How do we do the kernel Trick</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -419,8 +423,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="overview-and-history" class="level1">
-<h1>Overview and History</h1>
+<section id="overview-and-history" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Overview and History</h1>
 <ul>
 <li>It is a discriminative classifier.</li>
 <li>Inspired by Statistical Learning.</li>
@@ -428,8 +432,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Was one of the go-to methods in ML since mid 1990s (only recently displaced by deep learning.)</li>
 </ul>
 </section>
-<section id="maximum-margin-classifier" class="level1">
-<h1>Maximum Margin Classifier</h1>
+<section id="maximum-margin-classifier" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Maximum Margin Classifier</h1>
 <ul>
 <li>Formulation <br><br>
 <ul>
@@ -440,8 +444,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="estimate-the-margin" class="level1">
-<h1>Estimate the Margin</h1>
+<section id="estimate-the-margin" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Estimate the Margin</h1>
 <ul>
 <li><p>The points those lies on the two margin lines are called support vector.</p></li>
 <li><p>The model is immune to removal of any non-support-vector data points.</p></li>
@@ -474,8 +478,8 @@ Tip
 </div>
 <p><br><br></p>
 </section>
-<section id="maximize-the-margin" class="level1">
-<h1>Maximize the Margin</h1>
+<section id="maximize-the-margin" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Maximize the Margin</h1>
 <ul>
 <li>Now we know the margin between the two support vector.</li>
 <li>We need to maximize the margin in such a way that <span class="math inline">+1</span> class points lies on one side of the margin and <span class="math inline">-1</span> class points lies on the other side of the margin.</li>
@@ -500,10 +504,10 @@ Tip
 </div>
 </div>
 </section>
-<section id="using-lagrange-multipliers" class="level1">
-<h1>Using Lagrange Multipliers</h1>
-<section id="basics-of-lagrange-multipliers" class="level2">
-<h2 class="anchored" data-anchor-id="basics-of-lagrange-multipliers">Basics of Lagrange Multipliers</h2>
+<section id="using-lagrange-multipliers" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Using Lagrange Multipliers</h1>
+<section id="basics-of-lagrange-multipliers" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="basics-of-lagrange-multipliers"><span class="header-section-number">5.1</span> Basics of Lagrange Multipliers</h2>
 <ul>
 <li>Optimization problem:<br> <strong>Minimize</strong> : <span class="math inline">\displaystyle f\left( \overrightarrow{x} \right)</span> <br> <strong>Such that</strong> for all <span class="math inline">i,</span> <span class="math inline">\displaystyle g_i\left( \overrightarrow{x} \right)\le 0</span> <br></li>
 <li>To solve the above problem we create augmented Lagrange function:<br><br> <span class="math inline">\displaystyle L\left( \overrightarrow{x},\overrightarrow{\lambda} \right):=f\left( \overrightarrow{x} \right)+\sum_{i=1}^{n}\lambda_ig_i\left( \overrightarrow{x} \right)</span> <br><br> <span class="math inline">\displaystyle \underbrace{L\left( \overrightarrow{x},\overrightarrow{\lambda} \right)}_{\text{lagrange function}} :=f\left( \overrightarrow{x} \right)+\sum_{i=1}^{n}\underbrace{\lambda_i}_{\text{lagrange variable  or dual varialbe }}g_i \left( \overrightarrow{x} \right)</span> <br><br></li>
@@ -540,8 +544,8 @@ Note
 <li><p>Theorem (strong Lagrangian duality):<br><br> if <span class="math inline">f</span> is convex and for a feasible point <span class="math inline">x^*</span><br><br> <span class="math inline">g_i\left( \overrightarrow{x^*} \right)&lt;0</span>, or <br><br> <span class="math inline">g_i\left( \overrightarrow{x^*} \right) \le 0</span> when <span class="math inline">g</span> is affine<br><br> Then <span class="math inline">d^*=p^*</span><br><br> This is called Slater’s condition.</p></li>
 </ul>
 </section>
-<section id="svm-standard-primal-form" class="level2">
-<h2 class="anchored" data-anchor-id="svm-standard-primal-form">SVM standard (primal) form</h2>
+<section id="svm-standard-primal-form" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="svm-standard-primal-form"><span class="header-section-number">5.2</span> SVM standard (primal) form</h2>
 <p><span class="math inline">\displaystyle \min_{w,b}\frac{1}{2}\left\lVert \overrightarrow{w} \right\rVert^2</span> <br><br> such that: <span class="math inline">\forall</span> <span class="math inline">i,</span> <span class="math inline">y_i\left( \overrightarrow{w}\cdot \overrightarrow{x_i} +b \right) \ge 1</span></p>
 <ul>
 <li><p>Observations :</p>
@@ -558,16 +562,16 @@ Note
 </ul></li>
 </ul>
 </section>
-<section id="svm-dual" class="level2">
-<h2 class="anchored" data-anchor-id="svm-dual">SVM Dual</h2>
+<section id="svm-dual" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="svm-dual"><span class="header-section-number">5.3</span> SVM Dual</h2>
 <ul>
 <li>Primal<br><br> <span class="math display">\displaystyle \min_{\overrightarrow{w},b }\max_{\overrightarrow{\alpha } \ge 0 }\frac{1}{2}\left\lVert \overrightarrow{w} \right\rVert^2 + \sum_{i = 1}^{n}\alpha_i\left( 1-y_i\left( \overrightarrow{w}\cdot\overrightarrow{x_i}+b   \right) \right)</span> <br><br></li>
 <li>Dual<br><br> <span class="math display">\displaystyle\max_{\overrightarrow{\alpha } \ge 0 } \min_{\overrightarrow{w},b }\frac{1}{2}\left\lVert \overrightarrow{w} \right\rVert^2 + \sum_{i = 1}^{n}\alpha_i\left( 1-y_i\left( \overrightarrow{w}\cdot\overrightarrow{x_i}+b   \right) \right)</span> <br><br></li>
 <li>Slater’s condition from convex optimization guarantees that these two optimization problems are equivalent!</li>
 </ul>
 </section>
-<section id="solving-using-kkt-condition" class="level2">
-<h2 class="anchored" data-anchor-id="solving-using-kkt-condition">Solving using KKT condition</h2>
+<section id="solving-using-kkt-condition" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="solving-using-kkt-condition"><span class="header-section-number">5.4</span> Solving using KKT condition</h2>
 <p>KKT stands for Karush-Kuhn-Tucker Condition - We solve Dual problem:<br><br> <span class="math inline">\displaystyle\max_{\overrightarrow{\alpha } \ge 0 } \min_{\overrightarrow{w},b }\frac{1}{2}\left\lVert \overrightarrow{w} \right\rVert^2 + \sum_{i = 1}^{n}\alpha_i\left( 1-y_i\left( \overrightarrow{w}\cdot\overrightarrow{x_i}+b \right) \right)</span><br><br></p>
 <ul>
 <li><p>We can solve for optimal <span class="math inline">w</span>, <span class="math inline">b</span> as function of <span class="math inline">\alpha</span><br><br> <span class="math inline">\displaystyle \frac{\partial L }{\partial \overrightarrow{w}}= w - \sum_{i}\alpha_iy_i\overrightarrow{x}_i=0 \Rightarrow w = \sum_{i}\alpha_iy_i\overrightarrow{x}_i</span><br><br> <span class="math inline">\displaystyle \frac{\partial L }{\partial b}= \sum_{i}\alpha_iy_i=0 \Rightarrow \sum_{i}\alpha_iy_i =0</span><br><br></p></li>
@@ -581,8 +585,8 @@ Note
 </ul>
 </section>
 </section>
-<section id="soft-margin-svm" class="level1">
-<h1>Soft Margin SVM</h1>
+<section id="soft-margin-svm" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Soft Margin SVM</h1>
 <ul>
 <li><p>Till now what we discussed is called Hard margin SVM.</p></li>
 <li><p>In practice data is not always separable</p></li>
@@ -598,8 +602,8 @@ Note
 <li><span class="math inline">\sum_{j=1}^{N}\varepsilon_j</span> is an upper bound on training errors.</li>
 </ul></li>
 </ul>
-<section id="lagrangian-for-soft-margin-svm" class="level2">
-<h2 class="anchored" data-anchor-id="lagrangian-for-soft-margin-svm">Lagrangian for Soft Margin SVM</h2>
+<section id="lagrangian-for-soft-margin-svm" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="lagrangian-for-soft-margin-svm"><span class="header-section-number">6.1</span> Lagrangian for Soft Margin SVM</h2>
 <ul>
 <li><p>We need to Solve:<br><br> <span class="math inline">\displaystyle \min_{w,b,\varepsilon}\frac{1}{2}\left\lVert \overrightarrow{w} \right\rVert^2 + c \sum_{i=1}\varepsilon_i</span> <br><br> such that: <span class="math inline">\forall</span> <span class="math inline">i,</span> <span class="math inline">y_i\left( \overrightarrow{w}\cdot \overrightarrow{x_i} +b \right) \ge 1-\varepsilon _i</span>, and <span class="math inline">\varepsilon _i\ge0</span> <br><br></p></li>
 <li><p>For Lagrangian the constraint should always written as less than <span class="math inline">0</span> condition: <br><br> <span class="math inline">y_i\left( \overrightarrow{w}\cdot \overrightarrow{x_i} +b \right) \ge 1-\varepsilon _i</span>, and <span class="math inline">\varepsilon _i\ge0</span> <br><br> <span class="math inline">y_i\left( \overrightarrow{w}\cdot \overrightarrow{x_i} +b \right) - 1 + \varepsilon _i \ge 0</span>, and <span class="math inline">-\varepsilon _i \le 0</span> <br><br> <span class="math inline">1 - \varepsilon _i -y_i\left( \overrightarrow{w}\cdot \overrightarrow{x_i} +b \right) \le 0</span>, and <span class="math inline">-\varepsilon _i \le 0</span> <br><br></p></li>
@@ -629,8 +633,8 @@ Note
 </div>
 </section>
 </section>
-<section id="multi-class-classification-with-svms" class="level1">
-<h1>Multi-class Classification with SVMs</h1>
+<section id="multi-class-classification-with-svms" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Multi-class Classification with SVMs</h1>
 <ul>
 <li>SVM can handle only tow-class outputs.</li>
 <li>what to do for multi-class case:
@@ -650,10 +654,10 @@ Note
 </ul></li>
 </ul>
 </section>
-<section id="kernel-trick" class="level1">
-<h1>Kernel Trick</h1>
-<section id="why-do-we-require-the-kernel-trick" class="level2">
-<h2 class="anchored" data-anchor-id="why-do-we-require-the-kernel-trick">Why do we require the Kernel Trick</h2>
+<section id="kernel-trick" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Kernel Trick</h1>
+<section id="why-do-we-require-the-kernel-trick" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="why-do-we-require-the-kernel-trick"><span class="header-section-number">8.1</span> Why do we require the Kernel Trick</h2>
 <ul>
 <li><p>We found that after solving minimization problem of dual of SVM we get following: <br> <span class="math inline">\displaystyle \max \sum_{k = 1}^{R}\alpha_k - \frac{1}{2}\sum_{k=1}^{R}\sum_{l = 1}^{R}\alpha_k \alpha_l Q_{kl},</span> where <span class="math inline">\displaystyle Q_{kl} =y_ky_l\left( \mathbf{X_k}\cdot \mathbf{X_l} \right)</span><br><br> subject to constrains:<br><br><span class="math inline">0 \le \alpha_k \le c,</span> and <span class="math inline">\forall k ,</span> <span class="math inline">\displaystyle \sum_{k=1}^{R}\alpha_ky_k=0</span><br><br></p></li>
 <li><p>But if the data can’t be separated linearly we transform the data to higher dimension space using the transformation <span class="math inline">\phi</span>. So that the data can be separated using a hyper-plane in higher dimension space. In that case the above equation changes as below : <br> <span class="math inline">\displaystyle \max \sum_{k = 1}^{R}\alpha_k - \frac{1}{2}\sum_{k=1}^{R}\sum_{l = 1}^{R}\alpha_k \alpha_l Q_{kl},</span> where <span class="math inline">\displaystyle Q_{kl} =y_ky_l \underbrace{\left(\mathbf{\Phi} \left( \mathbf{X}_k \right)\cdot \mathbf{\Phi} \left( \mathbf{X}_l \right)\right)}_{\text{Notice the term } \Phi }</span><br><br> subject to constrains:<br><br><span class="math inline">0 \le \alpha_k \le c,</span> and <span class="math inline">\forall k ,</span> <span class="math inline">\displaystyle \sum_{k=1}^{R}\alpha_ky_k=0</span><br><br></p></li>
@@ -663,8 +667,8 @@ Note
 <li><p>Notice that in the term <span class="math inline">\displaystyle Q_{kl} =y_ky_l \left(\mathbf{\Phi} \left( \mathbf{X}_k \right)\cdot \mathbf{\Phi} \left( \mathbf{X}_l \right)\right)</span> we must do <span class="math inline">\frac{R^2}{2}</span> dot products to get this matrix ready.<br><br> Assuming a quadratic polynomial kernel, each dot product requires <span class="math inline">\frac{m^2}{2}</span> addition and multiplication ( where <span class="math inline">m</span> is the dimension of <span class="math inline">X</span>) <br><br> The whole thing costs <span class="math inline">\frac{R^2m^2}{4}</span><br><br> This is the reason we require a trick so that we need not do this large computation.</p></li>
 </ul>
 </section>
-<section id="how-do-we-do-the-kernel-trick" class="level2">
-<h2 class="anchored" data-anchor-id="how-do-we-do-the-kernel-trick">How do we do the kernel Trick</h2>
+<section id="how-do-we-do-the-kernel-trick" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="how-do-we-do-the-kernel-trick"><span class="header-section-number">8.2</span> How do we do the kernel Trick</h2>
 <p>To understand we create a data in circular fashion as shown below:</p>
 <div class="cell" data-execution_count="224">
 <details>
@@ -792,6 +796,7 @@ Note
 <li>etc.</li>
 </ul></li>
 </ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
 </section>

@@ -91,6 +91,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="IITH-Data-Science - Probability Theory 4">
+<meta property="og:description" content="Uniform, Exponential, Normal">
+<meta property="og:image" content="CS6660_images/chrome_pPYR2UCfXR.png">
+<meta property="og:site-name" content="IITH-Data-Science">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -326,29 +330,29 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#distribution-function" id="toc-distribution-function" class="nav-link active" data-scroll-target="#distribution-function">Distribution function</a>
+  <li><a href="#distribution-function" id="toc-distribution-function" class="nav-link active" data-scroll-target="#distribution-function"><span class="toc-section-number">1</span>  Distribution function</a>
   <ul class="collapse">
-  <li><a href="#cumulative-distribution-function" id="toc-cumulative-distribution-function" class="nav-link" data-scroll-target="#cumulative-distribution-function">Cumulative distribution function</a></li>
+  <li><a href="#cumulative-distribution-function" id="toc-cumulative-distribution-function" class="nav-link" data-scroll-target="#cumulative-distribution-function"><span class="toc-section-number">1.1</span>  Cumulative distribution function</a></li>
   </ul></li>
-  <li><a href="#density-function" id="toc-density-function" class="nav-link" data-scroll-target="#density-function">Density function</a>
+  <li><a href="#density-function" id="toc-density-function" class="nav-link" data-scroll-target="#density-function"><span class="toc-section-number">2</span>  Density function</a>
   <ul class="collapse">
-  <li><a href="#properties-of-the-density-function" id="toc-properties-of-the-density-function" class="nav-link" data-scroll-target="#properties-of-the-density-function">Properties of the density function</a></li>
+  <li><a href="#properties-of-the-density-function" id="toc-properties-of-the-density-function" class="nav-link" data-scroll-target="#properties-of-the-density-function"><span class="toc-section-number">2.1</span>  Properties of the density function</a></li>
   </ul></li>
-  <li><a href="#expectation-variance" id="toc-expectation-variance" class="nav-link" data-scroll-target="#expectation-variance">Expectation, Variance</a></li>
-  <li><a href="#uniform" id="toc-uniform" class="nav-link" data-scroll-target="#uniform">Uniform</a>
+  <li><a href="#expectation-variance" id="toc-expectation-variance" class="nav-link" data-scroll-target="#expectation-variance"><span class="toc-section-number">3</span>  Expectation, Variance</a></li>
+  <li><a href="#uniform" id="toc-uniform" class="nav-link" data-scroll-target="#uniform"><span class="toc-section-number">4</span>  Uniform</a>
   <ul class="collapse">
-  <li><a href="#expectation-variance-of-uniform" id="toc-expectation-variance-of-uniform" class="nav-link" data-scroll-target="#expectation-variance-of-uniform">Expectation, Variance of uniform</a></li>
+  <li><a href="#expectation-variance-of-uniform" id="toc-expectation-variance-of-uniform" class="nav-link" data-scroll-target="#expectation-variance-of-uniform"><span class="toc-section-number">4.1</span>  Expectation, Variance of uniform</a></li>
   </ul></li>
-  <li><a href="#exponential" id="toc-exponential" class="nav-link" data-scroll-target="#exponential">Exponential</a>
+  <li><a href="#exponential" id="toc-exponential" class="nav-link" data-scroll-target="#exponential"><span class="toc-section-number">5</span>  Exponential</a>
   <ul class="collapse">
-  <li><a href="#expectation-variance-of-exponential" id="toc-expectation-variance-of-exponential" class="nav-link" data-scroll-target="#expectation-variance-of-exponential">Expectation, Variance of Exponential</a></li>
-  <li><a href="#the-memoryless-property" id="toc-the-memoryless-property" class="nav-link" data-scroll-target="#the-memoryless-property">The memoryless property</a></li>
+  <li><a href="#expectation-variance-of-exponential" id="toc-expectation-variance-of-exponential" class="nav-link" data-scroll-target="#expectation-variance-of-exponential"><span class="toc-section-number">5.1</span>  Expectation, Variance of Exponential</a></li>
+  <li><a href="#the-memoryless-property" id="toc-the-memoryless-property" class="nav-link" data-scroll-target="#the-memoryless-property"><span class="toc-section-number">5.2</span>  The memoryless property</a></li>
   </ul></li>
-  <li><a href="#normal" id="toc-normal" class="nav-link" data-scroll-target="#normal">Normal</a>
+  <li><a href="#normal" id="toc-normal" class="nav-link" data-scroll-target="#normal"><span class="toc-section-number">6</span>  Normal</a>
   <ul class="collapse">
-  <li><a href="#symmetry" id="toc-symmetry" class="nav-link" data-scroll-target="#symmetry">Symmetry <br></a></li>
-  <li><a href="#linear-transformations" id="toc-linear-transformations" class="nav-link" data-scroll-target="#linear-transformations">Linear transformations</a></li>
-  <li><a href="#why-normal" id="toc-why-normal" class="nav-link" data-scroll-target="#why-normal">Why normal</a></li>
+  <li><a href="#symmetry" id="toc-symmetry" class="nav-link" data-scroll-target="#symmetry"><span class="toc-section-number">6.1</span>  Symmetry <br></a></li>
+  <li><a href="#linear-transformations" id="toc-linear-transformations" class="nav-link" data-scroll-target="#linear-transformations"><span class="toc-section-number">6.2</span>  Linear transformations</a></li>
+  <li><a href="#why-normal" id="toc-why-normal" class="nav-link" data-scroll-target="#why-normal"><span class="toc-section-number">6.3</span>  Why normal</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -359,10 +363,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="distribution-function" class="level1">
-<h1>Distribution function</h1>
-<section id="cumulative-distribution-function" class="level2">
-<h2 class="anchored" data-anchor-id="cumulative-distribution-function">Cumulative distribution function</h2>
+<section id="distribution-function" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Distribution function</h1>
+<section id="cumulative-distribution-function" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="cumulative-distribution-function"><span class="header-section-number">1.1</span> Cumulative distribution function</h2>
 <ul>
 <li><p>The cumulative distribution function (CDF) of a random variable <span class="math inline">X</span> is given by <br> <span class="math inline">F : \mathbb{R} \rightarrow [0,1], \;\;\;\; x \rightarrow F(x) = p\{ X \le x\}</span> <br> Notice that the function is well defined for any random variable.<br> CDF is defined as capital <span class="math inline">F</span> or sometimes as capital <span class="math inline">F_X</span></p></li>
 <li><p>Remark: Ther distribution function contains all relevant information about the distribution of our random variable. E.g., for any fixed <span class="math inline">a&lt;b</span> <br> <span class="math inline">\mathsf{P}\{a&lt;X\leq b\}=\mathsf{P}\{X\leq b\}-\mathsf{P}\{X\leq a\}=F(b)-\mathsf{P}(a)</span><br> <span class="math inline">\mathsf{P}\{a\leq X&lt;b\}=\mathsf{P}\{a&lt;X\leq b\} -\mathsf{P}\{X\leq b\} +\mathsf{P}\{X\leq a\}</span><br></p></li>
@@ -380,8 +384,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul>
 </section>
 </section>
-<section id="density-function" class="level1">
-<h1>Density function</h1>
+<section id="density-function" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Density function</h1>
 <ul>
 <li>Suppose that a random variable has it’s distribution function in the form of <br> <span class="math inline">\displaystyle F(a) = \int _{- \infty}^a f(X) dX, \;\;\;\; \forall a \in \mathbb{R}</span> <br> with a function <span class="math inline">f \ge 0</span>. Then the distribution is called (absolutely) continuous, and <span class="math inline">f</span> is the probability density function (pdf).</li>
 <li>Proposition <br> A probability density function <span class="math inline">f</span>
@@ -391,8 +395,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 <li>Any function <span class="math inline">f</span> with the above properties is a probability density function. There is a sample space and a continuous random variable on it that realizes this density.</li>
 </ul>
-<section id="properties-of-the-density-function" class="level2">
-<h2 class="anchored" data-anchor-id="properties-of-the-density-function">Properties of the density function</h2>
+<section id="properties-of-the-density-function" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="properties-of-the-density-function"><span class="header-section-number">2.1</span> Properties of the density function</h2>
 <ul>
 <li>Proposition <br> For any subset <span class="math inline">B \subseteq \mathbb{R},</span> <br> <span class="math inline">\displaystyle P\{X \in B \} = \int _B f(x) dx</span></li>
 <li>Corollary <br> Indeed, for a continuous random variable <span class="math inline">X,</span><br> <span class="math inline">\displaystyle P\{X \in a \} = \int _{\{a\}} f(x) dx = 0 \;\;\;\;\; \forall a \in \mathbb{R}</span></li>
@@ -402,8 +406,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul>
 </section>
 </section>
-<section id="expectation-variance" class="level1">
-<h1>Expectation, Variance</h1>
+<section id="expectation-variance" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Expectation, Variance</h1>
 <ul>
 <li>The way of defining the expectation will be no surprise for anyone (c.f the discrete case): <br></li>
 <li>Definition: <br> The expected value of a continuous random variable <span class="math inline">X</span> is defined by <br> <span class="math inline">\displaystyle EX = \int_{- \infty}^ \infty X \cdot f(X)dX,</span> <br> if the integral exists.</li>
@@ -411,16 +415,16 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>We can define <br> Moments: <br> <span class="math inline">\displaystyle EX^n= \int _{- \infty} ^{\infty} X^n \cdot f(X) dX,</span> Absolute moments: <br> <span class="math inline">\displaystyle E|X|^n= \int _{- \infty} ^{\infty} |X| ^n \cdot f(X) dX,</span> <br> variance <span class="math inline">\text{Var}X = E(X-EX)^2=EX^2-(EX)^2</span> and standard deviation <span class="math inline">\text{SD}X= \sqrt{\text{Var}X }</span> as in the discrete case. These enjoy the same properties as before.</li>
 </ul>
 </section>
-<section id="uniform" class="level1">
-<h1>Uniform</h1>
+<section id="uniform" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Uniform</h1>
 <ul>
 <li>Definition <br> Fix <span class="math inline">\alpha &lt; \beta</span> reals. We say that <span class="math inline">X</span> has the uniform distribution over the interval <span class="math inline">(\alpha , \beta ),</span> in short, <span class="math inline">X \sim U(\alpha , \beta),</span> if it’s density is given by <br><br> <span class="math inline">f(X) = \left\lbrace \begin{array}{c c} \displaystyle \frac{1}{\beta -\alpha} &amp; \text{if } X \in (\alpha,\beta),\\ 0, &amp; \text{otherwise} \end{array}\right .</span> <br><br></li>
 <li>Notice that this is exactly the value of the constant that makes this a density.<br><br><br></li>
 <li>Integrating the density <br><br> <span class="math inline">F(X) = \left\lbrace \begin{array}{l l} 0,&amp;\text{if } X \le \alpha, \\ \displaystyle \frac{X-\alpha}{\beta -\alpha}, &amp; \text{if } X \in (\alpha,\beta),\\ 1, &amp; \text{otherwise} \end{array}\right .</span> <br><br> <img src="CS6660_images/Acrobat_BY1t0aZJd5.png" class="img-fluid"><br><br></li>
 <li>Remarks: <br> If <span class="math inline">X \sim U (\alpha , \beta),</span> and <span class="math inline">\alpha &lt; a &lt;b &lt; \beta</span> then <br> <span class="math inline">\displaystyle P\{a &lt; X \le b\} = \int_a^b f(X)dX=\frac{b-a}{\beta - \alpha }</span><br> Probabilities are computed by proportions of lengths.</li>
 </ul>
-<section id="expectation-variance-of-uniform" class="level2">
-<h2 class="anchored" data-anchor-id="expectation-variance-of-uniform">Expectation, Variance of uniform</h2>
+<section id="expectation-variance-of-uniform" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="expectation-variance-of-uniform"><span class="header-section-number">4.1</span> Expectation, Variance of uniform</h2>
 <ul>
 <li>For <span class="math inline">X \sim U(\alpha , \beta ),</span> <br><br> <span class="math inline">\boxed{ \displaystyle EX =\frac{\alpha + \beta }{2}, \;\;\;\; \text{Var}X = \frac{(\beta - \alpha)^2}{12}}</span><br><br></li>
 <li>proof of <span class="math inline">EX</span> <br> <span class="math inline">\displaystyle EX= \int_{- \infty}^{\infty} Xf(X)dX= \int_{\alpha}^{\beta} \frac{X}{\beta - \alpha}dX=\frac{\frac{\beta ^2}{2} - \frac{\alpha ^2}{2}}{\beta - \alpha}=\frac{\alpha + \beta}{2}</span></li>
@@ -428,15 +432,15 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul>
 </section>
 </section>
-<section id="exponential" class="level1">
-<h1>Exponential</h1>
+<section id="exponential" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Exponential</h1>
 <ul>
 <li><p>The Exponential is a very special distribution because of its memoryless property. It is often considered as a waiting time, and is widely used in the theory of stochastic processes.</p></li>
 <li><p>Definition <br> Fix a positive parameter <span class="math inline">\lambda</span>. <span class="math inline">X</span> is said to have the Exponential distribution with parameter <span class="math inline">\lambda</span> or, in short, <span class="math inline">X \sim \text{Exp}(\lambda )</span>, if its density is given by<br><br> <span class="math inline">\displaystyle f(x) = \left\lbrace \begin{array}{l l} 0, &amp; \text{if }x\le 0 \\ \lambda e^{-\lambda x}, &amp; \text{if }x\ge 0 \\ \end{array}\right .</span></p></li>
 <li><p>Integration of density exponential density function <br><br> <span class="math inline">\displaystyle F(X) = \int _{-\infty}^0 f(z)dz = \int _{0}^x f(z)dz+ \int _{0}^x f(z)dz</span><br><br> <span class="math inline">\displaystyle F(X) = \int _{-\infty}^0 0dz + \int _{0}^x \lambda e^{-\lambda z} dz</span><br><br> <span class="math inline">\displaystyle F(X) =\int _{0}^x \lambda e^{-\lambda z} = \lambda \frac{e^{- \lambda z}}{- \lambda} \bigg|_{0}^x = 1-e^{-\lambda x}</span><br><br> <span class="math inline">\displaystyle F(x) = \begin{cases} 0, &amp; \text{if }x\le 0 \\ 1-e^{-\lambda x}, &amp; \text{if }x\ge 0 \\ \end{cases}</span><br><br> <img src="CS6660_images/Acrobat_dTAC8JheSA.png" class="img-fluid"></p></li>
 </ul>
-<section id="expectation-variance-of-exponential" class="level2">
-<h2 class="anchored" data-anchor-id="expectation-variance-of-exponential">Expectation, Variance of Exponential</h2>
+<section id="expectation-variance-of-exponential" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="expectation-variance-of-exponential"><span class="header-section-number">5.1</span> Expectation, Variance of Exponential</h2>
 <ul>
 <li><p>For <span class="math inline">X \sim \text{Exp}(\alpha , \beta ),</span> <br><br> <span class="math inline">\boxed{ \displaystyle EX =\frac{1 }{\lambda}, \;\;\;\; \text{Var}X = \frac{1}{\lambda^2}}</span><br><br></p></li>
 <li><p>Proof of <span class="math inline">EX</span> <br><br> <span class="math inline">\displaystyle EX = \int _0 ^\infty X \lambda e^{-\lambda X}dX</span><br><br> Tips integration by parts: <br> <span class="math inline">d(uv) = udv+vdu</span> <br> <span class="math inline">udv = d(uv) - vdu</span> <br> <span class="math inline">\int udv = uv - \int vdu</span> <br><br> In our case <span class="math inline">u=X \;\;\; v=-e^{-\lambda X} \Rightarrow dv= \lambda e^{-\lambda X}</span><br><br> <span class="math inline">\displaystyle \int _0 ^\infty udv = -\left(X\cdot e^{-\lambda X} \right)\big| _0 ^\infty - \int _0 ^\infty \left( -e^{-\lambda X}\right) dX</span><br><br> <span class="math inline">\displaystyle \int _0 ^\infty udv = 0- \frac{e^{-\lambda X}}{\lambda} \Bigg|_0 ^\infty = \frac{1}{\lambda}</span><br><br> <span class="math inline">\displaystyle EX = \frac{1}{\lambda}</span><br><br></p></li>
@@ -444,8 +448,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><p>Thinking about <span class="math inline">X</span> as a waiting time, we now see that <span class="math inline">\lambda</span> describes how fast the event we wait for, happens. Therefore <span class="math inline">\lambda</span> is also called the rate of the exponential waiting time.</p></li>
 </ul>
 </section>
-<section id="the-memoryless-property" class="level2">
-<h2 class="anchored" data-anchor-id="the-memoryless-property">The memoryless property</h2>
+<section id="the-memoryless-property" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="the-memoryless-property"><span class="header-section-number">5.2</span> The memoryless property</h2>
 <ul>
 <li>The exponential is the only continuous non-negative memory less distribution. That is, the only distribution with <span class="math inline">X \ge 0</span> and <span class="math inline">P\{X &gt; t + s \mid X &gt; t\} = P\{X &gt; s\} \;\;\;\;\;(\forall\; t,\;\; s \ge 0)</span>
 <ul>
@@ -455,21 +459,21 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul>
 </section>
 </section>
-<section id="normal" class="level1">
-<h1>Normal</h1>
+<section id="normal" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Normal</h1>
 <ul>
 <li>Definition <br> Let <span class="math inline">\mu \in \mathbb{R}, \sigma &gt; 0</span> be ral parameters, <span class="math inline">X</span> has the normal distribution with parameters <span class="math inline">\mu</span> and <span class="math inline">\sigma^2</span> or in short <span class="math inline">X \sim \mathcal{N}(\mu,\sigma ^2),</span> if it’s density is given by <br><br> <span class="math inline">\displaystyle f(x)=\frac{1}{\sqrt{2\pi}\cdot\sigma}\cdot e^{-\frac{1}{2} \left(\frac{X-\mu}{\sigma}\right)^2}\;\;\;\;X\in \mathbb{R}</span><br><br> <img src="CS6660_images/Acrobat_Q2rnYtnNwB.png" class="img-fluid"><br><br></li>
 <li>The case <span class="math inline">\mu =0, \sigma^2=1</span> is called standard normal distribution <span class="math inline">X \sim \mathcal{N}(0,1),</span> Its density is denoted by <span class="math inline">\phi</span> and it’s distribution is denoted by <span class="math inline">\Phi</span><br><br> <span class="math inline">\displaystyle \phi(x)=\frac{1}{\sqrt{2\pi}\cdot\sigma}\cdot e^{-\frac{ X^2}{2}}</span><br><br> <span class="math inline">\displaystyle \Phi(x)=\int_{-\infty }^X \frac{1}{\sqrt{2\pi}\cdot\sigma}\cdot e^{-\frac{ y^2}{2}}dy\;\;\;\;X\in \mathbb{R}</span><br><br></li>
 <li>Remarks : The standard normal distribution <span class="math inline">\phi(x)=\int_{-\infty }^X \frac{1}{\sqrt{2\pi}\cdot\sigma}\cdot e^{-\frac{ y^2}{2}}dy</span> has no closed from, its values wil be looked up in tables.</li>
 </ul>
-<section id="symmetry" class="level2">
-<h2 class="anchored" data-anchor-id="symmetry">Symmetry <br></h2>
+<section id="symmetry" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="symmetry"><span class="header-section-number">6.1</span> Symmetry <br></h2>
 <ul>
 <li>For any <span class="math inline">z \in \mathbb{R},</span> <span class="math inline">\;\;\Phi (-Z ) = 1- \Phi(Z)</span><br> Proof: <br> The standard normal distribution is symmetric: if <span class="math inline">X \sim \mathcal{N}(0,1)</span> and also <span class="math inline">-X \sim \mathcal{N}(0,1)</span>, Therefore <br> <span class="math inline">\Phi(-Z)=P\{ X&lt;-Z\} = P\{-X &gt; Z \} = P\{ X &gt;Z\} = 1 - \Phi(Z)</span></li>
 </ul>
 </section>
-<section id="linear-transformations" class="level2">
-<h2 class="anchored" data-anchor-id="linear-transformations">Linear transformations</h2>
+<section id="linear-transformations" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="linear-transformations"><span class="header-section-number">6.2</span> Linear transformations</h2>
 <ul>
 <li><p>Let <span class="math inline">X \sim \mathcal{N}(\mu,\sigma ^2)</span> and <span class="math inline">\alpha , \beta \in \mathbb{R}</span>, Then <span class="math inline">\alpha X + \beta \sim \mathcal{N}(\alpha \mu + \beta , \alpha^2 \sigma^2)</span><br> proof:<br> we prove for positive <span class="math inline">\alpha</span>, for negative it’s similar. Start with the distribution function <span class="math inline">Y = \alpha X +\beta</span><br><br> <span class="math inline">\displaystyle F_Y(y)=P\{ Y &lt;y\} = P\{ \alpha X + \beta &lt;y\} = P\left\{ X &lt; \frac{y-\beta}{\alpha}\right\}</span><br><br> <span class="math inline">\displaystyle F_Y(y)= P\left\{ X &lt; \frac{y-\beta}{\alpha}\right\}=F_X\left(\frac{y-\beta}{\alpha}\right)</span><br><br> <span class="math inline">\displaystyle f_y \left(y\right)=\frac{d}{\textrm{d}y}F_y \left(y\right)=\frac{d}{\textrm{d}y}F_X \left(\frac{y-\beta }{\alpha }\right)=f_X \left(\frac{y-\beta }{\alpha }\right)\frac{1}{\alpha }</span><br><br> <span class="math inline">\displaystyle f_y \left(y\right)=\frac{1}{\sqrt{2\pi }\sigma }\mathrm{Exp}\left(-\frac{1}{2}{\left(\frac{\left(\frac{y-\beta }{\alpha }\right)-\mu }{\sigma }\right)}^2 \right)\frac{1}{\alpha }</span><br><br> <span class="math inline">\displaystyle f_y \left(y\right)=\frac{1}{\sqrt{2\pi }\sigma }\mathrm{Exp}\left(-\frac{1}{2}{\left(\frac{y-\beta -\mu \alpha }{\sigma \alpha \;}\right)}^2 \right)\frac{1}{\alpha }</span><br><br> <span class="math inline">\displaystyle f_y \left(y\right)=\frac{1}{\sqrt{2\pi }\sigma }\mathrm{Exp}\left(-\frac{\left(y-\beta -\mu \alpha \right)^2 }{2{\left(\sigma \alpha \right)}^2 \;}\right)\frac{1}{\alpha }</span><br><br> <span class="math inline">\displaystyle f_y \left(y\right)=\frac{1}{\sqrt{2\pi }\sigma \alpha }\mathrm{Exp}\left(-\frac{\left(y-\left(\mu \alpha +\beta \right)\right)^2 }{2{\left(\sigma \alpha \right)}^2 \;}\right)</span><br><br> which implies the statement <span class="math inline">Y \sim \mathcal{N}(\alpha \mu + \beta , \alpha^2 \sigma^2)</span></p></li>
 <li><p>If <span class="math inline">X \sim \mathcal{N}(\mu, \sigma ^2),</span> then its standardized version <span class="math inline">\frac{X-\mu}{\sigma} \sim \mathcal{N}(0, 1)</span> <br> Just use <span class="math inline">\alpha = \frac{1}{\sigma}</span> and <span class="math inline">\beta = -\frac{\mu}{\sigma}</span></p></li>
@@ -477,11 +481,12 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><p>If <span class="math inline">X \sim \mathcal{N}(\mu,\sigma ^2)</span> then its mean is <span class="math inline">\mu</span> and its variance is <span class="math inline">\sigma ^2</span><br><br> Proof: <br> <span class="math inline">\displaystyle \mathrm{EX}=\sigma \cdot E\left(\frac{X-\mu }{\sigma }\right)+\mu =0+\mu =\mu</span> <br> <span class="math inline">\displaystyle \mathrm{VarX}=\sigma^2 \mathrm{Var}\left(\frac{X-\mu }{\sigma }\right)=\sigma^2 \cdot 1=\sigma^2</span> <br><br> <span class="math inline">X \sim \mathcal{N}(\mu,\sigma ^2)</span> is also said to be normal distribution with mean <span class="math inline">\mu</span> and variance <span class="math inline">\sigma^2</span></p></li>
 </ul>
 </section>
-<section id="why-normal" class="level2">
-<h2 class="anchored" data-anchor-id="why-normal">Why normal</h2>
+<section id="why-normal" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="why-normal"><span class="header-section-number">6.3</span> Why normal</h2>
 <ul>
 <li>Theorem (DeMoivre-Laplace)<br> Fix <span class="math inline">p</span> and let <span class="math inline">X_n \sim \text{Binom}(n,p)</span>. Then for every fixed <span class="math inline">a&lt;b</span> reals,<br> <span class="math inline">\displaystyle \lim_{n\to \infty } P\left\lbrace a&lt;\frac{X_n -\mathrm{np}}{\sqrt{\mathrm{np}\left(1-\mathrm{np}\right)}}\le b\right\rbrace =\Phi \left(b\right)-\Phi \left(a\right)</span> <br> That is, take <span class="math inline">X_n \sim \text{Binom}(n,p)</span> with large <span class="math inline">n</span>, fixed (not small) <span class="math inline">p</span>. then <span class="math inline">\frac{X_n -\mathrm{np}}{\sqrt{\mathrm{np}\left(1-\mathrm{np}\right)}}</span> is approximately <span class="math inline">\mathcal{N}(0,1)</span> distributed.<br> This will be a special case in the Central Limit Theorem, In fact, Normal will appear in many similar scenarios. Measured quantities, heights or people, length of these lectures, etc.</li>
 </ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Subruk, IIT Hyderabad }}}}</span></p>
 
 
 </section>

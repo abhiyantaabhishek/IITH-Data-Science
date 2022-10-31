@@ -3,9 +3,13 @@ project:
   output-dir: docs
   resources: 
     - "*.pdf"
+  preview:
+    port: 4200
+    browser: false
 website:
   title: "IITH-Data-Science"
   google-analytics: "G-5ZQX02R26E"
+  open-graph: true
   navbar:
     search: true
     right:
@@ -68,6 +72,7 @@ format:
     html-math-method: katex
     highlight-style: tango
     fig-align: center
-
+    fig-responsive: true
+    number-sections: true
 
 

@@ -91,6 +91,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="IITH-Data-Science - Probability Theory 2">
+<meta property="og:description" content="Mass Function">
+<meta property="og:image" content="CS6660_images/2022-08-13-CS6660-week2-preview.jpg">
+<meta property="og:site-name" content="IITH-Data-Science">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -326,16 +330,16 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#indicator-random-variable" id="toc-indicator-random-variable" class="nav-link active" data-scroll-target="#indicator-random-variable">Indicator random variable</a></li>
-  <li><a href="#mass-function" id="toc-mass-function" class="nav-link" data-scroll-target="#mass-function">Mass function</a></li>
-  <li><a href="#expectation" id="toc-expectation" class="nav-link" data-scroll-target="#expectation">Expectation</a></li>
-  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance">Variance</a>
+  <li><a href="#indicator-random-variable" id="toc-indicator-random-variable" class="nav-link active" data-scroll-target="#indicator-random-variable"><span class="toc-section-number">1</span>  Indicator random variable</a></li>
+  <li><a href="#mass-function" id="toc-mass-function" class="nav-link" data-scroll-target="#mass-function"><span class="toc-section-number">2</span>  Mass function</a></li>
+  <li><a href="#expectation" id="toc-expectation" class="nav-link" data-scroll-target="#expectation"><span class="toc-section-number">3</span>  Expectation</a></li>
+  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance"><span class="toc-section-number">4</span>  Variance</a>
   <ul class="collapse">
-  <li><a href="#properties-of-the-variance" id="toc-properties-of-the-variance" class="nav-link" data-scroll-target="#properties-of-the-variance">Properties of the Variance</a></li>
+  <li><a href="#properties-of-the-variance" id="toc-properties-of-the-variance" class="nav-link" data-scroll-target="#properties-of-the-variance"><span class="toc-section-number">4.1</span>  Properties of the Variance</a></li>
   </ul></li>
-  <li><a href="#bernoulli-binomial" id="toc-bernoulli-binomial" class="nav-link" data-scroll-target="#bernoulli-binomial">Bernoulli, Binomial</a>
+  <li><a href="#bernoulli-binomial" id="toc-bernoulli-binomial" class="nav-link" data-scroll-target="#bernoulli-binomial"><span class="toc-section-number">5</span>  Bernoulli, Binomial</a>
   <ul class="collapse">
-  <li><a href="#binomial-function" id="toc-binomial-function" class="nav-link" data-scroll-target="#binomial-function">Binomial Function</a></li>
+  <li><a href="#binomial-function" id="toc-binomial-function" class="nav-link" data-scroll-target="#binomial-function"><span class="toc-section-number">5.1</span>  Binomial Function</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -347,16 +351,16 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 <p>A random variable is a function from a sample space <span class="math inline">\Omega</span> to the real numbers <span class="math inline">\mathbb{R}</span><br> A random variable <span class="math inline">X</span> that can take on finitely or countably infinitely many possible values is called discrete.</p>
-<section id="indicator-random-variable" class="level2">
-<h2 class="anchored" data-anchor-id="indicator-random-variable">Indicator random variable</h2>
+<section id="indicator-random-variable" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="indicator-random-variable"><span class="header-section-number">1</span> Indicator random variable</h2>
 <p><span class="math inline">X=\left\lbrace \begin{array}{ll} 1, &amp; \mathrm{if}\;\mathrm{event}\;E\;\mathrm{occurs}\\ 0, &amp; \mathrm{if}\;\mathrm{event}\;E^c \;\mathrm{occurs} \end{array}\right.</span><br> <span class="math inline">\mathrm{EX}=0\cdot p\left(0\right)+1\cdot p\left(1\right)=P\left\lbrace E\right\rbrace</span><br> <span class="math inline">\mathrm{VarX}={\mathrm{EX}}^2 -{\left(\mathrm{EX}\right)}^2 =\left(1^2 \cdot P\left\lbrace E\right\rbrace +0^2 \cdot P\left\lbrace E^c \right\rbrace \right)-{\left(P\left\lbrace E\right\rbrace \right)}^2 =P\left\lbrace E\right\rbrace \cdot \left(1-P\left\lbrace E\right\rbrace \right)</span><br> <span class="math inline">\mathrm{SD}\;X=\sqrt{P\left\lbrace E\right\rbrace \cdot \left(1-P\left\lbrace E\right\rbrace \right)}</span><br></p>
 </section>
-<section id="mass-function" class="level2">
-<h2 class="anchored" data-anchor-id="mass-function">Mass function</h2>
+<section id="mass-function" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="mass-function"><span class="header-section-number">2</span> Mass function</h2>
 <p>Let <span class="math inline">X</span> be a discrete random variable with possible values <span class="math inline">X_1 ,X_2 ,\ldotp \ldotp \ldotp</span> The probability mass function (pmf), or distribution of a random variable tells us the probabilities of these possible values: <br> <span class="math inline">p_X \left(x_i \right)=P\left\lbrace X=x_i \right\rbrace</span> For any discrete random variable <span class="math inline">X</span> <br> <span class="math inline">p\left(X_i \right)\ge 0,</span> and <span class="math inline">\sum_i p\left(X_i \right)=1</span></p>
 </section>
-<section id="expectation" class="level2">
-<h2 class="anchored" data-anchor-id="expectation">Expectation</h2>
+<section id="expectation" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="expectation"><span class="header-section-number">3</span> Expectation</h2>
 <ul>
 <li>The expection, or mean, or expected value of a discrete random variable <span class="math inline">X</span> is defined as<br> <span class="math inline">EX=\sum_i X_i \cdot p\left(X_i \right)</span>, provided that this sum exists</li>
 <li>Expected value is not necessarily a possible value</li>
@@ -369,11 +373,11 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><span class="math inline">{\mathrm{EX}}^n =E\left(X^n \right)\not= {\left(\mathrm{EX}\right)}^n</span></li>
 </ul>
 </section>
-<section id="variance" class="level2">
-<h2 class="anchored" data-anchor-id="variance">Variance</h2>
+<section id="variance" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="variance"><span class="header-section-number">4</span> Variance</h2>
 <p>The variance and the standard deviation of a random variable are defined as <span class="math inline">\mathrm{VarX}:={E\left(X-\mathrm{EX}\right)}^2</span> and <span class="math inline">\mathrm{SDX}:=\sqrt{\;\mathrm{VarX}}</span></p>
-<section id="properties-of-the-variance" class="level3">
-<h3 class="anchored" data-anchor-id="properties-of-the-variance">Properties of the Variance</h3>
+<section id="properties-of-the-variance" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="properties-of-the-variance"><span class="header-section-number">4.1</span> Properties of the Variance</h3>
 <ul>
 <li><p><span class="math inline">\mathrm{VarX}={\mathrm{EX}}^2 -{\left(\mathrm{EX}\right)}^2</span></p>
 <ul>
@@ -416,12 +420,13 @@ Tip
 </div>
 </section>
 </section>
-<section id="bernoulli-binomial" class="level2">
-<h2 class="anchored" data-anchor-id="bernoulli-binomial">Bernoulli, Binomial</h2>
+<section id="bernoulli-binomial" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="bernoulli-binomial"><span class="header-section-number">5</span> Bernoulli, Binomial</h2>
 <p>Suppose that <span class="math inline">n</span> independent trails are performed, each succeeding with probability <span class="math inline">p</span>. Let <span class="math inline">X</span> count the number of success within the <span class="math inline">n</span> trails. Then <span class="math inline">X</span> has the Binomial distribution with parameters <span class="math inline">n</span> and <span class="math inline">p</span> of, in short <span class="math inline">X~\mathrm{Binom}\left(n,p\right)</span></p>
-<section id="binomial-function" class="level3">
-<h3 class="anchored" data-anchor-id="binomial-function">Binomial Function</h3>
+<section id="binomial-function" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="binomial-function"><span class="header-section-number">5.1</span> Binomial Function</h3>
 <p><span class="math inline">p\left(i\right)=P\left\lbrace X=i\right\rbrace = {n \choose i} p^i {\left(1-p\right)}^{n-i} ,\;\;\;\;i=0,1,\ldotp \ldotp \ldotp \ldotp ,n</span><br> <span class="math inline">\mathrm{EX}=\mathrm{np},</span> and <span class="math inline">\mathrm{VarX}=\mathrm{np}\left(1-p\right)</span></p>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Subruk, IIT Hyderabad }}}}</span></p>
 
 
 </section>

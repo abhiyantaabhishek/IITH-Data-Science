@@ -91,6 +91,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="IITH-Data-Science - Machine Learning 1">
+<meta property="og:description" content="Training Error, Generalization Error">
+<meta property="og:image" content="CS5590_images/MATLAB_ljcLgT0iTJ.png">
+<meta property="og:site-name" content="IITH-Data-Science">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -326,12 +330,12 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#types-of-ml" id="toc-types-of-ml" class="nav-link active" data-scroll-target="#types-of-ml">Types of ML</a></li>
-  <li><a href="#iid-assumption" id="toc-iid-assumption" class="nav-link" data-scroll-target="#iid-assumption">IID Assumption</a></li>
-  <li><a href="#types-of-models" id="toc-types-of-models" class="nav-link" data-scroll-target="#types-of-models">Types of Models</a></li>
-  <li><a href="#classifier-evaluation" id="toc-classifier-evaluation" class="nav-link" data-scroll-target="#classifier-evaluation">Classifier evaluation</a></li>
-  <li><a href="#stratified-sampling" id="toc-stratified-sampling" class="nav-link" data-scroll-target="#stratified-sampling">Stratified sampling</a></li>
-  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model Selection</a></li>
+  <li><a href="#types-of-ml" id="toc-types-of-ml" class="nav-link active" data-scroll-target="#types-of-ml"><span class="toc-section-number">1</span>  Types of ML</a></li>
+  <li><a href="#iid-assumption" id="toc-iid-assumption" class="nav-link" data-scroll-target="#iid-assumption"><span class="toc-section-number">2</span>  IID Assumption</a></li>
+  <li><a href="#types-of-models" id="toc-types-of-models" class="nav-link" data-scroll-target="#types-of-models"><span class="toc-section-number">3</span>  Types of Models</a></li>
+  <li><a href="#classifier-evaluation" id="toc-classifier-evaluation" class="nav-link" data-scroll-target="#classifier-evaluation"><span class="toc-section-number">4</span>  Classifier evaluation</a></li>
+  <li><a href="#stratified-sampling" id="toc-stratified-sampling" class="nav-link" data-scroll-target="#stratified-sampling"><span class="toc-section-number">5</span>  Stratified sampling</a></li>
+  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection"><span class="toc-section-number">6</span>  Model Selection</a></li>
   </ul>
 </nav>
     </div>
@@ -341,8 +345,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="types-of-ml" class="level2">
-<h2 class="anchored" data-anchor-id="types-of-ml">Types of ML</h2>
+<section id="types-of-ml" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="types-of-ml"><span class="header-section-number">1</span> Types of ML</h2>
 <ul>
 <li>Supervised Learning
 <ul>
@@ -367,14 +371,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul>
 <p><img src="CS5590_images/MATLAB_z9KdPL77lT.png" class="img-fluid"></p>
 </section>
-<section id="iid-assumption" class="level2">
-<h2 class="anchored" data-anchor-id="iid-assumption">IID Assumption</h2>
+<section id="iid-assumption" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="iid-assumption"><span class="header-section-number">2</span> IID Assumption</h2>
 <ul>
 <li>Identically independently distributed : This is the assumption that the training data and testing data comes from the same distribution</li>
 </ul>
 </section>
-<section id="types-of-models" class="level2">
-<h2 class="anchored" data-anchor-id="types-of-models">Types of Models</h2>
+<section id="types-of-models" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="types-of-models"><span class="header-section-number">3</span> Types of Models</h2>
 <ul>
 <li>Induction : Model Learns by Induction, ( creating it’s own rules for example, if we do extensive research while buying mobile, we create set rules, it is called induction).</li>
 <li>Transductions: Model learns from references ( for example, if we ask our friends about mobile and we buy according to their suggestion, it is called Transduction).</li>
@@ -386,8 +390,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Non parametric: The model doesn’t have parameters, as in K nearest neighbor (KNN)</li>
 </ul>
 </section>
-<section id="classifier-evaluation" class="level2">
-<h2 class="anchored" data-anchor-id="classifier-evaluation">Classifier evaluation</h2>
+<section id="classifier-evaluation" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="classifier-evaluation"><span class="header-section-number">4</span> Classifier evaluation</h2>
 <p><img src="CS5590_images/MATLAB_ljcLgT0iTJ.png" class="img-fluid"></p>
 <ul>
 <li>Training Error
@@ -403,15 +407,15 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="stratified-sampling" class="level2">
-<h2 class="anchored" data-anchor-id="stratified-sampling">Stratified sampling</h2>
+<section id="stratified-sampling" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="stratified-sampling"><span class="header-section-number">5</span> Stratified sampling</h2>
 <ul>
 <li>First stratify instances by class, then randomly select instances from each class proportionally</li>
 <li>It ensures that the proportion of each class remains same in training and validation set.</li>
 </ul>
 </section>
-<section id="model-selection" class="level2">
-<h2 class="anchored" data-anchor-id="model-selection">Model Selection</h2>
+<section id="model-selection" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="model-selection"><span class="header-section-number">6</span> Model Selection</h2>
 <ul>
 <li>Re-Substitution : not useful as it suggests to re- substitute the train data for validation as well</li>
 <li>K - Fold cross-validation : Divide the data in K fold using stratified sampling, and the select some set for training and some for validation in each iteration.</li>
@@ -420,6 +424,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>N-fold cross-validation</li>
 </ul></li>
 </ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
 </section>

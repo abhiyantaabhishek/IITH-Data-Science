@@ -157,6 +157,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="IITH-Data-Science - Machine Learning 3">
+<meta property="og:description" content="Decision Trees, Naive Bayes, Bayesian Belief network">
+<meta property="og:image" content="CS5590_images/Code_GehOQCy4hw.png">
+<meta property="og:site-name" content="IITH-Data-Science">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -392,22 +396,22 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link active" data-scroll-target="#decision-trees">Decision Trees</a>
+  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link active" data-scroll-target="#decision-trees"><span class="toc-section-number">1</span>  Decision Trees</a>
   <ul class="collapse">
-  <li><a href="#how-to-generate-decision-tree" id="toc-how-to-generate-decision-tree" class="nav-link" data-scroll-target="#how-to-generate-decision-tree">How to generate decision tree</a></li>
-  <li><a href="#overfitting-and-generalization" id="toc-overfitting-and-generalization" class="nav-link" data-scroll-target="#overfitting-and-generalization">Overfitting and generalization</a></li>
-  <li><a href="#occams-razor-principle" id="toc-occams-razor-principle" class="nav-link" data-scroll-target="#occams-razor-principle">Occam’s Razor Principle</a></li>
-  <li><a href="#select-best-tree" id="toc-select-best-tree" class="nav-link" data-scroll-target="#select-best-tree">Select best tree</a></li>
-  <li><a href="#rule-extraction-from-trees" id="toc-rule-extraction-from-trees" class="nav-link" data-scroll-target="#rule-extraction-from-trees">Rule Extraction from Trees</a></li>
+  <li><a href="#how-to-generate-decision-tree" id="toc-how-to-generate-decision-tree" class="nav-link" data-scroll-target="#how-to-generate-decision-tree"><span class="toc-section-number">1.1</span>  How to generate decision tree</a></li>
+  <li><a href="#overfitting-and-generalization" id="toc-overfitting-and-generalization" class="nav-link" data-scroll-target="#overfitting-and-generalization"><span class="toc-section-number">1.2</span>  Overfitting and generalization</a></li>
+  <li><a href="#occams-razor-principle" id="toc-occams-razor-principle" class="nav-link" data-scroll-target="#occams-razor-principle"><span class="toc-section-number">1.3</span>  Occam’s Razor Principle</a></li>
+  <li><a href="#select-best-tree" id="toc-select-best-tree" class="nav-link" data-scroll-target="#select-best-tree"><span class="toc-section-number">1.4</span>  Select best tree</a></li>
+  <li><a href="#rule-extraction-from-trees" id="toc-rule-extraction-from-trees" class="nav-link" data-scroll-target="#rule-extraction-from-trees"><span class="toc-section-number">1.5</span>  Rule Extraction from Trees</a></li>
   </ul></li>
-  <li><a href="#naive-bayes" id="toc-naive-bayes" class="nav-link" data-scroll-target="#naive-bayes">Naive Bayes</a>
+  <li><a href="#naive-bayes" id="toc-naive-bayes" class="nav-link" data-scroll-target="#naive-bayes"><span class="toc-section-number">2</span>  Naive Bayes</a>
   <ul class="collapse">
-  <li><a href="#formulation" id="toc-formulation" class="nav-link" data-scroll-target="#formulation">Formulation</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  <li><a href="#pros-and-cons" id="toc-pros-and-cons" class="nav-link" data-scroll-target="#pros-and-cons">Pros and Cons</a></li>
-  <li><a href="#practical-issues" id="toc-practical-issues" class="nav-link" data-scroll-target="#practical-issues">Practical Issues</a></li>
-  <li><a href="#bayesian-belief-network-bayesian-net" id="toc-bayesian-belief-network-bayesian-net" class="nav-link" data-scroll-target="#bayesian-belief-network-bayesian-net">Bayesian Belief network ( Bayesian net )</a></li>
-  <li><a href="#naive-bayes-classifier-category" id="toc-naive-bayes-classifier-category" class="nav-link" data-scroll-target="#naive-bayes-classifier-category">Naive Bayes Classifier category</a></li>
+  <li><a href="#formulation" id="toc-formulation" class="nav-link" data-scroll-target="#formulation"><span class="toc-section-number">2.1</span>  Formulation</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="toc-section-number">2.2</span>  Example</a></li>
+  <li><a href="#pros-and-cons" id="toc-pros-and-cons" class="nav-link" data-scroll-target="#pros-and-cons"><span class="toc-section-number">2.3</span>  Pros and Cons</a></li>
+  <li><a href="#practical-issues" id="toc-practical-issues" class="nav-link" data-scroll-target="#practical-issues"><span class="toc-section-number">2.4</span>  Practical Issues</a></li>
+  <li><a href="#bayesian-belief-network-bayesian-net" id="toc-bayesian-belief-network-bayesian-net" class="nav-link" data-scroll-target="#bayesian-belief-network-bayesian-net"><span class="toc-section-number">2.5</span>  Bayesian Belief network ( Bayesian net )</a></li>
+  <li><a href="#naive-bayes-classifier-category" id="toc-naive-bayes-classifier-category" class="nav-link" data-scroll-target="#naive-bayes-classifier-category"><span class="toc-section-number">2.6</span>  Naive Bayes Classifier category</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -418,8 +422,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="decision-trees" class="level1">
-<h1>Decision Trees</h1>
+<section id="decision-trees" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Decision Trees</h1>
 <ul>
 <li>An efficient nonparametric method.</li>
 <li>A hierarchical model.</li>
@@ -478,8 +482,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </div>
 </div>
 <p>Entropy in information theory specifies the <strong>average (expected) amount of information derived from observing an event</strong> .</p>
-<section id="how-to-generate-decision-tree" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-generate-decision-tree">How to generate decision tree</h2>
+<section id="how-to-generate-decision-tree" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="how-to-generate-decision-tree"><span class="header-section-number">1.1</span> How to generate decision tree</h2>
 <ul>
 <li>Select a root not which divides the data best based on impurity measures.</li>
 <li>If node is pure, generate a leaf and stop, otherwise split and continue recursively.</li>
@@ -494,8 +498,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Other impurity measure method - Gini impurity/index : <span class="math inline">\displaystyle 1- \sum_{j=1}^cp_j^2</span></li>
 </ul>
 </section>
-<section id="overfitting-and-generalization" class="level2">
-<h2 class="anchored" data-anchor-id="overfitting-and-generalization">Overfitting and generalization</h2>
+<section id="overfitting-and-generalization" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="overfitting-and-generalization"><span class="header-section-number">1.2</span> Overfitting and generalization</h2>
 <ul>
 <li>Noisy training example or if only small number of samples are associated leaf nodes can cause overfitting.</li>
 <li>Using Pruning for better generalization
@@ -509,19 +513,19 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="occams-razor-principle" class="level2">
-<h2 class="anchored" data-anchor-id="occams-razor-principle">Occam’s Razor Principle</h2>
+<section id="occams-razor-principle" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="occams-razor-principle"><span class="header-section-number">1.3</span> Occam’s Razor Principle</h2>
 <p>When multiple hypotheses can solve the problem chose the simplest one</p>
 </section>
-<section id="select-best-tree" class="level2">
-<h2 class="anchored" data-anchor-id="select-best-tree">Select best tree</h2>
+<section id="select-best-tree" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="select-best-tree"><span class="header-section-number">1.4</span> Select best tree</h2>
 <ul>
 <li>Measure performance over training and separate validation data set</li>
 <li>Minimum Description Length : Minimize <code>size(tree)+size(miscalssifications(tree))</code></li>
 </ul>
 </section>
-<section id="rule-extraction-from-trees" class="level2">
-<h2 class="anchored" data-anchor-id="rule-extraction-from-trees">Rule Extraction from Trees</h2>
+<section id="rule-extraction-from-trees" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="rule-extraction-from-trees"><span class="header-section-number">1.5</span> Rule Extraction from Trees</h2>
 <ul>
 <li>Convert tree to equivalent set of rules.(“if else” condition for example).</li>
 <li>Prune each rules independently of others, by removing any pre-conditions that result in improving its estimates accuracy.</li>
@@ -545,8 +549,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </div>
 </section>
 </section>
-<section id="naive-bayes" class="level1">
-<h1>Naive Bayes</h1>
+<section id="naive-bayes" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Naive Bayes</h1>
 <p><img src="CS5590_images/Acrobat_BRXKLqY6Wd.png" class="img-fluid"></p>
 <ul>
 <li>In Naive Bayes classifier goal is to learn function <span class="math inline">f:X\rightarrow y</span>, where <span class="math inline">y</span> is one of <span class="math inline">k</span> classes and <span class="math inline">X=X_1,...,X_n</span>: values of attributes (numeric or categorical)</li>
@@ -556,8 +560,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Bayesian probability of a class:<br><br> <span class="math inline">\displaystyle P\left( Y|X \right)=\frac{P\left( X|Y \right)P\left( Y \right)}{\sum_{y'}P\left( X|Y' \right)P\left( Y' \right)}</span><br></li>
 </ul></li>
 </ul>
-<section id="formulation" class="level2">
-<h2 class="anchored" data-anchor-id="formulation">Formulation</h2>
+<section id="formulation" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="formulation"><span class="header-section-number">2.1</span> Formulation</h2>
 <ul>
 <li>consider a record with attributes <span class="math inline">A_1,A_2,\dots ,A_n</span></li>
 <li>Goal is to predict class <span class="math inline">C</span></li>
@@ -576,8 +580,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>This hypothesis is called the <strong>maximum likelihood hypothesis</strong> .</li>
 </ul>
 </section>
-<section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
+<section id="example" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="example"><span class="header-section-number">2.2</span> Example</h2>
 <p>Given a data as shown in as shown in below data frame, Find if tennis will be played for a scenario given by <span class="math inline">X</span>:<br> <span class="math inline">X=( \mathrm{ Outlook = Sunny, Temperature= Cool, Humidity =High, Wind= Strong})</span><br></p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -875,8 +879,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><p>MAP Rule:<br><br> <span class="math inline">P\left(\mathrm{Yes} \mid X\right)=\\  P\left(\mathrm{Outlook}=\mathrm{Sunny} \mid \mathrm{Play} = \mathrm{Yes} \right) \times \\  P\left(\mathrm{Temperature}=\mathrm{Cool} \mid \mathrm{Play} = \mathrm{Yes} \right) \times \\  P\left(\mathrm{Humidity}=\mathrm{High } \mid \mathrm{Play} = \mathrm{Yes} \right) \times \\  P\left(\mathrm{Wind}=\mathrm{Strong } \mid \mathrm{Play} = \mathrm{Yes} \right) \times \\  P(\mathrm{Play}=\mathrm{Yes})\\  =0.0053</span><br><br> <span class="math inline">P\left(\mathrm{No} \mid X\right)= \\  P\left(\mathrm{Outlook}=\mathrm{Sunny} \mid \mathrm{Play} = \mathrm{No} \right) \times \\  P\left(\mathrm{Temperature}=\mathrm{Cool} \mid \mathrm{Play} = \mathrm{No} \right) \times \\  P\left(\mathrm{Humidity}=\mathrm{High } \mid \mathrm{Play} = \mathrm{No} \right) \times \\  P\left(\mathrm{Wind}=\mathrm{Strong } \mid \mathrm{Play} = \mathrm{No} \right) \times \\  P(\mathrm{Play}=\mathrm{No}) \\  = 0.0206</span> <br> <br> Since <span class="math inline">P(\mathrm{Play}=\mathrm{Yes}) &lt; P(\mathrm{Play}=\mathrm{No})</span> so <span class="math inline">X</span> shall be labeled to be “No”, i.e.&nbsp;Given scenario <span class="math inline">X</span> tennis will not be played.</p></li>
 </ul>
 </section>
-<section id="pros-and-cons" class="level2">
-<h2 class="anchored" data-anchor-id="pros-and-cons">Pros and Cons</h2>
+<section id="pros-and-cons" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="pros-and-cons"><span class="header-section-number">2.3</span> Pros and Cons</h2>
 <ul>
 <li>Combines prior knowledge and observed data</li>
 <li>Output is not only a classification but a probability distribution over all classes</li>
@@ -887,8 +891,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Independence assumption may not hold always.</li>
 </ul>
 </section>
-<section id="practical-issues" class="level2">
-<h2 class="anchored" data-anchor-id="practical-issues">Practical Issues</h2>
+<section id="practical-issues" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="practical-issues"><span class="header-section-number">2.4</span> Practical Issues</h2>
 <ul>
 <li>Discretize the range into bins
 <ul>
@@ -907,20 +911,21 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="bayesian-belief-network-bayesian-net" class="level2">
-<h2 class="anchored" data-anchor-id="bayesian-belief-network-bayesian-net">Bayesian Belief network ( Bayesian net )</h2>
+<section id="bayesian-belief-network-bayesian-net" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="bayesian-belief-network-bayesian-net"><span class="header-section-number">2.5</span> Bayesian Belief network ( Bayesian net )</h2>
 <p>Describe conditional independence among subset of variables (attributes) : combining prior knowledge about dependencies among variables with observed training data.<br> For example consider below graph:<br><br></p>
 <p><img src="CS5590_images/Acrobat_Q6uR4y3nmf.png" class="img-fluid"><br><br></p>
 <p>Here Age, Occupation and Income determine if customer will byt this product, Given that customer buys product, whether there is interest in insurance is now independent of Age, Occupation, Income.<br><br> <span class="math inline">P\left(\mathrm{Age,Occ,Inc,Buy,Ins}\right)=P(\mathrm{Age})P(\mathrm{Occ})P\left(\mathrm{Inc}\right)P\left(\mathrm{Buy} \mid \mathrm{Age, Occ, Inc}\right)P\left(\mathrm{Int} \mid \mathrm{Buy}\right)</span></p>
 </section>
-<section id="naive-bayes-classifier-category" class="level2">
-<h2 class="anchored" data-anchor-id="naive-bayes-classifier-category">Naive Bayes Classifier category</h2>
+<section id="naive-bayes-classifier-category" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="naive-bayes-classifier-category"><span class="header-section-number">2.6</span> Naive Bayes Classifier category</h2>
 <ul>
 <li>It is an Inductive Learning.</li>
 <li>It is a generative Modeling.</li>
 <li>It can be Parametric or Non-parametric Models.</li>
 <li>It can be online or offline Models.</li>
 </ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
 </section>

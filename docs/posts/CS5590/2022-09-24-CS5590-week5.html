@@ -91,6 +91,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="IITH-Data-Science - Machine Learning 5">
+<meta property="og:description" content="Multi Layer Perceptrons">
+<meta property="og:image" content="CS5590_images/Acrobat_EZY9SgFMeU.png">
+<meta property="og:site-name" content="IITH-Data-Science">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -326,20 +330,20 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#deep-learning" id="toc-deep-learning" class="nav-link active" data-scroll-target="#deep-learning">Deep Learning</a></li>
-  <li><a href="#perceptrons-linear-models" id="toc-perceptrons-linear-models" class="nav-link" data-scroll-target="#perceptrons-linear-models">Perceptrons (Linear Models)</a></li>
-  <li><a href="#multi-layer-perceptrons" id="toc-multi-layer-perceptrons" class="nav-link" data-scroll-target="#multi-layer-perceptrons">Multi Layer Perceptrons</a>
+  <li><a href="#deep-learning" id="toc-deep-learning" class="nav-link active" data-scroll-target="#deep-learning"><span class="toc-section-number">1</span>  Deep Learning</a></li>
+  <li><a href="#perceptrons-linear-models" id="toc-perceptrons-linear-models" class="nav-link" data-scroll-target="#perceptrons-linear-models"><span class="toc-section-number">2</span>  Perceptrons (Linear Models)</a></li>
+  <li><a href="#multi-layer-perceptrons" id="toc-multi-layer-perceptrons" class="nav-link" data-scroll-target="#multi-layer-perceptrons"><span class="toc-section-number">3</span>  Multi Layer Perceptrons</a>
   <ul class="collapse">
-  <li><a href="#mlp-from-prml-book" id="toc-mlp-from-prml-book" class="nav-link" data-scroll-target="#mlp-from-prml-book">MLP From PRML book</a></li>
-  <li><a href="#mlp-form-lecture-pdf" id="toc-mlp-form-lecture-pdf" class="nav-link" data-scroll-target="#mlp-form-lecture-pdf">MLP Form lecture PDF</a></li>
+  <li><a href="#mlp-from-prml-book" id="toc-mlp-from-prml-book" class="nav-link" data-scroll-target="#mlp-from-prml-book"><span class="toc-section-number">3.1</span>  MLP From PRML book</a></li>
+  <li><a href="#mlp-form-lecture-pdf" id="toc-mlp-form-lecture-pdf" class="nav-link" data-scroll-target="#mlp-form-lecture-pdf"><span class="toc-section-number">3.2</span>  MLP Form lecture PDF</a></li>
   </ul></li>
-  <li><a href="#error-backpropagation" id="toc-error-backpropagation" class="nav-link" data-scroll-target="#error-backpropagation">Error Backpropagation</a>
+  <li><a href="#error-backpropagation" id="toc-error-backpropagation" class="nav-link" data-scroll-target="#error-backpropagation"><span class="toc-section-number">4</span>  Error Backpropagation</a>
   <ul class="collapse">
-  <li><a href="#backpropagation-from-prml-book" id="toc-backpropagation-from-prml-book" class="nav-link" data-scroll-target="#backpropagation-from-prml-book">Backpropagation From PRML book</a></li>
-  <li><a href="#backpropagation-form-lecture-pdf" id="toc-backpropagation-form-lecture-pdf" class="nav-link" data-scroll-target="#backpropagation-form-lecture-pdf">Backpropagation Form lecture PDF</a>
+  <li><a href="#backpropagation-from-prml-book" id="toc-backpropagation-from-prml-book" class="nav-link" data-scroll-target="#backpropagation-from-prml-book"><span class="toc-section-number">4.1</span>  Backpropagation From PRML book</a></li>
+  <li><a href="#backpropagation-form-lecture-pdf" id="toc-backpropagation-form-lecture-pdf" class="nav-link" data-scroll-target="#backpropagation-form-lecture-pdf"><span class="toc-section-number">4.2</span>  Backpropagation Form lecture PDF</a>
   <ul class="collapse">
-  <li><a href="#updating-hidden-to-output" id="toc-updating-hidden-to-output" class="nav-link" data-scroll-target="#updating-hidden-to-output">Updating Hidden-to-Output</a></li>
-  <li><a href="#updating-interior-weights" id="toc-updating-interior-weights" class="nav-link" data-scroll-target="#updating-interior-weights">Updating interior weights</a></li>
+  <li><a href="#updating-hidden-to-output" id="toc-updating-hidden-to-output" class="nav-link" data-scroll-target="#updating-hidden-to-output"><span class="toc-section-number">4.2.1</span>  Updating Hidden-to-Output</a></li>
+  <li><a href="#updating-interior-weights" id="toc-updating-interior-weights" class="nav-link" data-scroll-target="#updating-interior-weights"><span class="toc-section-number">4.2.2</span>  Updating interior weights</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -351,8 +355,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="deep-learning" class="level1">
-<h1>Deep Learning</h1>
+<section id="deep-learning" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Deep Learning</h1>
 <ul>
 <li>Deep learning : A sub area of machine learning, that is today understood as representation learning.</li>
 <li>Inspired by the human brain.</li>
@@ -368,8 +372,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Deep learning models can learn complex decision boundaries.</li>
 </ul>
 </section>
-<section id="perceptrons-linear-models" class="level1">
-<h1>Perceptrons (Linear Models)</h1>
+<section id="perceptrons-linear-models" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Perceptrons (Linear Models)</h1>
 <ul>
 <li><p>Consider the below pic:<br><br> <img src="CS5590_images/Acrobat_EZY9SgFMeU.png" class="img-fluid"><br><br> Mathematical formulation is given as below:<br> <span class="math display">\displaystyle  z = \left\lbrace
 \begin{array}{ccc}
@@ -391,10 +395,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><p>Peceptron Convergence Theorem : Guaranteed to find a solution in finite time if a solution exists</p></li>
 </ul>
 </section>
-<section id="multi-layer-perceptrons" class="level1">
-<h1>Multi Layer Perceptrons</h1>
-<section id="mlp-from-prml-book" class="level2">
-<h2 class="anchored" data-anchor-id="mlp-from-prml-book">MLP From PRML book</h2>
+<section id="multi-layer-perceptrons" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Multi Layer Perceptrons</h1>
+<section id="mlp-from-prml-book" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="mlp-from-prml-book"><span class="header-section-number">3.1</span> MLP From PRML book</h2>
 <ul>
 <li><p>Network with inputs, one hidden unit and outputs:<br><br> <img src="CS5590_images/Acrobat_aQFGImBqkl.png" class="img-fluid"></p></li>
 <li><p>The output of the above network can be given as follows: <br> <br> <span class="math display">\displaystyle y_{k}({\bf x},{\bf w})=\sigma\left(\sum_{j=1}^{M}w_{k j}^{(2)}h\left(\sum_{i=1}^{D}w_{j i}^{(1)}x_{i}+w_{j0}^{(1)}\right)+w_{k0}^{(2)}\right)</span> This equation is also interpreted as <em>forward propagation</em> of information through the newwork.<br> It should be emphasized that these diagrams do not represent probabilistic graphical models, because the internal nodes represent deterministic variables rather than stochastic ones.<br><br></p></li>
@@ -405,8 +409,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><p>In practice, however, it may be advantageous to include skip-layer connections explicitly.</p></li>
 </ul>
 </section>
-<section id="mlp-form-lecture-pdf" class="level2">
-<h2 class="anchored" data-anchor-id="mlp-form-lecture-pdf">MLP Form lecture PDF</h2>
+<section id="mlp-form-lecture-pdf" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="mlp-form-lecture-pdf"><span class="header-section-number">3.2</span> MLP Form lecture PDF</h2>
 <ul>
 <li>Extension of perceptrons to multiple layers
 <ol type="1">
@@ -462,10 +466,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul>
 </section>
 </section>
-<section id="error-backpropagation" class="level1">
-<h1>Error Backpropagation</h1>
-<section id="backpropagation-from-prml-book" class="level2">
-<h2 class="anchored" data-anchor-id="backpropagation-from-prml-book">Backpropagation From PRML book</h2>
+<section id="error-backpropagation" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Error Backpropagation</h1>
+<section id="backpropagation-from-prml-book" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="backpropagation-from-prml-book"><span class="header-section-number">4.1</span> Backpropagation From PRML book</h2>
 <ul>
 <li><p>Think of the N weights as a point in an N-dimensional space<br><br> <img src="CS5590_images/Acrobat_o3ufCNSWL5.png" class="img-fluid"><br><br></p></li>
 <li><p>Many error functions fo practical interest, comprise a sum of terms, one for each data point in training set, so that <br> <span class="math display">\displaystyle E(\mathbf{w})=\sum_{n=1}^{N}E_{n}(\mathbf{w})</span></p></li>
@@ -538,8 +542,8 @@ y_{k}({\bf x},{\bf w}) &amp;= \overbrace{ \underbrace{\sigma}_{\text{activation 
 <li>For batch methods, the derivative of the total error <span class="math inline">E</span> can then be obtained by repeating the above steps for each pattern in the training set and then summing over all patterns:<br> <span class="math inline">\displaystyle \frac{\partial E}{\partial w_{j i}}=\sum_{n}\frac{\partial E_{n}}{\partial w_{j i}}</span></li>
 </ul>
 </section>
-<section id="backpropagation-form-lecture-pdf" class="level2">
-<h2 class="anchored" data-anchor-id="backpropagation-form-lecture-pdf">Backpropagation Form lecture PDF</h2>
+<section id="backpropagation-form-lecture-pdf" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="backpropagation-form-lecture-pdf"><span class="header-section-number">4.2</span> Backpropagation Form lecture PDF</h2>
 <p>It also has same points as per PRML but from different angle. But <strong>DIFFERENT TERMINOLOGY IS USED HERE SO BE CAREFUL</strong></p>
 <p><br><br><br><br>
 <span class="math display">  
@@ -559,17 +563,18 @@ y_{k}({\bf x},{\bf w}) &amp;= \overbrace{ \underbrace{\sigma}_{\text{activation 
 <li><p>Activation function must be continuous, differential, non-decreasing, and easy to compute.</p></li>
 <li><p>We want activation function to be non-decreasing because, so that it should not increase value in some reason and decrease it in some other reason.</p></li>
 </ul>
-<section id="updating-hidden-to-output" class="level3">
-<h3 class="anchored" data-anchor-id="updating-hidden-to-output">Updating Hidden-to-Output</h3>
+<section id="updating-hidden-to-output" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="updating-hidden-to-output"><span class="header-section-number">4.2.1</span> Updating Hidden-to-Output</h3>
 <ul>
 <li>Updating Hidden-to-Output<br><br> <span class="math inline">\frac{\partial E}{\partial W_ij}= \frac{\partial E}{\partial y} \times \frac{\partial y}{\partial z} \times \frac{\partial z}{\partial W_ij}</span><br><br> <span class="math inline">\Delta W_{ij} = \alpha \times \underbrace{(t_i -y_i)}_{\frac{\partial E}{\partial y} } \times \underbrace{g'(z_i)}_{\frac{\partial y}{\partial z} } \times \underbrace{a_j}_{\frac{\partial z}{\partial W_ij}}</span><br><br> <span class="math inline">\Delta W_{ij} = \overbrace{\alpha}^{\text{learning rate}} \times \underbrace{(\overbrace{t_i}^{\text{Teacher supplied}} -y_i)}_{\text{miss}} \times \overbrace{g'(z_i)}^{\text{derivatve of acitvation function}} \times \underbrace{a_j}_{\text{previous layer output}}</span><br><br> <span class="math inline">\Delta W_{ij} = \alpha \times (t_i -y_i) \times y_i \times (1-y_i)\times a_j</span> <br><br></li>
 </ul>
 </section>
-<section id="updating-interior-weights" class="level3">
-<h3 class="anchored" data-anchor-id="updating-interior-weights">Updating interior weights</h3>
+<section id="updating-interior-weights" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="updating-interior-weights"><span class="header-section-number">4.2.2</span> Updating interior weights</h3>
 <ul>
 <li>Updating interior weights<br> Layer <span class="math inline">k</span> units provide values to all layers <span class="math inline">k+1</span> units.<br> “miss” is sum of the misses from all units on <span class="math inline">k+1</span><br><br> <span class="math inline">\displaystyle \text{miss}_j = \sum \left[ a_j(1-a_j)(t_i-a_j)w_{ji} \right]</span><br><br> <span class="math inline">\displaystyle \frac{\partial E}{\partial W_kj}= \left( \sum \frac{\partial E}{\partial y_i} \times \frac{\partial y_i}{\partial z_i} \times \frac{\partial z_i}{\partial a_j} \right) \times \frac{\partial a_j}{\partial l_j} \times \frac{\partial l_j}{\partial W_ij}</span><br><br> <span class="math inline">\displaystyle \frac{\partial E}{\partial W_kj}= \left( \sum \underbrace{\frac{\partial E}{\partial y_i}}_{t_i-y_i} \times \overbrace{\frac{\partial y_i}{\partial z_i}}^{y_i(1-y_i)} \times \underbrace{\frac{\partial z_i}{\partial a_j}}_{w_ji} \right) \times \underbrace{\frac{\partial a_j}{\partial l_j}}_{a_j(1-a_j)} \times \overbrace{\frac{\partial l_j}{\partial W_ij}}^{l_k}</span><br><br> <span class="math inline">\displaystyle \frac{\partial E}{\partial W_kj} = \left( \sum y_i \times (1-y_i) \times (t_i-y_i) \times w_{ji}\right) \times l_k \times a_j \times (1-a_j)</span><br><br></li>
 </ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
 </section>

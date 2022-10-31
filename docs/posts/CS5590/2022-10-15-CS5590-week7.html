@@ -90,6 +90,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="IITH-Data-Science - Machine Learning 7">
+<meta property="og:description" content="Classifier System Design,Introduction to Learning Theory">
+<meta property="og:image" content="CS5590_images/Acrobat_DOQ241iPvG.png">
+<meta property="og:site-name" content="IITH-Data-Science">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -325,34 +329,34 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pre-processing" id="toc-pre-processing" class="nav-link active" data-scroll-target="#pre-processing">Pre-Processing</a></li>
-  <li><a href="#feature-extraction-from-data" id="toc-feature-extraction-from-data" class="nav-link" data-scroll-target="#feature-extraction-from-data">Feature Extraction from Data</a></li>
-  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
-  <li><a href="#class-imbalance" id="toc-class-imbalance" class="nav-link" data-scroll-target="#class-imbalance">Class Imbalance</a>
+  <li><a href="#pre-processing" id="toc-pre-processing" class="nav-link active" data-scroll-target="#pre-processing"><span class="toc-section-number">1</span>  Pre-Processing</a></li>
+  <li><a href="#feature-extraction-from-data" id="toc-feature-extraction-from-data" class="nav-link" data-scroll-target="#feature-extraction-from-data"><span class="toc-section-number">2</span>  Feature Extraction from Data</a></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges"><span class="toc-section-number">3</span>  Challenges</a></li>
+  <li><a href="#class-imbalance" id="toc-class-imbalance" class="nav-link" data-scroll-target="#class-imbalance"><span class="toc-section-number">4</span>  Class Imbalance</a>
   <ul class="collapse">
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><span class="toc-section-number">4.1</span>  Solution</a></li>
   </ul></li>
-  <li><a href="#smote" id="toc-smote" class="nav-link" data-scroll-target="#smote">SMOTE</a></li>
-  <li><a href="#using-large-datasets" id="toc-using-large-datasets" class="nav-link" data-scroll-target="#using-large-datasets">Using Large Datasets</a></li>
-  <li><a href="#generalization-error" id="toc-generalization-error" class="nav-link" data-scroll-target="#generalization-error">Generalization Error</a>
+  <li><a href="#smote" id="toc-smote" class="nav-link" data-scroll-target="#smote"><span class="toc-section-number">5</span>  SMOTE</a></li>
+  <li><a href="#using-large-datasets" id="toc-using-large-datasets" class="nav-link" data-scroll-target="#using-large-datasets"><span class="toc-section-number">6</span>  Using Large Datasets</a></li>
+  <li><a href="#generalization-error" id="toc-generalization-error" class="nav-link" data-scroll-target="#generalization-error"><span class="toc-section-number">7</span>  Generalization Error</a>
   <ul class="collapse">
-  <li><a href="#bias-variance-tradeoff" id="toc-bias-variance-tradeoff" class="nav-link" data-scroll-target="#bias-variance-tradeoff">Bias variance tradeoff</a></li>
+  <li><a href="#bias-variance-tradeoff" id="toc-bias-variance-tradeoff" class="nav-link" data-scroll-target="#bias-variance-tradeoff"><span class="toc-section-number">7.1</span>  Bias variance tradeoff</a></li>
   </ul></li>
-  <li><a href="#measuring-bias-and-variance" id="toc-measuring-bias-and-variance" class="nav-link" data-scroll-target="#measuring-bias-and-variance">Measuring Bias and Variance</a></li>
-  <li><a href="#some-inferences" id="toc-some-inferences" class="nav-link" data-scroll-target="#some-inferences">Some Inferences</a></li>
-  <li><a href="#regularizers" id="toc-regularizers" class="nav-link" data-scroll-target="#regularizers">Regularizers</a></li>
-  <li><a href="#model-based-machine-learning" id="toc-model-based-machine-learning" class="nav-link" data-scroll-target="#model-based-machine-learning">Model-based Machine Learning</a>
+  <li><a href="#measuring-bias-and-variance" id="toc-measuring-bias-and-variance" class="nav-link" data-scroll-target="#measuring-bias-and-variance"><span class="toc-section-number">8</span>  Measuring Bias and Variance</a></li>
+  <li><a href="#some-inferences" id="toc-some-inferences" class="nav-link" data-scroll-target="#some-inferences"><span class="toc-section-number">9</span>  Some Inferences</a></li>
+  <li><a href="#regularizers" id="toc-regularizers" class="nav-link" data-scroll-target="#regularizers"><span class="toc-section-number">10</span>  Regularizers</a></li>
+  <li><a href="#model-based-machine-learning" id="toc-model-based-machine-learning" class="nav-link" data-scroll-target="#model-based-machine-learning"><span class="toc-section-number">11</span>  Model-based Machine Learning</a>
   <ul class="collapse">
-  <li><a href="#regularization-in-model-based-ml" id="toc-regularization-in-model-based-ml" class="nav-link" data-scroll-target="#regularization-in-model-based-ml">Regularization in Model based ML</a></li>
+  <li><a href="#regularization-in-model-based-ml" id="toc-regularization-in-model-based-ml" class="nav-link" data-scroll-target="#regularization-in-model-based-ml"><span class="toc-section-number">11.1</span>  Regularization in Model based ML</a></li>
   </ul></li>
-  <li><a href="#introduction-to-learning-theory" id="toc-introduction-to-learning-theory" class="nav-link" data-scroll-target="#introduction-to-learning-theory">Introduction to Learning Theory</a>
+  <li><a href="#introduction-to-learning-theory" id="toc-introduction-to-learning-theory" class="nav-link" data-scroll-target="#introduction-to-learning-theory"><span class="toc-section-number">12</span>  Introduction to Learning Theory</a>
   <ul class="collapse">
-  <li><a href="#optimality-of-bayes-decision-rule" id="toc-optimality-of-bayes-decision-rule" class="nav-link" data-scroll-target="#optimality-of-bayes-decision-rule">Optimality of Bayes Decision Rule</a></li>
+  <li><a href="#optimality-of-bayes-decision-rule" id="toc-optimality-of-bayes-decision-rule" class="nav-link" data-scroll-target="#optimality-of-bayes-decision-rule"><span class="toc-section-number">12.1</span>  Optimality of Bayes Decision Rule</a></li>
   </ul></li>
-  <li><a href="#towards-formalizing-learning" id="toc-towards-formalizing-learning" class="nav-link" data-scroll-target="#towards-formalizing-learning">Towards formalizing ‘learning’</a>
+  <li><a href="#towards-formalizing-learning" id="toc-towards-formalizing-learning" class="nav-link" data-scroll-target="#towards-formalizing-learning"><span class="toc-section-number">13</span>  Towards formalizing ‘learning’</a>
   <ul class="collapse">
-  <li><a href="#the-basic-process-of-learning" id="toc-the-basic-process-of-learning" class="nav-link" data-scroll-target="#the-basic-process-of-learning">The basic process of learning</a></li>
-  <li><a href="#a-statistical-machinery-for-learning" id="toc-a-statistical-machinery-for-learning" class="nav-link" data-scroll-target="#a-statistical-machinery-for-learning">A statistical machinery for learning</a></li>
+  <li><a href="#the-basic-process-of-learning" id="toc-the-basic-process-of-learning" class="nav-link" data-scroll-target="#the-basic-process-of-learning"><span class="toc-section-number">13.1</span>  The basic process of learning</a></li>
+  <li><a href="#a-statistical-machinery-for-learning" id="toc-a-statistical-machinery-for-learning" class="nav-link" data-scroll-target="#a-statistical-machinery-for-learning"><span class="toc-section-number">13.2</span>  A statistical machinery for learning</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -363,8 +367,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="pre-processing" class="level1">
-<h1>Pre-Processing</h1>
+<section id="pre-processing" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Pre-Processing</h1>
 <ul>
 <li>Numeric
 <ul>
@@ -383,8 +387,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="feature-extraction-from-data" class="level1">
-<h1>Feature Extraction from Data</h1>
+<section id="feature-extraction-from-data" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Feature Extraction from Data</h1>
 <ul>
 <li>Images
 <ul>
@@ -407,8 +411,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="challenges" class="level1">
-<h1>Challenges</h1>
+<section id="challenges" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Challenges</h1>
 <ul>
 <li>Structured input/Structured output
 <ul>
@@ -429,8 +433,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="class-imbalance" class="level1">
-<h1>Class Imbalance</h1>
+<section id="class-imbalance" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Class Imbalance</h1>
 <p>Almost all classifiers attempt to reduce global quantities such as the error rate, not taking the data distribution into consideration.</p>
 <p>As a result, examples from the overwhelming class are well classified whereas examples from the minority class tend to be misclassified.</p>
 <ul>
@@ -441,8 +445,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Support Vector Machines (SVMs) SVMs are even less prone to the class imbalance problem than MLPs because they are only concerned with a few support vectors, the data points located close to the boundaries.</li>
 </ul></li>
 </ul>
-<section id="solution" class="level2">
-<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<section id="solution" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="solution"><span class="header-section-number">4.1</span> Solution</h2>
 <ul>
 <li>Collect more data!</li>
 <li>Change your performance metric:
@@ -470,8 +474,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul>
 </section>
 </section>
-<section id="smote" class="level1">
-<h1>SMOTE</h1>
+<section id="smote" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> SMOTE</h1>
 <p>SMOTE = Synthetic Minority Oversampling Technique</p>
 <ul>
 <li>For each minority example <span class="math inline">k</span>, compute nearest minority class examples <span class="math inline">(i,j,l,n,m)</span></li>
@@ -479,8 +483,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Randomly chose an example out of <span class="math inline">5</span> closest points.</li>
 </ul>
 </section>
-<section id="using-large-datasets" class="level1">
-<h1>Using Large Datasets</h1>
+<section id="using-large-datasets" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Using Large Datasets</h1>
 <ul>
 <li>At large data scales, the performance of different algorithms converge such that performance differences virtually disappear.</li>
 <li>Given a large enough data set, the algorithm you’d want to use is the one that is computationally less expensive.</li>
@@ -495,8 +499,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="generalization-error" class="level1">
-<h1>Generalization Error</h1>
+<section id="generalization-error" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Generalization Error</h1>
 <ul>
 <li><p>Components of generalization error</p></li>
 <li><p>Bias: how much the average model over all training sets differ from the true model?</p>
@@ -504,20 +508,38 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Error due to inaccurate assumptions/simplifications made by the model</li>
 </ul></li>
 <li><p>Variance: how much models estimated from different training sets differ from each other</p></li>
-<li><p>MSE in terms of bias and variance<br><br> <span class="math display">\color{blue} \text{MSE}=\color{red} \underbrace{\text{Bias}^2}_{\text{error due to incorrect assumption}} + \color{green} \underbrace{\text{Variance}}_{\text{error due to variance in training}} + \color{purple} \underbrace{\text{Noise}}_{\text{Unavoidable error}} \tag{1}</span> <br><br> Consider True function <span class="math inline">q</span> and Estimator <span class="math inline">f_i = f(X_i)</span> on sample <span class="math inline">X_i</span><br> Bias = <span class="math inline">{\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack -q\right)}^2</span><br> Variance = <span class="math inline">\mathit{\mathbf{E}}\left\lbrack {\left(f-\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2 \right\rbrack</span><br> <span class="math inline">\mathit{\mathbf{E}}\left\lbrack {\left(f-q\right)}^2 \right\rbrack ={\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack -q\right)}^2 +\mathit{\mathbf{E}}\left\lbrack {\left(f-\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2 \right\rbrack</span><br> Proof:<br> <strong>LHS</strong>: <br> <span class="math display">\begin{align*}{}
-\text{LHS} &amp;=\mathit{\mathbf{E}}\left\lbrack {\left(f-q\right)}^2 \right\rbrack \\
-&amp;=\mathit{\mathbf{E}}\left\lbrack f^2 +q^2 -2f\cdot q\right\rbrack \\
-&amp;=\mathit{\mathbf{E}}\left\lbrack f^2 \right\rbrack +q^2 -2\cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack \cdot q
-\end{align*}</span> <strong>RHS</strong>: <span class="math display">\begin{align*}{}
-\text{RHS} &amp;={\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack -q\right)}^2 +\mathit{\mathbf{E}}\left\lbrack {\left(f-\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2 \right\rbrack
-\\
-&amp;={\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2 +q^2 -2\cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack \cdot q+\mathit{\mathbf{E}}\left\lbrack f^2 +{\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2 -2\cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack \cdot f\right\rbrack \\
-&amp;=\cancel{{\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2} +q^2 -2\cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack \cdot q+\mathit{\mathbf{E}}\left\lbrack f^2 \right\rbrack +\cancel{{\left(\mathit{\mathbf{E}}\left\lbrack f\right\rbrack \right)}^2} -\cancel{2\cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack \cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack} \\
-&amp;=\mathit{\mathbf{E}}\left\lbrack f^2 \right\rbrack +q^2 -2\cdot \mathit{\mathbf{E}}\left\lbrack f\right\rbrack \cdot q
-\end{align*}</span> LHS=RHS hence proved</p></li>
+<li><p>MSE in terms of bias and variance<br><br> <span class="math display">\color{blue} \text{MSE}=\color{red} \underbrace{\text{Bias}^2}_{\text{error due to incorrect assumption}} + \color{green} \underbrace{\text{Variance}}_{\text{error due to variance in training}} + \color{purple} \underbrace{\text{Noise}}_{\text{Unavoidable error}} \tag{1}</span> <br><br></p>
+<p>Suppose the ultimate true function is <span class="math inline">f</span>, the one which we ideally want to learn. Our target is <span class="math inline">t</span>. Relation between <span class="math inline">t</span> and <span class="math inline">f</span> is as follows <span class="math display">t=f+\epsilon</span> where <span class="math inline">\epsilon</span> is noise and it’s expected value is considered to be zero i.e.&nbsp;<span class="math inline">\mathbf{E}[\epsilon]=0</span> <br> We consider <span class="math inline">y_i</span> to be predicted output by a Neural Network then MSE is given as <span class="math display">\mathrm{MSE}=\frac{1}{N}\sum_{i=1}^n {\left(t_i -y_i \right)}^2</span> Find expectation of MSE <span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack \mathrm{MSE}\right\rbrack &amp;=\mathit{\mathbf{E}}\left\lbrack \frac{1}{N}\sum_{i=1}^n {\left(t_i -y_i \right)}^2 \right\rbrack \\
+&amp;=\frac{1}{N}\sum_{i=1}^n \mathit{\mathbf{E}}\left\lbrack {\left(t_i -y_i \right)}^2 \right\rbrack
+\end{align*}</span> Now we examine <span class="math inline">\mathit{\mathbf{E}}\left\lbrack {\left(t_i -y_i \right)}^2 \right\rbrack</span> <span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack {\left(t_i -y_i \right)}^2 \right\rbrack &amp;=\mathit{\mathbf{E}}\left\lbrack {\left(\left(t_i -f_i \right)+\left(f_i -y_i \right)\right)}^2 \right\rbrack \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(t_i -f_i \right)}^2 +{\left(f_i -y_i \right)}^2 -2\left(t_i -f_i \right)\left(f_i -y_i \right)\right\rbrack \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(t_i -f_i \right)}^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack {\left(f_i -y_i \right)}^2 \right\rbrack -\mathit{\mathbf{E}}\left\lbrack 2\left(t_i -f_i \right)\left(f_i -y_i \right)\right\rbrack \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(t_i -f_i \right)}^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack {\left(f_i -y_i \right)}^2 \right\rbrack -2\left(\mathit{\mathbf{E}}\left\lbrack t_i f_i \right\rbrack -\mathit{\mathbf{E}}\left\lbrack t_i y_i \right\rbrack -\mathit{\mathbf{E}}\left\lbrack f_i^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack f_i y_i \right\rbrack \right)\\
+&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(t_i -f_i \right)}^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack {\left(f_i -y_i \right)}^2 \right\rbrack -2\left(f_i^2 -\mathit{\mathbf{E}}\left\lbrack f_i y_i \right\rbrack -f_i^2 +\mathit{\mathbf{E}}\left\lbrack f_i y_i \right\rbrack \right)\\
+&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(t_i -f_i \right)}^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack {\left(f_i -y_i \right)}^2 \right\rbrack
+\end{align*}</span> Above we used the fact that</p>
+<ul>
+<li><span class="math inline">\mathit{\mathbf{E}}\left\lbrack t_i f_i \right\rbrack =f_i^2 \;\mathrm{Since}\;f\;\mathrm{is}\;\mathrm{deterministic}\;\mathrm{and}\;\mathit{\mathbf{E}}\left\lbrack t_i \right\rbrack =f_i</span></li>
+<li><span class="math inline">:\mathit{\mathbf{E}}\left\lbrack f_i^2 \right\rbrack =f^2 \;\mathrm{Since}\;f\;\mathrm{is}\;\mathrm{deterministic}</span></li>
+<li><span class="math inline">:\mathit{\mathbf{E}}\left\lbrack t_i y_i \right\rbrack =\mathit{\mathbf{E}}\left\lbrack \left(f_i +\epsilon \right)y_i \right\rbrack =\mathit{\mathbf{E}}\left\lbrack f_i y_i \right\rbrack +\mathit{\mathbf{E}}\left\lbrack \epsilon y_i \right\rbrack =\mathit{\mathbf{E}}\left\lbrack f_i y_i \right\rbrack +0=\mathit{\mathbf{E}}\left\lbrack f_i y_i \right\rbrack</span>, Here <span class="math inline">\mathit{\mathbf{E}}\left\lbrack \epsilon y_i \right\rbrack</span> is zero because the noise in the infinite test set over which we take the expectation is probabilistically independent of the NN prediction</li>
 </ul>
-<section id="bias-variance-tradeoff" class="level2">
-<h2 class="anchored" data-anchor-id="bias-variance-tradeoff">Bias variance tradeoff</h2>
+<p>So we got: <span class="math display">\mathit{\mathbf{E}}\left\lbrack {\left(t_i -y_i \right)}^2 \right\rbrack =\mathit{\mathbf{E}}\left\lbrack {\left(t_i -f_i \right)}^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack {\left(f_i -y_i \right)}^2 \right\rbrack \tag{2}</span> <em>Thus the MSE can be decomposed in expectation into the variance of the noise and the MSE between the true function and the predicted values</em></p>
+<p>We can apply same trick on last term of equation <span class="math inline">(2)</span></p>
+<p><span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack {\left(f_i -y_i \right)}^2 \right\rbrack &amp;=\mathit{\mathbf{E}}\left\lbrack {\left(\left(f_i -\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \right)+\left(\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack -y_i \right)\right)}^2 \right\rbrack \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(f_i -\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \right)}^2 +{\left(\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack -y_i \right)}^2 -2\left(f_i -\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \right)\left(\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack -y_i \right)\right\rbrack \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(f_i -\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \right)}^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack {\left(\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack -y_i \right)}^2 \right\rbrack -\mathit{\mathbf{E}}\left\lbrack 2\left(f_i -\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \right)\left(\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack -y_i \right)\right\rbrack \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(f_i -\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \right)}^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack {\left(\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack -y_i \right)}^2 \right\rbrack -2\left(\mathit{\mathbf{E}}\left\lbrack f_i \times \mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \right\rbrack -\mathit{\mathbf{E}}\left\lbrack f_i y_i \right\rbrack -\mathit{\mathbf{E}}\left\lbrack {\left(\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \right)}^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack \mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \times y_i \right\rbrack \right)\\
+&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(f_i -\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \right)}^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack {\left(\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack -y_i \right)}^2 \right\rbrack -2\left(\mathit{\mathbf{E}}\left\lbrack f_i \right\rbrack \mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack -\mathit{\mathbf{E}}\left\lbrack f_i \right\rbrack \mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \right)}^2 +{\left(\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \right)}^2 \right)\\
+&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(f_i -\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack \right)}^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack {\left(\mathit{\mathbf{E}}\left\lbrack y_i \right\rbrack -y_i \right)}^2 \right\rbrack \\
+\mathit{\mathbf{E}}\left\lbrack {\left(f_i -y_i \right)}^2 \right\rbrack &amp;={\mathrm{bias}}^2 +\mathrm{Var}\left(y_i \right)
+\end{align*}</span></p>
+<p>Now we can write equation <span class="math inline">(2)</span> as <span class="math display">\mathit{\mathbf{E}}\left\lbrack {\left(t_i -y_i \right)}^2 \right\rbrack =\mathrm{Var}\left(\mathrm{Noise}\right)+{\mathrm{bias}}^2 +\mathrm{Var}\left(y_i \right)</span> Hence proved!</p></li>
+</ul>
+<section id="bias-variance-tradeoff" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="bias-variance-tradeoff"><span class="header-section-number">7.1</span> Bias variance tradeoff</h2>
 <p>From equation <span class="math inline">(1)</span> we can see that when MSE is constant and if we try to reduce the variance Bias has to increase and vice versa.</p>
 <ul>
 <li>Models with too few parameters are inaccurate because of a <strong>large bias</strong> bias (not enough flexibility).</li>
@@ -548,8 +570,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="measuring-bias-and-variance" class="level1">
-<h1>Measuring Bias and Variance</h1>
+<section id="measuring-bias-and-variance" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Measuring Bias and Variance</h1>
 <ul>
 <li>Create multiple training set using bootstrap replicates.</li>
 <li>Apply learning algorithm on each replicates to obtain hypothesis.</li>
@@ -563,8 +585,8 @@ Tip
 </ul></li>
 </ul>
 </section>
-<section id="some-inferences" class="level1">
-<h1>Some Inferences</h1>
+<section id="some-inferences" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Some Inferences</h1>
 <ul>
 <li>How to reduce variance of classifier
 <ul>
@@ -580,8 +602,8 @@ Tip
 </ul></li>
 </ul>
 </section>
-<section id="regularizers" class="level1">
-<h1>Regularizers</h1>
+<section id="regularizers" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Regularizers</h1>
 <ul>
 <li>KNN
 <ul>
@@ -610,13 +632,15 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If the wight value is high the model is likely to over fit, so we want weight to be small. Consider a dataset in <span class="math inline">2</span>-D, Hiving large variance across <span class="math inline">y</span>-axis, now consider a model which overfits to these data, to do so <span class="math inline">W</span> has to be larger because for very small change in <span class="math inline">x,\;y</span> will have to change by very high amount (due to such data distribution) which can be achieved only if <span class="math inline">W</span> is large. It is shown in the below pic.</p>
+<ul>
+<li><p>If the wight value is high the model is likely to over fit, so we want weight to be small. Consider a dataset in <span class="math inline">2</span>-D, Hiving large variance across <span class="math inline">y</span>-axis, now consider a model which overfits to these data, to do so <span class="math inline">W</span> has to be larger because for very small change in <span class="math inline">x,\;y</span> will have to change by very high amount (due to such data distribution) which can be achieved only if <span class="math inline">W</span> is large. It is shown in the below pic.</p>
+<p><img src="CS5590_images/mspaint_AEgund0GVg.png" class="img-fluid"></p></li>
+</ul>
 </div>
 </div>
-<p><br> <img src="CS5590_images/mspaint_AEgund0GVg.png" class="img-fluid"><br><br></p>
 </section>
-<section id="model-based-machine-learning" class="level1">
-<h1>Model-based Machine Learning</h1>
+<section id="model-based-machine-learning" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Model-based Machine Learning</h1>
 <ul>
 <li>pick a model</li>
 <li>pick a criteria to optimize (aka objective function)</li>
@@ -627,8 +651,8 @@ Tip
 <li>Also, can give too much weight to any one feature</li>
 </ul></li>
 </ul>
-<section id="regularization-in-model-based-ml" class="level2">
-<h2 class="anchored" data-anchor-id="regularization-in-model-based-ml">Regularization in Model based ML</h2>
+<section id="regularization-in-model-based-ml" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="regularization-in-model-based-ml"><span class="header-section-number">11.1</span> Regularization in Model based ML</h2>
 <ul>
 <li>A regularizer is an additional criteria to the loss function to make sure that we don’t overfit</li>
 <li>It’s called a regularizer since it tries to keep the parameters more normal/regular</li>
@@ -666,10 +690,10 @@ Tip
 </ul>
 </section>
 </section>
-<section id="introduction-to-learning-theory" class="level1">
-<h1>Introduction to Learning Theory</h1>
-<section id="optimality-of-bayes-decision-rule" class="level2">
-<h2 class="anchored" data-anchor-id="optimality-of-bayes-decision-rule">Optimality of Bayes Decision Rule</h2>
+<section id="introduction-to-learning-theory" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Introduction to Learning Theory</h1>
+<section id="optimality-of-bayes-decision-rule" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="optimality-of-bayes-decision-rule"><span class="header-section-number">12.1</span> Optimality of Bayes Decision Rule</h2>
 <ul>
 <li>Let <span class="math inline">X</span> be a random variable over a space <span class="math inline">\Omega</span></li>
 <li>Two category decision problem:<br> <span class="math inline">H_1:X \in \omega_1</span><br> <span class="math inline">H_2:X \in \omega_2</span><br></li>
@@ -725,18 +749,18 @@ p(\text{error}_\text{Bayes})&amp;=p(X\in \Omega_1,\omega_2)+p(X\in \Omega_2,\ome
   \end{align*}</span></p>
 </section>
 </section>
-<section id="towards-formalizing-learning" class="level1">
-<h1>Towards formalizing ‘learning’</h1>
-<section id="the-basic-process-of-learning" class="level2">
-<h2 class="anchored" data-anchor-id="the-basic-process-of-learning">The basic process of learning</h2>
+<section id="towards-formalizing-learning" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Towards formalizing ‘learning’</h1>
+<section id="the-basic-process-of-learning" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="the-basic-process-of-learning"><span class="header-section-number">13.1</span> The basic process of learning</h2>
 <ul>
 <li>Observe a phenomenon</li>
 <li>Construct a model from observations</li>
 <li>Use that model to make decisions/predictions</li>
 </ul>
 </section>
-<section id="a-statistical-machinery-for-learning" class="level2">
-<h2 class="anchored" data-anchor-id="a-statistical-machinery-for-learning">A statistical machinery for learning</h2>
+<section id="a-statistical-machinery-for-learning" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="a-statistical-machinery-for-learning"><span class="header-section-number">13.2</span> A statistical machinery for learning</h2>
 <p>Phenomenon of interest:</p>
 <ul>
 <li>Input space: <span class="math inline">X</span>; Output space: <span class="math inline">Y</span></li>
@@ -750,6 +774,7 @@ p(\text{error}_\text{Bayes})&amp;=p(X\in \Omega_1,\omega_2)+p(X\in \Omega_2,\ome
 <li>Generalization error of <span class="math inline">f</span>: <span class="math display">\mathrm{err}(f):=\mathbb{P}_{(x,y)\sim D}\left[f(x)\ne y\right]</span></li>
 <li>We can say that we have learned a phenomenon if <span class="math display">\mathrm{err}(f_m)-\mathrm{err}(f^*)\le \epsilon \quad f^*:=\argmin_{f \in F}\mathrm{err}(f)</span> for any tolerance level <span class="math inline">\epsilon</span> of our choice.</li>
 </ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
 </section>

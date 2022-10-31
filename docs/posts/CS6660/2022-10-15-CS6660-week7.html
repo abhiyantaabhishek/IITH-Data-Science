@@ -91,6 +91,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="IITH-Data-Science - Probability Theory 5">
+<meta property="og:description" content="Joint, Conditional, Marginal, Discrete Convolution">
+<meta property="og:image" content="CS6660_images/chrome_pPYR2UCfXR.png">
+<meta property="og:site-name" content="IITH-Data-Science">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -326,44 +330,44 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#joint-mass-function" id="toc-joint-mass-function" class="nav-link active" data-scroll-target="#joint-mass-function">Joint mass function</a>
+  <li><a href="#joint-mass-function" id="toc-joint-mass-function" class="nav-link active" data-scroll-target="#joint-mass-function"><span class="toc-section-number">1</span>  Joint mass function</a>
   <ul class="collapse">
-  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition</a></li>
-  <li><a href="#marginal-mass-functions" id="toc-marginal-mass-functions" class="nav-link" data-scroll-target="#marginal-mass-functions">Marginal mass functions</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><span class="toc-section-number">1.1</span>  Definition</a></li>
+  <li><a href="#marginal-mass-functions" id="toc-marginal-mass-functions" class="nav-link" data-scroll-target="#marginal-mass-functions"><span class="toc-section-number">1.2</span>  Marginal mass functions</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="toc-section-number">1.3</span>  Example</a></li>
   </ul></li>
-  <li><a href="#conditional-mass-function" id="toc-conditional-mass-function" class="nav-link" data-scroll-target="#conditional-mass-function">Conditional mass function</a>
+  <li><a href="#conditional-mass-function" id="toc-conditional-mass-function" class="nav-link" data-scroll-target="#conditional-mass-function"><span class="toc-section-number">2</span>  Conditional mass function</a>
   <ul class="collapse">
-  <li><a href="#definition-1" id="toc-definition-1" class="nav-link" data-scroll-target="#definition-1">Definition</a>
+  <li><a href="#definition-1" id="toc-definition-1" class="nav-link" data-scroll-target="#definition-1"><span class="toc-section-number">2.1</span>  Definition</a>
   <ul class="collapse">
-  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example</a></li>
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1"><span class="toc-section-number">2.1.1</span>  Example</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#independent-random-variable" id="toc-independent-random-variable" class="nav-link" data-scroll-target="#independent-random-variable">Independent Random Variable</a>
+  <li><a href="#independent-random-variable" id="toc-independent-random-variable" class="nav-link" data-scroll-target="#independent-random-variable"><span class="toc-section-number">3</span>  Independent Random Variable</a>
   <ul class="collapse">
-  <li><a href="#definition-2" id="toc-definition-2" class="nav-link" data-scroll-target="#definition-2">Definition</a></li>
-  <li><a href="#discrete-convolution" id="toc-discrete-convolution" class="nav-link" data-scroll-target="#discrete-convolution">Discrete Convolution</a></li>
-  <li><a href="#continuous-convolution" id="toc-continuous-convolution" class="nav-link" data-scroll-target="#continuous-convolution">Continuous convolution</a></li>
-  <li><a href="#gamma-distribution" id="toc-gamma-distribution" class="nav-link" data-scroll-target="#gamma-distribution">Gamma distribution</a></li>
+  <li><a href="#definition-2" id="toc-definition-2" class="nav-link" data-scroll-target="#definition-2"><span class="toc-section-number">3.1</span>  Definition</a></li>
+  <li><a href="#discrete-convolution" id="toc-discrete-convolution" class="nav-link" data-scroll-target="#discrete-convolution"><span class="toc-section-number">3.2</span>  Discrete Convolution</a></li>
+  <li><a href="#continuous-convolution" id="toc-continuous-convolution" class="nav-link" data-scroll-target="#continuous-convolution"><span class="toc-section-number">3.3</span>  Continuous convolution</a></li>
+  <li><a href="#gamma-distribution" id="toc-gamma-distribution" class="nav-link" data-scroll-target="#gamma-distribution"><span class="toc-section-number">3.4</span>  Gamma distribution</a></li>
   </ul></li>
-  <li><a href="#expectation-covariance" id="toc-expectation-covariance" class="nav-link" data-scroll-target="#expectation-covariance">Expectation, covariance</a>
+  <li><a href="#expectation-covariance" id="toc-expectation-covariance" class="nav-link" data-scroll-target="#expectation-covariance"><span class="toc-section-number">4</span>  Expectation, covariance</a>
   <ul class="collapse">
-  <li><a href="#expectation" id="toc-expectation" class="nav-link" data-scroll-target="#expectation">Expectation</a>
+  <li><a href="#expectation" id="toc-expectation" class="nav-link" data-scroll-target="#expectation"><span class="toc-section-number">4.1</span>  Expectation</a>
   <ul class="collapse">
-  <li><a href="#properties-of-expectation" id="toc-properties-of-expectation" class="nav-link" data-scroll-target="#properties-of-expectation">Properties of Expectation</a></li>
+  <li><a href="#properties-of-expectation" id="toc-properties-of-expectation" class="nav-link" data-scroll-target="#properties-of-expectation"><span class="toc-section-number">4.1.1</span>  Properties of Expectation</a></li>
   </ul></li>
-  <li><a href="#covariance" id="toc-covariance" class="nav-link" data-scroll-target="#covariance">Covariance</a></li>
-  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance">Variance</a></li>
-  <li><a href="#cauchy-schwarz-inequality" id="toc-cauchy-schwarz-inequality" class="nav-link" data-scroll-target="#cauchy-schwarz-inequality">Cauchy-Schwarz inequality</a></li>
+  <li><a href="#covariance" id="toc-covariance" class="nav-link" data-scroll-target="#covariance"><span class="toc-section-number">4.2</span>  Covariance</a></li>
+  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance"><span class="toc-section-number">4.3</span>  Variance</a></li>
+  <li><a href="#cauchy-schwarz-inequality" id="toc-cauchy-schwarz-inequality" class="nav-link" data-scroll-target="#cauchy-schwarz-inequality"><span class="toc-section-number">4.4</span>  Cauchy-Schwarz inequality</a></li>
   </ul></li>
-  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation">Correlation</a></li>
-  <li><a href="#conditional-expectation" id="toc-conditional-expectation" class="nav-link" data-scroll-target="#conditional-expectation">Conditional expectation</a></li>
-  <li><a href="#tower-rule" id="toc-tower-rule" class="nav-link" data-scroll-target="#tower-rule">Tower rule</a></li>
-  <li><a href="#todo" id="toc-todo" class="nav-link" data-scroll-target="#todo">TODO</a></li>
-  <li><a href="#concentration-bounds" id="toc-concentration-bounds" class="nav-link" data-scroll-target="#concentration-bounds">Concentration Bounds</a>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="toc-section-number">5</span>  Correlation</a></li>
+  <li><a href="#conditional-expectation" id="toc-conditional-expectation" class="nav-link" data-scroll-target="#conditional-expectation"><span class="toc-section-number">6</span>  Conditional expectation</a></li>
+  <li><a href="#tower-rule" id="toc-tower-rule" class="nav-link" data-scroll-target="#tower-rule"><span class="toc-section-number">7</span>  Tower rule</a></li>
+  <li><a href="#todo" id="toc-todo" class="nav-link" data-scroll-target="#todo"><span class="toc-section-number">8</span>  TODO</a></li>
+  <li><a href="#concentration-bounds" id="toc-concentration-bounds" class="nav-link" data-scroll-target="#concentration-bounds"><span class="toc-section-number">9</span>  Concentration Bounds</a>
   <ul class="collapse">
-  <li><a href="#markovs-inequality" id="toc-markovs-inequality" class="nav-link" data-scroll-target="#markovs-inequality">Markov’s inequality</a></li>
-  <li><a href="#chebyshevs-inequality" id="toc-chebyshevs-inequality" class="nav-link" data-scroll-target="#chebyshevs-inequality">Chebyshev’s inequality</a></li>
+  <li><a href="#markovs-inequality" id="toc-markovs-inequality" class="nav-link" data-scroll-target="#markovs-inequality"><span class="toc-section-number">9.1</span>  Markov’s inequality</a></li>
+  <li><a href="#chebyshevs-inequality" id="toc-chebyshevs-inequality" class="nav-link" data-scroll-target="#chebyshevs-inequality"><span class="toc-section-number">9.2</span>  Chebyshev’s inequality</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -374,8 +378,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="joint-mass-function" class="level1">
-<h1>Joint mass function</h1>
+<section id="joint-mass-function" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Joint mass function</h1>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -389,16 +393,16 @@ Note
 <p>Most examples will involve two random variables, but everything can be generalized for more of them.</p>
 </div>
 </div>
-<section id="definition" class="level2">
-<h2 class="anchored" data-anchor-id="definition">Definition</h2>
+<section id="definition" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="definition"><span class="header-section-number">1.1</span> Definition</h2>
 <p>Suppose two discrete random variables <span class="math inline">X</span> and <span class="math inline">Y</span> are defined on a common probability space, and can take on values <span class="math inline">x_1, x_2, \dots</span> and <span class="math inline">y_1, y_2, \dots,</span> respectively. The joint probability mass function of them is defined as <br> <span class="math display">p(x_i , y_j ) = P{X = x_i , Y = y_j}, i = 1, 2, \dots , j = 1, 2, \dots .</span> This function contains all information about the joint distribution of <span class="math inline">X</span> and <span class="math inline">Y</span>.<br> Any joint mass function satisfies : <span class="math display">p(x,y)\ge 0, \; \forall x,y \in\mathbb{R}</span> <span class="math display">\sum_{i,j}p(x_i,j_j)=1</span> Any function with above properties is a joint probability mass function.</p>
 </section>
-<section id="marginal-mass-functions" class="level2">
-<h2 class="anchored" data-anchor-id="marginal-mass-functions">Marginal mass functions</h2>
+<section id="marginal-mass-functions" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="marginal-mass-functions"><span class="header-section-number">1.2</span> Marginal mass functions</h2>
 <p>Marginal mass functions are <br> <span class="math display">p_X(x_i):=P\{X=x_i\}</span> and <span class="math display">p_Y(y_i):=P\{Y=y_i\}</span> Also <span class="math display">p_X(x_i)=\sum_jp(x_i,y_j)</span> and <span class="math display">p_Y(y_j)=\sum_ip(x_i,y_j)</span></p>
 </section>
-<section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
+<section id="example" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="example"><span class="header-section-number">1.3</span> Example</h2>
 <p>An urn has <span class="math inline">3</span> red, <span class="math inline">4</span> white, <span class="math inline">5</span> black balls. Drawing <span class="math inline">3</span> at once, let <span class="math inline">X</span> be the number of red, <span class="math inline">Y</span> the number of white balls drawn. The joint mass function is:</p>
 <table class="table">
 <caption>Table shows Joint probability distribution.</caption>
@@ -465,13 +469,13 @@ Note
 </table>
 </section>
 </section>
-<section id="conditional-mass-function" class="level1">
-<h1>Conditional mass function</h1>
-<section id="definition-1" class="level2">
-<h2 class="anchored" data-anchor-id="definition-1">Definition</h2>
+<section id="conditional-mass-function" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Conditional mass function</h1>
+<section id="definition-1" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="definition-1"><span class="header-section-number">2.1</span> Definition</h2>
 <p>suppose <span class="math inline">p_Y(y_j)&gt;0</span>. The conditional mass function of <span class="math inline">X</span> given <span class="math inline">Y=y_j</span> is defined by <span class="math display">p_{X \mid Y}(x \mid y_i):= P\{X=x \mid Y=y_j\}=\frac{\overbrace{p(x,y_i)}^{\text{joint}} }{\underbrace{p_Y(y_i)}_{\text{marginal}} }</span> As the conditional probability was a proper probability, this is a proper mass function: <span class="math inline">\forall x,y_i</span> <span class="math display">p_{X \mid Y}(x \mid y_j) \ge 0, \qquad \sum_i p_{X|Y}(x_i \mid y_j)=1</span></p>
-<section id="example-1" class="level3">
-<h3 class="anchored" data-anchor-id="example-1">Example</h3>
+<section id="example-1" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="example-1"><span class="header-section-number">2.1.1</span> Example</h3>
 <p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> have joint mass function</p>
 <table class="table">
 <caption>joint distribution</caption>
@@ -499,10 +503,10 @@ Note
 </section>
 </section>
 </section>
-<section id="independent-random-variable" class="level1">
-<h1>Independent Random Variable</h1>
-<section id="definition-2" class="level2">
-<h2 class="anchored" data-anchor-id="definition-2">Definition</h2>
+<section id="independent-random-variable" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Independent Random Variable</h1>
+<section id="definition-2" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="definition-2"><span class="header-section-number">3.1</span> Definition</h2>
 <p>Random variables <span class="math inline">X</span> and <span class="math inline">Y</span> are independent, if events formulated with them are so, That is, if for every <span class="math inline">A, B \sube \mathbb{R}</span> <span class="math display">P\{X\in A,Y\in B\}=P\{X\in A\} \cdot P \{ Y \in B\} </span></p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -519,8 +523,8 @@ Tip
 </div>
 <p>Two random variables <span class="math inline">X</span> and <span class="math inline">Y</span> are independent if and only if their joint mass function factorizes into the product of the marginals : <span class="math display">p(x_i,y_i)=p_X(x_i)\cdot p_Y(y_i), \qquad \forall x_i,y_i</span></p>
 </section>
-<section id="discrete-convolution" class="level2">
-<h2 class="anchored" data-anchor-id="discrete-convolution">Discrete Convolution</h2>
+<section id="discrete-convolution" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="discrete-convolution"><span class="header-section-number">3.2</span> Discrete Convolution</h2>
 <p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be independent, integer valued random variables with respective mass functions <span class="math inline">p_X</span> and <span class="math inline">p_Y</span> . Then <span class="math display">p_{X+Y}(k) = \sum_{i=-\infty}^\infty p_X(k − i) \cdot p_Y (i), \qquad (\forall k \in \mathbb{Z})</span> This formula is called discrete convolution of the mass function <span class="math inline">p_X</span> and <span class="math inline">p_Y</span></p>
 <ul>
 <li>Proof <span class="math display">\begin{align*}
@@ -561,12 +565,12 @@ p_{X+Y}(K)&amp;=\sum_{i=-\infty}^\infty P_X(k-i)\cdot p_Y(i) \\
 To prove above equation we used the fact that <span class="math inline">\sum_{i=0}^k \binom{n}{k-i} \binom{m}{i}=\binom{m+n}{k}</span></li>
 </ul>
 </section>
-<section id="continuous-convolution" class="level2">
-<h2 class="anchored" data-anchor-id="continuous-convolution">Continuous convolution</h2>
+<section id="continuous-convolution" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="continuous-convolution"><span class="header-section-number">3.3</span> Continuous convolution</h2>
 <p>Suppose <span class="math inline">X</span> and <span class="math inline">Y</span> are independent continuous random variables with respective densities <span class="math inline">f_X</span> and <span class="math inline">f_Y</span>. Then their sum is a continuous random variable with density <span class="math display">f_{X+Y}(a)=\int_{- \infty} ^ \infty f_X(a-y)\cdot f_Y(y)dy, \qquad (\forall a \in \mathbb{R})</span></p>
 </section>
-<section id="gamma-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="gamma-distribution">Gamma distribution</h2>
+<section id="gamma-distribution" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="gamma-distribution"><span class="header-section-number">3.4</span> Gamma distribution</h2>
 <p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be i.i.d. <span class="math inline">\mathrm{Exp}(\lambda),</span> and the density of their sum <span class="math inline">(a\ge 0)</span></p>
 <p><span class="math display">\begin{align*}
 f_{X+Y}(a)&amp;=\int_{-\infty}^\infty f_X(a-y) \cdot f_Y(y)dy \\
@@ -604,13 +608,13 @@ f_{X+Y}(a)&amp;=\int_{-\infty}^\infty f_X(a-y) \cdot f_Y(y)dy \\
 <p><span class="math display">EX= \frac{\alpha}{\lambda}, \qquad \mathrm{Var}X=\frac{\alpha}{\lambda ^2}</span></p>
 </section>
 </section>
-<section id="expectation-covariance" class="level1">
-<h1>Expectation, covariance</h1>
-<section id="expectation" class="level2">
-<h2 class="anchored" data-anchor-id="expectation">Expectation</h2>
+<section id="expectation-covariance" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Expectation, covariance</h1>
+<section id="expectation" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="expectation"><span class="header-section-number">4.1</span> Expectation</h2>
 <p>Expectation is defined as <span class="math display">EX = \sum_i X_i\cdot p(X_i), \qquad EX=\int_{-\infty}^\infty Xf(X)dX</span></p>
-<section id="properties-of-expectation" class="level3">
-<h3 class="anchored" data-anchor-id="properties-of-expectation">Properties of Expectation</h3>
+<section id="properties-of-expectation" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="properties-of-expectation"><span class="header-section-number">4.1.1</span> Properties of Expectation</h3>
 <ul>
 <li>Simple monotonicity property : If <span class="math inline">a \le X \le b</span> then, <span class="math inline">a \le EX \le b</span> <br> Proof:<br> <span class="math display">\begin{align*}
 &amp; a =a\cdot 1 =a \sum_i p(X_i) \\
@@ -643,8 +647,8 @@ E\bar{X}&amp;=E\left(\frac{1}{n}\sum_{i=1}^nX_i\right)\\
 </ul>
 </section>
 </section>
-<section id="covariance" class="level2">
-<h2 class="anchored" data-anchor-id="covariance">Covariance</h2>
+<section id="covariance" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="covariance"><span class="header-section-number">4.2</span> Covariance</h2>
 <p><strong>Independence</strong><br> Let <span class="math inline">X</span> and <span class="math inline">Y</span> be independent random variables, and <span class="math inline">g,h</span> be functions. Then <span class="math display">\mathbf{E}(g(X)\cdot h(Y))= \mathbf{E}g(X)\cdot \mathbf{E}h(Y) \tag{2}</span> proof: <br> <span class="math display">\begin{align*}
 \mathbf{E}(g(X)\cdot h(Y))&amp;=\int \int g(X)h(Y)p_{XY}(X,Y)dXdY \\
 &amp;=\int \int g(X)h(Y)p_{X}(X)p_{Y}(Y)dXdY \\
@@ -683,8 +687,8 @@ Tip
 </ul></li>
 </ul>
 </section>
-<section id="variance" class="level2">
-<h2 class="anchored" data-anchor-id="variance">Variance</h2>
+<section id="variance" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="variance"><span class="header-section-number">4.3</span> Variance</h2>
 <p>Let <span class="math inline">X_1, X_2, \dots , X_n</span> be random variables. Then <span class="math display">\mathbf{Var}\sum_{i=1}^n X_i =\sum_{i=1}^n \mathbf{Var}\left(X_i \right)+2\sum_{1\le i\le j\le n} \mathbf{Cov}\left(X_i ,X_j \right)</span> In particular, variances of <strong>independent</strong> random variables are additive. <br><br> Proof: <span class="math display">\begin{align*}{}
 \mathbf{Var}\sum_{i=1}^n X_i &amp;=\mathbf{Cov}\left(\sum_{i=1}^n X_i ,\sum_{j=1}^n X_j \right)\\
 &amp;=\sum_{i=1,j=1}^n \mathbf{Cov}\left(X_i ,X_j \right)\\
@@ -750,8 +754,8 @@ Putting it all back in equation <span class="math inline">(4)</span> we get <spa
 \end{align*}</span> Here <span class="math inline">\overset{d}{=}</span> means “equal in distribution”.</p></li>
 </ul>
 </section>
-<section id="cauchy-schwarz-inequality" class="level2">
-<h2 class="anchored" data-anchor-id="cauchy-schwarz-inequality">Cauchy-Schwarz inequality</h2>
+<section id="cauchy-schwarz-inequality" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="cauchy-schwarz-inequality"><span class="header-section-number">4.4</span> Cauchy-Schwarz inequality</h2>
 <p>For every <span class="math inline">X</span> and <span class="math inline">Y</span> <span class="math display">|\mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack |\le \sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack }\cdot \sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }</span> with equality iff <span class="math inline">Y=\text{Const}. \cdot X \text{a.s.}</span></p>
 <p>Proof:</p>
 <p><span class="math display">\begin{align*}{}
@@ -789,8 +793,8 @@ Putting it all back in equation <span class="math inline">(4)</span> we get <spa
 </ul>
 </section>
 </section>
-<section id="correlation" class="level1">
-<h1>Correlation</h1>
+<section id="correlation" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Correlation</h1>
 <p>The correlation coefficient of random variables <span class="math inline">X</span> and <span class="math inline">Y</span> is <span class="math display">\rho \left(X,Y\right):=\frac{\mathbf{Cov}\left(X,Y\right)}{\mathrm{SD}\;X\cdot \mathrm{SD}\;Y}</span></p>
 <ul>
 <li><span class="math inline">-1 \le \rho(X,Y) \le 1</span><br> Proof : <span class="math display">\begin{align*}{}
@@ -801,8 +805,8 @@ Putting it all back in equation <span class="math inline">(4)</span> we get <spa
 \end{align*}</span> and the “equality iff” part of Cauchy-Schwarz implies that we have equality iff <span class="math inline">Y = aX</span>, that is, <span class="math inline">Y = aX +b</span> for some fixed <span class="math inline">a, b</span>.</li>
 </ul>
 </section>
-<section id="conditional-expectation" class="level1">
-<h1>Conditional expectation</h1>
+<section id="conditional-expectation" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Conditional expectation</h1>
 <p>The conditional expectation of <span class="math inline">X</span>, given <span class="math inline">Y = y_j</span> is <span class="math display">\mathbf{E}(X \mid Y=y_j):=\sum_i X_i \times \underbrace{ p_{X\mid Y}(x_i\mid y_j)}_{\text{conditional mass function}}</span></p>
 <ul>
 <li>Example :<br> Let <span class="math inline">X</span> and <span class="math inline">Y</span> be independent <span class="math inline">\text{Poi}(\lambda)</span> and <span class="math inline">\text{Poi}(\mu)</span> variables, and <span class="math inline">Z = X + Y</span>. Find the conditional expectation <span class="math inline">\mathbf {E}(X \mid Z = k)</span>.<br> Conditional mass function for <span class="math inline">0\le i\le k</span> is : <br> <span class="math display">p_{X\mid Z} \left(i\mid k\right)=\frac{p\left(i,k\right)}{p_Z \left(k\right)}</span> where <span class="math inline">p(i, k)</span> is the joint mass function of <span class="math inline">X</span> and <span class="math inline">Z</span> at <span class="math inline">(i, k)</span>.<br> Now, <span class="math display">\begin{align*}{}
@@ -823,8 +827,8 @@ p_{X|Z} \left(i|k\right)&amp;=\frac{p\left(i,k\right)}{p_Z \left(k\right)}\\
 \end{align*}</span> where <span class="math inline">p=\left(\frac{\lambda }{\lambda +\mu }\right)</span><br> We conclude <span class="math inline">(X \mid Z = k) \sim \text{Binom}(k, p),</span><br> Therefore <span class="math display">\mathbf {E}(X \mid Z = k)=kp=k\cdot \frac{\lambda }{\lambda +\mu }</span> We abbreviate above expression as <span class="math display">\mathbf {E}(X \mid Z )=Z\cdot \frac{\lambda }{\lambda +\mu }</span> Notice <span class="math inline">\mathbf {E}(X \mid Z )</span> dependts only on <span class="math inline">Z</span> not on <span class="math inline">X</span></li>
 </ul>
 </section>
-<section id="tower-rule" class="level1">
-<h1>Tower rule</h1>
+<section id="tower-rule" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Tower rule</h1>
 <p><span class="math inline">\mathit{\mathbf{E}}\left\lbrack \mathit{\mathbf{E}}\left\lbrack X\mid Y\right\rbrack \right\rbrack =\mathit{\mathbf{E}}\left\lbrack X\right\rbrack</span><br> Intution on <a href="https://math.stackexchange.com/a/41543/738892">stack overflow.</a><br> Proof:</p>
 <p><span class="math display">\begin{align*}{}
 \mathit{\mathbf{E}}\left\lbrack \mathit{\mathbf{E}}\left\lbrack X\mid Y\right\rbrack \right\rbrack &amp;=\sum_j E\left\lbrack X\mid Y=y_j \right\rbrack {\cdot p}_Y \left(y_j \right)\\
@@ -836,8 +840,8 @@ p_{X|Z} \left(i|k\right)&amp;=\frac{p\left(i,k\right)}{p_Z \left(k\right)}\\
 &amp;=\mathit{\mathbf{E}}\left\lbrack X\right\rbrack
 \end{align*}</span></p>
 </section>
-<section id="todo" class="level1">
-<h1>TODO</h1>
+<section id="todo" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> TODO</h1>
 <p>Below topics are skipped, complete it later:</p>
 <ul>
 <li>Conditional variance</li>
@@ -846,10 +850,10 @@ p_{X|Z} \left(i|k\right)&amp;=\frac{p\left(i,k\right)}{p_Z \left(k\right)}\\
 <li>Independent sums</li>
 </ul>
 </section>
-<section id="concentration-bounds" class="level1">
-<h1>Concentration Bounds</h1>
-<section id="markovs-inequality" class="level2">
-<h2 class="anchored" data-anchor-id="markovs-inequality">Markov’s inequality</h2>
+<section id="concentration-bounds" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Concentration Bounds</h1>
+<section id="markovs-inequality" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="markovs-inequality"><span class="header-section-number">9.1</span> Markov’s inequality</h2>
 <p>Let <span class="math inline">X</span> be a <strong>non-negative</strong> random variable. Then for all <span class="math inline">a &gt; 0</span> reals, <span class="math display">\mathit{\mathbf{P}}\left\lbrace X\ge a\right\rbrace \le \frac{\mathit{\mathbf{E}}\left\lbrack X\right\rbrack }{a}</span> Of course this inequality is useless for $a ≤ X$.<br> Proof: <br> Let indicator random variable <span class="math inline">I</span> be defined as <span class="math display">I = \begin{cases}
    1 &amp;\text{if } X\ge a \\
    0 &amp;\text{if } X&lt;a
@@ -866,8 +870,8 @@ p_{X|Z} \left(i|k\right)&amp;=\frac{p\left(i,k\right)}{p_Z \left(k\right)}\\
 <li>Example <br> A coin is flipped <span class="math inline">n</span> times what is the probability of getting <span class="math inline">90\%</span> heads. Using Markov’s inequality <span class="math display">P\left\lbrace X\ge 0\ldotp 9\right\rbrace \le \frac{\mathit{\mathbf{E}}\left\lbrack X\right\rbrack }{a}=\frac{\frac{n}{2}}{0\ldotp 9n}=\frac{5}{9}</span></li>
 </ul>
 </section>
-<section id="chebyshevs-inequality" class="level2">
-<h2 class="anchored" data-anchor-id="chebyshevs-inequality">Chebyshev’s inequality</h2>
+<section id="chebyshevs-inequality" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="chebyshevs-inequality"><span class="header-section-number">9.2</span> Chebyshev’s inequality</h2>
 <p>Let <span class="math inline">X</span> be a random variable with mean <span class="math inline">\mu</span> and variance <span class="math inline">\sigma^2</span> both finite. Then for all <span class="math inline">b &gt; 0</span> reals, <span class="math display">\mathit{\mathbf{P}}\left\lbrace |X-\mu |\ge b\right\rbrace \le \frac{\mathbf{Var}\left(X\right)}{b^2 }</span> Of course this inequality is useless for <span class="math inline">b ≤ \mathbf{SD}X</span>.<br> Proof:<br> Apply Markov’s inequality on the random variable <span class="math inline">(X − \mu)^2 \ge 0</span></p>
 <p><span class="math display">\begin{align*}{}
 \mathit{\mathbf{P}}\left\lbrace |X-\mu |\ge b\right\rbrace &amp;=\mathit{\mathbf{P}}\left\lbrace {\left(X-\mu \right)}^2 \ge b^2 \right\rbrace \\
@@ -886,6 +890,7 @@ p_{X|Z} \left(i|k\right)&amp;=\frac{p\left(i,k\right)}{p_Z \left(k\right)}\\
 &amp;=\frac{\frac{1}{4}n}{0\ldotp 16n^2 }=\frac{25}{16n}
 \end{align*}</span> So <span class="math display">|X|\ge0.9=\frac{25}{16n}</span> We can see that Chebyshev’s inequality provides better bound than Markov’s inequality and the bound becomes better as <span class="math inline">n</span> increases.</p></li>
 </ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Subruk, IIT Hyderabad }}}}</span></p>
 
 
 </section>

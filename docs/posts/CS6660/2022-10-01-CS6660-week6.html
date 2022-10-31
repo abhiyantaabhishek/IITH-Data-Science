@@ -91,6 +91,9 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="IITH-Data-Science - Linear Algebra 3">
+<meta property="og:description" content="Independence, Basis, Space">
+<meta property="og:site-name" content="IITH-Data-Science">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -326,14 +329,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#linear-independence" id="toc-linear-independence" class="nav-link active" data-scroll-target="#linear-independence">Linear Independence</a></li>
-  <li><a href="#generating-set-and-basis" id="toc-generating-set-and-basis" class="nav-link" data-scroll-target="#generating-set-and-basis">Generating Set and Basis</a></li>
-  <li><a href="#basis-and-dimension" id="toc-basis-and-dimension" class="nav-link" data-scroll-target="#basis-and-dimension">Basis and Dimension</a>
+  <li><a href="#linear-independence" id="toc-linear-independence" class="nav-link active" data-scroll-target="#linear-independence"><span class="toc-section-number">1</span>  Linear Independence</a></li>
+  <li><a href="#generating-set-and-basis" id="toc-generating-set-and-basis" class="nav-link" data-scroll-target="#generating-set-and-basis"><span class="toc-section-number">2</span>  Generating Set and Basis</a></li>
+  <li><a href="#basis-and-dimension" id="toc-basis-and-dimension" class="nav-link" data-scroll-target="#basis-and-dimension"><span class="toc-section-number">3</span>  Basis and Dimension</a>
   <ul class="collapse">
-  <li><a href="#how-to-find-basis" id="toc-how-to-find-basis" class="nav-link" data-scroll-target="#how-to-find-basis">How to find Basis</a></li>
+  <li><a href="#how-to-find-basis" id="toc-how-to-find-basis" class="nav-link" data-scroll-target="#how-to-find-basis"><span class="toc-section-number">3.1</span>  How to find Basis</a></li>
   </ul></li>
-  <li><a href="#null-space-row-space-column-space" id="toc-null-space-row-space-column-space" class="nav-link" data-scroll-target="#null-space-row-space-column-space">Null space, Row Space, Column Space</a></li>
-  <li><a href="#rank" id="toc-rank" class="nav-link" data-scroll-target="#rank">Rank</a></li>
+  <li><a href="#null-space-row-space-column-space" id="toc-null-space-row-space-column-space" class="nav-link" data-scroll-target="#null-space-row-space-column-space"><span class="toc-section-number">4</span>  Null space, Row Space, Column Space</a></li>
+  <li><a href="#rank" id="toc-rank" class="nav-link" data-scroll-target="#rank"><span class="toc-section-number">5</span>  Rank</a></li>
   </ul>
 </nav>
     </div>
@@ -343,8 +346,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="linear-independence" class="level1">
-<h1>Linear Independence</h1>
+<section id="linear-independence" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Linear Independence</h1>
 <ul>
 <li><p>How to find if vectors are linearly independent</p>
 <ul>
@@ -358,8 +361,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><p>Example <br> consider a set of linearly independent vectors <span class="math inline">b_1,b_2,b_3,b_4 \in \mathbb{R}^n</span><br> <span class="math inline">\begin{array}{l l l l l l}  x_1 &amp; = &amp; +b_1 &amp; -2b_2 &amp; + b_3 &amp; -b_4 \\  x_2 &amp; = &amp; -4b_1 &amp; -2b_2 &amp; &amp; +4b_4 \\  x_3 &amp; = &amp; +2b_1 &amp; +3b_2 &amp; - b_3 &amp; -3b_4 \\  x_4 &amp; = &amp; +17b_1 &amp;-102b_2 &amp; + 11b_3 &amp;+b_4 \\  \end{array}</span><br> Are vectors <span class="math inline">x_1, \dots , x_4 \in \mathbb{R}^n</span> linearly independent? <br><br> As the matrix <span class="math inline">B</span> has all independent vectors, <span class="math inline">x_1, \dots , x_4</span> will be independent if the vectors formed by coefficients of equation are independent, so we create the coefficient matrix <span class="math inline">A</span> and perform the gaussian elimination, if we find no non-pivot column we can say <span class="math inline">x_1, \dots , x_4</span> are independent.<br><br> <span class="math inline">\left\{ \left[ \begin{array}{r}1\\-2\\1\\-1\end{array}\right],  \left[ \begin{array}{r}4\\-2\\0\\4\end{array}\right],  \left[ \begin{array}{r}2\\3\\-1\\-3\end{array}\right],  \left[ \begin{array}{r}17\\-10\\11\\1\end{array}\right] \right\}</span><br><br> <span class="math inline">A = \left[ \begin{array}{r r r r }  1 &amp; 4 &amp; 2 &amp; 17 \\  -2 &amp; -2 &amp; 3 &amp; -10 \\  1 &amp; 0 &amp; -1 &amp; 11 \\  -1 &amp; 4 &amp; -3 &amp; 1 \end{array}\right]</span><br><br> After performing gaussian elimination we get row echelon form <br><br> <span class="math inline">A = \left[ \begin{array}{r r r r }  1 &amp; 0 &amp; 0 &amp; -7 \\  0 &amp; 1 &amp; 0 &amp; -15 \\  0 &amp; 0 &amp; 1 &amp; -18 \\  0 &amp; 0 &amp; 0 &amp; 0 \end{array}\right]</span><br><br> Here we got last column as non pivot column, hence we can say that <span class="math inline">x_1, \dots , x_4</span> are not linearly independent.</p></li>
 </ul>
 </section>
-<section id="generating-set-and-basis" class="level1">
-<h1>Generating Set and Basis</h1>
+<section id="generating-set-and-basis" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Generating Set and Basis</h1>
 <ul>
 <li>Definition (Generating Set and Span): Consider a vector space <span class="math inline">V = (V,+,\cdot )</span> and a set of vectors <span class="math inline">A =\{ x_1, \dots , x_k\}</span>, If every vector <span class="math inline">v \in V</span> can be expressed as a linear combination of <span class="math inline">x_1, \dots , x_k,</span> <span class="math inline">A</span> is called a <strong>generating set</strong> of <span class="math inline">V</span> . The set of all linear combinations of vectors in <span class="math inline">A</span> is called the span of <span class="math inline">A</span>. If <span class="math inline">A</span> spans the vector space <span class="math inline">V,</span> we write <span class="math inline">V = \text{span}[A]</span> or <span class="math inline">V = \text{span}[ x_1, \dots , x_k]</span></li>
 <li>Definition (Basis): Consider a vector space <span class="math inline">V = (V,+,\cdot )</span> and <span class="math inline">A \subseteq V</span>. A generating set <span class="math inline">A</span> of <span class="math inline">V</span> is called minimal if there exists no smaller set <span class="math inline">A \subsetneq A \subseteq V</span> that spans <span class="math inline">V</span>. Every linearly independent generating set of <span class="math inline">V</span> is minimal and is called a basis of <span class="math inline">V</span>.</li>
@@ -374,8 +377,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Every vector space <span class="math inline">V</span> possesses a basis <span class="math inline">B</span>. There can be many bases of a vector space <span class="math inline">V</span>, i.e.&nbsp;there is no unique basis.</li>
 </ul>
 </section>
-<section id="basis-and-dimension" class="level1">
-<h1>Basis and Dimension</h1>
+<section id="basis-and-dimension" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Basis and Dimension</h1>
 <ul>
 <li>Any vector space <span class="math inline">V</span> has a basis.</li>
 <li>All bases for <span class="math inline">V</span> are of the same cardinality.</li>
@@ -384,8 +387,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Every basis of the vector space <span class="math inline">\mathbb{R}^n</span> consists of <span class="math inline">n</span> vectors.</li>
 <li>The dimension of a vector space <span class="math inline">V</span>, denoted <span class="math inline">\text{dim}V</span>, is the cardinality of its bases.</li>
 </ul>
-<section id="how-to-find-basis" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-find-basis">How to find Basis</h2>
+<section id="how-to-find-basis" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="how-to-find-basis"><span class="header-section-number">3.1</span> How to find Basis</h2>
 <ul>
 <li>A basis of a subspace <span class="math inline">U = \text{span}[x_1, \dots , x_m] \subseteq \mathbb{R}^n</span> can be found by executing the following steps:
 <ul>
@@ -397,8 +400,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul>
 </section>
 </section>
-<section id="null-space-row-space-column-space" class="level1">
-<h1>Null space, Row Space, Column Space</h1>
+<section id="null-space-row-space-column-space" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Null space, Row Space, Column Space</h1>
 <ul>
 <li>Let <span class="math inline">A</span> be an <span class="math inline">m \times n</span> matrix.
 <ul>
@@ -411,8 +414,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="rank" class="level1">
-<h1>Rank</h1>
+<section id="rank" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Rank</h1>
 <ul>
 <li>Th rank of a matrix is size of the largest subset of columns of <span class="math inline">A</span> that constitute linearly independent set.</li>
 <li>Often referred to as simply the number of linearly independent columns of <span class="math inline">A</span></li>
@@ -422,6 +425,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>The row of <span class="math inline">A \in \mathbb{R}^{m\times n}</span> span a subspace <span class="math inline">W \subseteq \mathbb{R}^n</span> with <span class="math inline">\text{dim}(W)=rk(A)</span>. A bais of <span class="math inline">W</span> can be found by applying gaussian elimination to <span class="math inline">A</span>.</li>
 <li>For all <span class="math inline">A \in \mathbb{R}^{m\times n}</span> it holds that <span class="math inline">A</span> is regular (invertible) if and only if <span class="math inline">rk(A)=n.</span></li>
 </ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Srijith, IIT Hyderabad }}}}</span></p>
 
 
 </section>

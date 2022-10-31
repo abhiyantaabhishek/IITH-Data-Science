@@ -91,6 +91,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="IITH-Data-Science - Machine Learning 6">
+<meta property="og:description" content="Ensemble Classifier">
+<meta property="og:image" content="CS5590_images/Acrobat_EZY9SgFMeU.png">
+<meta property="og:site-name" content="IITH-Data-Science">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -326,28 +330,28 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#types-of-ensemble-classifiers" id="toc-types-of-ensemble-classifiers" class="nav-link active" data-scroll-target="#types-of-ensemble-classifiers">Types of Ensemble Classifiers</a></li>
-  <li><a href="#bagging" id="toc-bagging" class="nav-link" data-scroll-target="#bagging">Bagging</a>
+  <li><a href="#types-of-ensemble-classifiers" id="toc-types-of-ensemble-classifiers" class="nav-link active" data-scroll-target="#types-of-ensemble-classifiers"><span class="toc-section-number">1</span>  Types of Ensemble Classifiers</a></li>
+  <li><a href="#bagging" id="toc-bagging" class="nav-link" data-scroll-target="#bagging"><span class="toc-section-number">2</span>  Bagging</a>
   <ul class="collapse">
-  <li><a href="#example-random-forests" id="toc-example-random-forests" class="nav-link" data-scroll-target="#example-random-forests">Example: Random Forests</a>
+  <li><a href="#example-random-forests" id="toc-example-random-forests" class="nav-link" data-scroll-target="#example-random-forests"><span class="toc-section-number">2.1</span>  Example: Random Forests</a>
   <ul class="collapse">
-  <li><a href="#random-forests-algorithm" id="toc-random-forests-algorithm" class="nav-link" data-scroll-target="#random-forests-algorithm">Random Forests: Algorithm</a></li>
-  <li><a href="#features-of-random-forests" id="toc-features-of-random-forests" class="nav-link" data-scroll-target="#features-of-random-forests">Features of Random Forests</a></li>
+  <li><a href="#random-forests-algorithm" id="toc-random-forests-algorithm" class="nav-link" data-scroll-target="#random-forests-algorithm"><span class="toc-section-number">2.1.1</span>  Random Forests: Algorithm</a></li>
+  <li><a href="#features-of-random-forests" id="toc-features-of-random-forests" class="nav-link" data-scroll-target="#features-of-random-forests"><span class="toc-section-number">2.1.2</span>  Features of Random Forests</a></li>
   </ul></li>
-  <li><a href="#bagging-when" id="toc-bagging-when" class="nav-link" data-scroll-target="#bagging-when">Bagging: when</a></li>
-  <li><a href="#bagging-why" id="toc-bagging-why" class="nav-link" data-scroll-target="#bagging-why">Bagging: Why</a></li>
+  <li><a href="#bagging-when" id="toc-bagging-when" class="nav-link" data-scroll-target="#bagging-when"><span class="toc-section-number">2.2</span>  Bagging: when</a></li>
+  <li><a href="#bagging-why" id="toc-bagging-why" class="nav-link" data-scroll-target="#bagging-why"><span class="toc-section-number">2.3</span>  Bagging: Why</a></li>
   </ul></li>
-  <li><a href="#boosting" id="toc-boosting" class="nav-link" data-scroll-target="#boosting">Boosting</a>
+  <li><a href="#boosting" id="toc-boosting" class="nav-link" data-scroll-target="#boosting"><span class="toc-section-number">3</span>  Boosting</a>
   <ul class="collapse">
-  <li><a href="#key-idea" id="toc-key-idea" class="nav-link" data-scroll-target="#key-idea">Key Idea</a></li>
-  <li><a href="#adaboost-algorithm" id="toc-adaboost-algorithm" class="nav-link" data-scroll-target="#adaboost-algorithm">Adaboost Algorithm</a></li>
-  <li><a href="#a-good-weak-learner" id="toc-a-good-weak-learner" class="nav-link" data-scroll-target="#a-good-weak-learner">A good weak learner</a></li>
-  <li><a href="#gradient-boosting" id="toc-gradient-boosting" class="nav-link" data-scroll-target="#gradient-boosting">Gradient Boosting</a>
+  <li><a href="#key-idea" id="toc-key-idea" class="nav-link" data-scroll-target="#key-idea"><span class="toc-section-number">3.1</span>  Key Idea</a></li>
+  <li><a href="#adaboost-algorithm" id="toc-adaboost-algorithm" class="nav-link" data-scroll-target="#adaboost-algorithm"><span class="toc-section-number">3.2</span>  Adaboost Algorithm</a></li>
+  <li><a href="#a-good-weak-learner" id="toc-a-good-weak-learner" class="nav-link" data-scroll-target="#a-good-weak-learner"><span class="toc-section-number">3.3</span>  A good weak learner</a></li>
+  <li><a href="#gradient-boosting" id="toc-gradient-boosting" class="nav-link" data-scroll-target="#gradient-boosting"><span class="toc-section-number">3.4</span>  Gradient Boosting</a>
   <ul class="collapse">
-  <li><a href="#gradient-boosting-algorithm" id="toc-gradient-boosting-algorithm" class="nav-link" data-scroll-target="#gradient-boosting-algorithm">Gradient Boosting Algorithm</a></li>
+  <li><a href="#gradient-boosting-algorithm" id="toc-gradient-boosting-algorithm" class="nav-link" data-scroll-target="#gradient-boosting-algorithm"><span class="toc-section-number">3.4.1</span>  Gradient Boosting Algorithm</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#stacking-stacked-generalization" id="toc-stacking-stacked-generalization" class="nav-link" data-scroll-target="#stacking-stacked-generalization">Stacking (stacked generalization)</a></li>
+  <li><a href="#stacking-stacked-generalization" id="toc-stacking-stacked-generalization" class="nav-link" data-scroll-target="#stacking-stacked-generalization"><span class="toc-section-number">4</span>  Stacking (stacked generalization)</a></li>
   </ul>
 </nav>
     </div>
@@ -366,8 +370,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Can solve complicated problems which can’t be solved using single classifier.</li>
 </ul></li>
 </ul>
-<section id="types-of-ensemble-classifiers" class="level1">
-<h1>Types of Ensemble Classifiers</h1>
+<section id="types-of-ensemble-classifiers" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Types of Ensemble Classifiers</h1>
 <ul>
 <li>Bagging (bootstrap aggregating)
 <ul>
@@ -386,8 +390,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="bagging" class="level1">
-<h1>Bagging</h1>
+<section id="bagging" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Bagging</h1>
 <ul>
 <li>Problem: we have only one dataset.</li>
 <li>Solution: generate new ones of size n by <strong>bootstrapping</strong>, i.e.&nbsp;sampling it with replacement</li>
@@ -399,8 +403,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Can do this with regression too: Regression tree, linear regression</li>
 </ul></li>
 </ul>
-<section id="example-random-forests" class="level2">
-<h2 class="anchored" data-anchor-id="example-random-forests">Example: Random Forests</h2>
+<section id="example-random-forests" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="example-random-forests"><span class="header-section-number">2.1</span> Example: Random Forests</h2>
 <ul>
 <li>Random forests (RF) are a combination of tree predictors, it’s a variant of bagging.</li>
 <li>Extremely successful, especially on Kaggle challenges.</li>
@@ -408,8 +412,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>The generalization error depends on the strength of the individual trees and the correlation between them</li>
 <li>Using a random selection of features yields results robust w.r.t. noise</li>
 </ul>
-<section id="random-forests-algorithm" class="level3">
-<h3 class="anchored" data-anchor-id="random-forests-algorithm">Random Forests: Algorithm</h3>
+<section id="random-forests-algorithm" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="random-forests-algorithm"><span class="header-section-number">2.1.1</span> Random Forests: Algorithm</h3>
 <ul>
 <li>Given a training set <span class="math inline">S</span></li>
 <li>For <span class="math inline">i = 1</span> to <span class="math inline">k</span> do:
@@ -434,8 +438,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="features-of-random-forests" class="level3">
-<h3 class="anchored" data-anchor-id="features-of-random-forests">Features of Random Forests</h3>
+<section id="features-of-random-forests" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="features-of-random-forests"><span class="header-section-number">2.1.2</span> Features of Random Forests</h3>
 <ul>
 <li>One of the best in the business</li>
 <li>It runs efficiently on large data bases</li>
@@ -446,15 +450,15 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul>
 </section>
 </section>
-<section id="bagging-when" class="level2">
-<h2 class="anchored" data-anchor-id="bagging-when">Bagging: when</h2>
+<section id="bagging-when" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="bagging-when"><span class="header-section-number">2.2</span> Bagging: when</h2>
 <ul>
 <li>Can help if data is noisy.</li>
 <li>If learning algorithm is unstable, i.e.&nbsp;if small changes to the training set cause large changes in the learned classifier.</li>
 </ul>
 </section>
-<section id="bagging-why" class="level2">
-<h2 class="anchored" data-anchor-id="bagging-why">Bagging: Why</h2>
+<section id="bagging-why" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="bagging-why"><span class="header-section-number">2.3</span> Bagging: Why</h2>
 <ul>
 <li>Let <span class="math inline">S= \{(x , y ), i=1\dots N\}</span> be the training dataset</li>
 <li>Let <span class="math inline">\{S_k \}</span> be a sequence of training sets containing a sub-set of <span class="math inline">S</span></li>
@@ -463,8 +467,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul>
 </section>
 </section>
-<section id="boosting" class="level1">
-<h1>Boosting</h1>
+<section id="boosting" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Boosting</h1>
 <ul>
 <li>Use several weak classifiers to create a strong classifier</li>
 <li>Resample previously misclassified points. (This is not done by bagging)</li>
@@ -472,15 +476,15 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Weak Learner: Take labelled data for training and produce a classifier which is <strong>more accurate than random guessing</strong>.</li>
 </ul>
 <p>Can a set of weak learners create a single strong learner?</p>
-<section id="key-idea" class="level2">
-<h2 class="anchored" data-anchor-id="key-idea">Key Idea</h2>
+<section id="key-idea" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="key-idea"><span class="header-section-number">3.1</span> Key Idea</h2>
 <ul>
 <li>An algorithm for constructing a “strong” classifier as linear combination of “simple” “weak” classifier <span class="math display">f(x)=\sum_{t=1}^T \alpha_th_t(x)</span></li>
 <li>Final classification based on weighted vote of weak classifiers</li>
 </ul>
 </section>
-<section id="adaboost-algorithm" class="level2">
-<h2 class="anchored" data-anchor-id="adaboost-algorithm">Adaboost Algorithm</h2>
+<section id="adaboost-algorithm" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="adaboost-algorithm"><span class="header-section-number">3.2</span> Adaboost Algorithm</h2>
 <p>Given <span class="math inline">(x_1,y_1),\dots (x_m,y_m)</span> where <span class="math inline">x_i \in X,y_i \in Y =\{-1,+1\}</span><br><br> Initialize <span class="math inline">D(i)=\frac{1}{m}</span><br><br> For <span class="math inline">t=1,\dots T</span>:</p>
 <ul>
 <li>Find the classifier <span class="math inline">h_t:X \rightarrow \{-1,+1\}</span> that minimizes the error with respect to the distribution <span class="math inline">D_t</span>:<br> <span class="math inline">\displaystyle h_t = \argmin _{h_j \in H} \epsilon_j</span>, where <span class="math inline">\displaystyle\epsilon_j=\sum_{i=1}^m D_t(i)[y_i \ne h_j(x_i)]</span></li>
@@ -513,8 +517,8 @@ Adaboost vs Random Forests
 </div>
 </div>
 </section>
-<section id="a-good-weak-learner" class="level2">
-<h2 class="anchored" data-anchor-id="a-good-weak-learner">A good weak learner</h2>
+<section id="a-good-weak-learner" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="a-good-weak-learner"><span class="header-section-number">3.3</span> A good weak learner</h2>
 <ul>
 <li>The set of weak rules (features) should be <strong>flexible enough to be (weakly) correlated</strong> with most conceivable relations between feature vector and label.</li>
 <li><strong>Small enough to allow exhaustive search</strong> for the minimal weighted training error.</li>
@@ -523,8 +527,8 @@ Adaboost vs Random Forests
 <li>Rules can be <strong>“specialists”</strong> – predict only on a small subset of the input space and <strong>abstain from predicting</strong> on the rest (output 0).</li>
 </ul>
 </section>
-<section id="gradient-boosting" class="level2">
-<h2 class="anchored" data-anchor-id="gradient-boosting">Gradient Boosting</h2>
+<section id="gradient-boosting" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="gradient-boosting"><span class="header-section-number">3.4</span> Gradient Boosting</h2>
 <p>Gradient Boosting = Gradient Descent + Boosting</p>
 <ul>
 <li>Fit an additive model (ensemble) in a forward stage-wise manner.</li>
@@ -533,8 +537,8 @@ Adaboost vs Random Forests
 <li>Recall that, in Adaboost, “shortcomings” are identified by high-weight data points.</li>
 <li>Both high-weight data points and gradients tell us how to improve our model.</li>
 </ul>
-<section id="gradient-boosting-algorithm" class="level3">
-<h3 class="anchored" data-anchor-id="gradient-boosting-algorithm">Gradient Boosting Algorithm</h3>
+<section id="gradient-boosting-algorithm" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="gradient-boosting-algorithm"><span class="header-section-number">3.4.1</span> Gradient Boosting Algorithm</h3>
 <p>Input: Training set <span class="math inline">{\left\lbrace \left(x_i ,y_i \right)\right\rbrace }_{i=1}^n</span>, a differentiable loss function <span class="math inline">L(y,F(x))</span>,Number of iteration <span class="math inline">M</span> <br><br> Algorithm: <br></p>
 <ul>
 <li><p>Initialize model with constant value:<br></p>
@@ -551,8 +555,8 @@ Adaboost vs Random Forests
 </section>
 </section>
 </section>
-<section id="stacking-stacked-generalization" class="level1">
-<h1>Stacking (stacked generalization)</h1>
+<section id="stacking-stacked-generalization" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Stacking (stacked generalization)</h1>
 <ul>
 <li>Train multiple tiers of classifiers</li>
 <li>Higher tiers can correct lower tiers</li>
@@ -565,6 +569,7 @@ Adaboost vs Random Forests
 </ul></li>
 <li>In practice, often equivalent to voting <br><br> <img src="CS5590_images/Acrobat_2wGlX14eBZ.png" class="img-fluid"></li>
 </ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
 </section>
