@@ -423,8 +423,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="evaluation-measures" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Evaluation Measures</h1>
+<section id="evaluation-measures" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="evaluation-measures"><span class="header-section-number">1</span> Evaluation Measures</h2>
 <ul>
 <li>Classification
 <ul>
@@ -444,12 +444,17 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="is-accuracy-adequate" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Is accuracy adequate</h1>
-<p>Accuracy may not not be useful in cases where: - There is a large class skew. - There are differential misclassification cost, say getting a positive wrong costs more than getting a negative wrong. - we are most interested in a subset of high confidence predictions.</p>
+<section id="is-accuracy-adequate" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="is-accuracy-adequate"><span class="header-section-number">2</span> Is accuracy adequate</h2>
+<p>Accuracy may not not be useful in cases where:</p>
+<ul>
+<li>There is a large class skew.</li>
+<li>There are differential misclassification cost, say getting a positive wrong costs more than getting a negative wrong.</li>
+<li>we are most interested in a subset of high confidence predictions.</li>
+</ul>
 </section>
-<section id="classification-error" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Classification Error</h1>
+<section id="classification-error" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="classification-error"><span class="header-section-number">3</span> Classification Error</h2>
 <p><img src="CS5590_images/chrome_CNeo323E9V.png" class="img-fluid"></p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -478,8 +483,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="utility-and-cost" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Utility and cost</h1>
+<section id="utility-and-cost" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="utility-and-cost"><span class="header-section-number">4</span> Utility and cost</h2>
 <ul>
 <li>Detection Cost:
 <ul>
@@ -491,8 +496,8 @@ Tip
 </ul></li>
 </ul>
 </section>
-<section id="roc-curve" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> ROC curve</h1>
+<section id="roc-curve" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="roc-curve"><span class="header-section-number">5</span> ROC curve</h2>
 <ul>
 <li>Receiver Operative Curve</li>
 <li>Plot between True positive rate on y axis and False positive rate on x axis</li>
@@ -500,15 +505,15 @@ Tip
 </ul>
 <p>A Receiver Operating Characteristic (ROC) curve plots the TP rate vs.&nbsp;the FP rate as a threshold on the confidence of an instance being positive is varied : <br><br> <img src="CS5590_images/Acrobat_LfrCm8Z5SQ.png" class="img-fluid"> <br><br> <img src="CS5590_images/MATLAB_eYMZjl3LEJ.png" class="img-fluid"></p>
 </section>
-<section id="precision-recall-curve" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Precision Recall Curve</h1>
+<section id="precision-recall-curve" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="precision-recall-curve"><span class="header-section-number">6</span> Precision Recall Curve</h2>
 <ul>
 <li>Plot between Precision on y axis and recall (TPR) on x axis. It is used for class imbalanced dataset mostly, It is also used when we can not calculate True Negative.</li>
 </ul>
 <p>A precision/recall curve plots the precision vs.&nbsp;recall (TP rate) as a threshold on the confidence of an instance being positive is varied. <br><br> <img src="CS5590_images/Acrobat_jfeedglqjh.png" class="img-fluid"></p>
 </section>
-<section id="a-nice-way-to-define-precision-recall-etc." class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> A nice way to define precision recall etc.</h1>
+<section id="a-nice-way-to-define-precision-recall-etc." class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="a-nice-way-to-define-precision-recall-etc."><span class="header-section-number">7</span> A nice way to define precision recall etc.</h2>
 <p>Consider <span class="math inline">Y</span> as <code>true label</code> and <span class="math inline">\hat{Y}</span> as <code>predicted label</code>.</p>
 <ul>
 <li>precision <span class="math inline">=P\left(Y=1|\;\hat{Y} =1\right)</span></li>
@@ -530,8 +535,8 @@ Note
 </div>
 </div>
 </section>
-<section id="roc-curve-vs-pr-curve" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> ROC curve vs PR curve</h1>
+<section id="roc-curve-vs-pr-curve" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="roc-curve-vs-pr-curve"><span class="header-section-number">8</span> ROC curve vs PR curve</h2>
 <p>Consider a dataset having 100 positive cases and 10,000 negative cases. Now consider 2 classifiers <span class="math inline">A</span> and <span class="math inline">B</span>. <span class="math inline">A</span> predicts 9 as true positive, 40 as false positive whereas <span class="math inline">B</span> predicts 9 as true positive 1000 as false positive.<br> We can observe that as both the classifier predicts 9 out of 10 as true positive so both has same recall value, also FPR is small(as it can be seen in below picture), so the ROC curve which is drawn between recall (TPR) and FPR, will not differentiate among the two classifier. <br> But PR curve which is drawn between precision and recall, will look totally different here as both has different precision.</p>
 <div class="cell" data-execution_count="25">
 <details>
@@ -584,8 +589,8 @@ Note
 </div>
 <p>Accuracy also is not a good measure in above case. As both the classifier has similar accuracy.</p>
 </section>
-<section id="other-performance-measures" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Other performance measures</h1>
+<section id="other-performance-measures" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="other-performance-measures"><span class="header-section-number">9</span> Other performance measures</h2>
 <ul>
 <li>Kullback-Leibler Diverfence : <span class="math inline">D_{\mathrm{KL}} \left(P\|Q\right)=\sum_i P\left(i\right)\log \frac{P\left(i\right)}{Q\left(i\right)}</span></li>
 <li>Gini Statistic : <span class="math inline">2\times \mathrm{AUC}-1</span></li>
@@ -593,18 +598,18 @@ Note
 <li>Akaike Information Criterion (AIC): <span class="math inline">2k-2\ln \left(L\right)</span>, here <span class="math inline">k</span> is number of model parameters, L is max value of the Likelihood function for the model</li>
 </ul>
 </section>
-<section id="important-points" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Important points</h1>
+<section id="important-points" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="important-points"><span class="header-section-number">10</span> Important points</h2>
 <ul>
 <li>Randomization of data is essential so that held-aside test data can be really representative of new data.</li>
 <li>Test set should never be used in any way for normalization, hyper parameter tuning etc.</li>
 <li>Any preprocessing done over entire data set ( feature selection, parameter tuning, threshold selection ) must not use labels from test set.</li>
 </ul>
 </section>
-<section id="k-nearest-neighbors" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> K-Nearest Neighbors</h1>
-<section id="basic-idea" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="basic-idea"><span class="header-section-number">11.1</span> basic idea</h2>
+<section id="k-nearest-neighbors" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="k-nearest-neighbors"><span class="header-section-number">11</span> K-Nearest Neighbors</h2>
+<section id="basic-idea" class="level3" data-number="11.1">
+<h3 data-number="11.1" class="anchored" data-anchor-id="basic-idea"><span class="header-section-number">11.1</span> basic idea</h3>
 <ul>
 <li>If it walks like a duck, quacks like a duck , then it’s probably a duck.</li>
 <li>If data points are represented well then KNN works well.</li>
@@ -613,15 +618,15 @@ Note
 <li>In case of continuous valued target function, Mean value of K nearest training examples is taken</li>
 </ul>
 </section>
-<section id="how-to-determinke-k" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="how-to-determinke-k"><span class="header-section-number">11.2</span> How to determinke K</h2>
+<section id="how-to-determinke-k" class="level3" data-number="11.2">
+<h3 data-number="11.2" class="anchored" data-anchor-id="how-to-determinke-k"><span class="header-section-number">11.2</span> How to determinke K</h3>
 <ul>
 <li>experiment with different value of K starting form 1 on test set to validate the error, in case of binary classification use odd number for k to avoid ties.<br></li>
 </ul>
 <p>KNN is a transductive method, there is no training involved , it is refereed as Lazy learning, Learning is just storing all the training instances <br> Similar Keywords: KNN, Memory Based Reasoning, Example Based Reasoning, Instance Based Learning, Case Based Reasoning, Lazy Learning<br> Voronoi Diagram: Decision surface formed by the training Examples for 1 nearest neighbors classifier<br></p>
 </section>
-<section id="improvements" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="improvements"><span class="header-section-number">11.3</span> Improvements</h2>
+<section id="improvements" class="level3" data-number="11.3">
+<h3 data-number="11.3" class="anchored" data-anchor-id="improvements"><span class="header-section-number">11.3</span> Improvements</h3>
 <ul>
 <li>Distance weighted Nearest Neighbors</li>
 <li>Scaling (normalization) attributes for fair computation fo distances</li>
@@ -629,32 +634,32 @@ Note
 <li>Finding “close” example in large training set quickly , eg Efficient memory indexing using kd-tree</li>
 </ul>
 </section>
-<section id="pros" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="pros"><span class="header-section-number">11.4</span> Pros</h2>
+<section id="pros" class="level3" data-number="11.4">
+<h3 data-number="11.4" class="anchored" data-anchor-id="pros"><span class="header-section-number">11.4</span> Pros</h3>
 <ul>
 <li>Highly effective transductive inference method for noisy training data and complex target functions.</li>
 <li>Target function for a whole space may be described as a combinations of less complex local approximations</li>
 <li>Trains very fast (Lazy Learner)</li>
 </ul>
 </section>
-<section id="cons" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="cons"><span class="header-section-number">11.5</span> Cons</h2>
+<section id="cons" class="level3" data-number="11.5">
+<h3 data-number="11.5" class="anchored" data-anchor-id="cons"><span class="header-section-number">11.5</span> Cons</h3>
 <ul>
 <li>Curse of dimensionality</li>
 <li>Storage: all training example are saved in memory</li>
 <li>slow at query time, can be overcome by pre sorting and indexing training samples.</li>
 </ul>
 </section>
-<section id="convergence-of-1-nn" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="convergence-of-1-nn"><span class="header-section-number">11.6</span> Convergence of 1-NN</h2>
+<section id="convergence-of-1-nn" class="level3" data-number="11.6">
+<h3 data-number="11.6" class="anchored" data-anchor-id="convergence-of-1-nn"><span class="header-section-number">11.6</span> Convergence of 1-NN</h3>
 <p><span class="math inline">P\left(\mathrm{KNNError}\right)=2\left(\mathrm{Bayes}\;\mathrm{Optimal}\;\mathrm{Error}\;\mathrm{Rate}\right)</span><br> Probability of K NN error is at most twice the bayes optimal error, bayes optimal error is best(least) error we can get using machine learning <br> It is Possible to show that: as the size of training data set approaches infinity, the one nearest neighbor classifier guarantees an error rate of no worse than twice the bayes error rate ( the minimum achievable error rate given the distribution of the data).</p>
 </section>
-<section id="density-estimation-using-knn" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="density-estimation-using-knn"><span class="header-section-number">11.7</span> Density Estimation using KNN</h2>
+<section id="density-estimation-using-knn" class="level3" data-number="11.7">
+<h3 data-number="11.7" class="anchored" data-anchor-id="density-estimation-using-knn"><span class="header-section-number">11.7</span> Density Estimation using KNN</h3>
 <p>Non parametric Density Estimation using KNN. <br> nstead of fixing bin width h and counting the mumber of instances, fix the instances(neighbors) k and check bin width <span class="math inline">\hat{p} \left(X\right)=\frac{k}{2{\mathrm{Nd}}_k \left(X\right)}</span> here <span class="math inline">d_k \left(X\right)</span> is the <span class="math inline">k_{\mathrm{th}}</span> closest distance to to <span class="math inline">X</span> , This is also known as <strong>Parzen density estimation</strong>.</p>
 </section>
-<section id="knn-example-using-sklearn" class="level2" data-number="11.8">
-<h2 data-number="11.8" class="anchored" data-anchor-id="knn-example-using-sklearn"><span class="header-section-number">11.8</span> KNN example using sklearn</h2>
+<section id="knn-example-using-sklearn" class="level3" data-number="11.8">
+<h3 data-number="11.8" class="anchored" data-anchor-id="knn-example-using-sklearn"><span class="header-section-number">11.8</span> KNN example using sklearn</h3>
 <p>Import libraries</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>

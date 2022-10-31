@@ -367,8 +367,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="pre-processing" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Pre-Processing</h1>
+<section id="pre-processing" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="pre-processing"><span class="header-section-number">1</span> Pre-Processing</h2>
 <ul>
 <li>Numeric
 <ul>
@@ -387,8 +387,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="feature-extraction-from-data" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Feature Extraction from Data</h1>
+<section id="feature-extraction-from-data" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="feature-extraction-from-data"><span class="header-section-number">2</span> Feature Extraction from Data</h2>
 <ul>
 <li>Images
 <ul>
@@ -411,8 +411,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="challenges" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Challenges</h1>
+<section id="challenges" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="challenges"><span class="header-section-number">3</span> Challenges</h2>
 <ul>
 <li>Structured input/Structured output
 <ul>
@@ -433,8 +433,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="class-imbalance" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Class Imbalance</h1>
+<section id="class-imbalance" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="class-imbalance"><span class="header-section-number">4</span> Class Imbalance</h2>
 <p>Almost all classifiers attempt to reduce global quantities such as the error rate, not taking the data distribution into consideration.</p>
 <p>As a result, examples from the overwhelming class are well classified whereas examples from the minority class tend to be misclassified.</p>
 <ul>
@@ -445,8 +445,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Support Vector Machines (SVMs) SVMs are even less prone to the class imbalance problem than MLPs because they are only concerned with a few support vectors, the data points located close to the boundaries.</li>
 </ul></li>
 </ul>
-<section id="solution" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="solution"><span class="header-section-number">4.1</span> Solution</h2>
+<section id="solution" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="solution"><span class="header-section-number">4.1</span> Solution</h3>
 <ul>
 <li>Collect more data!</li>
 <li>Change your performance metric:
@@ -474,8 +474,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul>
 </section>
 </section>
-<section id="smote" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> SMOTE</h1>
+<section id="smote" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="smote"><span class="header-section-number">5</span> SMOTE</h2>
 <p>SMOTE = Synthetic Minority Oversampling Technique</p>
 <ul>
 <li>For each minority example <span class="math inline">k</span>, compute nearest minority class examples <span class="math inline">(i,j,l,n,m)</span></li>
@@ -483,8 +483,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Randomly chose an example out of <span class="math inline">5</span> closest points.</li>
 </ul>
 </section>
-<section id="using-large-datasets" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Using Large Datasets</h1>
+<section id="using-large-datasets" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="using-large-datasets"><span class="header-section-number">6</span> Using Large Datasets</h2>
 <ul>
 <li>At large data scales, the performance of different algorithms converge such that performance differences virtually disappear.</li>
 <li>Given a large enough data set, the algorithm you’d want to use is the one that is computationally less expensive.</li>
@@ -499,8 +499,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="generalization-error" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Generalization Error</h1>
+<section id="generalization-error" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="generalization-error"><span class="header-section-number">7</span> Generalization Error</h2>
 <ul>
 <li><p>Components of generalization error</p></li>
 <li><p>Bias: how much the average model over all training sets differ from the true model?</p>
@@ -538,8 +538,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 \end{align*}</span></p>
 <p>Now we can write equation <span class="math inline">(2)</span> as <span class="math display">\mathit{\mathbf{E}}\left\lbrack {\left(t_i -y_i \right)}^2 \right\rbrack =\mathrm{Var}\left(\mathrm{Noise}\right)+{\mathrm{bias}}^2 +\mathrm{Var}\left(y_i \right)</span> Hence proved!</p></li>
 </ul>
-<section id="bias-variance-tradeoff" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="bias-variance-tradeoff"><span class="header-section-number">7.1</span> Bias variance tradeoff</h2>
+<section id="bias-variance-tradeoff" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="bias-variance-tradeoff"><span class="header-section-number">7.1</span> Bias variance tradeoff</h3>
 <p>From equation <span class="math inline">(1)</span> we can see that when MSE is constant and if we try to reduce the variance Bias has to increase and vice versa.</p>
 <ul>
 <li>Models with too few parameters are inaccurate because of a <strong>large bias</strong> bias (not enough flexibility).</li>
@@ -570,8 +570,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="measuring-bias-and-variance" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Measuring Bias and Variance</h1>
+<section id="measuring-bias-and-variance" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="measuring-bias-and-variance"><span class="header-section-number">8</span> Measuring Bias and Variance</h2>
 <ul>
 <li>Create multiple training set using bootstrap replicates.</li>
 <li>Apply learning algorithm on each replicates to obtain hypothesis.</li>
@@ -585,8 +585,8 @@ Tip
 </ul></li>
 </ul>
 </section>
-<section id="some-inferences" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Some Inferences</h1>
+<section id="some-inferences" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="some-inferences"><span class="header-section-number">9</span> Some Inferences</h2>
 <ul>
 <li>How to reduce variance of classifier
 <ul>
@@ -602,8 +602,8 @@ Tip
 </ul></li>
 </ul>
 </section>
-<section id="regularizers" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Regularizers</h1>
+<section id="regularizers" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="regularizers"><span class="header-section-number">10</span> Regularizers</h2>
 <ul>
 <li>KNN
 <ul>
@@ -639,8 +639,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="model-based-machine-learning" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Model-based Machine Learning</h1>
+<section id="model-based-machine-learning" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="model-based-machine-learning"><span class="header-section-number">11</span> Model-based Machine Learning</h2>
 <ul>
 <li>pick a model</li>
 <li>pick a criteria to optimize (aka objective function)</li>
@@ -651,8 +651,8 @@ Tip
 <li>Also, can give too much weight to any one feature</li>
 </ul></li>
 </ul>
-<section id="regularization-in-model-based-ml" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="regularization-in-model-based-ml"><span class="header-section-number">11.1</span> Regularization in Model based ML</h2>
+<section id="regularization-in-model-based-ml" class="level3" data-number="11.1">
+<h3 data-number="11.1" class="anchored" data-anchor-id="regularization-in-model-based-ml"><span class="header-section-number">11.1</span> Regularization in Model based ML</h3>
 <ul>
 <li>A regularizer is an additional criteria to the loss function to make sure that we don’t overfit</li>
 <li>It’s called a regularizer since it tries to keep the parameters more normal/regular</li>
@@ -690,10 +690,10 @@ Tip
 </ul>
 </section>
 </section>
-<section id="introduction-to-learning-theory" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Introduction to Learning Theory</h1>
-<section id="optimality-of-bayes-decision-rule" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="optimality-of-bayes-decision-rule"><span class="header-section-number">12.1</span> Optimality of Bayes Decision Rule</h2>
+<section id="introduction-to-learning-theory" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="introduction-to-learning-theory"><span class="header-section-number">12</span> Introduction to Learning Theory</h2>
+<section id="optimality-of-bayes-decision-rule" class="level3" data-number="12.1">
+<h3 data-number="12.1" class="anchored" data-anchor-id="optimality-of-bayes-decision-rule"><span class="header-section-number">12.1</span> Optimality of Bayes Decision Rule</h3>
 <ul>
 <li>Let <span class="math inline">X</span> be a random variable over a space <span class="math inline">\Omega</span></li>
 <li>Two category decision problem:<br> <span class="math inline">H_1:X \in \omega_1</span><br> <span class="math inline">H_2:X \in \omega_2</span><br></li>
@@ -749,18 +749,18 @@ p(\text{error}_\text{Bayes})&amp;=p(X\in \Omega_1,\omega_2)+p(X\in \Omega_2,\ome
   \end{align*}</span></p>
 </section>
 </section>
-<section id="towards-formalizing-learning" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Towards formalizing ‘learning’</h1>
-<section id="the-basic-process-of-learning" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="the-basic-process-of-learning"><span class="header-section-number">13.1</span> The basic process of learning</h2>
+<section id="towards-formalizing-learning" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="towards-formalizing-learning"><span class="header-section-number">13</span> Towards formalizing ‘learning’</h2>
+<section id="the-basic-process-of-learning" class="level3" data-number="13.1">
+<h3 data-number="13.1" class="anchored" data-anchor-id="the-basic-process-of-learning"><span class="header-section-number">13.1</span> The basic process of learning</h3>
 <ul>
 <li>Observe a phenomenon</li>
 <li>Construct a model from observations</li>
 <li>Use that model to make decisions/predictions</li>
 </ul>
 </section>
-<section id="a-statistical-machinery-for-learning" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="a-statistical-machinery-for-learning"><span class="header-section-number">13.2</span> A statistical machinery for learning</h2>
+<section id="a-statistical-machinery-for-learning" class="level3" data-number="13.2">
+<h3 data-number="13.2" class="anchored" data-anchor-id="a-statistical-machinery-for-learning"><span class="header-section-number">13.2</span> A statistical machinery for learning</h3>
 <p>Phenomenon of interest:</p>
 <ul>
 <li>Input space: <span class="math inline">X</span>; Output space: <span class="math inline">Y</span></li>

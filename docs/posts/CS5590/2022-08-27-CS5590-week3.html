@@ -422,8 +422,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="decision-trees" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Decision Trees</h1>
+<section id="decision-trees" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="decision-trees"><span class="header-section-number">1</span> Decision Trees</h2>
 <ul>
 <li>An efficient nonparametric method.</li>
 <li>A hierarchical model.</li>
@@ -482,8 +482,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </div>
 </div>
 <p>Entropy in information theory specifies the <strong>average (expected) amount of information derived from observing an event</strong> .</p>
-<section id="how-to-generate-decision-tree" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="how-to-generate-decision-tree"><span class="header-section-number">1.1</span> How to generate decision tree</h2>
+<section id="how-to-generate-decision-tree" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="how-to-generate-decision-tree"><span class="header-section-number">1.1</span> How to generate decision tree</h3>
 <ul>
 <li>Select a root not which divides the data best based on impurity measures.</li>
 <li>If node is pure, generate a leaf and stop, otherwise split and continue recursively.</li>
@@ -498,8 +498,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Other impurity measure method - Gini impurity/index : <span class="math inline">\displaystyle 1- \sum_{j=1}^cp_j^2</span></li>
 </ul>
 </section>
-<section id="overfitting-and-generalization" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="overfitting-and-generalization"><span class="header-section-number">1.2</span> Overfitting and generalization</h2>
+<section id="overfitting-and-generalization" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="overfitting-and-generalization"><span class="header-section-number">1.2</span> Overfitting and generalization</h3>
 <ul>
 <li>Noisy training example or if only small number of samples are associated leaf nodes can cause overfitting.</li>
 <li>Using Pruning for better generalization
@@ -513,19 +513,19 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="occams-razor-principle" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="occams-razor-principle"><span class="header-section-number">1.3</span> Occam’s Razor Principle</h2>
+<section id="occams-razor-principle" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="occams-razor-principle"><span class="header-section-number">1.3</span> Occam’s Razor Principle</h3>
 <p>When multiple hypotheses can solve the problem chose the simplest one</p>
 </section>
-<section id="select-best-tree" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="select-best-tree"><span class="header-section-number">1.4</span> Select best tree</h2>
+<section id="select-best-tree" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="select-best-tree"><span class="header-section-number">1.4</span> Select best tree</h3>
 <ul>
 <li>Measure performance over training and separate validation data set</li>
 <li>Minimum Description Length : Minimize <code>size(tree)+size(miscalssifications(tree))</code></li>
 </ul>
 </section>
-<section id="rule-extraction-from-trees" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="rule-extraction-from-trees"><span class="header-section-number">1.5</span> Rule Extraction from Trees</h2>
+<section id="rule-extraction-from-trees" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="rule-extraction-from-trees"><span class="header-section-number">1.5</span> Rule Extraction from Trees</h3>
 <ul>
 <li>Convert tree to equivalent set of rules.(“if else” condition for example).</li>
 <li>Prune each rules independently of others, by removing any pre-conditions that result in improving its estimates accuracy.</li>
@@ -549,8 +549,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </div>
 </section>
 </section>
-<section id="naive-bayes" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Naive Bayes</h1>
+<section id="naive-bayes" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="naive-bayes"><span class="header-section-number">2</span> Naive Bayes</h2>
 <p><img src="CS5590_images/Acrobat_BRXKLqY6Wd.png" class="img-fluid"></p>
 <ul>
 <li>In Naive Bayes classifier goal is to learn function <span class="math inline">f:X\rightarrow y</span>, where <span class="math inline">y</span> is one of <span class="math inline">k</span> classes and <span class="math inline">X=X_1,...,X_n</span>: values of attributes (numeric or categorical)</li>
@@ -560,8 +560,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Bayesian probability of a class:<br><br> <span class="math inline">\displaystyle P\left( Y|X \right)=\frac{P\left( X|Y \right)P\left( Y \right)}{\sum_{y'}P\left( X|Y' \right)P\left( Y' \right)}</span><br></li>
 </ul></li>
 </ul>
-<section id="formulation" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="formulation"><span class="header-section-number">2.1</span> Formulation</h2>
+<section id="formulation" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="formulation"><span class="header-section-number">2.1</span> Formulation</h3>
 <ul>
 <li>consider a record with attributes <span class="math inline">A_1,A_2,\dots ,A_n</span></li>
 <li>Goal is to predict class <span class="math inline">C</span></li>
@@ -580,8 +580,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>This hypothesis is called the <strong>maximum likelihood hypothesis</strong> .</li>
 </ul>
 </section>
-<section id="example" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="example"><span class="header-section-number">2.2</span> Example</h2>
+<section id="example" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="example"><span class="header-section-number">2.2</span> Example</h3>
 <p>Given a data as shown in as shown in below data frame, Find if tennis will be played for a scenario given by <span class="math inline">X</span>:<br> <span class="math inline">X=( \mathrm{ Outlook = Sunny, Temperature= Cool, Humidity =High, Wind= Strong})</span><br></p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -879,8 +879,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><p>MAP Rule:<br><br> <span class="math inline">P\left(\mathrm{Yes} \mid X\right)=\\  P\left(\mathrm{Outlook}=\mathrm{Sunny} \mid \mathrm{Play} = \mathrm{Yes} \right) \times \\  P\left(\mathrm{Temperature}=\mathrm{Cool} \mid \mathrm{Play} = \mathrm{Yes} \right) \times \\  P\left(\mathrm{Humidity}=\mathrm{High } \mid \mathrm{Play} = \mathrm{Yes} \right) \times \\  P\left(\mathrm{Wind}=\mathrm{Strong } \mid \mathrm{Play} = \mathrm{Yes} \right) \times \\  P(\mathrm{Play}=\mathrm{Yes})\\  =0.0053</span><br><br> <span class="math inline">P\left(\mathrm{No} \mid X\right)= \\  P\left(\mathrm{Outlook}=\mathrm{Sunny} \mid \mathrm{Play} = \mathrm{No} \right) \times \\  P\left(\mathrm{Temperature}=\mathrm{Cool} \mid \mathrm{Play} = \mathrm{No} \right) \times \\  P\left(\mathrm{Humidity}=\mathrm{High } \mid \mathrm{Play} = \mathrm{No} \right) \times \\  P\left(\mathrm{Wind}=\mathrm{Strong } \mid \mathrm{Play} = \mathrm{No} \right) \times \\  P(\mathrm{Play}=\mathrm{No}) \\  = 0.0206</span> <br> <br> Since <span class="math inline">P(\mathrm{Play}=\mathrm{Yes}) &lt; P(\mathrm{Play}=\mathrm{No})</span> so <span class="math inline">X</span> shall be labeled to be “No”, i.e.&nbsp;Given scenario <span class="math inline">X</span> tennis will not be played.</p></li>
 </ul>
 </section>
-<section id="pros-and-cons" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="pros-and-cons"><span class="header-section-number">2.3</span> Pros and Cons</h2>
+<section id="pros-and-cons" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="pros-and-cons"><span class="header-section-number">2.3</span> Pros and Cons</h3>
 <ul>
 <li>Combines prior knowledge and observed data</li>
 <li>Output is not only a classification but a probability distribution over all classes</li>
@@ -891,8 +891,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Independence assumption may not hold always.</li>
 </ul>
 </section>
-<section id="practical-issues" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="practical-issues"><span class="header-section-number">2.4</span> Practical Issues</h2>
+<section id="practical-issues" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="practical-issues"><span class="header-section-number">2.4</span> Practical Issues</h3>
 <ul>
 <li>Discretize the range into bins
 <ul>
@@ -911,14 +911,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="bayesian-belief-network-bayesian-net" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="bayesian-belief-network-bayesian-net"><span class="header-section-number">2.5</span> Bayesian Belief network ( Bayesian net )</h2>
+<section id="bayesian-belief-network-bayesian-net" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="bayesian-belief-network-bayesian-net"><span class="header-section-number">2.5</span> Bayesian Belief network ( Bayesian net )</h3>
 <p>Describe conditional independence among subset of variables (attributes) : combining prior knowledge about dependencies among variables with observed training data.<br> For example consider below graph:<br><br></p>
 <p><img src="CS5590_images/Acrobat_Q6uR4y3nmf.png" class="img-fluid"><br><br></p>
 <p>Here Age, Occupation and Income determine if customer will byt this product, Given that customer buys product, whether there is interest in insurance is now independent of Age, Occupation, Income.<br><br> <span class="math inline">P\left(\mathrm{Age,Occ,Inc,Buy,Ins}\right)=P(\mathrm{Age})P(\mathrm{Occ})P\left(\mathrm{Inc}\right)P\left(\mathrm{Buy} \mid \mathrm{Age, Occ, Inc}\right)P\left(\mathrm{Int} \mid \mathrm{Buy}\right)</span></p>
 </section>
-<section id="naive-bayes-classifier-category" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="naive-bayes-classifier-category"><span class="header-section-number">2.6</span> Naive Bayes Classifier category</h2>
+<section id="naive-bayes-classifier-category" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="naive-bayes-classifier-category"><span class="header-section-number">2.6</span> Naive Bayes Classifier category</h3>
 <ul>
 <li>It is an Inductive Learning.</li>
 <li>It is a generative Modeling.</li>

@@ -398,7 +398,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <li><a href="#expectation-displaystyle-ex-np" id="toc-expectation-displaystyle-ex-np" class="nav-link" data-scroll-target="#expectation-displaystyle-ex-np"><span class="toc-section-number">1.1</span>  Expectation <span class="math inline">\displaystyle EX =np</span></a></li>
   <li><a href="#variance-displaystyle-mathrmvar-x-np1-p" id="toc-variance-displaystyle-mathrmvar-x-np1-p" class="nav-link" data-scroll-target="#variance-displaystyle-mathrmvar-x-np1-p"><span class="toc-section-number">1.2</span>  Variance <span class="math inline">\displaystyle \mathrm{Var} X = np(1-p)</span></a></li>
   </ul></li>
-  <li><a href="#poisson" id="toc-poisson" class="nav-link" data-scroll-target="#poisson"><span class="toc-section-number">2</span>  Poisson <br><br></a>
+  <li><a href="#poisson" id="toc-poisson" class="nav-link" data-scroll-target="#poisson"><span class="toc-section-number">2</span>  Poisson</a>
   <ul class="collapse">
   <li><a href="#expectation-displaystyle-ex-lambda" id="toc-expectation-displaystyle-ex-lambda" class="nav-link" data-scroll-target="#expectation-displaystyle-ex-lambda"><span class="toc-section-number">2.1</span>  Expectation <span class="math inline">\displaystyle EX =\lambda</span></a></li>
   <li><a href="#variance-displaystyle-mathrmvar-x-lambda" id="toc-variance-displaystyle-mathrmvar-x-lambda" class="nav-link" data-scroll-target="#variance-displaystyle-mathrmvar-x-lambda"><span class="toc-section-number">2.2</span>  Variance <span class="math inline">\displaystyle \mathrm{Var} X = \lambda</span></a></li>
@@ -417,8 +417,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="bernoulli-binomial" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Bernoulli, Binomial</h1>
+<section id="bernoulli-binomial" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="bernoulli-binomial"><span class="header-section-number">1</span> Bernoulli, Binomial</h2>
 <ul>
 <li>Definition: <br> Suppose that <span class="math inline">n</span> independent trails are performed, each succeeding with probability <span class="math inline">p</span>. Let <span class="math inline">X</span> count the number of success within the <span class="math inline">n</span> trails. Then <span class="math inline">X</span> has the Binomial distribution with parameters <span class="math inline">n</span> and <span class="math inline">p</span> of, in short <span class="math inline">X~\mathrm{Binom}\left(n,p\right)</span><br> <span class="math inline">\displaystyle p\left(i\right)=P\left\lbrace X=i\right\rbrace = {n \choose i} \times p^i \times {\left(1-p\right)}^{n-i} ,\;\;\;\;i=0,1,\ldotp \ldotp \ldotp \ldotp ,n</span><br></li>
 </ul>
@@ -455,8 +455,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><p>In particular, the Bernoulli <span class="math inline">(\rho)</span> variable can take on values 0 or 1, with respective probabilities. <br> <span class="math inline">\rho(1) = p</span> and <span class="math inline">\rho(0) = 1-p</span></p></li>
 <li><p>Remarks : <br> <span class="math inline">\displaystyle \sum_{i=0}^n p\left(i\right)=\sum_{i=0}^n P\left\lbrace X=i\right\rbrace = \sum_{i=0}^n {n \choose i} \times p^i \times {\left(1-p\right)}^{n-i} =[p+(1-p)]^n=1</span><br></p></li>
 </ul>
-<section id="expectation-displaystyle-ex-np" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="expectation-displaystyle-ex-np"><span class="header-section-number">1.1</span> Expectation <span class="math inline">\displaystyle EX =np</span></h2>
+<section id="expectation-displaystyle-ex-np" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="expectation-displaystyle-ex-np"><span class="header-section-number">1.1</span> Expectation <span class="math inline">\displaystyle EX =np</span></h3>
 <ul>
 <li><span class="math inline">\boxed {EX = np}</span><br><br>
 <ul>
@@ -466,8 +466,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul></li>
 </ul>
 </section>
-<section id="variance-displaystyle-mathrmvar-x-np1-p" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-np1-p"><span class="header-section-number">1.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X = np(1-p)</span></h2>
+<section id="variance-displaystyle-mathrmvar-x-np1-p" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-np1-p"><span class="header-section-number">1.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X = np(1-p)</span></h3>
 <ul>
 <li><span class="math inline">\boxed {\mathrm{Var} X = np(1-p)}</span> <br><br>
 <ul>
@@ -483,8 +483,8 @@ Let <span class="math inline">X</span> be multiple copies of independent <span c
 </ul>
 </section>
 </section>
-<section id="poisson" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Poisson <br><br></h1>
+<section id="poisson" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="poisson"><span class="header-section-number">2</span> Poisson</h2>
 <ul>
 <li>Definition <br> Fix a positive real number <span class="math inline">\lambda</span>. The random variable <span class="math inline">X</span> is Poisson distributed with parameter <span class="math inline">\lambda</span>, in short <span class="math inline">X ∼ \mathrm{Poi}(\lambda)</span>, if it is non-negative integer valued, and its mass function is <br><br> <span class="math inline">\displaystyle \rho (i) = P\left\{ X=i \right\} = \frac{\lambda^i}{i!} e^{-\lambda}\;\;\;\;\;i=0,1,2,\dots</span> <br><br></li>
 </ul>
@@ -519,29 +519,29 @@ Let <span class="math inline">X</span> be multiple copies of independent <span c
 <li><p>Take <span class="math inline">Y \sim \mathrm{Binom}(n, p)</span> with large <span class="math inline">n</span>, small <span class="math inline">p</span>, such that <span class="math inline">np \simeq \lambda</span>. Then <span class="math inline">Y</span> is approximately <span class="math inline">\mathrm{Poisson}(\lambda)</span> distributed.</p></li>
 <li><p>Proof of Poisson formula <br> Binomial formula:<br> <span class="math inline">\displaystyle p\left(i\right)=P\left\lbrace X=i\right\rbrace = {n \choose i} \times p^i \times {\left(1-p\right)}^{n-i}</span><br><br> we say that poisson is approximation of binomial when <span class="math inline">n \rightarrow \infty</span>, and <span class="math inline">\lambda =np \Rightarrow p=\frac{\lambda}{n}</span> so we get<br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \lim_{n \rightarrow \infty}{n \choose i} \times \left( \frac{\lambda}{n} \right)^i \times {\left( 1-\frac{\lambda}{n} \right)}^{n-i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \lim_{n \rightarrow \infty} \frac{n!}{i!(n-i)!}\times \left( \frac{\lambda}{n} \right)^i \times {\left( 1-\frac{\lambda}{n} \right)}^{n-i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \lim_{n \rightarrow \infty} \frac{n \cdot (n-1)\cdot (n-2) \dots \cdot (n-i+1)!}{i!} \times \left( \frac{\lambda}{n} \right)^i \times {\left( 1-\frac{\lambda}{n} \right)}^{n-i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \lim_{n \rightarrow \infty} \frac{n \cdot (n-1)\cdot (n-2) \dots \cdot (n-i+1)!}{i!} \times \left( \frac{\lambda}{n} \right)^i \times {\left( 1-\frac{\lambda}{n} \right)}^{n} {\left( 1-\frac{\lambda}{n} \right)}^{i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \frac{\lambda^i}{i!} \lim_{n \rightarrow \infty} \frac{\overbrace{n \cdot (n-1)\cdot (n-2) \dots \cdot (n-i+1)!}^{i\;\;\text{ terms}} }{n^i} \times {\left( 1-\frac{\lambda}{n} \right)}^{n} {\left( 1-\frac{\lambda}{n} \right)}^{i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \frac{\lambda^i}{i!} \lim_{n \rightarrow \infty} \frac{n^i +\dots}{n^i} \times \lim_{n \rightarrow \infty}{\left( 1-\frac{\lambda}{n} \right)}^{n} \times \lim_{n \rightarrow \infty}{\left( 1-\frac{\lambda}{n} \right)}^{i}</span><br><br> We know that <span class="math inline">\displaystyle \;\; \lim_{n \rightarrow \infty}{\left( 1+\frac{a}{x} \right)}^{x} = e^a</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \frac{\lambda^i}{i!} \underbrace{\lim_{n \rightarrow \infty} \frac{n^i +\dots}{n^i}}_{=1} \times \underbrace{\lim_{n \rightarrow \infty}{\left( 1-\frac{\lambda}{n} \right)}^{n}}_{e^{-\lambda}} \times \underbrace{\lim_{n \rightarrow \infty}{\left( 1-\frac{\lambda}{n} \right)}^{i}}_{=1,\;i \text{ is very small } }</span><br><br> <span class="math inline">\boxed{\displaystyle \rho \left(i\right) = \frac{\lambda^i}{i!} e^{-\lambda}}</span></p></li>
 </ul>
-<section id="expectation-displaystyle-ex-lambda" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="expectation-displaystyle-ex-lambda"><span class="header-section-number">2.1</span> Expectation <span class="math inline">\displaystyle EX =\lambda</span></h2>
+<section id="expectation-displaystyle-ex-lambda" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="expectation-displaystyle-ex-lambda"><span class="header-section-number">2.1</span> Expectation <span class="math inline">\displaystyle EX =\lambda</span></h3>
 <ul>
 <li><span class="math inline">\boxed {EX = \lambda}</span><br><br> <span class="math inline">EX = \displaystyle \sum_{i=0}^\infty i \times \rho(i) = \sum_{i=0}^\infty i \times \frac{\lambda^i}{i!} e^{-\lambda}</span><br><br> <span class="math inline">EX = \displaystyle \sum_{i=1}^\infty i \times \frac{\lambda^i}{i!} e^{-\lambda}</span><br><br> <span class="math inline">EX = \displaystyle \lambda \sum_{i=1}^\infty i \times \frac{\lambda^{i-1}}{i!} e^{-\lambda}</span><br><br> <span class="math inline">EX = \displaystyle \lambda \sum_{i=1}^\infty \frac{\lambda^{i-1}}{(i-1)!} e^{-\lambda}</span><br><br> consider <span class="math inline">i-1=j</span> <br><br> <span class="math inline">EX = \displaystyle \lambda \underbrace{\sum_{j=0}^\infty \frac{\lambda^{j}}{j!} e^{-\lambda}}_{=1}</span><br><br><br>
 <span class="math inline">EX = \displaystyle \lambda</span><br><br></li>
 </ul>
 </section>
-<section id="variance-displaystyle-mathrmvar-x-lambda" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-lambda"><span class="header-section-number">2.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X = \lambda</span></h2>
+<section id="variance-displaystyle-mathrmvar-x-lambda" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-lambda"><span class="header-section-number">2.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X = \lambda</span></h3>
 <ul>
 <li><span class="math inline">\boxed {\mathrm{Var} X = \lambda}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]=\sum_{i=0}^n i(i-1)\rho(i)</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]=\sum_{i=0}^n i(i-1) \frac{\lambda ^i}{i!}e^{-\lambda}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]=\sum_{i=2}^n i(i-1) \frac{\lambda ^i}{i!}e^{-\lambda}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]=\sum_{i=2}^n \frac{\lambda ^i}{(i-2)!}e^{-\lambda}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]= \lambda ^2\sum_{i=2}^n \frac{\lambda ^{i-2}}{(i-2)!}e^{-\lambda}</span> <br><br> Consder <span class="math inline">i-2=j</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]= \lambda ^2\underbrace{\sum_{j=0}^n \frac{\lambda ^{j}}{j!}e^{-\lambda}}_{=1}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]= \lambda ^2</span> <br><br> Now, <br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E(X^2)-(EX)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E\left[X(X-1)\right] +EX-(EX)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \lambda^2 +\lambda-\lambda^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \lambda</span><br><br></li>
 </ul>
 </section>
 </section>
-<section id="geometric" class="level1 page-columns page-full" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Geometric</h1>
+<section id="geometric" class="level2 page-columns page-full" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="geometric"><span class="header-section-number">3</span> Geometric</h2>
 <ul>
 <li>Definition <br> Suppose that independent trials, each succeeding with probability <span class="math inline">p</span>, are repeated until the first success. The total number <span class="math inline">X</span> of trials made has the <span class="math inline">\mathrm{Geometric}(p)</span> distribution (in short, <span class="math inline">X \sim \mathrm{Geom}(p)</span>). <br> <span class="math inline">X</span> can take on positive integers, with probabilities <br><br> <span class="math inline">\boxed{ \displaystyle \rho(i) = (1-p)^{i-1} \cdot p}</span> <span class="math inline">\;\;\;\;\; i=1,2,3,\dots</span><br><br> That is a function, we verify by <span class="math inline">\rho(i) \ge 0</span> and <br><br> <span class="math inline">\displaystyle \sum_{i=1}^\infty \rho(i) = \sum_{i=1}^\infty (1-p)^{i-1} \cdot p = \frac{p}{1-(1-p)}=1</span><br><br></li>
 <li>Remarks <br> For a Geometric<span class="math inline">(p)</span> random variable and any <span class="math inline">k \ge 1</span> we have <br> <span class="math inline">P \left\{ X \ge k \right\}=(1-p)^{k-1}</span> (We have at least <span class="math inline">k-1</span> failures).</li>
 <li>Corollary <br> The Geometric random variable is (discrete) memory-less :for every <span class="math inline">k \ge 1 , n \ge 0</span><br><br> <span class="math inline">\displaystyle P \left\{ X \ge n + k \mid X&gt;n \right\}=P \left\{ X \ge k \right\}</span><br><br> Proof : <br> <span class="math inline">\displaystyle P \left\{ X \ge n + k \mid X&gt;n \right\}= \frac {P\left\{ X \ge n + k \right\} \cap P\left\{X&gt;n \right\}}{P\left\{X&gt;n \right\}}</span><br> if <span class="math inline">X \ge n+k</span> then <span class="math inline">X</span> is also greater than <span class="math inline">n</span> as <span class="math inline">k</span> is at least <span class="math inline">1</span><br> <span class="math inline">\displaystyle P \left\{ X \ge n + k \mid X&gt;n \right\}= \frac {P\left\{ X \ge n + k \right\} }{P\left\{X&gt;n \right\}}</span><br> <span class="math inline">\displaystyle P \left\{ X \ge n + k \mid X&gt;n \right\}= \frac {(1-p)^{n+k-1} }{(1-p)^n}= (1-p)^{k-1}=P \left\{ X&gt;k \right\}</span><br></li>
 </ul>
-<section id="expectation-displaystyle-ex-frac1p" class="level2 page-columns page-full" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="expectation-displaystyle-ex-frac1p"><span class="header-section-number">3.1</span> Expectation <span class="math inline">\displaystyle EX =\frac{1}{p}</span></h2>
+<section id="expectation-displaystyle-ex-frac1p" class="level3 page-columns page-full" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="expectation-displaystyle-ex-frac1p"><span class="header-section-number">3.1</span> Expectation <span class="math inline">\displaystyle EX =\frac{1}{p}</span></h3>
 <ul class="page-columns page-full">
 <li class="page-columns page-full"><span class="math inline">\boxed {EX = \frac{1}{p}}</span><br><br>
 <ul class="page-columns page-full">
@@ -557,8 +557,8 @@ EX(1-p) &amp;=  \qquad\;\;\; (1-p)\cdot p + 2 \cdot (1-p)^2\cdot p + 3 \cdot (1-
 </ul></li>
 </ul>
 </section>
-<section id="variance-displaystyle-mathrmvar-x-frac1-pp2" class="level2 page-columns page-full" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-frac1-pp2"><span class="header-section-number">3.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X = \frac{1-p}{p^2}</span></h2>
+<section id="variance-displaystyle-mathrmvar-x-frac1-pp2" class="level3 page-columns page-full" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-frac1-pp2"><span class="header-section-number">3.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X = \frac{1-p}{p^2}</span></h3>
 <ul class="page-columns page-full">
 <li class="page-columns page-full"><span class="math inline">\boxed {\mathrm{Var} X = \frac{1-p}{p^2}}</span> <br><br>
 <ul class="page-columns page-full">
