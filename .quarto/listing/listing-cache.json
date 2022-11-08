@@ -1,7 +1,10 @@
 {
   "listingMap": {
-    "index.qmd": [
-      "posts"
+    "Data_Science_Hacks/index.qmd": [
+      "."
+    ],
+    "Data_Science_Tutorial/index.qmd": [
+      "."
     ]
   }
 }

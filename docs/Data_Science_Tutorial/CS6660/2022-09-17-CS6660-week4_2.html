@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.258">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Abhishek Kumar Dubey">
+<meta name="dcterms.date" content="2022-09-17">
+<meta name="description" content="Gaussian Elimination, Row-Echelon, Minus 1 Trick">
+
+<title>IITH-Data-Science - Linear Algebra 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../Data_Science_Tutorial/CS6660/2022-10-01-CS6660-week6.html" rel="next">
+<link href="../../Data_Science_Tutorial/CS6660/2022-09-03-CS6660-week3.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
+</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="IITH-Data-Science - Linear Algebra 2">
+<meta property="og:description" content="Gaussian Elimination, Row-Echelon, Minus 1 Trick">
+<meta property="og:site-name" content="IITH-Data-Science">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">IITH-Data-Science</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../Data_Science_Tutorial/index.html" aria-current="page">
+ <span class="menu-text"><i class="fa-solid fa-atom" aria-label="atom"></i> Data Science Tutorial</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Data_Science_Hacks/index.html">
+ <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Data Science Hacks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Linear Algebra 2</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Linear Algebra 2</h1>
+                  <div>
+        <div class="description">
+          Gaussian Elimination, Row-Echelon, Minus 1 Trick
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Linear Algebra</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Abhishek Kumar Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 17, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Data_Science_Tutorial/index.html" class="sidebar-item-text sidebar-link">Data Science Tutorial</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">CS5590</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">Machine Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">Machine Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">Machine Learning 6</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">Machine Learning 7</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link">Machine Learning 8</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">CS6660</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link active">Linear Algebra 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">Probability Theory 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">Probability Theory 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">Probability Theory 5</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#gaussian-elimination" id="toc-gaussian-elimination" class="nav-link active" data-scroll-target="#gaussian-elimination"><span class="toc-section-number">1</span>  Gaussian Elimination</a></li>
+  <li><a href="#row-echelon-form" id="toc-row-echelon-form" class="nav-link" data-scroll-target="#row-echelon-form"><span class="toc-section-number">2</span>  Row-Echelon Form</a></li>
+  <li><a href="#reduced-row-echelon-forms" id="toc-reduced-row-echelon-forms" class="nav-link" data-scroll-target="#reduced-row-echelon-forms"><span class="toc-section-number">3</span>  Reduced row Echelon Forms</a></li>
+  <li><a href="#solving-ax0-minus-1-trick" id="toc-solving-ax0-minus-1-trick" class="nav-link" data-scroll-target="#solving-ax0-minus-1-trick"><span class="toc-section-number">4</span>  Solving <span class="math inline">AX=0</span> (Minus <span class="math inline">1</span> Trick)</a></li>
+  <li><a href="#solving-a-system-of-liner-equation" id="toc-solving-a-system-of-liner-equation" class="nav-link" data-scroll-target="#solving-a-system-of-liner-equation"><span class="toc-section-number">5</span>  Solving a System of Liner Equation</a></li>
+  <li><a href="#vector-space" id="toc-vector-space" class="nav-link" data-scroll-target="#vector-space"><span class="toc-section-number">6</span>  Vector Space</a></li>
+  <li><a href="#subspace" id="toc-subspace" class="nav-link" data-scroll-target="#subspace"><span class="toc-section-number">7</span>  Subspace</a></li>
+  <li><a href="#liner-combination" id="toc-liner-combination" class="nav-link" data-scroll-target="#liner-combination"><span class="toc-section-number">8</span>  Liner Combination</a></li>
+  <li><a href="#linear-independence" id="toc-linear-independence" class="nav-link" data-scroll-target="#linear-independence"><span class="toc-section-number">9</span>  Linear Independence</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="gaussian-elimination" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="gaussian-elimination"><span class="header-section-number">1</span> Gaussian Elimination</h2>
+<ul>
+<li>Gaussian Elimination are elementary transformation of subsystems fo linear equations, which transforms the equation systems into a simple form.</li>
+<li>Elementary transformation that keep the solution set the same, but that transform the equation system.</li>
+<li>Process
+<ul>
+<li>Exchange fo two equations (rows in the matrix representing the system of equations)</li>
+<li>Multiplication of an equation (row) with a constant <span class="math inline">\lambda \in \mathbb{R}-\{0\}</span></li>
+<li>Addition of two equations (rows)</li>
+</ul></li>
+<li>Example : <br><br> <span class="math inline">\begin{array}{r r r r r r r r r r} -2x_1 &amp; + &amp; 4x_2 &amp; - &amp; 2x_3 &amp; - &amp; x_4 &amp; + &amp; 4x_5 &amp; = &amp; -3 \\ 4x_1 &amp; - &amp; 8x_2 &amp; + &amp; 3x_3 &amp; - &amp; 3x_4 &amp; + &amp; x_5 &amp; = &amp; 2 \\ x_1 &amp; - &amp; 2x_2 &amp; + &amp; x_3 &amp; - &amp; x_4 &amp; + &amp; x_5 &amp; = &amp; 0 \\ x_1 &amp; - &amp; 2x_2 &amp; &amp; &amp; - &amp; 3x_4 &amp; + &amp; 4x_5 &amp; = &amp; a \\ \end{array}</span> <br><br> Build the _augmented matrix (in the form of <span class="math inline">\left[A \mid b\right]</span> ) <br><br> <span class="math inline">\left[ \begin{array}{r r r r r | r} -2 &amp; 4 &amp; -2 &amp; -1 &amp; 4 &amp; -3 \\  4 &amp;-8 &amp; 3 &amp; -3 &amp; 1 &amp; 2 \\  1 &amp;-2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\  1 &amp;-2 &amp; 0 &amp; -3 &amp; 4 &amp; a \\ \end{array}\right]</span> <br><br> Exchange row <span class="math inline">3</span> and row <span class="math inline">1</span> for simplicity <br><br> <span class="math inline">\left[ \begin{array}{r r r r r | r}  1 &amp;-2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\  4 &amp;-8 &amp; 3 &amp; -3 &amp; 1 &amp; 2 \\ -2 &amp; 4 &amp; -2 &amp; -1 &amp; 4 &amp; -3 \\  1 &amp;-2 &amp; 0 &amp; -3 &amp; 4 &amp; a \\ \end{array}\right]</span> <br><br> Perform operations <span class="math inline">\{ R_2 \leftarrow R_2 - 4R_1, R_3 \leftarrow R_3+2R_1, R_4 \leftarrow R_4-R_1 \}</span><br><br> <span class="math inline">\left[ \begin{array}{r r r r r | r}  1 &amp;-2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\  0 &amp; 0 &amp; -1 &amp; 1 &amp; -3 &amp; 2 \\  0 &amp; 0 &amp; 0 &amp; -3 &amp; 6 &amp; -3 \\  0 &amp; 0 &amp; -1 &amp; -2 &amp; 3 &amp; a \\ \end{array}\right]</span> <br><br> Perform operations <span class="math inline">\{ R_4 \leftarrow R_4 - R_2 -R_3 \}</span><br><br> <span class="math inline">\left[ \begin{array}{r r r r r | r}  1 &amp;-2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\  0 &amp; 0 &amp; -1 &amp; 1 &amp; -3 &amp; 2 \\  0 &amp; 0 &amp; 0 &amp; -3 &amp; 6 &amp; -3 \\  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; a \\ \end{array}\right]</span> <br><br> Perform operations <span class="math inline">\{ R_2 \leftarrow -R_2 , R_3 \leftarrow -\frac{1}{3}R_3 \}</span><br><br> <span class="math inline">\left[ \begin{array}{r r r r r | r}  1 &amp;-2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\  0 &amp; 0 &amp; 1 &amp; -1 &amp; 3 &amp; -2 \\  0 &amp; 0 &amp; 0 &amp; 1 &amp; -2 &amp; 1 \\  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; a+1 \\ \end{array}\right]</span> <br><br> Above matrix is in <strong>row-echelon from</strong><br><br> Convert above matrix to normal equation form <br><br> <span class="math inline">\begin{array}{l l l l l l r}  x_1 &amp;-2x_2 &amp; +x_3 &amp; -x_4 &amp; +x_5 &amp; = &amp; 0 \\  &amp; &amp; +x_3 &amp; -x_4 &amp; +3x_5 &amp; = &amp; -2 \\  &amp; &amp; &amp; +x_4 &amp; -2x_5 &amp; = &amp; 1 \\  &amp; &amp; &amp; &amp; +0 &amp; = &amp; a+1 \\ \end{array}</span> <br><br> Only for <span class="math inline">a=1</span> this system can be solved, and can be solved using back substitution <br><br> <span class="math inline">\left[ \begin{array}{r} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \\ \end{array}\right] = \left[ \begin{array}{r}  2 \\  0\\ -1 \\ 1 \\ 0 \\ \end{array}\right]</span> <br><br> General solution of the above equation can be found as explained earlier, and is given as below <br> <br> <span class="math display">\left\{x\in\mathbb{R}^{5}:x= {\left[\begin{array}{r}{2}\\ {0}\\ {-1}\\ {1} \\0 \end{array}\right]}    + \lambda_{1}{\left[\begin{array}{r}{2}\\ {1}\\ {0}\\ {0} \\0 \end{array}\right]}   + \lambda_{2}{\left[\begin{array}{r}{2}\\ {0}\\ {-1}\\ {2} \\1\end{array}\right]},\;\;\ \lambda_{1},\lambda_{2}\in\mathbb{R}\right\}</span></li>
+</ul>
+</section>
+<section id="row-echelon-form" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="row-echelon-form"><span class="header-section-number">2</span> Row-Echelon Form</h2>
+<ul>
+<li><p>Example matrix <br><br> <span class="math inline">\left[ \begin{array}{r r r r r | r}  \boxed 1 &amp;-2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\  0 &amp; 0 &amp; \boxed 1 &amp; -1 &amp; 3 &amp; -2 \\  0 &amp; 0 &amp; 0 &amp; \boxed 1 &amp; -2 &amp; 1 \\  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; a+1 \\ \end{array}\right]</span> <br><br></p></li>
+<li><p>Definition <br> A matrix is in row-echelon form if</p>
+<ul>
+<li>All rows that contains only zeros are at the bottom ot the matrix; correspondingly, all rows that contains at least one nonzero element are on top of rows that contain only zeros.</li>
+<li>Looking at nonzero rows only, the first nonzero number from the left ( also called the pivot or the leading coefficient ) is always strictly to the right of the pivot of the row above it.</li>
+</ul></li>
+<li><p>Basic and free variables : The variables corresponding to the pivots in the row-echelon form are called basic variables and the other variables are free variables. For example, <span class="math inline">x_1; x_3; x_4</span> are basic variables, whereas <span class="math inline">x_2;x_5</span> are free variables in above example matrix.</p></li>
+</ul>
+</section>
+<section id="reduced-row-echelon-forms" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="reduced-row-echelon-forms"><span class="header-section-number">3</span> Reduced row Echelon Forms</h2>
+<ul>
+<li>Definition <br> An equation system is in reduced row echelon form ( also: rwo reduced echelon form or row canonical from ) if
+<ul>
+<li>It is in row echelon from.</li>
+<li>Every pivot is 1.</li>
+<li>The pivot is the only nonzero entry in its column.</li>
+</ul></li>
+</ul>
+</section>
+<section id="solving-ax0-minus-1-trick" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="solving-ax0-minus-1-trick"><span class="header-section-number">4</span> Solving <span class="math inline">AX=0</span> (Minus <span class="math inline">1</span> Trick)</h2>
+<ul>
+<li>Example Matrix <br><br> <span class="math inline">\left[ \begin{array}{r r r r r} 1 &amp; 3 &amp; 0 &amp; 0 &amp; 3 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 9 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; -4 \\ \end{array}\right]</span><br><br> For finding the solutions of <span class="math inline">AX=0</span> is to look at the non-pivot columns, which we will need to express as a (linear) combination of the pivot columns. <br><br> <span class="math inline">\left\{x\in\mathbb{R}^{5}:x= \lambda_{1}{\left[\begin{array}{r}3\\ -1\\ 0\\ 0 \\0 \end{array}\right]} + \lambda_{2}{\left[\begin{array}{r}3\\ 0\\ 9\\ -4 \\ -1\end{array}\right]},\;\;\ \lambda_{1},\lambda_{2}\in\mathbb{R}\right\}</span> <br><br> Insert row in place of free variable ( <span class="math inline">2^{\text{nd}}</span> and <span class="math inline">5^{\text{th}}</span>) with <span class="math inline">-1</span> value in place of dependent variable as shown below <br><br> <span class="math inline">\tilde{A} = \left[ \begin{array}{r r r r r} 1 &amp; 3 &amp; 0 &amp; 0 &amp; 3 \\ \boxed 0 &amp; \boxed { \mathbf {-1}} &amp; \boxed 0 &amp; \boxed 0 &amp; \boxed 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 9 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; -4 \\ \boxed 0 &amp; \boxed 0 &amp; \boxed 0 &amp; \boxed 0 &amp; \boxed {\mathbf {-1}} \\ \end{array}\right]</span><br><br> Now the solution for <span class="math inline">AX=0</span> can be found by the columns of the the free variable which is <span class="math inline">2^{\text{nd}}</span> and <span class="math inline">5^{\text{th}}</span> column.</li>
+</ul>
+</section>
+<section id="solving-a-system-of-liner-equation" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="solving-a-system-of-liner-equation"><span class="header-section-number">5</span> Solving a System of Liner Equation</h2>
+<ul>
+<li><p>Inversion of matrices which are not square and non-invertible.<br> <span class="math inline">Ax=b</span> is given as <span class="math inline">x=A^{-1}b</span> <br> <span class="math inline">Ax=b \Longleftrightarrow A^TAx=A^Tb \Longleftrightarrow x= (A^TA)^{-1}A^Tb</span><br> This is called <em>Moore-Penrose pseudo-inverse</em> <br> The disadvantage of this method is that it requires a lot of computation.</p></li>
+<li><p>Gaussian Elimination plays a key role in</p>
+<ul>
+<li>Computing determinants</li>
+<li>Checking whether a set of vectors is linearly independent</li>
+<li>Computing the rank of the matrix</li>
+<li>Determining a basis of the vector space.</li>
+</ul></li>
+</ul>
+</section>
+<section id="vector-space" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="vector-space"><span class="header-section-number">6</span> Vector Space</h2>
+<ul>
+<li>A vector space <span class="math inline">V</span> is a set that is closed under finite vector addition and scalar multiplication.
+<ul>
+<li>we two vectors are added or multiplied it should stay in the same vector space.</li>
+</ul></li>
+<li>Vector space properties <br> In order for <span class="math inline">V</span> to be a vector space, the following condition must hold for all elements <span class="math inline">X,Y,Z \in V</span> and any scalars <span class="math inline">r,s \in F</span>:
+<ul>
+<li>Commutativity: <span class="math inline">X+Y=Y+X</span></li>
+<li>Associativity of vector addition: <span class="math inline">(X+Y)+Z = X+(Y+Z)</span></li>
+<li>Additive Identity: For all <span class="math inline">X, \;\; 0+X = X+0=X</span></li>
+<li>Existence of additive inverse: For any <span class="math inline">X</span>, there exists a <span class="math inline">-X</span> such that <span class="math inline">X+(-X) =0</span></li>
+<li>Associativity of vector multiplication: <span class="math inline">r(sX) = (rs)X</span></li>
+<li>Distributivity of scalar sums: <span class="math inline">(r+s)X = rX+sX</span></li>
+<li>Scalar multiplication identity: <span class="math inline">1X=X</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="subspace" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="subspace"><span class="header-section-number">7</span> Subspace</h2>
+<ul>
+<li>Let <span class="math inline">V</span> be a vector space, and let <span class="math inline">W</span> be the subspace of <span class="math inline">V</span>, if <span class="math inline">W</span> is a vector space with respect to the operation in <span class="math inline">V</span>, then <span class="math inline">W</span> is called a subspace of <span class="math inline">V</span></li>
+<li>Let <span class="math inline">V</span> be the vector space, with operations <span class="math inline">+</span> and <span class="math inline">\;\cdot \;</span> and let <span class="math inline">W</span> be subset of <span class="math inline">V</span>. Then <span class="math inline">W</span> is subspace of <span class="math inline">V</span> if and only if the following conditions hold.
+<ul>
+<li><span class="math inline">W</span> is non-empty: The zero vector belongs to <span class="math inline">W</span>.</li>
+<li>Closure under <span class="math inline">+</span>: If <span class="math inline">u</span> and <span class="math inline">v</span> are any vectors in <span class="math inline">W</span>, the <span class="math inline">u+v</span> is in <span class="math inline">W</span>.</li>
+<li>Closure under <span class="math inline">\cdot \;</span>:if <span class="math inline">v</span> is any vector in <span class="math inline">W</span>, and <span class="math inline">c</span> is nay real number, then <span class="math inline">c \cdot v</span> si in <span class="math inline">W</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="liner-combination" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="liner-combination"><span class="header-section-number">8</span> Liner Combination</h2>
+<ul>
+<li>Consider a vector space <span class="math inline">V</span> and a finite number of vectors <br> <span class="math inline">x_1, \dots , x_k \in V</span>, then every <span class="math inline">v \in V</span> of the form <br> <span class="math inline">\displaystyle v=\lambda_1 x_1+ \dots + \lambda_kx_k = \sum_{i=1}^k \lambda_i x_i \in V</span> <br> <span class="math inline">\lambda_1,\dots , \lambda_k \in \mathbb{R}</span> is a linear combination fo the vectors <span class="math inline">x_1, \dots ,x_k</span><br> <span class="math inline">\displaystyle 0=\sum_{i=1}^k 0 x_i</span></li>
+</ul>
+</section>
+<section id="linear-independence" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="linear-independence"><span class="header-section-number">9</span> Linear Independence</h2>
+<ul>
+<li><p>Let us consider a vector space <span class="math inline">V</span> with <span class="math inline">k \in \mathbb{N}</span> and <span class="math inline">x_1, \dots ,x_k \in V</span>. If there is a non trivial linear combination, such that <span class="math inline">0=\sum_{i=1}^k \lambda_i x_i</span> with at least one <span class="math inline">\lambda _i \ne 0,</span> the vectors <span class="math inline">x_1, \dots , x_k</span> are <em>linearly independent</em>. If only the trivial solution exists, i.e., <span class="math inline">\lambda_1 =\dots=\lambda_k=0</span> the vectors <span class="math inline">x_1, \dots , x_k</span> are linearly independent.</p></li>
+<li><p>If at-least one of the vectors <span class="math inline">x_1, \dots , x_k</span> is <span class="math inline">0</span> then they are linearly dependent. The same holds if two vectors are identical.</p></li>
+<li><p>To find if a system is linear independent, perform gaussian elimination, if there is no non-pivot column then the vectors are independent.</p></li>
+</ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Srijith, IIT Hyderabad }}}}</span></p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{kumardubey2022,
+  author = {Abhishek Kumar Dubey},
+  title = {Linear {Algebra} 2},
+  date = {2022-09-17},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-kumardubey2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
+Abhishek Kumar Dubey. 2022. <span>“Linear Algebra 2.”</span> September
+17, 2022.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="abhiyantaabhishek/IITH-Data-Science" data-repo-id="R_kgDOILoB8A" data-category="Announcements" data-category-id="DIC_kwDOILoB8M4CSJcL" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../Data_Science_Tutorial/CS6660/2022-09-03-CS6660-week3.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Linear Algebra 1</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../Data_Science_Tutorial/CS6660/2022-10-01-CS6660-week6.html" class="pagination-link">
+        <span class="nav-page-text">Linear Algebra 3</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

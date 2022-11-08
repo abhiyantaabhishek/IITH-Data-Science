@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.258">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -24,14 +24,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -41,6 +38,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -60,35 +59,6 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
 
 <script type="text/javascript">
@@ -99,30 +69,13 @@ gtag('js', new Date());
 gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="IITH-Data-Science">
-<meta property="og:image" content="./posts/CS6660/CS6660_images/2022-08-13-CS6660-week2-preview.jpg">
 <meta property="og:site-name" content="IITH-Data-Science">
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -137,49 +90,46 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page">
+ <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Data_Science_Tutorial/index.html">
+ <span class="menu-text"><i class="fa-solid fa-atom" aria-label="atom"></i> Data Science Tutorial</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Data_Science_Hacks/index.html">
+ <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Data Science Hacks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
+  </li>  
+</ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">Home</a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./about.html">About</a>
-  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
-  <div class="quarto-reader-toggle-btn">
-  <i class="bi"></i>
-  </div>
-</a>
-              </div>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">IITH-Data-Science</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">IITH-Data-Science</h1>
+      <h1 class="title">IITH-Data-Science</h1>
                       </div>
   </div>
     
@@ -187,702 +137,28 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <div class="quarto-title-meta">
 
       
+    
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-      </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">CS6660</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Probability Theory</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS6660/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">Probability Theory 1</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS6660/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS6660/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">Probability Theory 3</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS6660/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS6660/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">Probability Theory 5</a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Linear Algebra</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS6660/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS6660/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS6660/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">CS5590</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Machine Learning</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS5590/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS5590/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">Machine Learning 2</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS5590/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">Machine Learning 3</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS5590/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS5590/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS5590/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">Machine Learning 6</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/CS5590/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">Machine Learning 7</a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(15)</span></div><div class="category" data-category="Linear Algebra">Linear Algebra <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Machine Learning">Machine Learning <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Probability Theory">Probability Theory <span class="quarto-category-count">(5)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-body" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
+<div class="center-text">
+<p>Home page will be updated soon <i class="fa-solid fa-hand-peace" aria-label="hand-peace"></i> Please visit to other pages <i class="fa-solid fa-champagne-glasses" aria-label="champagne-glasses"></i></p>
+</div>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Probability Theory" data-listing-date-sort="1665772200000" data-listing-file-modified-sort="1667225146930" data-listing-reading-time-sort="16.05">
-<div class="thumbnail">
-<p><a href="./posts/CS6660/2022-10-15-CS6660-week7.html"> <img src="./posts/CS6660/CS6660_images/chrome_pPYR2UCfXR.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS6660/2022-10-15-CS6660-week7.html">
-<h3 class="no-anchor listing-title">
-Probability Theory 5
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Probability Theory'); return false;">
-Probability Theory
-</div>
-</div>
-<a href="./posts/CS6660/2022-10-15-CS6660-week7.html">
-<div class="listing-description">
-<p>Joint, Conditional, Marginal, Discrete Convolution</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS6660/2022-10-15-CS6660-week7.html">
-<div class="listing-date">
-Oct 15, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Machine Learning" data-listing-date-sort="1665772200000" data-listing-file-modified-sort="1667223492499" data-listing-reading-time-sort="13.02">
-<div class="thumbnail">
-<p><a href="./posts/CS5590/2022-10-15-CS5590-week7.html"> <img src="./posts/CS5590/CS5590_images/Acrobat_DOQ241iPvG.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS5590/2022-10-15-CS5590-week7.html">
-<h3 class="no-anchor listing-title">
-Machine Learning 7
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-</div>
-<a href="./posts/CS5590/2022-10-15-CS5590-week7.html">
-<div class="listing-description">
-<p>Classifier System Design,Introduction to Learning Theory</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS5590/2022-10-15-CS5590-week7.html">
-<div class="listing-date">
-Oct 15, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Machine Learning" data-listing-date-sort="1665167400000" data-listing-file-modified-sort="1667223089570" data-listing-reading-time-sort="6.155">
-<div class="thumbnail">
-<p><a href="./posts/CS5590/2022-10-08-CS5590-week6.html"> <img src="./posts/CS5590/CS5590_images/Acrobat_EZY9SgFMeU.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS5590/2022-10-08-CS5590-week6.html">
-<h3 class="no-anchor listing-title">
-Machine Learning 6
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-</div>
-<a href="./posts/CS5590/2022-10-08-CS5590-week6.html">
-<div class="listing-description">
-<p>Ensemble Classifier</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS5590/2022-10-08-CS5590-week6.html">
-<div class="listing-date">
-Oct 8, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Linear Algebra" data-listing-date-sort="1664562600000" data-listing-file-modified-sort="1667224626097" data-listing-reading-time-sort="6.13">
-<div class="thumbnail">
-<a href="./posts/CS6660/2022-10-01-CS6660-week6.html">
-<div class="thumbnail-image">
-
-</div>
-</a><p><a href="./posts/CS6660/2022-10-01-CS6660-week6.html"></a></p>
-</div>
-<div class="body">
-<a href="./posts/CS6660/2022-10-01-CS6660-week6.html">
-<h3 class="no-anchor listing-title">
-Linear Algebra 3
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Linear Algebra'); return false;">
-Linear Algebra
-</div>
-</div>
-<a href="./posts/CS6660/2022-10-01-CS6660-week6.html">
-<div class="listing-description">
-<p>Independence, Basis, Space</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS6660/2022-10-01-CS6660-week6.html">
-<div class="listing-date">
-Oct 1, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Probability Theory" data-listing-date-sort="1663957800000" data-listing-file-modified-sort="1667225470108" data-listing-reading-time-sort="10.49">
-<div class="thumbnail">
-<p><a href="./posts/CS6660/2022-09-24-CS6660-week5.html"> <img src="./posts/CS6660/CS6660_images/chrome_pPYR2UCfXR.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS6660/2022-09-24-CS6660-week5.html">
-<h3 class="no-anchor listing-title">
-Probability Theory 4
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Probability Theory'); return false;">
-Probability Theory
-</div>
-</div>
-<a href="./posts/CS6660/2022-09-24-CS6660-week5.html">
-<div class="listing-description">
-<p>Uniform, Exponential, Normal</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS6660/2022-09-24-CS6660-week5.html">
-<div class="listing-date">
-Sep 24, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="Machine Learning" data-listing-date-sort="1663957800000" data-listing-file-modified-sort="1667222736703" data-listing-reading-time-sort="12.345">
-<div class="thumbnail">
-<p><a href="./posts/CS5590/2022-09-24-CS5590-week5.html"> <img src="./posts/CS5590/CS5590_images/Acrobat_EZY9SgFMeU.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS5590/2022-09-24-CS5590-week5.html">
-<h3 class="no-anchor listing-title">
-Machine Learning 5
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-</div>
-<a href="./posts/CS5590/2022-09-24-CS5590-week5.html">
-<div class="listing-description">
-<p>Multi Layer Perceptrons</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS5590/2022-09-24-CS5590-week5.html">
-<div class="listing-date">
-Sep 24, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="Linear Algebra" data-listing-date-sort="1663353000000" data-listing-file-modified-sort="1667224282067" data-listing-reading-time-sort="8.855">
-<div class="thumbnail">
-<a href="./posts/CS6660/2022-09-17-CS6660-week4_2.html">
-<div class="thumbnail-image">
-
-</div>
-</a><p><a href="./posts/CS6660/2022-09-17-CS6660-week4_2.html"></a></p>
-</div>
-<div class="body">
-<a href="./posts/CS6660/2022-09-17-CS6660-week4_2.html">
-<h3 class="no-anchor listing-title">
-Linear Algebra 2
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Linear Algebra'); return false;">
-Linear Algebra
-</div>
-</div>
-<a href="./posts/CS6660/2022-09-17-CS6660-week4_2.html">
-<div class="listing-description">
-<p>Gaussian Elimination, Row-Echelon, Minus 1 Trick</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS6660/2022-09-17-CS6660-week4_2.html">
-<div class="listing-date">
-Sep 17, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="Probability Theory" data-listing-date-sort="1663353000000" data-listing-file-modified-sort="1667224062771" data-listing-reading-time-sort="16.015">
-<div class="thumbnail">
-<p><a href="./posts/CS6660/2022-09-17-CS6660-week4_1.html"> <img src="./posts/CS6660/CS6660_images/chrome_pPYR2UCfXR.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS6660/2022-09-17-CS6660-week4_1.html">
-<h3 class="no-anchor listing-title">
-Probability Theory 3
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Probability Theory'); return false;">
-Probability Theory
-</div>
-</div>
-<a href="./posts/CS6660/2022-09-17-CS6660-week4_1.html">
-<div class="listing-description">
-<p>Binomial, Poisson</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS6660/2022-09-17-CS6660-week4_1.html">
-<div class="listing-date">
-Sep 17, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="Machine Learning" data-listing-date-sort="1662748200000" data-listing-file-modified-sort="1667222437199" data-listing-reading-time-sort="18.51">
-<div class="thumbnail">
-<p><a href="./posts/CS5590/2022-09-10-CS5590-week4.html"> <img src="./posts/CS5590/CS5590_images/Acrobat_vct8kMqVEu.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS5590/2022-09-10-CS5590-week4.html">
-<h3 class="no-anchor listing-title">
-Machine Learning 4
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-</div>
-<a href="./posts/CS5590/2022-09-10-CS5590-week4.html">
-<div class="listing-description">
-<p>SVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS5590/2022-09-10-CS5590-week4.html">
-<div class="listing-date">
-Sep 10, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="Linear Algebra" data-listing-date-sort="1662143400000" data-listing-file-modified-sort="1667223710870" data-listing-reading-time-sort="2.305">
-<div class="thumbnail">
-<p><a href="./posts/CS6660/2022-09-03-CS6660-week3.html"> <img src="./posts/CS6660/CS6660_images/Acrobat_DdKtM5v6Sg.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS6660/2022-09-03-CS6660-week3.html">
-<h3 class="no-anchor listing-title">
-Linear Algebra 1
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Linear Algebra'); return false;">
-Linear Algebra
-</div>
-</div>
-<a href="./posts/CS6660/2022-09-03-CS6660-week3.html">
-<div class="listing-description">
-<p>System of equation</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS6660/2022-09-03-CS6660-week3.html">
-<div class="listing-date">
-Sep 3, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-categories="Machine Learning" data-listing-date-sort="1661538600000" data-listing-file-modified-sort="1667220604638" data-listing-reading-time-sort="6.21">
-<div class="thumbnail">
-<p><a href="./posts/CS5590/2022-08-27-CS5590-week3.html"> <img src="./posts/CS5590/CS5590_images/Code_GehOQCy4hw.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS5590/2022-08-27-CS5590-week3.html">
-<h3 class="no-anchor listing-title">
-Machine Learning 3
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-</div>
-<a href="./posts/CS5590/2022-08-27-CS5590-week3.html">
-<div class="listing-description">
-<p>Decision Trees, Naive Bayes, Bayesian Belief network</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS5590/2022-08-27-CS5590-week3.html">
-<div class="listing-date">
-Aug 27, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="11" data-categories="Machine Learning" data-listing-date-sort="1660933800000" data-listing-file-modified-sort="1667220304701" data-listing-reading-time-sort="6.145">
-<div class="thumbnail">
-<p><a href="./posts/CS5590/2022-08-20-CS5590-week2.html"> <img src="./posts/CS5590/CS5590_images/chrome_CNeo323E9V.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS5590/2022-08-20-CS5590-week2.html">
-<h3 class="no-anchor listing-title">
-Machine Learning 2
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-</div>
-<a href="./posts/CS5590/2022-08-20-CS5590-week2.html">
-<div class="listing-description">
-<p>Classification Error, ROC/PR curve, KNN</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS5590/2022-08-20-CS5590-week2.html">
-<div class="listing-date">
-Aug 20, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="12" data-categories="Probability Theory" data-listing-date-sort="1660329000000" data-listing-file-modified-sort="1667207300767" data-listing-reading-time-sort="2.255">
-<div class="thumbnail">
-<p><a href="./posts/CS6660/2022-08-13-CS6660-week2.html"> <img src="./posts/CS6660/CS6660_images/2022-08-13-CS6660-week2-preview.jpg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS6660/2022-08-13-CS6660-week2.html">
-<h3 class="no-anchor listing-title">
-Probability Theory 2
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Probability Theory'); return false;">
-Probability Theory
-</div>
-</div>
-<a href="./posts/CS6660/2022-08-13-CS6660-week2.html">
-<div class="listing-description">
-<p>Mass Function</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS6660/2022-08-13-CS6660-week2.html">
-<div class="listing-date">
-Aug 13, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="13" data-categories="Probability Theory" data-listing-date-sort="1659724200000" data-listing-file-modified-sort="1667207272588" data-listing-reading-time-sort="4.825">
-<div class="thumbnail">
-<p><a href="./posts/CS6660/2022-08-06-CS6660-week1.html"> <img src="./posts/CS6660/CS6660_images/2022-08-06-CS6660-week1-preview.jpg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS6660/2022-08-06-CS6660-week1.html">
-<h3 class="no-anchor listing-title">
-Probability Theory 1
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Probability Theory'); return false;">
-Probability Theory
-</div>
-</div>
-<a href="./posts/CS6660/2022-08-06-CS6660-week1.html">
-<div class="listing-description">
-<p>Basics, Bayes Theorem</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS6660/2022-08-06-CS6660-week1.html">
-<div class="listing-date">
-Aug 6, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="14" data-categories="Machine Learning" data-listing-date-sort="1659724200000" data-listing-file-modified-sort="1667207228996" data-listing-reading-time-sort="1.9">
-<div class="thumbnail">
-<p><a href="./posts/CS5590/2022-08-06-CS5590-week1.html"> <img src="./posts/CS5590/CS5590_images/MATLAB_ljcLgT0iTJ.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/CS5590/2022-08-06-CS5590-week1.html">
-<h3 class="no-anchor listing-title">
-Machine Learning 1
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
-Machine Learning
-</div>
-</div>
-<a href="./posts/CS5590/2022-08-06-CS5590-week1.html">
-<div class="listing-description">
-<p>Training Error, Generalization Error</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/CS5590/2022-08-06-CS5590-week1.html">
-<div class="listing-date">
-Aug 6, 2022
-</div>
-<div class="listing-author">
-Abhishek Kumar Dubey
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -924,7 +200,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -960,26 +253,46 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
+</script>
+<script src="https://giscus.app/client.js" data-repo="abhiyantaabhishek/IITH-Data-Science" data-repo-id="R_kgDOILoB8A" data-category="Announcements" data-category-id="DIC_kwDOILoB8M4CSJcL" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
 <footer class="footer">

@@ -1,15 +1,11 @@
 ---
 title: "IITH-Data-Science"
-comments: false
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
+# comments: false
+page-layout: article
 title-block-banner: true
 ---
 
 
+::: {.center-text}
+ Home page will be updated soon {{< fa hand-peace >}} Please visit to other pages {{< fa champagne-glasses >}}
+:::

@@ -11,46 +11,33 @@ website:
   google-analytics: "G-5ZQX02R26E"
   open-graph: true
   navbar:
+    pinned: true
     search: true
-    right:
-      - href: index.qmd
-        text: Home    
+    left:
+      - text: "{{< fa house >}} Home"
+        file: index.qmd  
+      - text: "{{< fa atom >}} Data Science Tutorial"
+        file: Data_Science_Tutorial/index.qmd
+      - text: "{{< fa user-ninja >}} Data Science Hacks"
+        file: Data_Science_Hacks/index.qmd     
       - href: about.qmd
-        text: About        
+        text: "{{< fa address-card >}} About"                         
+    right:             
       - icon: github
         href: https://github.com/abhiyantaabhishek
       - icon: linkedin
         href: https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/
-  sidebar:
-    search: true
-    contents: 
-      - section: "CS6660"
-        contents:
-          - section: "Probability Theory"
-            contents:
-              - posts/CS6660/2022-08-06-CS6660-week1.ipynb
-              - posts/CS6660/2022-08-13-CS6660-week2.ipynb
-              - posts/CS6660/2022-09-17-CS6660-week4_1.ipynb
-              - posts/CS6660/2022-09-24-CS6660-week5.ipynb
-              - posts/CS6660/2022-10-15-CS6660-week7.ipynb
-          - section: "Linear Algebra"
-            contents: 
-              - posts/CS6660/2022-09-03-CS6660-week3.ipynb
-              - posts/CS6660/2022-09-17-CS6660-week4_2.ipynb
-              - posts/CS6660/2022-10-01-CS6660-week6.ipynb             
-      - section: "CS5590"
-        contents:
-          - section: "Machine Learning"
-            contents: 
-              - posts/CS5590/2022-08-06-CS5590-week1.ipynb
-              - posts/CS5590/2022-08-20-CS5590-week2.ipynb
-              - posts/CS5590/2022-08-27-CS5590-week3.ipynb
-              - posts/CS5590/2022-09-10-CS5590-week4.ipynb
-              - posts/CS5590/2022-09-24-CS5590-week5.ipynb
-              - posts/CS5590/2022-10-08-CS5590-week6.ipynb
-              - posts/CS5590/2022-10-15-CS5590-week7.ipynb
+  sidebar:  
+    - id: Data_science_hacks
+      collapse-level: 1
+      contents:
+        - auto: "Data_Science_Hacks/"
+    - id: Data_science_Tutorial
+      collapse-level: 1
+      contents:
+        - auto: "Data_Science_Tutorial/"                   
+       
   page-navigation: true
-  reader-mode: true
   page-footer: 
     left: "Copyright 2022, Abhishek Kumar Dubey" 
     right: 
@@ -64,10 +51,11 @@ website:
       repo: abhiyantaabhishek/IITH-Data-Science
       category: Announcements
 format:
-  html:
-    toc: true
-    toc-location: right  
+  html: 
     theme: cosmo
+    # theme: 
+    #   light: minty
+    #   dark: slate    
     css: styles.css
     html-math-method: katex
     highlight-style: tango
