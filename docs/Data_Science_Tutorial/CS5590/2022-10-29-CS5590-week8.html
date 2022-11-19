@@ -32,8 +32,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Data_Science_Tutorial/CS6660/2022-09-03-CS6660-week3.html" rel="next">
+<link href="../../Data_Science_Tutorial/CS5590/2022-11-05-CS5590-week9.html" rel="next">
 <link href="../../Data_Science_Tutorial/CS5590/2022-10-15-CS5590-week7.html" rel="prev">
+<link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -120,7 +121,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../../Data_Science_Tutorial/index.html" aria-current="page">
- <span class="menu-text"><i class="fa-solid fa-atom" aria-label="atom"></i> Data Science Tutorial</span></a>
+ <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Tutorial</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../Data_Science_Hacks/index.html">
@@ -254,6 +255,11 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <a href="../../Data_Science_Tutorial/CS5590/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link active">Machine Learning 8</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-11-05-CS5590-week9.html" class="sidebar-item-text sidebar-link">Machine Learning 9</a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -338,6 +344,20 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <li><a href="#further" id="toc-further" class="nav-link" data-scroll-target="#further"><span class="toc-section-number">4.1</span>  Further</a></li>
   </ul></li>
   <li><a href="#regression-formulation" id="toc-regression-formulation" class="nav-link" data-scroll-target="#regression-formulation"><span class="toc-section-number">5</span>  Regression Formulation</a></li>
+  <li><a href="#regression-statistical-modeling-view" id="toc-regression-statistical-modeling-view" class="nav-link" data-scroll-target="#regression-statistical-modeling-view"><span class="toc-section-number">6</span>  Regression Statistical Modeling View</a></li>
+  <li><a href="#regularized-least-squared-regression" id="toc-regularized-least-squared-regression" class="nav-link" data-scroll-target="#regularized-least-squared-regression"><span class="toc-section-number">7</span>  Regularized Least-Squared Regression</a></li>
+  <li><a href="#solving-ridge-regression" id="toc-solving-ridge-regression" class="nav-link" data-scroll-target="#solving-ridge-regression"><span class="toc-section-number">8</span>  Solving Ridge Regression</a></li>
+  <li><a href="#total-least-squares-and-partial-least-squares" id="toc-total-least-squares-and-partial-least-squares" class="nav-link" data-scroll-target="#total-least-squares-and-partial-least-squares"><span class="toc-section-number">9</span>  Total Least Squares and Partial Least Squares</a></li>
+  <li><a href="#regression-methods" id="toc-regression-methods" class="nav-link" data-scroll-target="#regression-methods"><span class="toc-section-number">10</span>  Regression Methods</a></li>
+  <li><a href="#non-linear-regression" id="toc-non-linear-regression" class="nav-link" data-scroll-target="#non-linear-regression"><span class="toc-section-number">11</span>  Non-Linear Regression</a>
+  <ul>
+  <li><a href="#kernel-regression" id="toc-kernel-regression" class="nav-link" data-scroll-target="#kernel-regression"><span class="toc-section-number">11.1</span>  Kernel Regression</a></li>
+  </ul></li>
+  <li><a href="#k-nn-regression" id="toc-k-nn-regression" class="nav-link" data-scroll-target="#k-nn-regression"><span class="toc-section-number">12</span>  k-NN Regression</a></li>
+  <li><a href="#regression-trees" id="toc-regression-trees" class="nav-link" data-scroll-target="#regression-trees"><span class="toc-section-number">13</span>  Regression Trees</a>
+  <ul>
+  <li><a href="#regression-tree-pruning" id="toc-regression-tree-pruning" class="nav-link" data-scroll-target="#regression-tree-pruning"><span class="toc-section-number">13.1</span>  Regression Tree Pruning</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -526,21 +546,172 @@ w\\
 <li>Below pic shows the same:<br><br> <img src="CS5590_images/mspaint_IDUg2yv0VR.png" class="img-fluid"></li>
 </ul></li>
 </ul>
+</section>
+<section id="regression-statistical-modeling-view" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="regression-statistical-modeling-view"><span class="header-section-number">6</span> Regression Statistical Modeling View</h2>
+<p>Consider <span class="math inline">y_{\text{clean}}</span> is computed as <span class="math inline">w\cdot x_i</span> and level <span class="math inline">y_i</span> is formed by corrupting <span class="math inline">y_{\text{clean}}</span> by gaussian noise <span class="math inline">\epsilon_i \sim \mathcal{N}(0,\sigma ^2)</span> <span class="math display">y_i:=y_{\text{clean}}+\epsilon_i=w\cdot x_i + \epsilon_i</span> we can observe that <span class="math display">y_i \sim w\cdot x_i +\mathcal{N}(0,\sigma ^2)=\mathcal{N}(w\cdot x_i,\sigma ^2)</span> Consider our data pair <span class="math inline">(\vec x_1,y_2),(\vec x_2,y_2),\cdots,(\vec x_n,y_n)</span> is drawn independently from a fixed underlying distribution ( also called the i.i.d assumption ).</p>
+<p>we need to select optimal model <span class="math inline">\vec f</span> from all possible pool of the model <span class="math inline">\mathcal{F}</span> such that we get</p>
+<ul>
+<li>Maximum likelihood ( best fits the data)</li>
+<li>Maximum a posteriori ( best fits the dta but incorporates prior assumptions)</li>
+<li>Optimization of loss criterion ( best discriminates the labels)</li>
+</ul>
+<p>Given some i.i.d data say we have a model class <span class="math inline">\mathcal{P} = \{\mathcal{p}_\theta \mid \theta \in \Theta \}</span> <br> We need to find the parameter settings <span class="math inline">\theta</span> that best fits the data.</p>
+<p>WE can find the best fitting model via <strong>Maximum likelihood extimation</strong>. <span class="math display">\mathcal{L}(\theta \mid X) := P(X\mid
+\theta) = P(\vec x_1, \cdots,\vec x_n\mid \theta) \overset{\text{i.i.d}}{=} \prod_{i=1}^n \mathcal{P}(\vec x_i \mid \theta)= \prod_{i=1}^n \mathcal{P}_\theta(\vec x_i)</span> Interpretation : How probable is the data given the model <span class="math inline">p_\theta</span></p>
+<p>Parameter setting that maximizes <span class="math inline">\mathcal{L}(\theta \mid X)</span> <span class="math display">\argmax_\theta  \prod_{i=1}^n \mathcal{P}_\theta(\vec x_i)</span></p>
+<p>Consider <span class="math inline">{\mathcal{P}}_{\left\lbrace \mu ,\sigma^2 \right\rbrace } \left(x\right)</span> is given as</p>
+<p><span class="math display">{\mathcal{P}}_{\left\lbrace \mu ,\sigma^2 \right\rbrace } \left(x\right):=\frac{1}{\sqrt{2\pi \sigma^2 }}\exp \left(-\frac{{\left(x-\mu \right)}^2 }{2\sigma^2 }\right)</span> Then</p>
+<p><span class="math display">\begin{align*}{}
+\arg \;\max_{\theta } \mathcal{L}\left(\theta \mid X\right)&amp;=\arg \;\max_{\mu ,\sigma^2 } \prod_{i=1}^n {\mathcal{P}}_{\left\lbrace \mu ,\sigma^2 \right\rbrace } \left(x_i \right)\\
+&amp;=\arg \;\max_{\mu ,\sigma^2 } \prod_{i=1}^n \frac{1}{\sqrt{2\pi \sigma^2 }}\exp \left(-\frac{{\left(x_i -\mu \right)}^2 }{2\sigma^2 }\right)
+\end{align*}</span></p>
+<p>Now, we know that the arg max of a function and it’s log is same, so</p>
+<p><span class="math display">\begin{align*}{}
+\arg \;\max_{\theta } \mathcal{L}\left(\theta |X\right)&amp;=\arg \;\max_{\theta } \;\log \mathcal{L}\left(\theta \mid X\right)\\
+&amp;=\arg \;\max_{\mu ,\sigma^2 } \log \left(\prod_{i=1}^n {\mathcal{P}}_{\left\lbrace \mu ,\sigma^2 \right\rbrace } \left(x_i \right)\right)\\
+&amp;=\arg \;\max_{\mu ,\sigma^2 } \log \left(\prod_{i=1}^n \frac{1}{\sqrt{2\pi \sigma^2 }}\exp \left(-\frac{{\left(x_i -\mu \right)}^2 }{2\sigma^2 }\right)\right)\\
+&amp;=\arg \;\max_{\mu ,\sigma^2 } \sum_{i=1}^n \log \left(\frac{1}{\sqrt{2\pi \sigma^2 }}\exp \left(-\frac{{\left(x_i -\mu \right)}^2 }{2\sigma^2 }\right)\right)\\
+&amp;=\arg \;\max_{\mu ,\sigma^2 } \sum_{i=1}^n \left\lbrack -\frac{1}{2}\log \left(2\pi \sigma^2 \right)-\frac{{\left(x_i -\mu \right)}^2 }{2\sigma^2 }\right\rbrack \\
+&amp;=\arg \;\max_{\mu ,\sigma^2 } \left\lbrack -\frac{n}{2}\log \left(2\pi \sigma^2 \right)-\sum_{i=1}^n \left\lbrack \frac{{\left(x_i -\mu \right)}^2 }{2\sigma^2 }\right\rbrack \right\rbrack \\
+&amp;=\arg \;\max_{\mu ,\sigma^2 } \left\lbrack -\frac{n}{2}\log \left(2\pi \right)-\frac{n}{2}\log \left(\sigma^2 \right)-\frac{1}{2\sigma^2 }\sum_{i=1}^n {\left(x_i -\mu \right)}^2 \right\rbrack
+\end{align*}</span></p>
+<p>Now find derivative of above with <span class="math inline">\mu</span></p>
+<p><span class="math display">\begin{align*}{}
+\nabla_{\mu } \left(\mathcal{L}\left(\theta |X\right)\right)&amp;=-\frac{1}{2\sigma^2 }\sum_{i=1}^n \left\lbrack \left(x_i -\mu \right)\times \left(-2\mu \right)\right\rbrack \\
+&amp;=\frac{\mu }{\sigma^2 }\sum_{i=1}^n \left(x_i -\mu \right)\\
+&amp;=\frac{\mu }{\sigma^2 }\sum_{i=1}^n x_i -\frac{\mu }{\sigma^2 }n\mu
+\end{align*}</span></p>
+<p>To find minimum equate it to zero</p>
+<p><span class="math display">\begin{align*}{}
+&amp;\nabla_{\mu } \left(\mathcal{L}\left(\theta |X\right)\right)=0\\
+\Rightarrow \quad&amp; \frac{\mu }{\sigma^2 }\sum_{i=1}^n x_i -\frac{\mu }{\sigma^2 }n\mu =0\\
+\Rightarrow \quad&amp; \frac{\mu }{\sigma^2 }\sum_{i=1}^n x_i =\frac{\mu }{\sigma^2 }n\mu \\
+\Rightarrow \quad&amp; \mu =\frac{1}{n}\sum_{i=1}^n x_i
+\end{align*}</span></p>
+<p>Now find derivative of the same with <span class="math inline">\sigma</span></p>
+<p><span class="math display">\begin{align*}{}
+\nabla_{\mu } \left(\mathcal{L}\left(\theta |X\right)\right)&amp;=-\frac{n}{2}\times \frac{1}{\sigma^2 }\times 2\sigma +\frac{2}{2\sigma^3 }\sum_{i=1}^n {\left(x_i -\mu \right)}^2 \\
+&amp;=\frac{-n}{\sigma }+\frac{1}{\sigma^3 }\sum_{i=1}^n {\left(x_i -\mu \right)}^2
+\end{align*}</span></p>
+<p>To find minimum equate it to zero</p>
+<p><span class="math display">\begin{align*}{}
+&amp;\nabla_{\mu } \left(\mathcal{L}\left(\theta |X\right)\right)=0\\
+\Rightarrow \quad&amp;\frac{-n}{\sigma }+\frac{1}{\sigma^3 }\sum_{i=1}^n {\left(x_i -\mu \right)}^2 =0\\
+\Rightarrow \quad&amp;\frac{n}{\sigma }=\frac{1}{\sigma^3 }\sum_{i=1}^n {\left(x_i -\mu \right)}^2 \\
+\Rightarrow \quad&amp;\sigma^2 =\frac{1}{n}\sum_{i=1}^n {\left(x_i -\mu \right)}^2
+\end{align*}</span></p>
+<p>Back to linear Regression: How can we determine <span class="math inline">w</span> from Gaussian noise corrupted observations?<br> <span class="math inline">S=(x_1,y_1),\dots,(x_n,y_n)</span> <br> Observation: <span class="math inline">y_i\sim w\cdot x_i + \mathcal{N}(o,\sigma^2)=\mathcal{N}(w\cdot x_i,\sigma^2)</span><br> Let’s try to use Maximum likelihood estimation to estimate Gaussian Noise<br> Parameter:<br> <span class="math display">\begin{align*}{}
+\log \;\mathcal{L}\left(w\mid S\right)&amp;=\sum_{i=1}^n \log \;p\left(y_i \mid w\right)\\
+&amp;\propto\sum \frac{-{\left(w\cdot x_i -y_i \right)}^2 }{2\sigma^2 }
+\end{align*}</span> Ignoring the terms independent of <span class="math inline">w</span> and optimizing for <span class="math inline">w</span> yields the same ols results.</p>
+<p>we can say that <strong>Minimizing Ordinary sum of square is same as maximizing the gaussian log likelihood</strong></p>
+</section>
+<section id="regularized-least-squared-regression" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="regularized-least-squared-regression"><span class="header-section-number">7</span> Regularized Least-Squared Regression</h2>
+<ul>
+<li>complex models has a lot of parameters, so pron to overfitting.</li>
+<li>Overfitting can be reduced by imposing a constraint on the overall magnitude of the parameters.</li>
+<li>Two common types of regularization in linear regression:
+<ul>
+<li><strong>L2 regularization</strong> (a.k.a. ridge regression): Find <span class="math inline">w</span> which minimizes: <span class="math display">{\sum_{j=1}^N \left(y_j -\sum_{i=0}^d w_i \cdot x_i \right)}^2 +\lambda \sum_{i=1}^d w_i^2</span> <br>Bigger <span class="math inline">\lambda</span> imposes more constraints.</li>
+<li><strong>L1 regularization</strong> (a.k.a. lasso): Find <span class="math inline">w</span> which minimizes: <span class="math display">{\sum_{j=1}^N \left(y_j -\sum_{i=0}^d w_i \cdot x_i \right)}^2 +\lambda \sum_{i=1}^d \left\lvert w_i \right\rvert</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="solving-ridge-regression" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="solving-ridge-regression"><span class="header-section-number">8</span> Solving Ridge Regression</h2>
+<p>Ridge regression can also be written as <br> <span class="math display">\left\lVert \mathbf{y}- \mathbf{Xw} \right\rVert ^2 + \lambda \left\lVert \mathbf{w} \right\rVert^2</span> Solve above for minimum <span class="math inline">\mathbf{ w}</span> <br> <span class="math display">\begin{align*}
+&amp;&amp;&amp;\frac{\partial}{\partial \vec w} \left(\left\lVert  \mathbf{y}- \mathbf{Xw} \right\rVert ^2 + \lambda \left\lVert \mathbf{w} \right\rVert^2\right) =0\\
+\Rightarrow&amp;&amp;&amp; 2\mathbf{X}^T(\mathbf{Xw}- \mathbf y) +2\lambda \mathbf{w}=0 \\
+\Rightarrow&amp;&amp;&amp; 2{\mathbf{X}}^T \mathbf{X}\mathbf{w}+2\lambda \mathbf{w}=2{\mathbf{X}}^T \mathbf{y}\\
+\Rightarrow&amp;&amp;&amp; \left({\mathbf{X}}^T \mathbf{X}+\lambda I\right)\mathbf{w}={\mathbf{X}}^T \mathbf{y}\\
+\Rightarrow&amp;&amp;&amp; \mathbf{w}={{ \left({\mathbf{X}}^T \mathbf{X}+\lambda I \right)}^{-1} \mathbf{X}}^T \mathbf{y}
+\end{align*}</span></p>
+<p><strong>Inverse always exists for any</strong> <span class="math inline">\lambda &gt;0</span></p>
+</section>
+<section id="total-least-squares-and-partial-least-squares" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="total-least-squares-and-partial-least-squares"><span class="header-section-number">9</span> Total Least Squares and Partial Least Squares</h2>
+<ul>
+<li>Total least square models error in output and input.<br><br> <img src="CS5590_images/Acrobat_8phpzg8xnm.png" class="img-fluid"><br><br></li>
+<li>Partial Least Squares:
+<ul>
+<li>Seeks to address the correlation between predictor variables in it’s model</li>
+<li>Also called “Projection to Latent Structures” (PLS)</li>
+</ul></li>
+</ul>
+</section>
+<section id="regression-methods" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="regression-methods"><span class="header-section-number">10</span> Regression Methods</h2>
+<ul>
+<li>Linear Least-Squares Regression
+<ul>
+<li>Partial Least-Squares</li>
+<li>Total Least-Squares</li>
+<li>Ridge Regression, LASSO</li>
+</ul></li>
+<li>Kernel Regression</li>
+<li>k-NN Regression</li>
+<li>Regression Trees</li>
+<li>Support Vector Regression</li>
+<li>Logistic Regression</li>
+</ul>
+</section>
+<section id="non-linear-regression" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="non-linear-regression"><span class="header-section-number">11</span> Non-Linear Regression</h2>
+<ul>
+<li>it is also called kernel regression, recall kernel trick.</li>
+<li>Key Idea: Map data to higher dimensional space (feature space) and perform linear regression in embedded space.</li>
+</ul>
+<section id="kernel-regression" class="level3" data-number="11.1">
+<h3 data-number="11.1" class="anchored" data-anchor-id="kernel-regression"><span class="header-section-number">11.1</span> Kernel Regression</h3>
+<p><span class="math display">\begin{align*}{}
+&amp;&amp;&amp; \mathbf{w}={{\left({\mathbf{X}}^T \mathbf{X}+\lambda I\right)}^{-1} \mathbf{X}}^T \mathbf{y}\\
+\Rightarrow&amp;&amp;&amp;\left({\mathbf{X}}^T \mathbf{X}+\lambda I\right)\mathbf{w}={\mathit{\mathbf{X}}}^T \mathit{\mathbf{y}}\\
+\Rightarrow&amp;&amp;&amp; {\mathbf{X}}^T \mathbf{X}\mathbf{w}+\lambda \mathbf{w} ={\mathit{\mathbf{X}}}^T \mathit{\mathbf{y}}\\
+\Rightarrow&amp;&amp;&amp; \lambda \mathbf{w} ={\mathit{\mathbf{X}}}^T \mathit{\mathbf{y}}-{\mathbf{X}}^T \mathbf{X}\mathbf{w}\\
+\Rightarrow&amp;&amp;&amp; \mathbf{w}=\lambda^{-1} \left({\mathit{\mathbf{X}}}^T \mathit{\mathbf{y}}-{\mathbf{X}}^T \mathbf{X}\mathbf{w}\right)\\
+\Rightarrow&amp;&amp;&amp; \mathbf{w}=\lambda^{-1} {\mathit{\mathbf{X}}}^T \left(\mathit{\mathbf{y}}-\mathbf{Xw}\right)\\
+\Rightarrow&amp;&amp;&amp; \mathbf{w}= {\mathit{\mathbf{X}}}^T \alpha
+\end{align*}</span> where <span class="math inline">\alpha =\lambda^{-1} \left(\mathit{\mathbf{y}}-\mathbf{Xw}\right)</span> <br> now put value of <span class="math inline">\mathbf{w}</span> in the above equation <br> <span class="math display">\begin{align*}{}
+&amp;&amp;&amp;\alpha =\lambda^{-1} \left(\mathit{\mathbf{y}}-{\mathbf{XX}}^T \alpha \right)\\
+\Rightarrow&amp;&amp;&amp; \lambda \alpha =\left(\mathit{\mathbf{y}}-{\mathbf{XX}}^T \alpha \right)\\
+\Rightarrow&amp;&amp;&amp; \lambda \alpha +{\mathbf{XX}}^T \alpha =\mathit{\mathbf{y}}\\
+\Rightarrow&amp;&amp;&amp; \alpha ={\left({\mathbf{XX}}^T +\lambda I\right)}^{-1} \mathit{\mathbf{y}}\\
+\Rightarrow&amp;&amp;&amp; \alpha ={\left(\mathbf{G}+\lambda I\right)}^{-1} \mathit{\mathbf{y}}
+\end{align*}</span> where <span class="math inline">\mathit{\mathbf{G}}={\mathbf{XX}}^T</span>, or <span class="math inline">G_{i,j} =\langle {\mathit{\mathbf{X}}}_i ,{\mathit{\mathbf{X}}}_j \rangle</span><br> Need to only compute <span class="math inline">G</span>, the Gram Matrix (or the inner products between data points)<br> <br> Solving <span class="math inline">\mathbf{w}={{\left({\mathbf{X}}^T \mathbf{X}+\lambda I\right)}^{-1} \mathbf{X}}^T \mathbf{y}</span> takes <span class="math inline">O(d^3)</span> but solving <span class="math inline">\mathit{\mathbf{G}}={\mathbf{XX}}^T</span> takes <span class="math inline">O(n^3)</span> so if we have a problem where dimension is high and sample is less we go for gram matrix one, if we have less dimension then we can solve using original formulation. <br><br> Notice:<br> <span class="math inline">\mathbf{X}\rightarrow n\times d</span><br> <span class="math inline">\mathbf{X}^T\mathbf{X}\rightarrow d\times d</span><br> <span class="math inline">\mathbf{X}\mathbf{X}^T\rightarrow n\times n</span></p>
+</section>
+</section>
+<section id="k-nn-regression" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="k-nn-regression"><span class="header-section-number">12</span> k-NN Regression</h2>
+<p>In case of k-NN classification we used to find most common value (majority vote), but in case of regression we calculate mean value instead</p>
+<p><span class="math display">\hat f(x_q)\leftarrow\frac{\sum_{i=1}^kf(x_i)}{k}</span></p>
+</section>
+<section id="regression-trees" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="regression-trees"><span class="header-section-number">13</span> Regression Trees</h2>
+<ul>
+<li>Tree for regression: exactly the same model but with a number in each leaf instead of a class<br><br> <img src="CS5590_images/Acrobat_bY1TNLer3d.png" class="img-fluid"><br><br></li>
+<li>A regression tree is a piecewise constant function of the input attributes<br><br> <img src="CS5590_images/Acrobat_7Tfvs7FF9M.png" class="img-fluid"><br><br></li>
+<li>To minimize the square error on the learning sample, the prediction at a leaf is the average output of the learning cases reaching that leaf</li>
+<li>Impurity of a sample is defined by the variance of the output in that sample <span class="math display">I\left(\mathrm{LS}\right)={\mathrm{Var}}_{y\mid \mathrm{LS}} \left\lbrace y\right\rbrace =E_{y\mid \mathrm{LS}} \left\lbrack {\left(y-E_{y\mid \mathrm{LS}} \left\lbrack y\right\rbrack \right)}^2 \right\rbrack</span> where <span class="math inline">\mathrm{LS}</span> is the dataset.</li>
+<li>The best split is the one that reduces the most variance: <span class="math display">\Delta I\left(\mathrm{LS},A\right)={\mathrm{Var}}_{y\mid \mathrm{LS}} \left\lbrace y\right\rbrace -\sum_a \frac{\left\lvert { \mathrm{LS}}_a \right\rvert }{\mathrm{\left\lvert LS \right\rvert}}{\mathrm{Var}}_{y\mid {\mathrm{LS}}_a } \left\lbrace y\right\rbrace</span> where <span class="math inline">\mathrm{LS_a}</span> is the subset of the dataset.</li>
+</ul>
+<section id="regression-tree-pruning" class="level3" data-number="13.1">
+<h3 data-number="13.1" class="anchored" data-anchor-id="regression-tree-pruning"><span class="header-section-number">13.1</span> Regression Tree Pruning</h3>
+<ul>
+<li>Exactly the same algorithms apply as regression tree classification: pre-pruning and post-pruning.</li>
+<li>In practice, pruning is more important in regression because full trees are much more complex
+<ul>
+<li>Each data instance can have a different output value and hence the full tree has as many leaves as there are training instances</li>
+</ul></li>
+</ul>
 <p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
 </section>
+</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{kumardubey2022,
-  author = {Abhishek Kumar Dubey},
-  title = {Machine {Learning} 8},
-  date = {2022-10-29},
-  langid = {en}
-}
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-kumardubey2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
-Abhishek Kumar Dubey. 2022. <span>“Machine Learning 8.”</span> October
-29, 2022.
-</div></div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -683,8 +854,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Data_Science_Tutorial/CS6660/2022-09-03-CS6660-week3.html" class="pagination-link">
-        <span class="nav-page-text">Linear Algebra 1</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Data_Science_Tutorial/CS5590/2022-11-05-CS5590-week9.html" class="pagination-link">
+        <span class="nav-page-text">Machine Learning 9</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

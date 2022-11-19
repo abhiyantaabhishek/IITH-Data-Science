@@ -20,7 +20,7 @@ code-line-numbers: true
 code-copy: true
 
 ## Appendix
-citation: true  
+citation: false  
 sidebar: Data_Science_Tutorial
 
 

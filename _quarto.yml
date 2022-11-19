@@ -8,6 +8,7 @@ project:
     browser: false
 website:
   title: "IITH-Data-Science"
+  favicon: "logo.png"
   google-analytics: "G-5ZQX02R26E"
   open-graph: true
   navbar:
@@ -16,7 +17,7 @@ website:
     left:
       - text: "{{< fa house >}} Home"
         file: index.qmd  
-      - text: "{{< fa atom >}} Data Science Tutorial"
+      - text: "{{< fa book-open-reader >}} Data Science Tutorial"
         file: Data_Science_Tutorial/index.qmd
       - text: "{{< fa user-ninja >}} Data Science Hacks"
         file: Data_Science_Hacks/index.qmd     
