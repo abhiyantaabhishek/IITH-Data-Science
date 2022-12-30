@@ -1,5 +1,5 @@
 ---
-title: "I enjoy ML/DL, Have a look at my resume to know more about me!"
+title: "I enjoy ML/DL, Have a look at my resume to know more about me!!"
 comments: false
 about:
   template: marquee
