@@ -1,1 +1,7 @@
 /* css styles */
+/* https://github.com/KaTeX/KaTeX/issues/327#issuecomment-512113606 */
+.katex-display > .katex {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
