@@ -1,1 +1,1 @@
-Sitemap: https://abhiyantaabhishek.github.io/IITH-Data-Science/sitemap.xml
+Sitemap: https://github.com/abhiyantaabhishek/IITH-Data-Science/sitemap.xml
