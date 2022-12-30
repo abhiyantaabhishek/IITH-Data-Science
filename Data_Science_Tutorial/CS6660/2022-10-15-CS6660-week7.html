@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Abhishek Kumar Dubey">
+<meta name="dcterms.date" content="2022-10-15">
+<meta name="description" content="Joint, Conditional, Marginal, Discrete Convolution">
+
+<title>IITH-Data-Science - Probability Theory 5</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../Data_Science_Tutorial/CS6660/2022-09-24-CS6660-week5.html" rel="prev">
+<link href="../../logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
+</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="IITH-Data-Science - Probability Theory 5">
+<meta property="og:description" content="Joint, Conditional, Marginal, Discrete Convolution">
+<meta property="og:image" content="CS6660_images/chrome_pPYR2UCfXR.png">
+<meta property="og:site-name" content="IITH-Data-Science">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">IITH-Data-Science</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../Data_Science_Tutorial/index.html" aria-current="page">
+ <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Tutorial</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Data_Science_Hacks/index.html">
+ <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Data Science Hacks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Probability Theory 5</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Probability Theory 5</h1>
+                  <div>
+        <div class="description">
+          Joint, Conditional, Marginal, Discrete Convolution
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Probability Theory</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Abhishek Kumar Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 15, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Data_Science_Tutorial/index.html" class="sidebar-item-text sidebar-link">Data Science Tutorial</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">CS5590</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">Machine Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">Machine Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">Machine Learning 6</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">Machine Learning 7</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link">Machine Learning 8</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS5590/2022-11-05-CS5590-week9.html" class="sidebar-item-text sidebar-link">Machine Learning 9</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">CS6660</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">Probability Theory 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">Probability Theory 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Tutorial/CS6660/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link active">Probability Theory 5</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#joint-mass-function" id="toc-joint-mass-function" class="nav-link active" data-scroll-target="#joint-mass-function"><span class="toc-section-number">1</span>  Joint mass function</a>
+  <ul>
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><span class="toc-section-number">1.1</span>  Definition</a></li>
+  <li><a href="#marginal-mass-functions" id="toc-marginal-mass-functions" class="nav-link" data-scroll-target="#marginal-mass-functions"><span class="toc-section-number">1.2</span>  Marginal mass functions</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="toc-section-number">1.3</span>  Example</a></li>
+  </ul></li>
+  <li><a href="#conditional-mass-function" id="toc-conditional-mass-function" class="nav-link" data-scroll-target="#conditional-mass-function"><span class="toc-section-number">2</span>  Conditional mass function</a>
+  <ul>
+  <li><a href="#definition-1" id="toc-definition-1" class="nav-link" data-scroll-target="#definition-1"><span class="toc-section-number">2.1</span>  Definition</a>
+  <ul>
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1"><span class="toc-section-number">2.1.1</span>  Example</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#independent-random-variable" id="toc-independent-random-variable" class="nav-link" data-scroll-target="#independent-random-variable"><span class="toc-section-number">3</span>  Independent Random Variable</a>
+  <ul>
+  <li><a href="#definition-2" id="toc-definition-2" class="nav-link" data-scroll-target="#definition-2"><span class="toc-section-number">3.1</span>  Definition</a></li>
+  <li><a href="#discrete-convolution" id="toc-discrete-convolution" class="nav-link" data-scroll-target="#discrete-convolution"><span class="toc-section-number">3.2</span>  Discrete Convolution</a></li>
+  <li><a href="#continuous-convolution" id="toc-continuous-convolution" class="nav-link" data-scroll-target="#continuous-convolution"><span class="toc-section-number">3.3</span>  Continuous convolution</a></li>
+  <li><a href="#gamma-distribution" id="toc-gamma-distribution" class="nav-link" data-scroll-target="#gamma-distribution"><span class="toc-section-number">3.4</span>  Gamma distribution</a></li>
+  </ul></li>
+  <li><a href="#expectation-covariance" id="toc-expectation-covariance" class="nav-link" data-scroll-target="#expectation-covariance"><span class="toc-section-number">4</span>  Expectation, covariance</a>
+  <ul>
+  <li><a href="#expectation" id="toc-expectation" class="nav-link" data-scroll-target="#expectation"><span class="toc-section-number">4.1</span>  Expectation</a>
+  <ul>
+  <li><a href="#properties-of-expectation" id="toc-properties-of-expectation" class="nav-link" data-scroll-target="#properties-of-expectation"><span class="toc-section-number">4.1.1</span>  Properties of Expectation</a></li>
+  </ul></li>
+  <li><a href="#covariance" id="toc-covariance" class="nav-link" data-scroll-target="#covariance"><span class="toc-section-number">4.2</span>  Covariance</a></li>
+  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance"><span class="toc-section-number">4.3</span>  Variance</a></li>
+  <li><a href="#cauchy-schwarz-inequality" id="toc-cauchy-schwarz-inequality" class="nav-link" data-scroll-target="#cauchy-schwarz-inequality"><span class="toc-section-number">4.4</span>  Cauchy-Schwarz inequality</a></li>
+  </ul></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="toc-section-number">5</span>  Correlation</a></li>
+  <li><a href="#conditional-expectation" id="toc-conditional-expectation" class="nav-link" data-scroll-target="#conditional-expectation"><span class="toc-section-number">6</span>  Conditional expectation</a></li>
+  <li><a href="#tower-rule" id="toc-tower-rule" class="nav-link" data-scroll-target="#tower-rule"><span class="toc-section-number">7</span>  Tower rule</a></li>
+  <li><a href="#todo" id="toc-todo" class="nav-link" data-scroll-target="#todo"><span class="toc-section-number">8</span>  TODO</a></li>
+  <li><a href="#concentration-bounds" id="toc-concentration-bounds" class="nav-link" data-scroll-target="#concentration-bounds"><span class="toc-section-number">9</span>  Concentration Bounds</a>
+  <ul>
+  <li><a href="#markovs-inequality" id="toc-markovs-inequality" class="nav-link" data-scroll-target="#markovs-inequality"><span class="toc-section-number">9.1</span>  Markov’s inequality</a></li>
+  <li><a href="#chebyshevs-inequality" id="toc-chebyshevs-inequality" class="nav-link" data-scroll-target="#chebyshevs-inequality"><span class="toc-section-number">9.2</span>  Chebyshev’s inequality</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="joint-mass-function" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="joint-mass-function"><span class="header-section-number">1</span> Joint mass function</h2>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Most examples will involve two random variables, but everything can be generalized for more of them.</p>
+</div>
+</div>
+<section id="definition" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="definition"><span class="header-section-number">1.1</span> Definition</h3>
+<p>Suppose two discrete random variables <span class="math inline">X</span> and <span class="math inline">Y</span> are defined on a common probability space, and can take on values <span class="math inline">x_1, x_2, \dots</span> and <span class="math inline">y_1, y_2, \dots,</span> respectively. The joint probability mass function of them is defined as <br> <span class="math display">p(x_i , y_j ) = P{X = x_i , Y = y_j}, i = 1, 2, \dots , j = 1, 2, \dots .</span> This function contains all information about the joint distribution of <span class="math inline">X</span> and <span class="math inline">Y</span>.<br> Any joint mass function satisfies : <span class="math display">p(x,y)\ge 0, \; \forall x,y \in\mathbb{R}</span> <span class="math display">\sum_{i,j}p(x_i,j_j)=1</span> Any function with above properties is a joint probability mass function.</p>
+</section>
+<section id="marginal-mass-functions" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="marginal-mass-functions"><span class="header-section-number">1.2</span> Marginal mass functions</h3>
+<p>Marginal mass functions are <br> <span class="math display">p_X(x_i):=P\{X=x_i\}</span> and <span class="math display">p_Y(y_i):=P\{Y=y_i\}</span> Also <span class="math display">p_X(x_i)=\sum_jp(x_i,y_j)</span> and <span class="math display">p_Y(y_j)=\sum_ip(x_i,y_j)</span></p>
+</section>
+<section id="example" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="example"><span class="header-section-number">1.3</span> Example</h3>
+<p>An urn has <span class="math inline">3</span> red, <span class="math inline">4</span> white, <span class="math inline">5</span> black balls. Drawing <span class="math inline">3</span> at once, let <span class="math inline">X</span> be the number of red, <span class="math inline">Y</span> the number of white balls drawn. The joint mass function is:</p>
+<table class="table">
+<caption>Table shows Joint probability distribution.</caption>
+<colgroup>
+<col style="width: 19%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">Y \downarrow</span> <span class="math inline">X \rightarrow</span></th>
+<th style="text-align: left;">0</th>
+<th style="text-align: right;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+<th style="text-align: center;"><span class="math inline">p_Y(\cdot)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>0</strong></td>
+<td style="text-align: left;"><span class="math inline">\displaystyle \frac{\binom{5}{3}}{\binom{12}{3}}</span></td>
+<td style="text-align: right;"><span class="math inline">\displaystyle \frac{\binom{3}{1}\binom{5}{2}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{3}{2}\binom{5}{1}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{3}{3}\binom{5}{0}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{8}{3}}{\binom{12}{3}}</span></td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td style="text-align: left;"><span class="math inline">\displaystyle \frac{\binom{4}{1}\binom{5}{2}}{\binom{12}{3}}</span></td>
+<td style="text-align: right;"><span class="math inline">\displaystyle \frac{\binom{4}{1}\binom{3}{1}\binom{5}{1}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{4}{1}\binom{3}{2}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{4}{1}\binom{8}{2}}{\binom{12}{3}}</span></td>
+</tr>
+<tr class="odd">
+<td><strong>2</strong></td>
+<td style="text-align: left;"><span class="math inline">\displaystyle \frac{\binom{4}{2}\binom{5}{1}}{\binom{12}{3}}</span></td>
+<td style="text-align: right;"><span class="math inline">\displaystyle \frac{\binom{4}{2}\binom{3}{1}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{4}{2}\binom{8}{1}}{\binom{12}{3}}</span></td>
+</tr>
+<tr class="even">
+<td><strong>3</strong></td>
+<td style="text-align: left;"><span class="math inline">\displaystyle \frac{\binom{4}{3}}{\binom{12}{3}}</span></td>
+<td style="text-align: right;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{4}{3}}{\binom{12}{3}}</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">p_X(\cdot)</span></td>
+<td style="text-align: left;"><span class="math inline">\displaystyle \frac{\binom{9}{3}}{\binom{12}{3}}</span></td>
+<td style="text-align: right;"><span class="math inline">\displaystyle \frac{\binom{3}{1}\binom{9}{2}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{3}{2}\binom{9}{1}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;"><span class="math inline">\displaystyle \frac{\binom{3}{3}}{\binom{12}{3}}</span></td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="conditional-mass-function" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="conditional-mass-function"><span class="header-section-number">2</span> Conditional mass function</h2>
+<section id="definition-1" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="definition-1"><span class="header-section-number">2.1</span> Definition</h3>
+<p>suppose <span class="math inline">p_Y(y_j)&gt;0</span>. The conditional mass function of <span class="math inline">X</span> given <span class="math inline">Y=y_j</span> is defined by <span class="math display">p_{X \mid Y}(x \mid y_i):= P\{X=x \mid Y=y_j\}=\frac{\overbrace{p(x,y_i)}^{\text{joint}} }{\underbrace{p_Y(y_i)}_{\text{marginal}} }</span> As the conditional probability was a proper probability, this is a proper mass function: <span class="math inline">\forall x,y_i</span> <span class="math display">p_{X \mid Y}(x \mid y_j) \ge 0, \qquad \sum_i p_{X|Y}(x_i \mid y_j)=1</span></p>
+<section id="example-1" class="level4" data-number="2.1.1">
+<h4 data-number="2.1.1" class="anchored" data-anchor-id="example-1"><span class="header-section-number">2.1.1</span> Example</h4>
+<p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> have joint mass function</p>
+<table class="table">
+<caption>joint distribution</caption>
+<thead>
+<tr class="header">
+<th><span class="math inline">X \downarrow</span> <span class="math inline">Y \rightarrow</span></th>
+<th style="text-align: left;">0</th>
+<th style="text-align: right;">1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>0</strong></td>
+<td style="text-align: left;">0.4</td>
+<td style="text-align: right;">0.2</td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td style="text-align: left;">0.1</td>
+<td style="text-align: right;">0.3</td>
+</tr>
+</tbody>
+</table>
+<p>The conditional distribution of <span class="math inline">X</span> given <span class="math inline">Y=0</span> is <span class="math display">p_{X\mid Y}(0 \mid 0)= \frac{p(0,0)}{p_Y(0)}= \frac{p(0,0)}{p(0,0)+p(1,0)}=\frac{0.4}{0.4+0.1}=\frac{4}{5}</span> <span class="math display">p_{X\mid Y}(1 \mid 0)= \frac{p(1,0)}{p_Y(0)}= \frac{p(1,0)}{p(0,0)+p(1,0)}=\frac{0.1}{0.4+0.1}=\frac{1}{5}</span></p>
+</section>
+</section>
+</section>
+<section id="independent-random-variable" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="independent-random-variable"><span class="header-section-number">3</span> Independent Random Variable</h2>
+<section id="definition-2" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="definition-2"><span class="header-section-number">3.1</span> Definition</h3>
+<p>Random variables <span class="math inline">X</span> and <span class="math inline">Y</span> are independent, if events formulated with them are so, That is, if for every <span class="math inline">A,B\subseteq \mathbb{R}</span> <span class="math display">P\{X\in A,Y\in B\}=P\{X\in A\} \cdot P \{ Y \in B\} </span></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The abbreviation i.i.d. is used for independent and identically distributed random variables.</p>
+</div>
+</div>
+<p>Two random variables <span class="math inline">X</span> and <span class="math inline">Y</span> are independent if and only if their joint mass function factorizes into the product of the marginals : <span class="math display">p(x_i,y_i)=p_X(x_i)\cdot p_Y(y_i), \qquad \forall x_i,y_i</span></p>
+</section>
+<section id="discrete-convolution" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="discrete-convolution"><span class="header-section-number">3.2</span> Discrete Convolution</h3>
+<p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be independent, integer valued random variables with respective mass functions <span class="math inline">p_X</span> and <span class="math inline">p_Y</span> . Then <span class="math display">p_{X+Y}(k) = \sum_{i=-\infty}^\infty p_X(k − i) \cdot p_Y (i), \qquad (\forall k \in \mathbb{Z})</span> This formula is called discrete convolution of the mass function <span class="math inline">p_X</span> and <span class="math inline">p_Y</span></p>
+<ul>
+<li>Proof <span class="math display">\begin{align*}
+p_{X+Y}(K)&amp;=P\{X+Y=K\}\\
+&amp;=\sum_{i=-\infty}^\infty P\{X=k-i,Y=i\}\\
+&amp;=\sum_{i=-\infty}^\infty P_X(k-i)\cdot p_Y(i)
+\end{align*}</span></li>
+</ul>
+<p>Let <span class="math inline">X \sim \textrm{Poi}(\lambda)</span> and <span class="math inline">Y \sim \textrm{Poi}(\mu)</span> be independent than: <br> <span class="math inline">X+Y \sim \textrm{Poi}(\lambda+\mu)</span></p>
+<ul>
+<li>proof <span class="math display">\begin{align*}
+p_{X+Y}(K)&amp;=\sum_{i=-\infty}^\infty P_X(k-i)\cdot p_Y(i) \\
+&amp;= \sum_{i=-\infty}^\infty \frac{\lambda^{(k-i)}}{(k-i)!}e^{-\lambda}\cdot \frac{\mu^i}{i!}e^{-\mu} \\
+&amp;= e^{-\lambda - \mu}\frac{1}{k!}\sum_{i=-\infty}^\infty \frac{k!}{(k-i)!\cdot i!}\lambda^{(k-i)} \cdot \mu^i \\
+&amp;= e^{-\lambda - \mu}\frac{1}{k!}\sum_{i=-\infty}^\infty \binom{k}{i} \lambda^{(k-i)} \cdot \mu^i \\
+&amp;= e^{-(\lambda + \mu)}\frac{1}{k!}(\lambda + \mu)^k \\
+&amp;=\textrm{Poi}(\lambda+\mu)
+\end{align*}</span></li>
+</ul>
+<p>Let <span class="math inline">X,Y</span> be i.i.d. <span class="math inline">\textrm{Geom}(p)</span> variables then: <br> <span class="math inline">X+Y</span> is not geometric.</p>
+<ul>
+<li>proof <span class="math display">\begin{align*}
+p_{X+Y}(K)&amp;=\sum_{i=-\infty}^\infty P_X(k-i)\cdot p_Y(i) \\
+&amp;=\sum_{i=1}^{k-1}(1-p)^{k-i-1}p\cdot (1-p)^{i-1}p \\
+&amp;=(k-1)(1-p)^{k-2}p^2
+\end{align*}</span><br>
+Hence <span class="math inline">X+Y</span> is not Geometric, <em>it’s actually called Negative Binomial.</em></li>
+</ul>
+<p>Let <span class="math inline">X \sim \textrm{Binom}(n,p)</span> and <span class="math inline">Y \sim \textrm{Binom}(m,p)</span> be independent (<strong>notice the same</strong> <span class="math inline">\mathbf p</span>) then :<br> <span class="math inline">X+Y \sim \textrm{Binom}(n+m,p)</span></p>
+<ul>
+<li>proof <span class="math display">\begin{align*}
+p_{X+Y}(K)&amp;=\sum_{i=-\infty}^\infty P_X(k-i)\cdot p_Y(i) \\
+&amp;=\sum_{i=0}^k \binom{n}{k-i}p^{k-i}(1-p)^{n-k+i}\cdot \binom{m}{i}p^i(1-p)^{m-i} \\
+&amp;=p^k(1-p)^{m+n-k}\sum_{i=0}^k \binom{n}{k-i} \binom{m}{i}  \\
+&amp;=\binom{m+n}{k}  p^k(1-p)^{m+n-k} \\
+&amp;=\textrm{Binom}(n+m,p)
+\end{align*}</span><br>
+To prove above equation we used the fact that <span class="math inline">\sum_{i=0}^k \binom{n}{k-i} \binom{m}{i}=\binom{m+n}{k}</span></li>
+</ul>
+</section>
+<section id="continuous-convolution" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="continuous-convolution"><span class="header-section-number">3.3</span> Continuous convolution</h3>
+<p>Suppose <span class="math inline">X</span> and <span class="math inline">Y</span> are independent continuous random variables with respective densities <span class="math inline">f_X</span> and <span class="math inline">f_Y</span>. Then their sum is a continuous random variable with density <span class="math display">f_{X+Y}(a)=\int_{- \infty} ^ \infty f_X(a-y)\cdot f_Y(y)dy, \qquad (\forall a \in \mathbb{R})</span></p>
+</section>
+<section id="gamma-distribution" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="gamma-distribution"><span class="header-section-number">3.4</span> Gamma distribution</h3>
+<p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be i.i.d. <span class="math inline">\mathrm{Exp}(\lambda),</span> and the density of their sum <span class="math inline">(a\ge 0)</span></p>
+<p><span class="math display">\begin{align*}
+f_{X+Y}(a)&amp;=\int_{-\infty}^\infty f_X(a-y) \cdot f_Y(y)dy \\
+&amp;=\int_{0}^a \lambda e^{-\lambda (a-y)}\cdot \lambda e^{-\lambda y}dy \\
+&amp;=\lambda^2 e^{-\lambda a}\cdot y \Big |_0^a \\
+&amp;= \lambda^2 a \cdot e^{-\lambda a}
+\end{align*}</span> This density is called <span class="math inline">\mathrm{Gamma}(2,\lambda)</span></p>
+<p><br><br></p>
+<p>Let <span class="math inline">X \sim \mathrm{Exp}(\lambda)</span> and <span class="math inline">Y \sim \mathrm{Gamma}(2,\lambda)</span> be i.i.d. again</p>
+<p><span class="math display">\begin{align*}
+f_{X+Y}(a)&amp;=\int_{-\infty}^\infty f_X(a-y) \cdot f_Y(y)dy \\
+&amp;=\int_{0}^a \lambda e^{-\lambda (a-y)}\cdot \lambda^2 y \cdot e^{-\lambda y}dy \\
+&amp;=\lambda^3 e^{-\lambda a}\cdot \frac{y^2}{2} \Big |_0^a \\
+&amp;= \frac{\lambda^3 a^2 \cdot e^{-\lambda a}}{2}
+\end{align*}</span> This density is called <span class="math inline">\mathrm{Gamma}(3,\lambda)</span></p>
+<p><br><br></p>
+<p>Let <span class="math inline">X \sim \mathrm{Exp}(\lambda)</span> and <span class="math inline">Y \sim \mathrm{Gamma}(3,\lambda)</span> be i.i.d. again</p>
+<p><span class="math display">\begin{align*}
+f_{X+Y}(a)&amp;=\int_{-\infty}^\infty f_X(a-y) \cdot f_Y(y)dy \\
+&amp;=\int_{0}^a \lambda e^{-\lambda (a-y)}\cdot\frac{\lambda^3 y^2 \cdot e^{-\lambda y}}{2}dy \\
+&amp;=\lambda^3 e^{-\lambda a}\cdot \frac{y^3}{2\cdot 3} \Big |_0^a \\
+&amp;= \frac{\lambda^4 a^3 \cdot e^{-\lambda a}}{2\cdot 3} \\
+&amp;= \frac{\lambda^4 a^3 \cdot e^{-\lambda a}}{3!}
+\end{align*}</span> This density is called <span class="math inline">\mathrm{Gamma}(4,\lambda)</span></p>
+<p><br><br><br> The convolution of <span class="math inline">n</span> i.i.d. <span class="math inline">\mathrm{Exp}(\lambda)</span> distributions results in the <span class="math inline">\mathrm{Gamma}(n,\lambda)</span> density:</p>
+<p><span class="math display">f(X)=\frac{\lambda^n X^{n-1} \cdot e^{-\lambda X}}{(n-1)!},\qquad \forall X\ge 0 \tag{1}</span> and zero otherwise. <br><br><br><br> This is the density of the sum of n i.i.d. <span class="math inline">\mathrm{Exp}(\lambda)</span> random variables. In particular, <span class="math inline">\mathrm{Gamma}(1,\lambda) \equiv \mathrm{Exp}(\lambda)</span> <br><br><br><br></p>
+<p>Now if we integrate <span class="math inline">f(X)</span> it should equal to <span class="math inline">1</span> <span class="math display">\begin{align*}
+\int_{-\infty}^\infty f(x) &amp;= \int_{-\infty}^\infty \frac{\lambda^n X^{n-1} \cdot e^{-\lambda X}}{(n-1)!} dx \\
+&amp;=  \int_{-\infty}^\infty \frac{ (\lambda X)^{n-1} \cdot e^{-\lambda X}}{(n-1)!} \lambda dx \\
+&amp;=1
+\end{align*}</span> Now we write <span class="math inline">Z= \lambda X, \;dZ=\lambda dX</span>,from above equation we get: <span class="math display">(n-1)! = \int_{-\infty}^\infty  (Z)^{n-1} \cdot e^{-Z}  dZ </span></p>
+<p>The Gamma function is defined for every <span class="math inline">\alpha &gt; 0</span> real numbers, by <span class="math display">\Gamma(\alpha) :=\int_{-\infty}^\infty  Z^{\alpha-1} \cdot e^{-Z}  dZ</span> In particular, <span class="math inline">\Gamma(n)=(n-1)!</span> for positive integer <span class="math inline">n</span> <br><br> Using equation <span class="math inline">(1)</span> we can write Gamma distribution</p>
+<p><span class="math display">f(X)=\frac{\lambda^n X^{n-1} \cdot e^{-\lambda X}}{\Gamma(n)}, \qquad \forall X\ge 0</span> and zero otherwise.</p>
+<p><br><br> If <span class="math inline">X \sim \mathrm{Gamma}(\alpha , \lambda),</span> then</p>
+<p><span class="math display">EX= \frac{\alpha}{\lambda}, \qquad \mathrm{Var}X=\frac{\alpha}{\lambda ^2}</span></p>
+</section>
+</section>
+<section id="expectation-covariance" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="expectation-covariance"><span class="header-section-number">4</span> Expectation, covariance</h2>
+<section id="expectation" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="expectation"><span class="header-section-number">4.1</span> Expectation</h3>
+<p>Expectation is defined as <span class="math display">EX = \sum_i X_i\cdot p(X_i), \qquad EX=\int_{-\infty}^\infty Xf(X)dX</span></p>
+<section id="properties-of-expectation" class="level4" data-number="4.1.1">
+<h4 data-number="4.1.1" class="anchored" data-anchor-id="properties-of-expectation"><span class="header-section-number">4.1.1</span> Properties of Expectation</h4>
+<ul>
+<li>Simple monotonicity property : If <span class="math inline">a \le X \le b</span> then, <span class="math inline">a \le EX \le b</span> <br> Proof:<br> <span class="math display">\begin{align*}
+&amp; a =a\cdot 1 =a \sum_i p(X_i) \\
+&amp; \le\sum_i X_i p(X_i) \le \\
+&amp; b \sum_i p(X_i) =b \cdot 1=b
+\end{align*}</span></li>
+<li>Expectation of <em>functions of variables</em><br> Let <span class="math inline">X</span> and <span class="math inline">Y</span> be the random variables and <span class="math inline">g: \mathbb{R}\times \mathbb{R} \rightarrow \mathbb{R}</span> function then <span class="math display">\mathbf{E}g(X,Y)=\sum_{i,j}g(X_i,Y_j)\cdot p(X_i,Y_j)</span></li>
+<li>Expectation of sums and differences:<br>
+<ul>
+<li><p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be the random variables then <span class="math inline">E(X+Y)=EX+EY</span> and <span class="math inline">E(X-Y)=EX-EY</span><br> Proof: <span class="math display">\begin{align*}
+E(X\pm Y) &amp;= \sum _{i,j}(X_i \pm Y_j)\cdot P(X_i, Y_j) \\
+&amp;=\sum_i \sum_j X_i \cdot P(X_i, Y_j) + \sum_i \sum_j Y_j \cdot P(X_i, Y_j) \\
+&amp;=\sum_i X_i\cdot p_X(X_i) \pm \sum_j Y_j\cdot p_Y(Y_j)\\
+&amp;=EX \pm EY
+\end{align*}</span></p></li>
+<li><p>Let <span class="math inline">X</span> and <span class="math inline">Y</span> be the random variable such that <span class="math inline">X \le Y</span>, then <span class="math inline">EX \le EY</span><br> Proof: <br> The difference <span class="math inline">Y-X</span> is non negative and difference of it’s expectation is also non negative <span class="math display">\begin{align*}
+&amp; &amp;E(Y-X) &amp;\ge0 \\
+&amp; \Rightarrow &amp; EY-EX &amp;\ge 0 \\
+&amp; \Rightarrow &amp; -EX &amp;\ge -EY \\
+&amp;\Rightarrow &amp; EX &amp;\le EY \\
+\end{align*}</span></p></li>
+<li><p><strong>Example</strong> (sample mean) <br> Let <span class="math inline">X_1,X_2, \dots , X_n</span> be identically distributed random variables with mean <span class="math inline">\mu</span>. Their sample mean is <span class="math display">\bar{X}:=\frac{1}{n}\sum_{i=1}^nX_i</span> It’s expectation is <span class="math display">\begin{align*}
+E\bar{X}&amp;=E\left(\frac{1}{n}\sum_{i=1}^nX_i\right)\\
+&amp;=\frac{1}{n}E\left(\sum_{i=1}^nX_i\right)\\
+&amp;=\frac{1}{n}\sum_{i=1}^nE\left(X_i\right)\\
+&amp;=\frac{1}{n}\sum_{i=1}^n\mu\\
+&amp;=\mu
+\end{align*}</span></p></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="covariance" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="covariance"><span class="header-section-number">4.2</span> Covariance</h3>
+<p><strong>Independence</strong><br> Let <span class="math inline">X</span> and <span class="math inline">Y</span> be independent random variables, and <span class="math inline">g,h</span> be functions. Then <span class="math display">\mathbf{E}(g(X)\cdot h(Y))= \mathbf{E}g(X)\cdot \mathbf{E}h(Y) \tag{2}</span> proof: <br> <span class="math display">\begin{align*}
+\mathbf{E}(g(X)\cdot h(Y))&amp;=\int \int g(X)h(Y)p_{XY}(X,Y)dXdY \\
+&amp;=\int \int g(X)h(Y)p_{X}(X)p_{Y}(Y)dXdY \\
+&amp;=\int  g(X)p_{X}(X)dX\int h(Y)p_{Y}(Y)dXdY \\
+&amp;=\mathbf{E}g(X)\cdot \mathbf{E}h(Y)
+\end{align*}</span> Here we used the fact that the joint probability distribution factorizes <span class="math inline">(p_{XY}(x,y)=p_{X}(x)p_{Y}(y))</span> as <span class="math inline">X</span> and <span class="math inline">Y</span> are independent</p>
+<p><br><br> <strong>Covariance</strong> <br> The covariance of the random variable <span class="math inline">X</span> and <span class="math inline">Y</span> is <span class="math display">\mathbf{Cov}(X,Y)=\mathbf{E}[(X-\mathbf{E}X)\cdot (Y-\mathbf{E}Y)]</span> Another form of the above formula <span class="math display">\mathbf{Cov}(X,Y)=\mathbf{E}(XY)-\mathbf{E}X\mathbf{E}Y \tag{3}</span> Proof: <span class="math display">\begin{align*}
+\mathbf{E}[(X-\mathbf{E}X)\cdot (Y-\mathbf{E}Y)]&amp;=\mathbf{E}[XY-Y\mathbf{E}X-X\mathbf{E}Y+\mathbf{E}X\mathbf{E}Y]\\
+&amp;=\mathbf{E}(XY)-\mathbf{E}Y\mathbf{E}X-\mathbf{E}X\mathbf{E}Y+\mathbf{E}X\mathbf{E}Y \\
+&amp;= \mathbf{E}(XY)-\mathbf{E}X\mathbf{E}Y
+\end{align*}</span></p>
+<p>Now we know that <span class="math display">\mathbf{Cov}(X,Y)=\mathbf{E}(XY)-\mathbf{E}X\mathbf{E}Y</span> Using equation <span class="math inline">(2)</span> and <span class="math inline">(3)</span> we can say for independent random variables <span class="math inline">X</span> and <span class="math inline">Y,\;</span> <span class="math inline">\mathbf{Cov}(X,Y)=0,</span> as <span class="math inline">\mathbf{E}(XY)=\mathbf{E}X\mathbf{E}Y</span> <span class="math display">\mathbf{Cov}(X,Y)=\mathbf{E}(XY)-\mathbf{E}X\mathbf{E}Y=0</span> But this is not true other way around. <em>covariance zero doesn’t necessarily mean random variables are independent</em>.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>If random variables <span class="math inline">X</span> and <span class="math inline">Y</span> are independent, then <span class="math inline">\mathbf{Cov}(X,Y)=0</span> <br></li>
+<li>But if <span class="math inline">\mathbf{Cov}(X,Y)=0,</span> doesn’t necessarily mean <span class="math inline">X</span> and <span class="math inline">Y</span> are independent.</li>
+</ul>
+</div>
+</div>
+<p><br></p>
+<ul>
+<li>Properties <br>
+<ul>
+<li>Covariance is positive semidefinite: <span class="math inline">\mathbf{Cov}(X,X)=\mathbf{Var}(X)\ge0,</span></li>
+<li>Covariance is symmetric: <span class="math inline">\mathbf{Cov}(X,Y)=\mathbf{Cov}(Y,X)</span></li>
+<li>Almost bilinear:<br> Fix <span class="math inline">a_i , b, c_j , d</span> real numbers. Covariance is <span class="math display">\mathbf{Cov}\left(\sum_ia_iX_i+b,\sum_jc_jY_j+d \right)=\sum_{i,j}a_ic_j\mathbf{Cov}(X_i,Y_j)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="variance" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="variance"><span class="header-section-number">4.3</span> Variance</h3>
+<p>Let <span class="math inline">X_1, X_2, \dots , X_n</span> be random variables. Then <span class="math display">\mathbf{Var}\sum_{i=1}^n X_i =\sum_{i=1}^n \mathbf{Var}\left(X_i \right)+2\sum_{1\le i\le j\le n} \mathbf{Cov}\left(X_i ,X_j \right)</span> In particular, variances of <strong>independent</strong> random variables are additive. <br><br> Proof: <span class="math display">\begin{align*}{}
+\mathbf{Var}\sum_{i=1}^n X_i &amp;=\mathbf{Cov}\left(\sum_{i=1}^n X_i ,\sum_{j=1}^n X_j \right)\\
+&amp;=\sum_{i=1,j=1}^n \mathbf{Cov}\left(X_i ,X_j \right)\\
+&amp;=\sum_{i=1}^n \mathbf{Cov}\left(X_i ,X_i \right)+\sum_{i\not= j} \mathbf{Cov}\left(X_i ,X_j \right)\\
+&amp;=\sum_{i=1}^n \mathbf{Var}\left(X_i \right)+\sum_{i&lt;j} \mathbf{Cov}\left(X_i ,X_j \right)+\sum_{i&gt;j} \mathbf{Cov}\left(X_i ,X_j \right)\\
+&amp;=\sum_{i=1}^n \mathbf{Var}\left(X_i \right)+2\sum_{1\le i\le j\le n} \mathbf{Cov}\left(X_i ,X_j \right)
+\end{align*}</span></p>
+<p>Notice that for <strong>independent</strong> variables. <span class="math display">\begin{align*}{}
+\mathbf{Var}\left(X-Y\right)&amp;=\mathbf{Var}\left(X+-\left(Y\right)\right)\\
+&amp;=\mathbf{Var}\left(X\right)+\mathbf{Var}\left(-Y\right)+2\mathbf{Cov}\left(X,-Y\right)\\
+&amp;=\mathbf{Var}\left(X\right)+\mathbf{Var}\left(Y\right)-2\mathbf{Cov}\left(X,Y\right)\\
+&amp;=\mathbf{Var}\left(X\right)+\mathbf{Var}\left(Y\right)
+\end{align*}</span></p>
+<p>Above used the fact that <br> <span class="math inline">\mathbf{Var}\left(X+Y\right)=\mathbf{Var}\left(X\right)+\mathbf{Var}\left(Y\right)+2\mathbf{Cov}\left(X,Y\right)</span>, Here is the proof:</p>
+<p><span class="math display">\begin{align*}{}
+\mathbf{Var}\left(X+Y\right)&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(X+Y\right)}^2 \right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack X+Y\right\rbrack \right)}^2 \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack X^2 +Y^2 +2\mathrm{XY}\right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack X\right\rbrack +\mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \right)}^2 \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack +\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack +2\mathit{\mathbf{E}}\left\lbrack X Y\right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack X\right\rbrack \right)}^2 -{\left(\mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \right)}^2 -2\mathit{\mathbf{E}}\left\lbrack X\right\rbrack \mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \\
+&amp;=\left(\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack X\right\rbrack \right)}^2 \right)+\left(\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \right)}^2 \right)+2\left(\mathit{\mathbf{E}}\left\lbrack XY\right\rbrack -\mathit{\mathbf{E}}\left\lbrack X\right\rbrack \mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \right)\\
+&amp;=\mathbf{Var}\left(X\right)+\mathbf{Var}\left(Y\right)+2\mathbf{Cov}\left(X,Y\right)
+\end{align*}</span></p>
+<ul>
+<li><p><strong>Example</strong> (variance of the sample mean)<br> Suppose that <span class="math inline">X_j</span>’s are i.i.d. each with variance <span class="math inline">\sigma^2</span>, The sample mean is <br> <span class="math display">\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i</span> It’s Variance is <span class="math display">\begin{align*}{}
+\mathbf{Var}\left(\bar{X} \right)&amp;=\mathbf{Var}\left(\frac{1}{n}\sum_{i=1}^n X_i \right)\\
+&amp;=\frac{1}{n^2 }\mathbf{Var}\left(\sum_{i=1}^n X_i \right)\\
+&amp;=\frac{1}{n^2 }\left(\sum_{i=1}^n \mathbf{Var}\left(X_i \right)\right)\\
+&amp;=\frac{1}{n^2 }n\sigma^2 \\
+&amp;=\frac{\sigma^2 }{n}
+\end{align*}</span> <em>Variance of the sample mean decreases with <span class="math inline">n</span>, that’s why we like sample averages.</em><br></p></li>
+<li><p><strong>Example</strong> (unbiased sample variance) <br> Suppose we are given the values of <span class="math inline">X_1,X_2,\dots X_n</span> of an i.i.d. sequence of random variables with mean <span class="math inline">\mu</span> and variance <span class="math inline">\sigma^2</span>.<br> We know that the sample mean <span class="math inline">\bar{X}</span> <br> has mean <span class="math inline">\mu</span> and <br> small variance <span class="math inline">\frac{\sigma^2}{n}</span> <br> Therefore it serves as a good estimator for the value of <span class="math inline">\mu</span>. But what should we use to estimate the variance <span class="math inline">\sigma^2</span>? This quantity is the unbiased sample variance: <span class="math display">S^2 :=\frac{1}{n-1}\sum_{i=1}^n {\left(X-\bar{X} \right)}^2</span> Now we compute the expected value of sample variance <span class="math display">\begin{align*}{}
+{\mathrm{ES}}^2 &amp;=\mathit{\mathbf{E}}\left\lbrack \frac{1}{n-1}\sum_{i=1}^n {\left(X-\bar{X} \right)}^2 \right\rbrack \\
+&amp;=\frac{1}{n-1}\sum_{i=1}^n \mathit{\mathbf{E}}\left\lbrack {\left(X-\bar{X} \right)}^2 \right\rbrack \\
+&amp;=\frac{n}{n-1}\mathit{\mathbf{E}}\left\lbrack {\left(X-\bar{X} \right)}^2 \right\rbrack
+\end{align*}</span> we get <span class="math display">{\mathrm{ES}}^2=\frac{n}{n-1}\mathit{\mathbf{E}}\left\lbrack {\left(X-\bar{X} \right)}^2 \right\rbrack \tag{4}</span> Next notice that <span class="math display">\mathit{\mathbf{E}}\left\lbrack X-\bar{X} \right\rbrack =\mathit{\mathbf{E}}\left\lbrack X\right\rbrack -\mathit{\mathbf{E}}\left\lbrack \bar{X} \right\rbrack =\mu -\mu =0</span> also <span class="math display">\begin{align*}{}
+\mathbf{Var}\left(X-\bar{X} \right)&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(X-\bar{X} \right)}^2 \right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack X-\bar{X} \right\rbrack \right)}^2 \\
+\mathbf{Var}\left(X-\bar{X} \right)&amp;=\mathit{\mathbf{E}}\left\lbrack {\left(X-\bar{X} \right)}^2 \right\rbrack \\
+\Rightarrow \mathit{\mathbf{E}}\left\lbrack {\left(X-\bar{X} \right)}^2 \right\rbrack &amp;=\mathbf{Var}\left(X-\bar{X} \right)\\
+&amp;=\mathbf{Var}\left(X\right)+\mathbf{Var}\left(\bar{X} \right)-2\mathbf{Cov}\left(X,\bar{X} \right)
+\end{align*}</span> Now , <span class="math display">\begin{align*}{}
+\mathbf{Cov}\left(X,\bar{X} \right)&amp;=\mathbf{Cov}\left(X,\frac{1}{n}\sum_j X_j \right)\\
+&amp;=\frac{1}{n}\sum_j \mathbf{Cov}\left(X,X_j \right)\\
+&amp;=\frac{1}{n}\mathbf{Cov}\left(X,X\right)\\
+&amp;=\frac{\sigma^2 }{n}
+\end{align*}</span> we have now <span class="math display">\mathbf{Var}\left(X\right)=\sigma^2 ,\mathbf{Var}\left(\bar{X} \right)=\frac{\sigma^2 }{n},\mathbf{Cov}\left(X,\bar{X} \right)=\frac{\sigma^2 }{n}</span><br>
+Putting it all back in equation <span class="math inline">(4)</span> we get <span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack S^2 \right\rbrack &amp;=\frac{n}{n-1}\left(\sigma^2 +\frac{\sigma^2 }{n}-2\frac{\sigma^2 }{n}\right)\\
+&amp;=\frac{n}{n-1}\left(\sigma^2 -\frac{\sigma^2 }{n}\right)\\
+&amp;=\frac{n}{n-1}\frac{\left(n-1\right)\sigma^2 }{n}\\
+&amp;=\sigma^2
+\end{align*}</span></p></li>
+<li><p><strong>Example</strong> (Binomal distribution)<br> Suppose that <span class="math inline">n</span> independent trails are made, each succeeding with probability <span class="math inline">p</span>. Define <span class="math inline">X_i</span> as the indicator of success in the <span class="math inline">i^{\text{th}}</span> trail, <span class="math inline">i=1,2,\dots ,n</span>. Then <span class="math display">X=\sum_{i=1}^n X_i</span> Counts the total number of success, therefore <span class="math inline">X \sim \mathrm{Binom}(n,p)</span>. It’s variance is</p>
+<p><span class="math display">\begin{align*}{}
+\mathbf{Var}\left(X\right)&amp;=\mathbf{Var}\left(\sum_{i=1}^n X_i \right)\\
+&amp;=\sum_{i=1}^n \mathbf{Var}\left(X_i \right)\\
+&amp;=\sum_{i=1}^n p\left(1-p\right)\\
+&amp;=n\cdot p\left(1-p\right)
+\end{align*}</span></p></li>
+<li><p><strong>Example</strong> (Gamma distribution) <br> Let <span class="math inline">n</span> be a positive integer, <span class="math inline">\lambda &gt; 0</span> real, and <span class="math inline">X \sim \mathrm{Gamma}(n,\lambda)</span>, Then we know <br> <span class="math display">X\overset{d}{=} \sum_{i=1}^n X_i</span> where <span class="math inline">X_1,X_2,\dots, X_n</span> are i.i.d. <span class="math inline">\mathrm{Exp}(\lambda)</span>. Therefore <span class="math display">\begin{align*}{}
+\mathbf{Var}\left(X\right)&amp;=\mathbf{Var}\left(\sum_{i=1}^n X_i \right)\\
+&amp;=\sum_{i=1}^n \mathbf{Var}\left(X_i \right)\\
+&amp;=\sum_{i=1}^n \frac{1}{\lambda^2 }\\
+&amp;=\frac{n}{\lambda^2 }
+\end{align*}</span> Here <span class="math inline">\overset{d}{=}</span> means “equal in distribution”.</p></li>
+</ul>
+</section>
+<section id="cauchy-schwarz-inequality" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="cauchy-schwarz-inequality"><span class="header-section-number">4.4</span> Cauchy-Schwarz inequality</h3>
+<p>For every <span class="math inline">X</span> and <span class="math inline">Y</span> <span class="math display">|\mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack |\le \sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack }\cdot \sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }</span> with equality iff <span class="math inline">Y=\text{Const}. \cdot X \text{a.s.}</span></p>
+<p>Proof:</p>
+<p><span class="math display">\begin{align*}{}
+0 &amp;\le {\mathit{\mathbf{E}}\left\lbrack \frac{X}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack }}\pm \frac{Y}{\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack }^2 \\
+&amp;=\mathit{\mathbf{E}}\left\lbrack \frac{X^2 }{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack }\right\rbrack +\mathit{\mathbf{E}}\left\lbrack \frac{Y^2 }{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }\right\rbrack \pm 2\mathit{\mathbf{E}}\left\lbrack \frac{\mathrm{XY}}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack \\
+&amp;=2\pm 2\mathit{\mathbf{E}}\left\lbrack \frac{\mathrm{XY}}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack
+\end{align*}</span></p>
+<p>For <span class="math inline">-</span> case:</p>
+<p><span class="math display">\begin{align*}{}
+&amp;&amp;0 &amp;\le 2-2\mathit{\mathbf{E}}\left\lbrack \frac{\mathrm{XY}}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack \\
+&amp;\Rightarrow &amp; -2 &amp;\le -2\mathit{\mathbf{E}}\left\lbrack \frac{\mathrm{XY}}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack \\
+&amp;\Rightarrow &amp; -\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack } &amp; \le -\mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack \\
+&amp;\Rightarrow &amp; \sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }&amp; \ge \mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack \\
+&amp;\Rightarrow &amp; \mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack &amp;\le \sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }
+\end{align*}</span></p>
+<p>For <span class="math inline">+</span> case: <span class="math display">\begin{align*}{}
+&amp;&amp;0 &amp;\le 2+2\mathit{\mathbf{E}}\left\lbrack \frac{\mathrm{XY}}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack \\
+&amp;\Rightarrow &amp; -2 &amp;\le +2\mathit{\mathbf{E}}\left\lbrack \frac{\mathrm{XY}}{\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }}\right\rbrack \\
+&amp;\Rightarrow &amp; -\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack } &amp;\le \mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack \\
+&amp;\Rightarrow &amp; \mathit{\mathbf{E}}\left\lbrack \mathrm{XY}\right\rbrack &amp;\ge -\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack \;}\sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }
+\end{align*}</span></p>
+<p>Using Cauchy-Schwarz inequality we can get below important relations:</p>
+<ul>
+<li><p><span class="math inline">\mathit{\mathbf{E}}\left\lbrack |\mathrm{XY}|\right\rbrack \le \sqrt {\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack }\cdot \sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }</span><br> Proof:</p>
+<p><span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack |\mathrm{XY}|\right\rbrack &amp;=\mathit{\mathbf{E}}\left\lbrack |X|\cdot |Y|\right\rbrack \\
+&amp;\le \sqrt{\mathit{\mathbf{E}}\left\lbrack {|X|}^2 \right\rbrack }\cdot \sqrt{\mathit{\mathbf{E}}\left\lbrack {|Y|}^2 \right\rbrack }\\
+&amp;=\sqrt{\mathit{\mathbf{E}}\left\lbrack X^2 \right\rbrack }\cdot \sqrt{\mathit{\mathbf{E}}\left\lbrack Y^2 \right\rbrack }
+\end{align*}</span></p></li>
+<li><p><span class="math inline">\big|\mathbf{Cov}\left(X,Y\right)\big|\le \mathrm{SD}\;X\cdot \mathrm{SD}\;Y</span> <br> Proof: <span class="math display">\begin{align*}{}
+\big|\mathbf{Cov}\left(X,Y\right)\big|&amp;=\big|\mathit{\mathbf{E}}\left\lbrack \left(X-\mathit{\mathbf{E}}\left\lbrack X\right\rbrack \right)\left(Y-\mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \right)\right\rbrack \big|\\
+&amp;\le \sqrt{\mathit{\mathbf{E}}\left\lbrack {\left(X-\mathit{\mathbf{E}}\left\lbrack X\right\rbrack \right)}^2 \right\rbrack }\cdot \sqrt{\mathit{\mathbf{E}}\left\lbrack {\left(Y-\mathit{\mathbf{E}}\left\lbrack Y\right\rbrack \right)}^2 \right\rbrack }\\
+&amp;=\mathrm{SD}\;X\cdot \mathrm{SD}\;Y
+\end{align*}</span></p></li>
+</ul>
+</section>
+</section>
+<section id="correlation" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="correlation"><span class="header-section-number">5</span> Correlation</h2>
+<p>The correlation coefficient of random variables <span class="math inline">X</span> and <span class="math inline">Y</span> is <span class="math display">\rho \left(X,Y\right):=\frac{\mathbf{Cov}\left(X,Y\right)}{\mathrm{SD}\;X\cdot \mathrm{SD}\;Y}</span></p>
+<ul>
+<li><span class="math inline">-1 \le \rho(X,Y) \le 1</span><br> Proof : <span class="math display">\begin{align*}{}
+&amp;&amp;\big|\mathbf{Cov}\left(X,Y\right)\big| &amp;\le \mathrm{SD}\;X\cdot \mathrm{SD}\;Y\\
+\Rightarrow &amp;&amp;\frac{\big|\mathbf{Cov}\left(X,Y\right)\big|}{\mathrm{SD}\;X\cdot \mathrm{SD}\;Y}&amp;\le 1\\
+\Rightarrow &amp;&amp;-1\le \frac{\mathbf{Cov}\left(X,Y\right)}{\mathrm{SD}\;X\cdot \mathrm{SD}\;Y}&amp;\le \\
+\Rightarrow &amp;&amp;-1 \le \rho(X,Y) &amp;\le 1
+\end{align*}</span> and the “equality iff” part of Cauchy-Schwarz implies that we have equality iff <span class="math inline">Y = aX</span>, that is, <span class="math inline">Y = aX +b</span> for some fixed <span class="math inline">a, b</span>.</li>
+</ul>
+</section>
+<section id="conditional-expectation" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="conditional-expectation"><span class="header-section-number">6</span> Conditional expectation</h2>
+<p>The conditional expectation of <span class="math inline">X</span>, given <span class="math inline">Y = y_j</span> is <span class="math display">\mathbf{E}(X \mid Y=y_j):=\sum_i X_i \times \underbrace{ p_{X\mid Y}(x_i\mid y_j)}_{\text{conditional mass function}}</span></p>
+<ul>
+<li>Example :<br> Let <span class="math inline">X</span> and <span class="math inline">Y</span> be independent <span class="math inline">\text{Poi}(\lambda)</span> and <span class="math inline">\text{Poi}(\mu)</span> variables, and <span class="math inline">Z = X + Y</span>. Find the conditional expectation <span class="math inline">\mathbf {E}(X \mid Z = k)</span>.<br> Conditional mass function for <span class="math inline">0\le i\le k</span> is : <br> <span class="math display">p_{X\mid Z} \left(i\mid k\right)=\frac{p\left(i,k\right)}{p_Z \left(k\right)}</span> where <span class="math inline">p(i, k)</span> is the joint mass function of <span class="math inline">X</span> and <span class="math inline">Z</span> at <span class="math inline">(i, k)</span>.<br> Now, <span class="math display">\begin{align*}{}
+p\left(i,k\right)&amp;=P\left\lbrace X=i,Z=k\right\rbrace \\
+&amp;=P\left\lbrace X=i,X+Y=k\right\rbrace \\
+&amp;=P\left\lbrace X=i,Y=k-i\right\rbrace \\
+&amp;=e^{-\lambda } \frac{\lambda^i }{i!}\cdot e^{-\mu } \frac{\mu^{\left(k-i\right)} }{\left(k-i\right)!}
+\end{align*}</span> We know that <span class="math display">Z=X+Y\sim \mathrm{Poi}\left(\lambda +\mu \right)</span> so, <span class="math display">p_Z \left(k\right)=e^{-\left(\lambda +\mu \right)} \frac{{\left(\lambda +\mu \right)}^k }{k!}</span> Now using these values we can compute conditional mass function <span class="math display">\begin{align*}{}
+p_{X|Z} \left(i|k\right)&amp;=\frac{p\left(i,k\right)}{p_Z \left(k\right)}\\
+&amp;=e^{-\lambda } \frac{\lambda^i }{i!}\cdot e^{-\mu } \frac{\mu^{\left(k-i\right)} }{\left(k-i\right)!}\times \frac{1}{e^{-\left(\lambda +\mu \right)} \frac{{\left(\lambda +\mu \right)}^k }{k!}}\\
+&amp;=e^{-\lambda } \frac{\lambda^i }{i!}\cdot e^{-\mu } \frac{\mu^{\left(k-i\right)} }{\left(k-i\right)!}\times \frac{k!}{e^{-\left(\lambda +\mu \right)} {\left(\lambda +\mu \right)}^k }\\
+&amp;=\frac{k!}{\left(k-i\right)!\cdot i!}e^{-\left(\lambda +\mu \right)} \times \frac{{\lambda^i \mu }^{\left(k-i\right)} }{e^{-\left(\lambda +\mu \right)} {\left(\lambda +\mu \right)}^k }\\
+&amp;={\left({{k}\atop{i}}\right)}\times \frac{{\lambda^i \mu }^{\left(k-i\right)} }{{\left(\lambda +\mu \right)}^k }\\
+&amp;={\left({{k}\atop{i}}\right)}\times \frac{{\lambda^i \mu }^{\left(k-i\right)} }{{\left(\lambda +\mu \right)}^k }\\
+&amp;={\left({{k}\atop{i}}\right)}\times \frac{{\lambda^i \mu }^{\left(k-i\right)} }{{\left(\lambda +\mu \right)}^i {\left(\lambda +\mu \right)}^{k-i} }\\
+&amp;={\left({{k}\atop{i}}\right)}\times {\left(\frac{\lambda }{\lambda +\mu }\right)}^i \times {\left(\frac{\mu }{\lambda +\mu }\right)}^{k-1} \\
+&amp;={\left({{k}\atop{i}}\right)}\times p^i \times \left(1-p\right)^{k-i}
+\end{align*}</span> where <span class="math inline">p=\left(\frac{\lambda }{\lambda +\mu }\right)</span><br> We conclude <span class="math inline">(X \mid Z = k) \sim \text{Binom}(k, p),</span><br> Therefore <span class="math display">\mathbf {E}(X \mid Z = k)=kp=k\cdot \frac{\lambda }{\lambda +\mu }</span> We abbreviate above expression as <span class="math display">\mathbf {E}(X \mid Z )=Z\cdot \frac{\lambda }{\lambda +\mu }</span> Notice <span class="math inline">\mathbf {E}(X \mid Z )</span> dependts only on <span class="math inline">Z</span> not on <span class="math inline">X</span></li>
+</ul>
+</section>
+<section id="tower-rule" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="tower-rule"><span class="header-section-number">7</span> Tower rule</h2>
+<p><span class="math inline">\mathit{\mathbf{E}}\left\lbrack \mathit{\mathbf{E}}\left\lbrack X\mid Y\right\rbrack \right\rbrack =\mathit{\mathbf{E}}\left\lbrack X\right\rbrack</span><br> Intution on <a href="https://math.stackexchange.com/a/41543/738892">stack overflow.</a><br> Proof:</p>
+<p><span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack \mathit{\mathbf{E}}\left\lbrack X\mid Y\right\rbrack \right\rbrack &amp;=\sum_j E\left\lbrack X\mid Y=y_j \right\rbrack {\cdot p}_Y \left(y_j \right)\\
+&amp;=\sum_j \left(\sum_i x_i \cdot p_{x\mid y} \left(x_i ,y_j \right)\right){\cdot p}_Y \left(y_j \right)\\
+&amp;=\sum_j \sum_i x\cdot p_{x\mid y} \left(x_i ,y_j \right){\cdot p}_Y \left(y_j \right)\\
+&amp;=\sum_j \sum_i x_i p\left(x_i ,y_j \right)\\
+&amp;=\sum_i x_i \sum_j p\left(x_i ,y_j \right)\\
+&amp;=\sum_i x_i p_X \left(x_i \right)\\
+&amp;=\mathit{\mathbf{E}}\left\lbrack X\right\rbrack
+\end{align*}</span></p>
+</section>
+<section id="todo" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="todo"><span class="header-section-number">8</span> TODO</h2>
+<p>Below topics are skipped, complete it later:</p>
+<ul>
+<li>Conditional variance</li>
+<li>Random sums</li>
+<li>Moment generating functions</li>
+<li>Independent sums</li>
+</ul>
+</section>
+<section id="concentration-bounds" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="concentration-bounds"><span class="header-section-number">9</span> Concentration Bounds</h2>
+<section id="markovs-inequality" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="markovs-inequality"><span class="header-section-number">9.1</span> Markov’s inequality</h3>
+<p>Let <span class="math inline">X</span> be a <strong>non-negative</strong> random variable. Then for all <span class="math inline">a &gt; 0</span> reals, <span class="math display">\mathit{\mathbf{P}}\left\lbrace X\ge a\right\rbrace \le \frac{\mathit{\mathbf{E}}\left\lbrack X\right\rbrack }{a}</span> Of course this inequality is useless for $a ≤ X$.<br> Proof: <br> Let indicator random variable <span class="math inline">I</span> be defined as <span class="math display">I = \begin{cases}
+   1 &amp;\text{if } X\ge a \\
+   0 &amp;\text{if } X&lt;a
+\end{cases}</span> Then <span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack I\right\rbrack &amp;=1\cdot \mathit{\mathbf{P}}\left(X\ge a\right)+0\cdot P\left(X&lt;a\right)\\
+&amp;=\mathit{\mathbf{P}}\left(X\ge a\right)
+\end{align*}</span> Also if we look at Indicator random variable we can say that <span class="math inline">I\le \frac{X}{a}</span> Because if <span class="math inline">X\ge a</span> then <span class="math inline">\frac{X}{a}\ge 1</span>, when <span class="math inline">0\le X&lt;a</span> then <span class="math inline">0\le\frac{X}{a}&lt;1</span></p>
+<p>Hence</p>
+<p><span class="math display">\begin{align*}{}
+\mathit{\mathbf{E}}\left\lbrack \mathrm{I}\right\rbrack &amp;\le \frac{\mathit{\mathbf{E}}\left\lbrack X\right\rbrack }{a}\\
+\Rightarrow P\left\lbrace X\ge a\right\rbrace &amp;\le \frac{\mathit{\mathbf{E}}\left\lbrack X\right\rbrack }{a}
+\end{align*}</span></p>
+<ul>
+<li>Example <br> A coin is flipped <span class="math inline">n</span> times what is the probability of getting <span class="math inline">90\%</span> heads. Using Markov’s inequality <span class="math display">P\left\lbrace X\ge 0\ldotp 9\right\rbrace \le \frac{\mathit{\mathbf{E}}\left\lbrack X\right\rbrack }{a}=\frac{\frac{n}{2}}{0\ldotp 9n}=\frac{5}{9}</span></li>
+</ul>
+</section>
+<section id="chebyshevs-inequality" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="chebyshevs-inequality"><span class="header-section-number">9.2</span> Chebyshev’s inequality</h3>
+<p>Let <span class="math inline">X</span> be a random variable with mean <span class="math inline">\mu</span> and variance <span class="math inline">\sigma^2</span> both finite. Then for all <span class="math inline">b &gt; 0</span> reals, <span class="math display">\mathit{\mathbf{P}}\left\lbrace |X-\mu |\ge b\right\rbrace \le \frac{\mathbf{Var}\left(X\right)}{b^2 }</span> Of course this inequality is useless for <span class="math inline">b ≤ \mathbf{SD}X</span>.<br> Proof:<br> Apply Markov’s inequality on the random variable <span class="math inline">(X − \mu)^2 \ge 0</span></p>
+<p><span class="math display">\begin{align*}{}
+\mathit{\mathbf{P}}\left\lbrace |X-\mu |\ge b\right\rbrace &amp;=\mathit{\mathbf{P}}\left\lbrace {\left(X-\mu \right)}^2 \ge b^2 \right\rbrace \\
+&amp;\le \frac{\mathit{\mathbf{E}}\left\lbrack {\left(X-\mu \right)}^2 \right\rbrack }{b^2 }=\frac{\mathbf{Var}\left(X\right)}{b^2 }
+\end{align*}</span></p>
+<ul>
+<li><p>Example <br> A coin is flipped <span class="math inline">n</span> times what is the probability of getting <span class="math inline">90\%</span> heads.<br> Chebyshev’s inequality<br> Consider <span class="math inline">X_1,X_2,\dots,X_n,</span> Each <span class="math inline">X_i=1</span> if the <span class="math inline">i^{\text{th}}</span> toss is head and <span class="math inline">X_i=0</span> if <span class="math inline">i^{\text{th}}</span> toss is tail.<br> <span class="math display">\mathit{\mathbf{E}}\left\lbrack X_i \right\rbrack =\frac{1}{2}</span> <span class="math display">\mathit{\mathbf{E}}\left\lbrack X_i^2 \right\rbrack =\frac{1}{2}</span> Now we find variance <span class="math display">\mathbf{Var}\left(X_i \right)=\mathit{\mathbf{E}}\left\lbrack X_i^2 \right\rbrack -{\left(\mathit{\mathbf{E}}\left\lbrack X_i \right\rbrack \right)}^2 =\frac{1}{2}-\frac{1}{4}=\frac{1}{4}</span> Now, <span class="math display">\begin{align*}{}
+|X| &amp;\ge 0\ldotp 9\\
+\Rightarrow |X-\mu |&amp;\ge 0\ldotp 9-\mu \\
+\Rightarrow |X-\mu |&amp;\ge 0\ldotp 9-0\ldotp 5\\
+\Rightarrow |X-\mu |&amp;\ge 0\ldotp 4
+\end{align*}</span> Now can use Chebyshev’s inequality</p>
+<p><span class="math display">\begin{align*}{}
+\mathit{\mathbf{P}}\left\lbrace |X-\mu |  \ge b\right\rbrace &amp;\le \frac{\mathbf{Var}\left(X\right)}{b^2 }\\
+\mathit{\mathbf{P}}\left\lbrace |X-\mu | \ge 0\ldotp 4\right\rbrace &amp;\le \frac{\frac{1}{4}n}{{\left(0\ldotp 4n\right)}^2 }\\
+&amp;=\frac{\frac{1}{4}n}{0\ldotp 16n^2 }=\frac{25}{16n}
+\end{align*}</span> So <span class="math display">|X|\ge0.9=\frac{25}{16n}</span> We can see that Chebyshev’s inequality provides better bound than Markov’s inequality and the bound becomes better as <span class="math inline">n</span> increases.</p></li>
+</ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Subruk, IIT Hyderabad }}}}</span></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="abhiyantaabhishek/IITH-Data-Science" data-repo-id="R_kgDOILoB8A" data-category="Announcements" data-category-id="DIC_kwDOILoB8M4CSJcL" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../Data_Science_Tutorial/CS6660/2022-09-24-CS6660-week5.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Probability Theory 4</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

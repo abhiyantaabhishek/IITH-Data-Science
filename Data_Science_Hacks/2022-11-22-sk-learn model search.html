@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Abhishek Kumar Dubey">
+<meta name="dcterms.date" content="2022-08-26">
+<meta name="description" content="Train multiple sk-learn models">
+
+<title>IITH-Data-Science - sk-learn model search</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Data_Science_Hacks/index.html" rel="prev">
+<link href="../logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="IITH-Data-Science - sk-learn model search">
+<meta property="og:description" content="Train multiple sk-learn models">
+<meta property="og:site-name" content="IITH-Data-Science">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">IITH-Data-Science</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Data_Science_Tutorial/index.html">
+ <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Tutorial</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../Data_Science_Hacks/index.html" aria-current="page">
+ <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Data Science Hacks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">sk-learn model search</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">sk-learn model search</h1>
+                  <div>
+        <div class="description">
+          Train multiple sk-learn models
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">sk-learn</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Abhishek Kumar Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 26, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../Data_Science_Hacks/index.html" class="sidebar-item-text sidebar-link">Data Science Hacks</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Data_Science_Hacks/2022-11-22-sk-learn model search.html" class="sidebar-item-text sidebar-link active">sk-learn model search</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#import-libraries" id="toc-import-libraries" class="nav-link active" data-scroll-target="#import-libraries"><span class="toc-section-number">0.1</span>  Import Libraries</a></li>
+  <li><a href="#read-the-data" id="toc-read-the-data" class="nav-link" data-scroll-target="#read-the-data"><span class="toc-section-number">0.2</span>  Read the data</a></li>
+  <li><a href="#convert-to-onehot" id="toc-convert-to-onehot" class="nav-link" data-scroll-target="#convert-to-onehot"><span class="toc-section-number">0.3</span>  Convert to onehot</a></li>
+  <li><a href="#fill-missing-values" id="toc-fill-missing-values" class="nav-link" data-scroll-target="#fill-missing-values"><span class="toc-section-number">0.4</span>  Fill missing values</a></li>
+  <li><a href="#normalize" id="toc-normalize" class="nav-link" data-scroll-target="#normalize"><span class="toc-section-number">0.5</span>  Normalize</a></li>
+  <li><a href="#remove-unwanted-features" id="toc-remove-unwanted-features" class="nav-link" data-scroll-target="#remove-unwanted-features"><span class="toc-section-number">1</span>  Remove unwanted features</a></li>
+  <li><a href="#test-performance-on-all-the-models" id="toc-test-performance-on-all-the-models" class="nav-link" data-scroll-target="#test-performance-on-all-the-models"><span class="toc-section-number">2</span>  Test performance on all the models</a>
+  <ul>
+  <li><a href="#voting-classifier-tuning" id="toc-voting-classifier-tuning" class="nav-link" data-scroll-target="#voting-classifier-tuning"><span class="toc-section-number">2.1</span>  Voting classifier tuning</a></li>
+  <li><a href="#grid-search" id="toc-grid-search" class="nav-link" data-scroll-target="#grid-search"><span class="toc-section-number">2.2</span>  Grid Search</a>
+  <ul>
+  <li><a href="#use-best-param-to-check-the-score" id="toc-use-best-param-to-check-the-score" class="nav-link" data-scroll-target="#use-best-param-to-check-the-score"><span class="toc-section-number">2.2.1</span>  use best param to check the score</a></li>
+  <li><a href="#save-the-prediction-on-test-data" id="toc-save-the-prediction-on-test-data" class="nav-link" data-scroll-target="#save-the-prediction-on-test-data"><span class="toc-section-number">2.2.2</span>  Save the prediction on test data</a></li>
+  </ul></li>
+  <li><a href="#random-search" id="toc-random-search" class="nav-link" data-scroll-target="#random-search"><span class="toc-section-number">2.3</span>  Random search</a></li>
+  <li><a href="#grid-seach-on-all-the-models" id="toc-grid-seach-on-all-the-models" class="nav-link" data-scroll-target="#grid-seach-on-all-the-models"><span class="toc-section-number">2.4</span>  Grid seach on all the models</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="import-libraries" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="import-libraries"><span class="header-section-number">0.1</span> Import Libraries</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:25:34.732117Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:25:34.731681Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:25:34.737643Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:25:34.736882Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:25:34.732083Z&quot;}" data-trusted="true" data-execution_count="110">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder, LabelEncoder, StandardScaler</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="im">import</span> time</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#Common Model Algorithms</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="im">from</span> sklearn <span class="im">import</span> svm, tree, linear_model, neighbors, naive_bayes, ensemble, discriminant_analysis, gaussian_process</span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBClassifier</span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#Common Model Helpers</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder, LabelEncoder</span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="im">from</span> sklearn <span class="im">import</span> feature_selection</span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="im">from</span> sklearn <span class="im">import</span> model_selection</span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="read-the-data" class="level2" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="read-the-data"><span class="header-section-number">0.2</span> Read the data</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:25:37.351747Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:25:37.351271Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:25:37.656322Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:25:37.655071Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:25:37.351714Z&quot;}" data-trusted="true" data-execution_count="112">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>my_training_data <span class="op">=</span> pd.read_csv(<span class="st">'train.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>my_testing_data <span class="op">=</span> pd.read_csv(<span class="st">'test.csv'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>test_id <span class="op">=</span> my_testing_data[<span class="st">'ID'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="convert-to-onehot" class="level2" data-number="0.3">
+<h2 data-number="0.3" class="anchored" data-anchor-id="convert-to-onehot"><span class="header-section-number">0.3</span> Convert to onehot</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:25:37.990992Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:25:37.990583Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:25:38.011823Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:25:38.010617Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:25:37.990952Z&quot;}" data-trusted="true" data-execution_count="113">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>categorical_cols <span class="op">=</span> [<span class="st">'Cat_1'</span>,<span class="st">'Cat_2'</span>,<span class="st">'Cat_3'</span>]</span>
+<span id="cb3-2"><a href="#cb3-2"></a>my_training_data <span class="op">=</span> pd.get_dummies(my_training_data, columns <span class="op">=</span> categorical_cols)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>my_testing_data <span class="op">=</span> pd.get_dummies(my_testing_data, columns <span class="op">=</span> categorical_cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="fill-missing-values" class="level2" data-number="0.4">
+<h2 data-number="0.4" class="anchored" data-anchor-id="fill-missing-values"><span class="header-section-number">0.4</span> Fill missing values</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:25:38.961190Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:25:38.960763Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:25:38.970986Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:25:38.969787Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:25:38.961151Z&quot;}" data-trusted="true" data-execution_count="114">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2"></a>my_training_data[<span class="st">'num_4'</span>].fillna((my_training_data[<span class="st">'num_4'</span>].median()), inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>my_training_data[<span class="st">'num_5'</span>].fillna((my_training_data[<span class="st">'num_5'</span>].median()), inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a>my_testing_data[<span class="st">'num_4'</span>].fillna((my_testing_data[<span class="st">'num_4'</span>].median()), inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>my_testing_data[<span class="st">'num_5'</span>].fillna((my_testing_data[<span class="st">'num_5'</span>].median()), inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="normalize" class="level2" data-number="0.5">
+<h2 data-number="0.5" class="anchored" data-anchor-id="normalize"><span class="header-section-number">0.5</span> Normalize</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:25:42.205783Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:25:42.205409Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:25:42.225812Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:25:42.224557Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:25:42.205752Z&quot;}" data-trusted="true" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2"></a>scaled_columns<span class="op">=</span>[<span class="st">'num_1'</span>,<span class="st">'num_2'</span>,<span class="st">'num_3'</span>,<span class="st">'num_4'</span>,<span class="st">'num_5'</span>,<span class="st">'num_6'</span>]</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="cf">for</span> column <span class="kw">in</span> scaled_columns:</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    my_training_data[column] <span class="op">=</span> (my_training_data[column] <span class="op">-</span> my_training_data[column].mean()) <span class="op">/</span> my_training_data[column].std() </span>
+<span id="cb5-5"><a href="#cb5-5"></a>    my_testing_data[column] <span class="op">=</span> (my_testing_data[column] <span class="op">-</span> my_testing_data[column].mean()) <span class="op">/</span> my_testing_data[column].std() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="remove-unwanted-features" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Remove unwanted features</h1>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:19:04.298498Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:19:04.297665Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:19:04.310294Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:19:04.309020Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:19:04.298452Z&quot;}" data-outputid="a24bb4dd-5590-49fb-a7e4-287d671e0d97" data-trusted="true" data-execution_count="117">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2"></a>Target <span class="op">=</span>[<span class="st">'target_class'</span>]</span>
+<span id="cb6-3"><a href="#cb6-3"></a>column_to_train <span class="op">=</span> <span class="bu">list</span>(my_training_data.columns)</span>
+<span id="cb6-4"><a href="#cb6-4"></a>column_to_train.remove(<span class="st">'target_class'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5"></a>column_to_train.remove(<span class="st">'ID'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6"></a>column_to_train.remove(<span class="st">'Cat_3_d1'</span>)</span>
+<span id="cb6-7"><a href="#cb6-7"></a>column_to_train.remove(<span class="st">'Cat_3_d2'</span>)</span>
+<span id="cb6-8"><a href="#cb6-8"></a>column_to_train.remove(<span class="st">'num_6'</span>)</span>
+<span id="cb6-9"><a href="#cb6-9"></a>column_to_train.remove(<span class="st">'num_4'</span>)</span>
+<span id="cb6-10"><a href="#cb6-10"></a>column_to_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="117">
+<pre><code>['num_3',
+ 'num_1',
+ 'num_5',
+ 'num_2',
+ 'Cat_1_d1',
+ 'Cat_1_d2',
+ 'Cat_1_d4',
+ 'Cat_1_d5',
+ 'Cat_1_d6',
+ 'Cat_2_d1',
+ 'Cat_2_d2',
+ 'Cat_2_d3']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:25:20.619491Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:25:20.619072Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:25:20.640596Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:25:20.639726Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:25:20.619456Z&quot;}" data-outputid="4c241cd2-f7a2-437b-b9f4-4c43cb51f0b8" data-trusted="true" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>my_training_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+
+
+  <div id="df-94baa021-d8d9-48a8-962a-514537d72eb9">
+    <div class="colab-df-container">
+      <div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>ID</th>
+      <th>num_3</th>
+      <th>num_4</th>
+      <th>num_1</th>
+      <th>num_5</th>
+      <th>num_6</th>
+      <th>num_2</th>
+      <th>target_class</th>
+      <th>Cat_1_d1</th>
+      <th>Cat_1_d2</th>
+      <th>Cat_1_d4</th>
+      <th>Cat_1_d5</th>
+      <th>Cat_1_d6</th>
+      <th>Cat_2_d1</th>
+      <th>Cat_2_d2</th>
+      <th>Cat_2_d3</th>
+      <th>Cat_3_d1</th>
+      <th>Cat_3_d2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>-0.036001</td>
+      <td>-0.823512</td>
+      <td>-0.687687</td>
+      <td>-0.341508</td>
+      <td>1.882562</td>
+      <td>-1.471565</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>-0.036001</td>
+      <td>1.626235</td>
+      <td>0.126056</td>
+      <td>-1.046135</td>
+      <td>2.806383</td>
+      <td>-0.338369</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>-1.793255</td>
+      <td>-0.823512</td>
+      <td>-0.562495</td>
+      <td>0.363119</td>
+      <td>2.128914</td>
+      <td>-0.163655</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>-0.914628</td>
+      <td>-0.006929</td>
+      <td>-0.708552</td>
+      <td>0.363119</td>
+      <td>-0.211433</td>
+      <td>-1.505775</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>-1.793255</td>
+      <td>-0.006929</td>
+      <td>-0.541630</td>
+      <td>-0.341508</td>
+      <td>2.005738</td>
+      <td>-0.707345</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-94baa021-d8d9-48a8-962a-514537d72eb9')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-94baa021-d8d9-48a8-962a-514537d72eb9 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-94baa021-d8d9-48a8-962a-514537d72eb9');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T14:53:49.758232Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T14:53:49.757819Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T14:53:49.764142Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T14:53:49.762744Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T14:53:49.758200Z&quot;}" data-trusted="true" data-execution_count="118">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2"></a>cv_split <span class="op">=</span> model_selection.StratifiedShuffleSplit(n_splits <span class="op">=</span> <span class="dv">5</span>, test_size <span class="op">=</span> <span class="fl">.1</span>, random_state <span class="op">=</span> <span class="dv">0</span> ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="119">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a></span>
+<span id="cb10-2"><a href="#cb10-2"></a>X <span class="op">=</span> my_training_data[column_to_train]</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a>y <span class="op">=</span> my_training_data[Target[<span class="dv">0</span>]]</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size <span class="op">=</span> <span class="fl">0.1</span>, random_state <span class="op">=</span> <span class="dv">0</span>,stratify<span class="op">=</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="test-performance-on-all-the-models" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Test performance on all the models</h1>
+<div class="cell" data-outputid="f1c0c708-3d33-429b-d0d9-707b130ac866" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> ada:"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3"></a>ada <span class="op">=</span> ensemble.AdaBoostClassifier(learning_rate<span class="op">=</span> <span class="fl">0.01</span>,  n_estimators<span class="op">=</span> <span class="dv">200</span>,random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-4"><a href="#cb11-4"></a>cv_results <span class="op">=</span> model_selection.cross_validate(ada, my_training_data[column_to_train], my_training_data[Target[<span class="dv">0</span>]], cv  <span class="op">=</span> cv_split,return_train_score<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="bu">print</span>(<span class="st">'test_score: '</span>,cv_results[<span class="st">'test_score'</span>].mean())</span>
+<span id="cb11-6"><a href="#cb11-6"></a>ada.fit(X_train, y_train)</span>
+<span id="cb11-7"><a href="#cb11-7"></a>score <span class="op">=</span> ada.score(X_test, y_test)</span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="bu">print</span>(<span class="st">'RealTest_score: '</span>,score)</span>
+<span id="cb11-9"><a href="#cb11-9"></a></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> bc:"</span>)</span>
+<span id="cb11-11"><a href="#cb11-11"></a>bc <span class="op">=</span> ensemble.BaggingClassifier(max_samples<span class="op">=</span> <span class="fl">0.01</span>,n_estimators<span class="op">=</span> <span class="dv">100</span>,random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-12"><a href="#cb11-12"></a>cv_results <span class="op">=</span> model_selection.cross_validate(bc, my_training_data[column_to_train], my_training_data[Target[<span class="dv">0</span>]], cv  <span class="op">=</span> cv_split,return_train_score<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="bu">print</span>(<span class="st">'test_score: '</span>,cv_results[<span class="st">'test_score'</span>].mean())</span>
+<span id="cb11-14"><a href="#cb11-14"></a>bc.fit(X_train, y_train)</span>
+<span id="cb11-15"><a href="#cb11-15"></a>score <span class="op">=</span> bc.score(X_test, y_test)</span>
+<span id="cb11-16"><a href="#cb11-16"></a><span class="bu">print</span>(<span class="st">'RealTest_score: '</span>,score)</span>
+<span id="cb11-17"><a href="#cb11-17"></a></span>
+<span id="cb11-18"><a href="#cb11-18"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> etc:"</span>)</span>
+<span id="cb11-19"><a href="#cb11-19"></a>etc <span class="op">=</span> ensemble.ExtraTreesClassifier(criterion<span class="op">=</span> <span class="st">'entropy'</span>, max_depth<span class="op">=</span> <span class="dv">7</span>, n_estimators<span class="op">=</span> <span class="dv">300</span>,random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-20"><a href="#cb11-20"></a>cv_results <span class="op">=</span> model_selection.cross_validate(etc, my_training_data[column_to_train], my_training_data[Target[<span class="dv">0</span>]], cv  <span class="op">=</span> cv_split,return_train_score<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-21"><a href="#cb11-21"></a><span class="bu">print</span>(<span class="st">'test_score: '</span>,cv_results[<span class="st">'test_score'</span>].mean())</span>
+<span id="cb11-22"><a href="#cb11-22"></a>etc.fit(X_train, y_train)</span>
+<span id="cb11-23"><a href="#cb11-23"></a>score <span class="op">=</span> etc.score(X_test, y_test)</span>
+<span id="cb11-24"><a href="#cb11-24"></a><span class="bu">print</span>(<span class="st">'RealTest_score: '</span>,score)</span>
+<span id="cb11-25"><a href="#cb11-25"></a></span>
+<span id="cb11-26"><a href="#cb11-26"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> gbc:"</span>)</span>
+<span id="cb11-27"><a href="#cb11-27"></a>gbc <span class="op">=</span> ensemble.GradientBoostingClassifier(learning_rate<span class="op">=</span> <span class="fl">0.03</span>, max_depth<span class="op">=</span> <span class="dv">2</span>, n_estimators<span class="op">=</span> <span class="dv">200</span>,random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-28"><a href="#cb11-28"></a>cv_results <span class="op">=</span> model_selection.cross_validate(gbc, my_training_data[column_to_train], my_training_data[Target[<span class="dv">0</span>]], cv  <span class="op">=</span> cv_split,return_train_score<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-29"><a href="#cb11-29"></a><span class="bu">print</span>(<span class="st">'test_score: '</span>,cv_results[<span class="st">'test_score'</span>].mean())</span>
+<span id="cb11-30"><a href="#cb11-30"></a>gbc.fit(X_train, y_train)</span>
+<span id="cb11-31"><a href="#cb11-31"></a>score <span class="op">=</span> gbc.score(X_test, y_test)</span>
+<span id="cb11-32"><a href="#cb11-32"></a><span class="bu">print</span>(<span class="st">'RealTest_score: '</span>,score)</span>
+<span id="cb11-33"><a href="#cb11-33"></a></span>
+<span id="cb11-34"><a href="#cb11-34"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> rfc:"</span>)</span>
+<span id="cb11-35"><a href="#cb11-35"></a>rfc <span class="op">=</span> ensemble.RandomForestClassifier(bootstrap<span class="op">=</span><span class="va">True</span>,criterion<span class="op">=</span> <span class="st">'entropy'</span>, max_depth<span class="op">=</span> <span class="dv">4</span>,max_features<span class="op">=</span><span class="dv">3</span>,min_samples_leaf<span class="op">=</span><span class="dv">2</span>,min_samples_split<span class="op">=</span><span class="dv">12</span>, n_estimators<span class="op">=</span> <span class="dv">50</span>,oob_score<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-36"><a href="#cb11-36"></a>cv_results <span class="op">=</span> model_selection.cross_validate(rfc, my_training_data[column_to_train], my_training_data[Target[<span class="dv">0</span>]], cv  <span class="op">=</span> cv_split,return_train_score<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-37"><a href="#cb11-37"></a><span class="bu">print</span>(<span class="st">'test_score: '</span>,cv_results[<span class="st">'test_score'</span>].mean())</span>
+<span id="cb11-38"><a href="#cb11-38"></a>rfc.fit(X_train, y_train)</span>
+<span id="cb11-39"><a href="#cb11-39"></a>score <span class="op">=</span> rfc.score(X_test, y_test)</span>
+<span id="cb11-40"><a href="#cb11-40"></a><span class="bu">print</span>(<span class="st">'RealTest_score: '</span>,score)</span>
+<span id="cb11-41"><a href="#cb11-41"></a></span>
+<span id="cb11-42"><a href="#cb11-42"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> svc:"</span>)</span>
+<span id="cb11-43"><a href="#cb11-43"></a>svc <span class="op">=</span> svm.SVC(C<span class="op">=</span> <span class="dv">1</span>, decision_function_shape<span class="op">=</span> <span class="st">'ovo'</span>, gamma<span class="op">=</span> <span class="fl">0.1</span>,probability<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-44"><a href="#cb11-44"></a>cv_results <span class="op">=</span> model_selection.cross_validate(svc, my_training_data[column_to_train], my_training_data[Target[<span class="dv">0</span>]], cv  <span class="op">=</span> cv_split,return_train_score<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-45"><a href="#cb11-45"></a><span class="bu">print</span>(<span class="st">'test_score: '</span>,cv_results[<span class="st">'test_score'</span>].mean())</span>
+<span id="cb11-46"><a href="#cb11-46"></a>svc.fit(X_train, y_train)</span>
+<span id="cb11-47"><a href="#cb11-47"></a>score <span class="op">=</span> svc.score(X_test, y_test)</span>
+<span id="cb11-48"><a href="#cb11-48"></a><span class="bu">print</span>(<span class="st">'RealTest_score: '</span>,score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ ada:
+test_score:  0.6831515151515151
+RealTest_score:  0.6812121212121212
+
+ bc:
+test_score:  0.6688484848484848
+RealTest_score:  0.68
+
+ etc:
+test_score:  0.6172121212121212
+RealTest_score:  0.6436363636363637
+
+ gbc:
+test_score:  0.6860606060606059
+RealTest_score:  0.6787878787878788
+
+ rfc:
+test_score:  0.6535757575757575
+RealTest_score:  0.6751515151515152
+
+ svc:
+test_score:  0.6652121212121213
+RealTest_score:  0.6593939393939394</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="238561d1-7ebf-41fb-df54-cac0e63c47bc" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="im">from</span> sklearn.neural_network <span class="im">import</span> MLPClassifier</span>
+<span id="cb13-3"><a href="#cb13-3"></a>mlp <span class="op">=</span>  MLPClassifier(random_state<span class="op">=</span><span class="dv">42</span>,max_iter<span class="op">=</span><span class="dv">1000</span>,activation<span class="op">=</span><span class="st">'logistic'</span>,hidden_layer_sizes<span class="op">=</span> (<span class="dv">100</span>,))</span>
+<span id="cb13-4"><a href="#cb13-4"></a>cv_results <span class="op">=</span> model_selection.cross_validate(mlp, my_training_data[column_to_train], my_training_data[Target[<span class="dv">0</span>]], cv  <span class="op">=</span> cv_split,return_train_score<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="bu">print</span>(<span class="st">'test_score: '</span>,cv_results[<span class="st">'test_score'</span>].mean())</span>
+<span id="cb13-6"><a href="#cb13-6"></a>mlp.fit(X_train, y_train)</span>
+<span id="cb13-7"><a href="#cb13-7"></a>score <span class="op">=</span> mlp.score(X_test, y_test)</span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="bu">print</span>(<span class="st">'RealTest_score: '</span>,score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>test_score:  0.6696969696969697
+RealTest_score:  0.6636363636363637</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="fe9dd33f-2c76-491b-cd54-e782d2c8a539" data-execution_count="259">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="im">import</span> xgboost <span class="im">as</span> xgb</span>
+<span id="cb15-3"><a href="#cb15-3"></a>clf_xgb<span class="op">=</span>xgb.XGBClassifier(learning_rate<span class="op">=</span><span class="fl">0.01</span>,gamma<span class="op">=</span><span class="dv">5</span>,n_estimators<span class="op">=</span><span class="dv">50</span>,reg_alpha<span class="op">=</span><span class="dv">0</span>,reg_lambda  <span class="op">=</span><span class="fl">0.9</span>,subsample <span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>cv_results <span class="op">=</span> model_selection.cross_validate(clf_xgb, my_training_data[column_to_train], my_training_data[Target[<span class="dv">0</span>]], cv  <span class="op">=</span> cv_split,return_train_score<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="bu">print</span>(<span class="st">'test_score: '</span>,cv_results[<span class="st">'test_score'</span>].mean())</span>
+<span id="cb15-6"><a href="#cb15-6"></a>clf_xgb.fit(X_train, y_train)</span>
+<span id="cb15-7"><a href="#cb15-7"></a>score <span class="op">=</span> clf_xgb.score(X_test, y_test)</span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="bu">print</span>(<span class="st">'RealTest_score: '</span>,score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>test_score:  0.6846060606060606
+RealTest_score:  0.6824242424242424</code></pre>
+</div>
+</div>
+<section id="voting-classifier-tuning" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="voting-classifier-tuning"><span class="header-section-number">2.1</span> Voting classifier tuning</h2>
+<div class="cell" data-outputid="57b0c9c6-1f4a-49a3-e90c-e17c84f4b7be" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> VotingClassifier</span>
+<span id="cb17-3"><a href="#cb17-3"></a>named_estimators <span class="op">=</span> [ (<span class="st">"ada"</span>,ada),(<span class="st">"bc"</span>, bc), (<span class="st">"gbc?"</span>, gbc), (<span class="st">"rfc"</span>, rfc), (<span class="st">"svc"</span>, svc),(<span class="st">"mlp"</span>,mlp)]</span>
+<span id="cb17-4"><a href="#cb17-4"></a>voting_clf <span class="op">=</span> VotingClassifier(named_estimators)</span>
+<span id="cb17-5"><a href="#cb17-5"></a>voting_clf.fit(X_train, y_train)</span>
+<span id="cb17-6"><a href="#cb17-6"></a>voting_clf.score(X_test, y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="63">
+<pre><code>0.6824242424242424</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="f6bd5ff0-1f08-45e9-8332-69993b6da3a9" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>voting_clf.fit(X,y)</span>
+<span id="cb19-2"><a href="#cb19-2"></a>voting_clf.score(X_test, y_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>0.6909090909090909</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="co"># voting_clf.fit(X,y)</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>results <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>[],columns<span class="op">=</span>[<span class="st">'ID'</span>,<span class="st">'target_class'</span>])</span>
+<span id="cb21-4"><a href="#cb21-4"></a>results[<span class="st">'ID'</span>]<span class="op">=</span>test_id</span>
+<span id="cb21-5"><a href="#cb21-5"></a>results[<span class="st">'target_class'</span>] <span class="op">=</span>voting_clf.predict(my_testing_data[column_to_train])</span>
+<span id="cb21-6"><a href="#cb21-6"></a>results.to_csv(voting_clf.__class__.<span class="va">__name__</span><span class="op">+</span><span class="st">'score_'</span><span class="op">+</span><span class="bu">str</span>(<span class="fl">0.6836363636363636_2</span>)<span class="op">+</span><span class="st">'_tuned_ada_bc_gbc_rtc_svc_mlp.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="134">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>results <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>[],columns<span class="op">=</span>[<span class="st">'ID'</span>,<span class="st">'target_class'</span>])</span>
+<span id="cb22-2"><a href="#cb22-2"></a>results[<span class="st">'ID'</span>]<span class="op">=</span>test_id</span>
+<span id="cb22-3"><a href="#cb22-3"></a>results[<span class="st">'target_class'</span>] <span class="op">=</span>gbc.predict(my_testing_data[column_to_train])</span>
+<span id="cb22-4"><a href="#cb22-4"></a>results.to_csv(gbc.__class__.<span class="va">__name__</span><span class="op">+</span><span class="st">'score_'</span><span class="op">+</span><span class="bu">str</span>(<span class="fl">0.6836363636363636</span>)<span class="op">+</span><span class="st">'_tuned_gbc.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="grid-search" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="grid-search"><span class="header-section-number">2.2</span> Grid Search</h2>
+<div class="cell" data-outputid="9d3628c4-6ebd-402d-c05d-79585128c3bc" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a></span>
+<span id="cb23-2"><a href="#cb23-2"></a></span>
+<span id="cb23-3"><a href="#cb23-3"></a>param_grid <span class="op">=</span> {</span>
+<span id="cb23-4"><a href="#cb23-4"></a>    <span class="st">'bootstrap'</span>: [<span class="va">True</span>],</span>
+<span id="cb23-5"><a href="#cb23-5"></a>    <span class="st">'max_depth'</span>: [<span class="dv">15</span>,<span class="dv">20</span>,<span class="dv">30</span>],</span>
+<span id="cb23-6"><a href="#cb23-6"></a>    <span class="st">'max_features'</span>: [ <span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>],</span>
+<span id="cb23-7"><a href="#cb23-7"></a>    <span class="st">'min_samples_leaf'</span>: [<span class="dv">2</span>,<span class="dv">3</span>, <span class="dv">4</span>],</span>
+<span id="cb23-8"><a href="#cb23-8"></a>    <span class="st">'min_samples_split'</span>: [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>],</span>
+<span id="cb23-9"><a href="#cb23-9"></a>    <span class="st">'n_estimators'</span>: [<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">150</span>],</span>
+<span id="cb23-10"><a href="#cb23-10"></a>    <span class="st">'criterion'</span> :[ <span class="st">'entropy'</span>, <span class="st">'gini'</span>]</span>
+<span id="cb23-11"><a href="#cb23-11"></a>}</span>
+<span id="cb23-12"><a href="#cb23-12"></a></span>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="co"># Create a based model</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a>rf <span class="op">=</span> ensemble.ExtraTreesClassifier()</span>
+<span id="cb23-15"><a href="#cb23-15"></a><span class="co"># Instantiate the grid search model</span></span>
+<span id="cb23-16"><a href="#cb23-16"></a>grid_search <span class="op">=</span> model_selection.GridSearchCV(estimator <span class="op">=</span> rf, param_grid <span class="op">=</span> param_grid, </span>
+<span id="cb23-17"><a href="#cb23-17"></a>                          cv <span class="op">=</span> <span class="dv">3</span>, n_jobs <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>, verbose <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb23-18"><a href="#cb23-18"></a></span>
+<span id="cb23-19"><a href="#cb23-19"></a><span class="co"># Fit the grid search to the data</span></span>
+<span id="cb23-20"><a href="#cb23-20"></a>grid_search.fit(X,y)</span>
+<span id="cb23-21"><a href="#cb23-21"></a>grid_search.best_score_ ,grid_search.best_params_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting 3 folds for each of 864 candidates, totalling 2592 fits</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>(0.5800500016534939,
+ {'bootstrap': True,
+  'criterion': 'entropy',
+  'max_depth': 30,
+  'max_features': 6,
+  'min_samples_leaf': 2,
+  'min_samples_split': 4,
+  'n_estimators': 50})</code></pre>
+</div>
+</div>
+<section id="use-best-param-to-check-the-score" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="use-best-param-to-check-the-score"><span class="header-section-number">2.2.1</span> use best param to check the score</h3>
+<div class="cell" data-outputid="6f2a28e2-085c-44cc-af4c-6f7d52d79474" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>rf.set_params(<span class="op">**</span>grid_search.best_params_) </span>
+<span id="cb26-2"><a href="#cb26-2"></a>rf.fit(X_train,y_train)</span>
+<span id="cb26-3"><a href="#cb26-3"></a>clf_score <span class="op">=</span> rf.score(X_test, y_test)</span>
+<span id="cb26-4"><a href="#cb26-4"></a></span>
+<span id="cb26-5"><a href="#cb26-5"></a><span class="bu">print</span>(<span class="st">'grid_search_std:'</span>,grid_search.cv_results_[<span class="st">'std_test_score'</span>][grid_search.best_index_]<span class="op">*</span><span class="dv">100</span><span class="op">*</span><span class="dv">3</span>)  </span>
+<span id="cb26-6"><a href="#cb26-6"></a><span class="bu">print</span>(<span class="st">'grid_search_best_score:'</span>,grid_search.best_score_)</span>
+<span id="cb26-7"><a href="#cb26-7"></a><span class="bu">print</span>(<span class="st">'fitted_test_score'</span>,clf_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>grid_search_std: 37.53328576919699
+grid_search_best_score: 0.5800500016534939
+fitted_test_score 0.658989898989899</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="c50e31ac-645a-43d0-ad71-be38b8d69588" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>rf.set_params(<span class="op">**</span>grid_search.best_params_) </span>
+<span id="cb28-2"><a href="#cb28-2"></a>rf.fit(X_train,y_train)</span>
+<span id="cb28-3"><a href="#cb28-3"></a>clf_score <span class="op">=</span> rf.score(X_test, y_test)</span>
+<span id="cb28-4"><a href="#cb28-4"></a></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="bu">print</span>(<span class="st">'grid_search_std:'</span>,grid_search.cv_results_[<span class="st">'std_test_score'</span>][grid_search.best_index_]<span class="op">*</span><span class="dv">100</span><span class="op">*</span><span class="dv">3</span>)  </span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="bu">print</span>(<span class="st">'grid_search_best_score:'</span>,grid_search.best_score_)</span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="bu">print</span>(<span class="st">'fitted_test_score'</span>,clf_score)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>grid_search_std: 29.824640656735674
+grid_search_best_score: 0.5514440292337709
+fitted_test_score 0.6505050505050505</code></pre>
+</div>
+</div>
+</section>
+<section id="save-the-prediction-on-test-data" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="save-the-prediction-on-test-data"><span class="header-section-number">2.2.2</span> Save the prediction on test data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>rf.fit(X,y)</span>
+<span id="cb30-2"><a href="#cb30-2"></a>results <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>[],columns<span class="op">=</span>[<span class="st">'ID'</span>,<span class="st">'target_class'</span>])</span>
+<span id="cb30-3"><a href="#cb30-3"></a>results[<span class="st">'ID'</span>]<span class="op">=</span>test_id</span>
+<span id="cb30-4"><a href="#cb30-4"></a>results[<span class="st">'target_class'</span>] <span class="op">=</span>rf.predict(my_testing_data[column_to_train])</span>
+<span id="cb30-5"><a href="#cb30-5"></a>results.to_csv(rf.__class__.<span class="va">__name__</span><span class="op">+</span><span class="st">'score_'</span><span class="op">+</span><span class="bu">str</span>(clf_score)<span class="op">+</span><span class="st">'_tuned.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="random-search" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="random-search"><span class="header-section-number">2.3</span> Random search</h2>
+<div class="cell" data-outputid="bb0dce92-c69a-4dc8-ba44-bee3018155ef">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> RandomizedSearchCV</span>
+<span id="cb31-2"><a href="#cb31-2"></a></span>
+<span id="cb31-3"><a href="#cb31-3"></a></span>
+<span id="cb31-4"><a href="#cb31-4"></a>n_estimators <span class="op">=</span> [<span class="bu">int</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>,<span class="dv">2000</span>,<span class="dv">200</span>)]</span>
+<span id="cb31-5"><a href="#cb31-5"></a></span>
+<span id="cb31-6"><a href="#cb31-6"></a>max_features <span class="op">=</span> [<span class="st">'d1'</span>, <span class="st">'sqrt'</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>]</span>
+<span id="cb31-7"><a href="#cb31-7"></a></span>
+<span id="cb31-8"><a href="#cb31-8"></a>max_depth <span class="op">=</span> [<span class="bu">int</span>(x) <span class="cf">for</span> x <span class="kw">in</span> np.linspace(<span class="dv">2</span>, <span class="dv">110</span>, num <span class="op">=</span> <span class="dv">5</span>)]</span>
+<span id="cb31-9"><a href="#cb31-9"></a>max_depth.append(<span class="va">None</span>)</span>
+<span id="cb31-10"><a href="#cb31-10"></a></span>
+<span id="cb31-11"><a href="#cb31-11"></a>min_samples_split <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>]</span>
+<span id="cb31-12"><a href="#cb31-12"></a></span>
+<span id="cb31-13"><a href="#cb31-13"></a>min_samples_leaf <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>]</span>
+<span id="cb31-14"><a href="#cb31-14"></a></span>
+<span id="cb31-15"><a href="#cb31-15"></a>bootstrap <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>]</span>
+<span id="cb31-16"><a href="#cb31-16"></a></span>
+<span id="cb31-17"><a href="#cb31-17"></a>random_grid <span class="op">=</span> {<span class="st">'n_estimators'</span>: n_estimators,</span>
+<span id="cb31-18"><a href="#cb31-18"></a>               <span class="st">'max_features'</span>: max_features,</span>
+<span id="cb31-19"><a href="#cb31-19"></a>               <span class="st">'max_depth'</span>: max_depth,</span>
+<span id="cb31-20"><a href="#cb31-20"></a>               <span class="st">'min_samples_split'</span>: min_samples_split,</span>
+<span id="cb31-21"><a href="#cb31-21"></a>               <span class="st">'min_samples_leaf'</span>: min_samples_leaf,</span>
+<span id="cb31-22"><a href="#cb31-22"></a>               <span class="st">'bootstrap'</span>: bootstrap}</span>
+<span id="cb31-23"><a href="#cb31-23"></a><span class="bu">print</span>(random_grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'n_estimators': [100, 300, 500, 700, 900, 1100, 1300, 1500, 1700, 1900], 'max_features': ['d1', 'sqrt', 2, 3, 4, 5], 'max_depth': [2, 29, 56, 83, 110, None], 'min_samples_split': [2, 5, 10], 'min_samples_leaf': [1, 2, 4], 'bootstrap': [True, False]}</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="1be20d56-e080-4a6f-bbe9-4d53bb2f39e8">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a></span>
+<span id="cb33-2"><a href="#cb33-2"></a>rf <span class="op">=</span> ensemble.RandomForestClassifier()</span>
+<span id="cb33-3"><a href="#cb33-3"></a></span>
+<span id="cb33-4"><a href="#cb33-4"></a>rf_random <span class="op">=</span> RandomizedSearchCV(estimator <span class="op">=</span> rf, param_distributions <span class="op">=</span> random_grid, n_iter <span class="op">=</span> <span class="dv">100</span>, cv <span class="op">=</span> <span class="dv">3</span>, verbose<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>, n_jobs <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb33-5"><a href="#cb33-5"></a></span>
+<span id="cb33-6"><a href="#cb33-6"></a>rf_random.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fitting 3 folds for each of 100 candidates, totalling 300 fits</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.7/dist-packages/joblib/externals/loky/process_executor.py:703: UserWarning: A worker stopped while some jobs were given to the executor. This can be caused by a too short worker timeout or by a memory leak.
+  "timeout or by a memory leak.", UserWarning</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>RandomizedSearchCV(cv=3, estimator=RandomForestClassifier(), n_iter=100,
+                   n_jobs=-1,
+                   param_distributions={'bootstrap': [True, False],
+                                        'max_depth': [2, 29, 56, 83, 110, None],
+                                        'max_features': ['d1', 'sqrt', 2, 3,
+                                                         4, 5],
+                                        'min_samples_leaf': [1, 2, 4],
+                                        'min_samples_split': [2, 5, 10],
+                                        'n_estimators': [100, 300, 500, 700,
+                                                         900, 1100, 1300, 1500,
+                                                         1700, 1900]},
+                   random_state=42, verbose=2)</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="7e1426fe-4d93-4c17-ce3b-db8addcd78de">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>rf_random.best_params_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>{'n_estimators': 1300,
+ 'min_samples_split': 10,
+ 'min_samples_leaf': 1,
+ 'max_features': 5,
+ 'max_depth': 2,
+ 'bootstrap': True}</code></pre>
+</div>
+</div>
+</section>
+<section id="grid-seach-on-all-the-models" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="grid-seach-on-all-the-models"><span class="header-section-number">2.4</span> Grid seach on all the models</h2>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T14:54:14.887301Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T14:54:14.886897Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T14:54:14.893911Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T14:54:14.892559Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T14:54:14.887264Z&quot;}" data-trusted="true">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>vote_est <span class="op">=</span> [</span>
+<span id="cb39-2"><a href="#cb39-2"></a>    (<span class="st">'ada'</span>, ensemble.AdaBoostClassifier()),</span>
+<span id="cb39-3"><a href="#cb39-3"></a>    (<span class="st">'bc'</span>, ensemble.BaggingClassifier()),</span>
+<span id="cb39-4"><a href="#cb39-4"></a>    (<span class="st">'etc'</span>,ensemble.ExtraTreesClassifier()),</span>
+<span id="cb39-5"><a href="#cb39-5"></a>    (<span class="st">'gbc'</span>, ensemble.GradientBoostingClassifier()),</span>
+<span id="cb39-6"><a href="#cb39-6"></a>    (<span class="st">'rfc'</span>, ensemble.RandomForestClassifier()),</span>
+<span id="cb39-7"><a href="#cb39-7"></a>    (<span class="st">'gpc'</span>, gaussian_process.GaussianProcessClassifier()),</span>
+<span id="cb39-8"><a href="#cb39-8"></a>    (<span class="st">'lr'</span>, linear_model.LogisticRegressionCV()),</span>
+<span id="cb39-9"><a href="#cb39-9"></a>    (<span class="st">'knn'</span>, neighbors.KNeighborsClassifier()),</span>
+<span id="cb39-10"><a href="#cb39-10"></a>    (<span class="st">'svc'</span>, svm.SVC(probability<span class="op">=</span><span class="va">True</span>)),</span>
+<span id="cb39-11"><a href="#cb39-11"></a>   (<span class="st">'xgb'</span>, XGBClassifier())</span>
+<span id="cb39-12"><a href="#cb39-12"></a></span>
+<span id="cb39-13"><a href="#cb39-13"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a></span>
+<span id="cb40-2"><a href="#cb40-2"></a>grid_n_estimator <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">300</span>,<span class="dv">400</span>,<span class="dv">500</span>]</span>
+<span id="cb40-3"><a href="#cb40-3"></a>grid_ratio <span class="op">=</span> [<span class="fl">.1</span>, <span class="fl">.25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>, <span class="fl">1.0</span>]</span>
+<span id="cb40-4"><a href="#cb40-4"></a>grid_learn <span class="op">=</span> [<span class="fl">.01</span>, <span class="fl">.03</span>, <span class="fl">.05</span>, <span class="fl">.1</span>, <span class="fl">.25</span>]</span>
+<span id="cb40-5"><a href="#cb40-5"></a>grid_max_depth <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">50</span>,<span class="dv">80</span>,<span class="dv">100</span>]</span>
+<span id="cb40-6"><a href="#cb40-6"></a>grid_min_samples <span class="op">=</span> [<span class="dv">5</span>, <span class="dv">10</span>, <span class="fl">.03</span>, <span class="fl">.05</span>, <span class="fl">.10</span>]</span>
+<span id="cb40-7"><a href="#cb40-7"></a>grid_criterion <span class="op">=</span> [<span class="st">'gini'</span>, <span class="st">'entropy'</span>]</span>
+<span id="cb40-8"><a href="#cb40-8"></a>grid_bool <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>]</span>
+<span id="cb40-9"><a href="#cb40-9"></a>grid_seed <span class="op">=</span> [<span class="dv">0</span>]</span>
+<span id="cb40-10"><a href="#cb40-10"></a></span>
+<span id="cb40-11"><a href="#cb40-11"></a></span>
+<span id="cb40-12"><a href="#cb40-12"></a>grid_param <span class="op">=</span> [</span>
+<span id="cb40-13"><a href="#cb40-13"></a>            [{</span>
+<span id="cb40-14"><a href="#cb40-14"></a>            <span class="st">'n_estimators'</span>: grid_n_estimator, </span>
+<span id="cb40-15"><a href="#cb40-15"></a>            <span class="st">'learning_rate'</span>: grid_learn, </span>
+<span id="cb40-16"><a href="#cb40-16"></a>            <span class="st">'random_state'</span>: grid_seed</span>
+<span id="cb40-17"><a href="#cb40-17"></a>            }],</span>
+<span id="cb40-18"><a href="#cb40-18"></a>    </span>
+<span id="cb40-19"><a href="#cb40-19"></a>            [{</span>
+<span id="cb40-20"><a href="#cb40-20"></a>            <span class="st">'n_estimators'</span>: grid_n_estimator, </span>
+<span id="cb40-21"><a href="#cb40-21"></a>            <span class="st">'max_samples'</span>: grid_ratio,</span>
+<span id="cb40-22"><a href="#cb40-22"></a>             }],</span>
+<span id="cb40-23"><a href="#cb40-23"></a>    </span>
+<span id="cb40-24"><a href="#cb40-24"></a>            [{</span>
+<span id="cb40-25"><a href="#cb40-25"></a>            <span class="st">'n_estimators'</span>: grid_n_estimator, </span>
+<span id="cb40-26"><a href="#cb40-26"></a>            <span class="st">'criterion'</span>: grid_criterion, </span>
+<span id="cb40-27"><a href="#cb40-27"></a>            <span class="st">'max_depth'</span>: grid_max_depth, </span>
+<span id="cb40-28"><a href="#cb40-28"></a>             }],</span>
+<span id="cb40-29"><a href="#cb40-29"></a></span>
+<span id="cb40-30"><a href="#cb40-30"></a>            [{</span>
+<span id="cb40-31"><a href="#cb40-31"></a>            <span class="st">'learning_rate'</span>: [<span class="fl">0.01</span>,<span class="fl">0.02</span>,<span class="fl">0.03</span>,<span class="fl">0.05</span>,<span class="fl">0.1</span>], </span>
+<span id="cb40-32"><a href="#cb40-32"></a>            <span class="st">'n_estimators'</span>: [<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">300</span>,<span class="dv">400</span>], </span>
+<span id="cb40-33"><a href="#cb40-33"></a>            <span class="st">'max_depth'</span>: grid_max_depth, </span>
+<span id="cb40-34"><a href="#cb40-34"></a>             }],</span>
+<span id="cb40-35"><a href="#cb40-35"></a></span>
+<span id="cb40-36"><a href="#cb40-36"></a>            [{</span>
+<span id="cb40-37"><a href="#cb40-37"></a>      </span>
+<span id="cb40-38"><a href="#cb40-38"></a>            <span class="st">'n_estimators'</span>: grid_n_estimator, </span>
+<span id="cb40-39"><a href="#cb40-39"></a>            <span class="st">'criterion'</span>: grid_criterion,</span>
+<span id="cb40-40"><a href="#cb40-40"></a>            <span class="st">'max_depth'</span>: grid_max_depth, </span>
+<span id="cb40-41"><a href="#cb40-41"></a>            <span class="st">'max_features'</span>: [<span class="dv">2</span>, <span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>],</span>
+<span id="cb40-42"><a href="#cb40-42"></a>            <span class="st">'min_samples_leaf'</span>: [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
+<span id="cb40-43"><a href="#cb40-43"></a>            <span class="st">'min_samples_split'</span>: [<span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>],</span>
+<span id="cb40-44"><a href="#cb40-44"></a>            <span class="st">'bootstrap'</span>: [<span class="va">True</span>],</span>
+<span id="cb40-45"><a href="#cb40-45"></a>            <span class="st">'oob_score'</span>: [<span class="va">True</span>], </span>
+<span id="cb40-46"><a href="#cb40-46"></a>             }</span>
+<span id="cb40-47"><a href="#cb40-47"></a>            ], </span>
+<span id="cb40-48"><a href="#cb40-48"></a>    </span>
+<span id="cb40-49"><a href="#cb40-49"></a>            [{    </span>
+<span id="cb40-50"><a href="#cb40-50"></a>            <span class="st">'max_iter_predict'</span>: grid_n_estimator,</span>
+<span id="cb40-51"><a href="#cb40-51"></a>            <span class="st">'random_state'</span>: grid_seed</span>
+<span id="cb40-52"><a href="#cb40-52"></a>            }],</span>
+<span id="cb40-53"><a href="#cb40-53"></a>        </span>
+<span id="cb40-54"><a href="#cb40-54"></a></span>
+<span id="cb40-55"><a href="#cb40-55"></a>            [{</span>
+<span id="cb40-56"><a href="#cb40-56"></a>            <span class="st">'fit_intercept'</span>: grid_bool, </span>
+<span id="cb40-57"><a href="#cb40-57"></a>            <span class="st">'penalty'</span>: [<span class="st">'l1'</span>,<span class="st">'l2'</span>],</span>
+<span id="cb40-58"><a href="#cb40-58"></a>            <span class="st">'solver'</span>: [ <span class="st">'liblinear'</span>,  <span class="st">'saga'</span>], </span>
+<span id="cb40-59"><a href="#cb40-59"></a>            <span class="st">'random_state'</span>: grid_seed,</span>
+<span id="cb40-60"><a href="#cb40-60"></a>            <span class="st">'max_iter'</span>:[<span class="dv">5000</span>]</span>
+<span id="cb40-61"><a href="#cb40-61"></a>             },</span>
+<span id="cb40-62"><a href="#cb40-62"></a>            {</span>
+<span id="cb40-63"><a href="#cb40-63"></a>            <span class="st">'fit_intercept'</span>: grid_bool, </span>
+<span id="cb40-64"><a href="#cb40-64"></a>            <span class="st">'penalty'</span>: [<span class="st">'l2'</span>],</span>
+<span id="cb40-65"><a href="#cb40-65"></a>            <span class="st">'solver'</span>: [ <span class="st">'lbfgs'</span>,<span class="st">'newton-cg'</span>,<span class="st">'sag'</span>],</span>
+<span id="cb40-66"><a href="#cb40-66"></a>            <span class="st">'random_state'</span>: grid_seed,</span>
+<span id="cb40-67"><a href="#cb40-67"></a>            <span class="st">'max_iter'</span>:[<span class="dv">5000</span>]</span>
+<span id="cb40-68"><a href="#cb40-68"></a>             }],</span>
+<span id="cb40-69"><a href="#cb40-69"></a>            </span>
+<span id="cb40-70"><a href="#cb40-70"></a>            [{</span>
+<span id="cb40-71"><a href="#cb40-71"></a>            <span class="st">'n_neighbors'</span>: [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>],</span>
+<span id="cb40-72"><a href="#cb40-72"></a>            <span class="st">'weights'</span>: [<span class="st">'uniform'</span>, <span class="st">'distance'</span>],</span>
+<span id="cb40-73"><a href="#cb40-73"></a>            <span class="st">'algorithm'</span>: [<span class="st">'d1'</span>, <span class="st">'ball_tree'</span>, <span class="st">'kd_tree'</span>, <span class="st">'brute'</span>]</span>
+<span id="cb40-74"><a href="#cb40-74"></a>            }],</span>
+<span id="cb40-75"><a href="#cb40-75"></a>            </span>
+<span id="cb40-76"><a href="#cb40-76"></a>    </span>
+<span id="cb40-77"><a href="#cb40-77"></a>            [{</span>
+<span id="cb40-78"><a href="#cb40-78"></a>            <span class="st">'C'</span>: [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>], </span>
+<span id="cb40-79"><a href="#cb40-79"></a>            <span class="st">'gamma'</span>: grid_ratio, </span>
+<span id="cb40-80"><a href="#cb40-80"></a>            <span class="st">'decision_function_shape'</span>: [<span class="st">'ovo'</span>, <span class="st">'ovr'</span>],</span>
+<span id="cb40-81"><a href="#cb40-81"></a>            <span class="st">'probability'</span>: [<span class="va">True</span>],</span>
+<span id="cb40-82"><a href="#cb40-82"></a>            <span class="st">'random_state'</span>: grid_seed</span>
+<span id="cb40-83"><a href="#cb40-83"></a>             }],</span>
+<span id="cb40-84"><a href="#cb40-84"></a></span>
+<span id="cb40-85"><a href="#cb40-85"></a>    </span>
+<span id="cb40-86"><a href="#cb40-86"></a>            [{</span>
+<span id="cb40-87"><a href="#cb40-87"></a>            <span class="st">'learning_rate'</span>: grid_learn, </span>
+<span id="cb40-88"><a href="#cb40-88"></a>            <span class="st">'max_depth'</span>: [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">10</span>],</span>
+<span id="cb40-89"><a href="#cb40-89"></a>            <span class="st">'n_estimators'</span>: grid_n_estimator, </span>
+<span id="cb40-90"><a href="#cb40-90"></a>             }]   </span>
+<span id="cb40-91"><a href="#cb40-91"></a>        ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T14:54:22.123708Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T14:54:22.123253Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:18:16.840281Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:18:16.838999Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T14:54:22.123670Z&quot;}" data-trusted="true">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a></span>
+<span id="cb41-2"><a href="#cb41-2"></a></span>
+<span id="cb41-3"><a href="#cb41-3"></a>all_models_results_col <span class="op">=</span> [ <span class="st">'Search Parameters'</span>, <span class="st">'Search score'</span>, <span class="st">'Search score 3*STD'</span> ,<span class="st">'Time(s)'</span>,<span class="st">'Clf_Score'</span>]</span>
+<span id="cb41-4"><a href="#cb41-4"></a>all_models_results <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>[],columns <span class="op">=</span> all_models_results_col,index<span class="op">=</span>[clf[<span class="dv">1</span>].__class__.<span class="va">__name__</span> <span class="cf">for</span> clf <span class="kw">in</span> vote_est])</span>
+<span id="cb41-5"><a href="#cb41-5"></a>start_total <span class="op">=</span> time.perf_counter() </span>
+<span id="cb41-6"><a href="#cb41-6"></a><span class="cf">for</span> clf, param <span class="kw">in</span> <span class="bu">zip</span> (vote_est, grid_param): </span>
+<span id="cb41-7"><a href="#cb41-7"></a>  </span>
+<span id="cb41-8"><a href="#cb41-8"></a>    </span>
+<span id="cb41-9"><a href="#cb41-9"></a>    start <span class="op">=</span> time.perf_counter()        </span>
+<span id="cb41-10"><a href="#cb41-10"></a>    best_search <span class="op">=</span> model_selection.GridSearchCV(estimator <span class="op">=</span> clf[<span class="dv">1</span>], param_grid <span class="op">=</span> param, cv <span class="op">=</span> cv_split, scoring <span class="op">=</span> <span class="st">'roc_auc'</span>)</span>
+<span id="cb41-11"><a href="#cb41-11"></a>    best_search.fit(X_train, y_train)</span>
+<span id="cb41-12"><a href="#cb41-12"></a>    run <span class="op">=</span> time.perf_counter() <span class="op">-</span> start</span>
+<span id="cb41-13"><a href="#cb41-13"></a></span>
+<span id="cb41-14"><a href="#cb41-14"></a>    best_param <span class="op">=</span> best_search.best_params_</span>
+<span id="cb41-15"><a href="#cb41-15"></a>    clf[<span class="dv">1</span>].set_params(<span class="op">**</span>best_param) </span>
+<span id="cb41-16"><a href="#cb41-16"></a>    clf[<span class="dv">1</span>].fit(X_train,y_train)</span>
+<span id="cb41-17"><a href="#cb41-17"></a>    clf_score <span class="op">=</span> clf[<span class="dv">1</span>].score(x_test, y_test)</span>
+<span id="cb41-18"><a href="#cb41-18"></a></span>
+<span id="cb41-19"><a href="#cb41-19"></a></span>
+<span id="cb41-20"><a href="#cb41-20"></a>    clf[<span class="dv">1</span>].fit(X,y)</span>
+<span id="cb41-21"><a href="#cb41-21"></a>    results <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>[],columns<span class="op">=</span>[<span class="st">'ID'</span>,<span class="st">'target_class'</span>])</span>
+<span id="cb41-22"><a href="#cb41-22"></a>    results[<span class="st">'ID'</span>]<span class="op">=</span>test_id</span>
+<span id="cb41-23"><a href="#cb41-23"></a>    results[<span class="st">'target_class'</span>] <span class="op">=</span>clf[<span class="dv">1</span>].predict(my_testing_data[column_to_train])</span>
+<span id="cb41-24"><a href="#cb41-24"></a>    results.to_csv(clf[<span class="dv">1</span>].__class__.<span class="va">__name__</span><span class="op">+</span><span class="st">'score_'</span><span class="op">+</span><span class="bu">str</span>(clf_score)<span class="op">+</span><span class="st">'_tuned.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb41-25"><a href="#cb41-25"></a>    </span>
+<span id="cb41-26"><a href="#cb41-26"></a>  </span>
+<span id="cb41-27"><a href="#cb41-27"></a></span>
+<span id="cb41-28"><a href="#cb41-28"></a>    all_models_results.loc[clf[<span class="dv">1</span>].__class__.<span class="va">__name__</span>][<span class="st">'Search Parameters'</span>]<span class="op">=</span>best_search.best_params_</span>
+<span id="cb41-29"><a href="#cb41-29"></a>    all_models_results.loc[clf[<span class="dv">1</span>].__class__.<span class="va">__name__</span>][<span class="st">'Search score'</span>]<span class="op">=</span>best_search.best_score_</span>
+<span id="cb41-30"><a href="#cb41-30"></a>    all_models_results.loc[clf[<span class="dv">1</span>].__class__.<span class="va">__name__</span>][<span class="st">'Search score 3*STD'</span>]<span class="op">=</span>best_search.cv_results_[<span class="st">'std_test_score'</span>][best_search.best_index_]<span class="op">*</span><span class="dv">100</span><span class="op">*</span><span class="dv">3</span></span>
+<span id="cb41-31"><a href="#cb41-31"></a>    all_models_results.loc[clf[<span class="dv">1</span>].__class__.<span class="va">__name__</span>][<span class="st">'Time(s)'</span>]<span class="op">=</span>run</span>
+<span id="cb41-32"><a href="#cb41-32"></a>    all_models_results.loc[clf[<span class="dv">1</span>].__class__.<span class="va">__name__</span>][<span class="st">'Clf_Score'</span>]<span class="op">=</span>clf_score</span>
+<span id="cb41-33"><a href="#cb41-33"></a>    </span>
+<span id="cb41-34"><a href="#cb41-34"></a>    <span class="bu">print</span>(<span class="st">'The best parameter for </span><span class="sc">{}</span><span class="st"> is </span><span class="sc">{}</span><span class="st"> with a search score of </span><span class="sc">{:.2f}</span><span class="st"> clf score of </span><span class="sc">{:.2f}</span><span class="st"> and runtime of </span><span class="sc">{:.2f}</span><span class="st"> seconds.'</span>.<span class="bu">format</span>(clf[<span class="dv">1</span>].__class__.<span class="va">__name__</span>, best_param,best_search.best_score_,clf_score, run))</span>
+<span id="cb41-35"><a href="#cb41-35"></a></span>
+<span id="cb41-36"><a href="#cb41-36"></a>run_total <span class="op">=</span> time.perf_counter() <span class="op">-</span> start_total</span>
+<span id="cb41-37"><a href="#cb41-37"></a><span class="bu">print</span>(<span class="st">'Total optimization time was </span><span class="sc">{:.2f}</span><span class="st"> minutes.'</span>.<span class="bu">format</span>(run_total<span class="op">/</span><span class="dv">60</span>))</span>
+<span id="cb41-38"><a href="#cb41-38"></a></span>
+<span id="cb41-39"><a href="#cb41-39"></a><span class="bu">print</span>(<span class="st">'-'</span><span class="op">*</span><span class="dv">10</span>)</span>
+<span id="cb41-40"><a href="#cb41-40"></a>all_models_results.sort_values(by <span class="op">=</span> [<span class="st">'Search score'</span>], ascending <span class="op">=</span> <span class="va">False</span>, inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb41-41"><a href="#cb41-41"></a>all_models_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="abhiyantaabhishek/IITH-Data-Science" data-repo-id="R_kgDOILoB8A" data-category="Announcements" data-category-id="DIC_kwDOILoB8M4CSJcL" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Data_Science_Hacks/index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data Science Hacks</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Abhishek Kumar Dubey">
+<meta name="dcterms.date" content="2022-08-20">
+<meta name="description" content="Mathematical Foundations of Data Science CS6660 Quiz 1">
+
+<title>IITH-Data-Science - Probability CS6660 Quiz 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">IITH-Data-Science</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Probability CS6660 Quiz 1</h1>
+                  <div>
+        <div class="description">
+          Mathematical Foundations of Data Science CS6660 Quiz 1
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Quizzes and assignments - Mathematical Foundations of Data Science</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Abhishek Kumar Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 20, 2022</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11">Question 11</a></li>
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12">Question 12</a></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13">Question 13</a></li>
+  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14">Question 14</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="question-1" class="level1">
+<h1>Question 1</h1>
+<p>Suppose X is a random variable that takes values from the set {0, 1}. If <span class="math inline">\(E(X) = 0.3\)</span>, then what is <span class="math inline">\(E(X^2)\)</span>?</p>
+<blockquote class="blockquote">
+<p>Answer:<br> we know for Indicator random variable <br> <span class="math inline">\(E\left(X\right)=0\cdot p\left(0\right)+1\cdot p\left(1\right)\)</span><br> so substituting values we get :<br> <span class="math inline">\(0\ldotp 3=1\ldotp p\left(1\right)\)</span><br> <span class="math inline">\(\Rightarrow p\left(1\right)=0\ldotp 3\;,p\left(0\right)=0\ldotp 7\)</span><br> Now:<br> <span class="math inline">\(E\left(X^2 \right)=0^2 \cdot p\left(0\right)+1^2 \cdot p\left(1\right)\)</span><br> <span class="math inline">\(\Rightarrow E\left(X^2 \right)=1\cdot p\left(1\right)=0\ldotp 3\)</span><br></p>
+</blockquote>
+</section>
+<section id="question-2" class="level1">
+<h1>Question 2</h1>
+<p>Suppose <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are two mutually exclusive events with <span class="math inline">\(P(A) = 0.3\)</span> and <span class="math inline">\(P(B) = 0.4\)</span>. Then <span class="math inline">\(P(A|B) =?\)</span> and <span class="math inline">\(P(A|B^C) =?\)</span> &gt; Answer:<br> <span class="math inline">\(p\left(A|B\right)=\frac{p\left(A\cap B\right)}{p\left(B\right)}\)</span><br> <span class="math inline">\(p\left(A\cap B\right)=0\)</span>, mutually exclusive <br> <span class="math inline">\(\Rightarrow p\left(A|B\right)=0\)</span><br> Now:<br> <span class="math inline">\(p\left(A|B^c \right)=\frac{p\left(A\cap B^c \right)}{p\left(B^c \right)}\)</span><br> <span class="math inline">\(\Rightarrow p\left(A|B^c \right)=\frac{p\left(A\right)-p\left(A\cap \;B\right)}{p\left(B^c \right)}\)</span><br> <span class="math inline">\(\Rightarrow p\left(A|B^c \right)=\frac{0\ldotp 3-0}{1-0\ldotp 4}=0\ldotp 5\)</span><br></p>
+</section>
+<section id="question-3" class="level1">
+<h1>Question 3</h1>
+<p>Suppose <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are random variables such that <span class="math inline">\(E(X) = 10, Var(X) = 50, E(Y) = 5,\)</span> and <span class="math inline">\(Var(Y) = 40.\)</span> Then what is <span class="math inline">\(E(2X+Y)?\)</span></p>
+<blockquote class="blockquote">
+<p>Answer:<br> <span class="math inline">\(E\left(2X+Y\right)=E\left(2X\right)+E\left(Y\right)=2E\left(X\right)+E\left(Y\right)\)</span><br> <span class="math inline">\(\Rightarrow 2\times 10+5=25\)</span><br></p>
+</blockquote>
+</section>
+<section id="question-4" class="level1">
+<h1>Question 4</h1>
+<p>Suppose <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are events such that <span class="math inline">\(P(A) = 0.3, P(B) = 0.2\)</span> and <span class="math inline">\(P(A \cap B) = 0.1\)</span>. Then what is <span class="math inline">\(P(A^c \cap B^C)\)</span>?</p>
+<blockquote class="blockquote">
+<p>Answer:<br> <span class="math inline">\(P\left(A^c \cap B^c \right)={P\left(A\cup \;B\right)}^c\)</span><br> <span class="math inline">\(P\left(A\cup B\right)=P\left(A\right)+P\left(B\right)-P\left(A\cap B\right)\)</span><br> <span class="math inline">\(\Rightarrow P\left(A\cup B\right)=0\ldotp 3+0\ldotp 2-0\ldotp 1\)</span><br> <span class="math inline">\(\Rightarrow P\left(A\cup B\right)=0\ldotp 4\)</span><br> <span class="math inline">\({P\left(A\cup B\right)}^c =1-P\left(A\cup B\right)=1-0\ldotp 4=0\ldotp 6\)</span><br></p>
+</blockquote>
+</section>
+<section id="question-5" class="level1">
+<h1>Question 5</h1>
+<p>Suppose <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent events such that <span class="math inline">\(P(A) = 0.2\)</span> and <span class="math inline">\(P(B) = 0.5\)</span>. Then what is <span class="math inline">\(P(A \cup B)\)</span>?</p>
+<blockquote class="blockquote">
+<p>Answer:<br> <span class="math inline">\(P\left(A\cup B\right)=P\left(A\right)+P\left(B\right)-P\left(A\cap B\right)\)</span><br> <span class="math inline">\(P\left(A\cap \;B\right)=P\left(A\right)\cdot P\left(B\right)\)</span>, Because <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent here.<br> Hence,<br> <span class="math inline">\(P\left(A\cup B\right)=P\left(A\right)+P\left(B\right)-P\left(A\right)\cdot P\left(B\right)\)</span><br> <span class="math inline">\(\Rightarrow P\left(A\cup B\right)=0\ldotp 2+0\ldotp 5-0\ldotp 2*0\ldotp 5=0\ldotp 6\)</span><br></p>
+</blockquote>
+</section>
+<section id="question-6" class="level1">
+<h1>Question 6</h1>
+<p>Suppose <span class="math inline">\(X\)</span> is a random variable such that <span class="math inline">\(E(X) = 10\)</span> and <span class="math inline">\(E(X^2) = 150\)</span>. What is the variance of <span class="math inline">\(X\)</span>?</p>
+<blockquote class="blockquote">
+<p>Answer:<br> <span class="math inline">\(\mathrm{Var}\left(X\right)=E\left(X^2 \right)-{\left(E\left(X\right)\right)}^2\)</span><br> <span class="math inline">\(\Rightarrow \mathrm{Var}\left(X\right)=150-{10}^2 =50\)</span></p>
+</blockquote>
+</section>
+<section id="question-7" class="level1">
+<h1>Question 7</h1>
+<p>Suppose <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are events such that <span class="math inline">\(P(A) = 0.8, P(B) = 0.6,\)</span> and <span class="math inline">\(P(A^c \cap B^c) = 0.2.\)</span> Then which of the following is true? - Neither A nor B is contained in the other - A and B are mutually exclusive - None of the choices can be inferred - A is a subset of B - B is a subset of A</p>
+<blockquote class="blockquote">
+<p>Answer:<br> <span class="math inline">\(P\left(A^c \cap B^c \right)={P\left(A\cup B\right)}^c\)</span><br> <span class="math inline">\(P\left(A\cup B\right)=1-{P\left(A\cup B\right)}^c =1-0\ldotp 2=0\ldotp 8\)</span><br> <span class="math inline">\(P\left(A\cup B\right)=P\left(A\right)+P\left(B\right)+P\left(A\cap B\right)\)</span><br> <span class="math inline">\(\Rightarrow 0\ldotp 8=0\ldotp 8+0\ldotp 6+P\left(A\cap B\right)\)</span><br> <span class="math inline">\(\Rightarrow P\left(A\cap B\right)=0\ldotp 6\)</span><br> Notice:<br> <span class="math inline">\(P\left(A\right)=0\ldotp 8,P\left(B\right)=0\ldotp 6\;,P\left(A\cap B\right)=0\ldotp 6\)</span><br> Hence B is subset of A<br></p>
+</blockquote>
+</section>
+<section id="question-8" class="level1">
+<h1>Question 8</h1>
+<p>Suppose you roll two fair dice and look at the sum of the two results. The probability of getting a value of at least (greater than or equal to) 10 is ?</p>
+<blockquote class="blockquote">
+<p>Answer:<br> The sum value of 10, 11 and 12 qualifies for at least greater than or equal to 10<br> so the events are <span class="math inline">\({(6,4),(5,5),(4,6),(6,5),(5.6),(6,6)}\)</span><br> so the probability is <span class="math inline">\(\frac{6}{36}=\frac{1}{6}\)</span><br></p>
+</blockquote>
+</section>
+<section id="question-9" class="level1">
+<h1>Question 9</h1>
+<p>Let <span class="math inline">\(X\)</span> be a random variable which takes values from <span class="math inline">\(\left\lbrace 1,2,3\right\rbrace\)</span> with equal probability. What is the variance of <span class="math inline">\(X\)</span>?</p>
+<blockquote class="blockquote">
+<p>Answer:<br> <span class="math inline">\(\mathrm{Var}\left(X\right)=E\left(X^2 \right)-{\left(E\left(X\right)\right)}^2\)</span><br> <span class="math inline">\(E\left(X\right)=\frac{1+2+3}{3}=2\)</span><br> <span class="math inline">\(E\left(X^2 \right)=\frac{1^2 +2^2 +3^2 }{3}=\frac{14}{3}\)</span><br> <span class="math inline">\(\Rightarrow \mathrm{Var}\left(X\right)=\frac{14}{3}-4=\frac{2}{3}\)</span><br></p>
+</blockquote>
+</section>
+<section id="question-10" class="level1">
+<h1>Question 10</h1>
+<p>Let <span class="math inline">\(X\)</span> be a random variable which takes values from <span class="math inline">\(\left\lbrace 10,20,30\right\rbrace\)</span> with equal probability. What is the variance of <span class="math inline">\(X\)</span>?</p>
+<blockquote class="blockquote">
+<p>Answer:<br> The answer can be calculated as in question 9, but we can notice that the values is scaled by <span class="math inline">\(10\)</span> as compared to question 9, so the variance will be scaled by <span class="math inline">\(10^2\)</span>, hence the answer is <span class="math inline">\(\frac{200}{3}\)</span></p>
+</blockquote>
+</section>
+<section id="question-11" class="level1">
+<h1>Question 11</h1>
+<p>Suppose the probability of a random person of the population having covid is <span class="math inline">\(0.1\)</span>. Given that the person has covid, the probability of the person having cough is <span class="math inline">\(0.9\)</span>. Given that the person does not have covid, the probability of having cough is <span class="math inline">\(0.01\)</span>.<br> Suppose a random person from the population has cough. What is the probability that he/she has covid?</p>
+<blockquote class="blockquote">
+<p>Answer:<br> Given:<br> <span class="math inline">\(P\left(\mathrm{covid}\right)=0\ldotp 1\)</span><br> <span class="math inline">\(p\left(\mathrm{cough}|\mathrm{covid}\right)=0\ldotp 9\)</span><br> <span class="math inline">\(p\left(\mathrm{cough}|{\mathrm{covid}}^c \right)=0\ldotp 01\)</span><br> Find:<br> <span class="math inline">\(p\left(\mathrm{covid}|\mathrm{cough}\right)=?\)</span><br> calculate probability of not covid<br> <span class="math inline">\(P\left({\mathrm{covid}}^c \right)=1-P\left(\mathrm{covid}\right)=1-0\ldotp 1=0\ldotp 9\)</span><br> Use Bayes theorem <br> <span class="math inline">\(p\left(\mathrm{covid}|\mathrm{cough}\right)=\frac{p\left(\mathrm{cough}|\mathrm{covid}\right)\times p\left(\mathrm{covid}\right)}{p\left(\mathrm{cough}|\mathrm{covid}\right)\times p\left(\mathrm{covid}\right)+p\left(\mathrm{cough}|{\mathrm{covid}}^c \right)\times p\left({\mathrm{covid}}^c \right)}\)</span><br> <span class="math inline">\(\Rightarrow p\left(\mathrm{covid}|\mathrm{cough}\right)=\frac{0\ldotp 9\times 0\ldotp 1}{0\ldotp 9\times 0\ldotp 1+0\ldotp 01\times 0\ldotp 9}=\frac{10}{11}\)</span><br></p>
+</blockquote>
+</section>
+<section id="question-12" class="level1">
+<h1>Question 12</h1>
+<p>Let <span class="math inline">\(A\)</span> be an event, and let <span class="math inline">\(P(A)\)</span> denote the probability of the event <span class="math inline">\(A\)</span>. Which of the following options is correct? - <span class="math inline">\(P(A)\)</span> is at most <span class="math inline">\(1\)</span> but has no lower bound (unbounded) - <span class="math inline">\(P(A)\)</span> is at least <span class="math inline">\(0\)</span> and at most <span class="math inline">\(1\)</span> - <span class="math inline">\(P(A)\)</span> is at least <span class="math inline">\(0\)</span> but has no upper bound (unbounded) - <span class="math inline">\(P(A)\)</span> has neither an upper bound nor a lower bound</p>
+<blockquote class="blockquote">
+<p>Answer:<br> P(A) is at least 0 and at most 1</p>
+</blockquote>
+</section>
+<section id="question-13" class="level1">
+<h1>Question 13</h1>
+<p>Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be two events, such that <span class="math inline">\(P(A) = 1\)</span> and <span class="math inline">\(P(B) &gt; 0\)</span>. Which of the following is true? - A and B are nether independent nor mutually exclusive - A and B are independent and mutually exclusive - A and B are mutually exclusive but not independent - A and B are independent, but not mutually exclusive - Cannot conclude any of the choices from the information given.</p>
+<blockquote class="blockquote">
+<p>Answer:</p>
+</blockquote>
+</section>
+<section id="question-14" class="level1">
+<h1>Question 14</h1>
+<p>Suppose there is a meeting of 5 friends. The probability that a given member of the population is covid positive is 0.1. Which of the following is an upper bound on the probability that at least one in the meeting is covid positive? - 0.05 - 0.00001 - 0.25 - 0.5 - 0.3</p>
+<blockquote class="blockquote">
+<p>Answer:<br> <span class="math inline">\(p\left(\mathrm{covid}\right)=0\ldotp 1\)</span><br> <span class="math inline">\(\mathrm{At}\;\mathrm{least}\;\mathrm{one}=\mathrm{complement}\;\mathrm{of}\;\mathrm{none}\)</span><br> <span class="math inline">\(p\left(\mathrm{at}\;\mathrm{least}\;\mathrm{one}\;\mathrm{covid}\;\mathrm{positive}\right)={p\left(\mathrm{none}\;\mathrm{covid}\;\mathrm{positive}\right)}^c\)</span><br> <span class="math inline">\(p\left(\mathrm{none}\;\mathrm{covid}\;\mathrm{positive}\right)=0\ldotp 9\times 0\ldotp 9\times 0\ldotp 9\times 0\ldotp 9\times 0\ldotp 9=0\ldotp 59\)</span><br> <span class="math inline">\(p\left(\mathrm{at}\;\mathrm{least}\;\mathrm{one}\;\mathrm{covid}\;\mathrm{positive}\right)=1-0\ldotp 59=0\ldotp 41\)</span><br> So the upper bound is 0.5<br></p>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
