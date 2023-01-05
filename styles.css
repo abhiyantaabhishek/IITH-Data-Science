@@ -5,3 +5,21 @@
     overflow-x: auto;
     overflow-y: hidden;
   }
+  h1 {
+    color:#1912E7;
+  }
+  h2 {
+    color:#352EE8;
+  }
+  h3 {
+    color:#2E69E8;
+  }
+  h4 {
+    color:#2EA4E8;
+  }
+  h5 {
+    color:#5BB3E6;
+  }
+  h6 {
+    color:#66ADD6;
+  }

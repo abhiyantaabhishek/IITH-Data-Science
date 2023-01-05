@@ -12,8 +12,9 @@ website:
   google-analytics: "G-5ZQX02R26E"
   open-graph: true
   navbar:
-    pinned: true
+    pinned: false
     search: true
+    logo: logo.png
     left:
       - text: "{{< fa house >}} Home"
         file: index.qmd  
@@ -53,7 +54,7 @@ website:
       category: Announcements
 format:
   html: 
-    theme: cosmo
+    theme: cerulean
     # theme: 
     #   light: minty
     #   dark: slate    
@@ -62,6 +63,6 @@ format:
     highlight-style: tango
     fig-align: center
     fig-responsive: true
-    number-sections: true
+
 
 

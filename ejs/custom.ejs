@@ -1,0 +1,33 @@
+<!-- ```{=html}
+<ul style="list-style: none;">
+<% for (const item of items) { %>
+  <li>
+    <div class="<%= item['card_type'] %>" style="max-width: 20rem;">
+        <div class="card-header"><%= item['card_header'] %></div>
+        <div class="card-body">
+            <h4 class="card-title"><a href="<%- item.href %>"><%= item.title %></a></h4>
+            <p class="card-text"><%= item['description'] %></p>
+        </div>
+    </div>
+  </li>
+<% } %>
+</ul>
+``` -->
+
+```{=html}
+<ul style="list-style: none;">
+<% for (const item of items) { %>
+  <li>
+    <a href="<%- item.href %>" style="text-decoration: none">
+        <div class="<%= item['card_type'] %>" style="max-width: 20rem;">
+            <div class="card-header"><i class="fa-solid fa-calendar-days"></i> <%= item['card_header'] %></div>
+            <div class="card-body">
+                <h4 class="card-title"><i class="fa-solid fa-book-open"></i> <%= item.title %></h4>
+                <p class="card-text"><%= item['description'] %></p>
+            </div>
+        </div>
+    </a>
+  </li>
+<% } %>
+</ul>
+```

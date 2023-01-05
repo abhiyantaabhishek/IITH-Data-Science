@@ -22,6 +22,7 @@ code-copy: true
 ## Appendix
 citation: false  
 sidebar: Data_Science_Tutorial
+number-sections: true
 
 
 

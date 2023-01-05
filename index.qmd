@@ -3,9 +3,79 @@ title: "IITH-Data-Science"
 # comments: false
 page-layout: article
 title-block-banner: true
+listing:
+  - id: CS5590
+    template: ejs/custom.ejs
+    contents: 
+      - title: SVM in-depth
+        href: Data_Science_Tutorial/CS5590/2022-09-10-CS5590-week4.ipynb
+        description: SVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick
+        card_type: card text-white bg-warning mb-3 
+        card_header: September 10, 2022
+      - title: Multi Layer Perceptrons
+        href: Data_Science_Tutorial/CS5590/2022-09-24-CS5590-week5.ipynb
+        description: Forward pass, backward pass, erro calculation of multipalyer models.
+        card_type: card text-white bg-info mb-3
+        card_header: September 24, 2022
+  - id: CS6660
+    template: ejs/custom.ejs
+    contents: 
+      - title: Probability Theory
+        href: Data_Science_Tutorial/CS6660/2022-10-15-CS6660-week7.ipynb
+        description: Joint mass function, Marginal mass functions,Conditional mass function, Concentration Bounds
+        card_type: card text-white bg-primary mb-3
+        card_header: October 15, 2022
+      - title: Linear Algebra 
+        href: Data_Science_Tutorial/CS6660/2022-09-17-CS6660-week4_2.ipynb
+        description: Gaussian Elimination, Row-Echelon, Minus 1 Trick
+        card_type: card text-white bg-success mb-3 
+        card_header: September 17, 2022
 ---
 
 
-::: {.center-text}
- Home page will be updated soon {{< fa hand-peace >}} Please visit to other pages {{< fa champagne-glasses >}}
+```{=html}
+<div class="jumbotron">
+  <h2 class="display-3">Hello, world!</h2>
+  <p class="lead"> This blog contains posts related to data science and mathematics behind it. Some of those are refered from the class notes of IIT hyderabad, and some are from my exprience.</p>
+  <hr class="my-4">
+  <p>I work as Senior Data Scientist also I am mtech (Data science ) student at IIT hyderabad. Mostly I work on deep learning topic. I have exprience on Deep Learning domain of Autonomous Driving and  Medical Imaging. </p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="about.qmd" role="button">Learn more about me</a>
+  </p>
+</div>
+```
+<br>
+
+<h6 style="color:blue;">Below are some Hand-picked Blog posts, Please visit other pages <i class="fa-solid fa-book-open-reader"></i>  <i class="fa-solid fa-user-ninja"></i> <i class="fa-solid fa-address-card"></i> from top navigation bar to see all the contents.</h6><br>
+
+
+## Hand-picked Blog posts
+
+::: {.grid}
+
+::: {.g-col-6 }
+
+```{=html}
+<h3 style="text-align:center;">Machine Learning (CS5590)</h3>
+```
+
+::: {#CS5590}
+
 :::
+
+:::
+
+::: {.g-col-6}
+
+```{=html}
+<h3 style="text-align:center;">Mathematics (CS6660)</h3>
+```
+
+::: {#CS6660}
+
+:::
+
+:::
+
+:::
+

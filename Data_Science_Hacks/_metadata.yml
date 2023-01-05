@@ -23,6 +23,6 @@ code-copy: true
 citation: false  
 
 sidebar: Data_science_hacks
-
+number-sections: true
 
 
