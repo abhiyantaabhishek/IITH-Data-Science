@@ -823,6 +823,13 @@
     "href": "index.html",
     "title": "IITH-Data-Science",
     "section": "",
-    "text": "Home page will be updated soon  Please visit to other pages"
+    "text": "This blog contains posts related to data science and mathematics behind it. Some of those are refered from the class notes of IIT hyderabad, and some are from my exprience.\n  \n  I work as Senior Data Scientist also I am mtech (Data science ) student at IIT hyderabad. Mostly I work on deep learning topic. I have exprience on Deep Learning domain of Autonomous Driving and  Medical Imaging. \n  \n    Learn more about me"
+  },
+  {
+    "objectID": "index.html#hand-picked-blog-posts",
+    "href": "index.html#hand-picked-blog-posts",
+    "title": "IITH-Data-Science",
+    "section": "Hand-picked Blog posts",
+    "text": "Hand-picked Blog posts\n\n\nMachine Learning (CS5590)\n\n\n\n  \n    \n        \n             September 10, 2022\n            \n                 SVM in-depth\n                SVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick\n            \n        \n    \n  \n  \n    \n        \n             September 24, 2022\n            \n                 Multi Layer Perceptrons\n                Forward pass, backward pass, erro calculation of multipalyer models.\n            \n        \n    \n  \n\n\nNo matching items\n\n\n\n\nMathematics (CS6660)\n\n\n\n  \n    \n        \n             October 15, 2022\n            \n                 Probability Theory\n                Joint mass function, Marginal mass functions,Conditional mass function, Concentration Bounds\n            \n        \n    \n  \n  \n    \n        \n             September 17, 2022\n            \n                 Linear Algebra\n                Gaussian Elimination, Row-Echelon, Minus 1 Trick\n            \n        \n    \n  \n\n\nNo matching items"
   }
 ]

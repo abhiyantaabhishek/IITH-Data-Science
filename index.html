@@ -24,12 +24,15 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -60,6 +63,63 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-CS5590 .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-href','listing-description','listing-card_type','listing-card_header',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-title","listing-href","listing-description","listing-card_type","listing-card_header"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-CS5590'] = new List('listing-CS5590', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-CS6660 .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-href','listing-description','listing-card_type','listing-card_header',{ data: ['index'] },{ data: ['categories'] }],
+      
+      searchColumns: ["listing-title","listing-href","listing-description","listing-card_type","listing-card_header"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-CS6660'] = new List('listing-CS6660', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
 
 <script type="text/javascript">
@@ -70,6 +130,22 @@ gtag('js', new Date());
 gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="IITH-Data-Science">
@@ -83,6 +159,9 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./logo.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">IITH-Data-Science</span>
     </a>
@@ -153,11 +232,136 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<div class="center-text">
-<p>Home page will be updated soon <i class="fa-solid fa-hand-peace" aria-label="hand-peace"></i> Please visit to other pages <i class="fa-solid fa-champagne-glasses" aria-label="champagne-glasses"></i></p>
+<div class="jumbotron">
+  <h2 class="display-3 anchored">Hello, world!</h2>
+  <p class="lead"> This blog contains posts related to data science and mathematics behind it. Some of those are refered from the class notes of IIT hyderabad, and some are from my exprience.</p>
+  <hr class="my-4">
+  <p>I work as Senior Data Scientist also I am mtech (Data science ) student at IIT hyderabad. Mostly I work on deep learning topic. I have exprience on Deep Learning domain of Autonomous Driving and  Medical Imaging. </p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="./about.html" role="button">Learn more about me</a>
+  </p>
+</div>
+<p><br></p>
+<h6 style="color:blue;" class="anchored">
+Below are some Hand-picked Blog posts, Please visit other pages <i class="fa-solid fa-book-open-reader"></i> <i class="fa-solid fa-user-ninja"></i> <i class="fa-solid fa-address-card"></i> from top navigation bar to see all the contents.
+</h6>
+<p><br></p>
+<section id="hand-picked-blog-posts" class="level2">
+<h2 class="anchored" data-anchor-id="hand-picked-blog-posts">Hand-picked Blog posts</h2>
+<div class="grid">
+<div class="g-col-6">
+<h3 style="text-align:center;" class="anchored">Machine Learning (CS5590)</h3>
+<div id="listing-CS5590" class="quarto-listing quarto-listing-container-custom">
+<!-- ```{=html}
+<ul style="list-style: none;">
+  <li>
+    <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+        <div class="card-header">September 10, 2022</div>
+        <div class="card-body">
+            <h4 class="card-title"><a href="Data_Science_Tutorial/CS5590/2022-09-10-CS5590-week4.ipynb">SVM in-depth</a></h4>
+            <p class="card-text">SVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick</p>
+        </div>
+    </div>
+  </li>
+  <li>
+    <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+        <div class="card-header">September 24, 2022</div>
+        <div class="card-body">
+            <h4 class="card-title"><a href="Data_Science_Tutorial/CS5590/2022-09-24-CS5590-week5.ipynb">Multi Layer Perceptrons</a></h4>
+            <p class="card-text">Forward pass, backward pass, erro calculation of multipalyer models.</p>
+        </div>
+    </div>
+  </li>
+</ul>
+``` -->
+<ul style="list-style: none;">
+  <li>
+    <a href="./Data_Science_Tutorial/CS5590/2022-09-10-CS5590-week4.html" style="text-decoration: none">
+        <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+            <div class="card-header"><i class="fa-solid fa-calendar-days"></i> September 10, 2022</div>
+            <div class="card-body">
+                <h4 class="card-title anchored"><i class="fa-solid fa-book-open"></i> SVM in-depth</h4>
+                <p class="card-text">SVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick</p>
+            </div>
+        </div>
+    </a>
+  </li>
+  <li>
+    <a href="./Data_Science_Tutorial/CS5590/2022-09-24-CS5590-week5.html" style="text-decoration: none">
+        <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+            <div class="card-header"><i class="fa-solid fa-calendar-days"></i> September 24, 2022</div>
+            <div class="card-body">
+                <h4 class="card-title anchored"><i class="fa-solid fa-book-open"></i> Multi Layer Perceptrons</h4>
+                <p class="card-text">Forward pass, backward pass, erro calculation of multipalyer models.</p>
+            </div>
+        </div>
+    </a>
+  </li>
+</ul>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</div>
+<div class="g-col-6">
+<h3 style="text-align:center;" class="anchored">Mathematics (CS6660)</h3>
+<div id="listing-CS6660" class="quarto-listing quarto-listing-container-custom">
+<!-- ```{=html}
+<ul style="list-style: none;">
+  <li>
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <div class="card-header">October 15, 2022</div>
+        <div class="card-body">
+            <h4 class="card-title"><a href="Data_Science_Tutorial/CS6660/2022-10-15-CS6660-week7.ipynb">Probability Theory</a></h4>
+            <p class="card-text">Joint mass function, Marginal mass functions,Conditional mass function, Concentration Bounds</p>
+        </div>
+    </div>
+  </li>
+  <li>
+    <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+        <div class="card-header">September 17, 2022</div>
+        <div class="card-body">
+            <h4 class="card-title"><a href="Data_Science_Tutorial/CS6660/2022-09-17-CS6660-week4_2.ipynb">Linear Algebra</a></h4>
+            <p class="card-text">Gaussian Elimination, Row-Echelon, Minus 1 Trick</p>
+        </div>
+    </div>
+  </li>
+</ul>
+``` -->
+<ul style="list-style: none;">
+  <li>
+    <a href="./Data_Science_Tutorial/CS6660/2022-10-15-CS6660-week7.html" style="text-decoration: none">
+        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header"><i class="fa-solid fa-calendar-days"></i> October 15, 2022</div>
+            <div class="card-body">
+                <h4 class="card-title anchored"><i class="fa-solid fa-book-open"></i> Probability Theory</h4>
+                <p class="card-text">Joint mass function, Marginal mass functions,Conditional mass function, Concentration Bounds</p>
+            </div>
+        </div>
+    </a>
+  </li>
+  <li>
+    <a href="./Data_Science_Tutorial/CS6660/2022-09-17-CS6660-week4_2.html" style="text-decoration: none">
+        <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+            <div class="card-header"><i class="fa-solid fa-calendar-days"></i> September 17, 2022</div>
+            <div class="card-body">
+                <h4 class="card-title anchored"><i class="fa-solid fa-book-open"></i> Linear Algebra</h4>
+                <p class="card-text">Gaussian Elimination, Row-Echelon, Minus 1 Trick</p>
+            </div>
+        </div>
+    </a>
+  </li>
+</ul>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</div>
 </div>
 
 
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
