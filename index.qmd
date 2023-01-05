@@ -53,11 +53,7 @@ listing:
 
 ::: {.grid}
 
-::: {.g-col-6 }
-
-```{=html}
-<h3 style="text-align:center;">Machine Learning (CS5590)</h3>
-```
+::: {.g-col-12 .g-col-md-6  }
 
 ::: {#CS5590}
 
@@ -65,11 +61,7 @@ listing:
 
 :::
 
-::: {.g-col-6}
-
-```{=html}
-<h3 style="text-align:center;">Mathematics (CS6660)</h3>
-```
+::: {.g-col-12 .g-col-md-6}
 
 ::: {#CS6660}
 
