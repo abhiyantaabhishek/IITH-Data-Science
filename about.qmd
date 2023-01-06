@@ -1,5 +1,5 @@
 ---
-title: "Have a look at my resume to know more about me!!"
+title: "About me "
 comments: false
 about:
   template: marquee
@@ -38,10 +38,40 @@ sidebar: false
 <br><br>
 </body>
 </html>
-::: column-screen-inset-shaded
+
+
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-9  }
+
+```{=html}
+<button type="button" class="btn btn-secondary disabled" fdprocessedid="kc61ad">
+    <p align="justify">
+      I work as senior data scientist <i class="fa-solid fa-atom"></i>, also I am an mtech student <i class="fa-solid fa-graduation-cap"></i> at IIT hyderabad, I love doing reseach <i class="fa-solid fa-flask"></i>, exploring new topics, my area of interest are deep learning, autonomous driving. I love conceptual thinking <i class="fa-solid fa-brain"></i>.
+    </p>
+</button>
+```
+
+
+:::
+
+::: {.g-col-12 .g-col-md-3 .vh-center .center-text}
+
 <form method="get" action="https://abhiyantaabhishek.github.io/IITH-Data-Science//about.pdf">
-   <button class="btn" style="width:100%"><i class="fa fa-download"></i> Download Resume </button>
+   <button class="btn" ><i class="fa fa-download"></i> Resume </button>
 </form>
+<br><br>
+:::
+
+:::
+
+
+<br>
+
+<p class="text-secondary">If resume doesn't appear below, refresh the page or click above button to download it.</p>
+::: column-screen-inset-shaded
+
 <object 
     width="100%" 
     height="900" 

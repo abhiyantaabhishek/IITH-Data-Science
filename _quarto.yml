@@ -7,7 +7,7 @@ project:
     port: 4200
     browser: false
 website:
-  title: "IITH-Data-Science"
+  title: ""
   favicon: "logo.png"
   google-analytics: "G-5ZQX02R26E"
   open-graph: true
