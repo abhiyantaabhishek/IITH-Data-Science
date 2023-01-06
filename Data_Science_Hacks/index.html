@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>IITH-Data-Science - Data Science Hacks</title>
+<title>Data Science Hacks</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -121,8 +121,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="IITH-Data-Science - Data Science Hacks">
-<meta property="og:site-name" content="IITH-Data-Science">
+<meta property="og:title" content="Data Science Hacks">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -134,9 +133,6 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <div class="navbar-brand-container">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../logo.png" alt="" class="navbar-logo">
-    </a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">IITH-Data-Science</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -241,8 +237,33 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Author
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="sk-learn" data-listing-date-sort="1661472000000" data-listing-file-modified-sort="1672928063090" data-listing-reading-time-sort="0.235">
+<div class="quarto-post image-right" data-index="0" data-categories="sk-learn" data-listing-date-sort="1661472000000" data-listing-file-modified-sort="1673008064542" data-listing-reading-time-sort="0.235">
 <div class="body">
 <a href="../Data_Science_Hacks/2022-11-22-sk-learn model search.html">
 <h3 class="no-anchor listing-title">

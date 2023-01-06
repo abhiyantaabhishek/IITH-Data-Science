@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2022-08-26">
 <meta name="description" content="Train multiple sk-learn models">
 
-<title>IITH-Data-Science - sk-learn model search</title>
+<title>sk-learn model search</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,9 +143,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="IITH-Data-Science - sk-learn model search">
+<meta property="og:title" content="sk-learn model search">
 <meta property="og:description" content="Train multiple sk-learn models">
-<meta property="og:site-name" content="IITH-Data-Science">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -157,9 +156,6 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <div class="navbar-brand-container">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../logo.png" alt="" class="navbar-logo">
-    </a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">IITH-Data-Science</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -275,23 +271,23 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#import-libraries" id="toc-import-libraries" class="nav-link active" data-scroll-target="#import-libraries"><span class="toc-section-number">0.1</span>  Import Libraries</a></li>
-  <li><a href="#read-the-data" id="toc-read-the-data" class="nav-link" data-scroll-target="#read-the-data"><span class="toc-section-number">0.2</span>  Read the data</a></li>
-  <li><a href="#convert-to-onehot" id="toc-convert-to-onehot" class="nav-link" data-scroll-target="#convert-to-onehot"><span class="toc-section-number">0.3</span>  Convert to onehot</a></li>
-  <li><a href="#fill-missing-values" id="toc-fill-missing-values" class="nav-link" data-scroll-target="#fill-missing-values"><span class="toc-section-number">0.4</span>  Fill missing values</a></li>
-  <li><a href="#normalize" id="toc-normalize" class="nav-link" data-scroll-target="#normalize"><span class="toc-section-number">0.5</span>  Normalize</a></li>
-  <li><a href="#remove-unwanted-features" id="toc-remove-unwanted-features" class="nav-link" data-scroll-target="#remove-unwanted-features"><span class="toc-section-number">1</span>  Remove unwanted features</a></li>
-  <li><a href="#test-performance-on-all-the-models" id="toc-test-performance-on-all-the-models" class="nav-link" data-scroll-target="#test-performance-on-all-the-models"><span class="toc-section-number">2</span>  Test performance on all the models</a>
+  <li><a href="#import-libraries" id="toc-import-libraries" class="nav-link active" data-scroll-target="#import-libraries"><span class="toc-section-number">1</span>  Import Libraries</a></li>
+  <li><a href="#read-the-data" id="toc-read-the-data" class="nav-link" data-scroll-target="#read-the-data"><span class="toc-section-number">2</span>  Read the data</a></li>
+  <li><a href="#convert-to-onehot" id="toc-convert-to-onehot" class="nav-link" data-scroll-target="#convert-to-onehot"><span class="toc-section-number">3</span>  Convert to onehot</a></li>
+  <li><a href="#fill-missing-values" id="toc-fill-missing-values" class="nav-link" data-scroll-target="#fill-missing-values"><span class="toc-section-number">4</span>  Fill missing values</a></li>
+  <li><a href="#normalize" id="toc-normalize" class="nav-link" data-scroll-target="#normalize"><span class="toc-section-number">5</span>  Normalize</a></li>
+  <li><a href="#remove-unwanted-features" id="toc-remove-unwanted-features" class="nav-link" data-scroll-target="#remove-unwanted-features"><span class="toc-section-number">6</span>  Remove unwanted features</a></li>
+  <li><a href="#test-performance-on-all-the-models" id="toc-test-performance-on-all-the-models" class="nav-link" data-scroll-target="#test-performance-on-all-the-models"><span class="toc-section-number">7</span>  Test performance on all the models</a>
   <ul>
-  <li><a href="#voting-classifier-tuning" id="toc-voting-classifier-tuning" class="nav-link" data-scroll-target="#voting-classifier-tuning"><span class="toc-section-number">2.1</span>  Voting classifier tuning</a></li>
-  <li><a href="#grid-search" id="toc-grid-search" class="nav-link" data-scroll-target="#grid-search"><span class="toc-section-number">2.2</span>  Grid Search</a>
+  <li><a href="#voting-classifier-tuning" id="toc-voting-classifier-tuning" class="nav-link" data-scroll-target="#voting-classifier-tuning"><span class="toc-section-number">7.1</span>  Voting classifier tuning</a></li>
+  </ul></li>
+  <li><a href="#grid-search" id="toc-grid-search" class="nav-link" data-scroll-target="#grid-search"><span class="toc-section-number">8</span>  Grid Search</a>
   <ul>
-  <li><a href="#use-best-param-to-check-the-score" id="toc-use-best-param-to-check-the-score" class="nav-link" data-scroll-target="#use-best-param-to-check-the-score"><span class="toc-section-number">2.2.1</span>  use best param to check the score</a></li>
-  <li><a href="#save-the-prediction-on-test-data" id="toc-save-the-prediction-on-test-data" class="nav-link" data-scroll-target="#save-the-prediction-on-test-data"><span class="toc-section-number">2.2.2</span>  Save the prediction on test data</a></li>
+  <li><a href="#use-best-param-to-check-the-score" id="toc-use-best-param-to-check-the-score" class="nav-link" data-scroll-target="#use-best-param-to-check-the-score"><span class="toc-section-number">8.1</span>  use best param to check the score</a></li>
+  <li><a href="#save-the-prediction-on-test-data" id="toc-save-the-prediction-on-test-data" class="nav-link" data-scroll-target="#save-the-prediction-on-test-data"><span class="toc-section-number">8.2</span>  Save the prediction on test data</a></li>
   </ul></li>
-  <li><a href="#random-search" id="toc-random-search" class="nav-link" data-scroll-target="#random-search"><span class="toc-section-number">2.3</span>  Random search</a></li>
-  <li><a href="#grid-seach-on-all-the-models" id="toc-grid-seach-on-all-the-models" class="nav-link" data-scroll-target="#grid-seach-on-all-the-models"><span class="toc-section-number">2.4</span>  Grid seach on all the models</a></li>
-  </ul></li>
+  <li><a href="#random-search" id="toc-random-search" class="nav-link" data-scroll-target="#random-search"><span class="toc-section-number">9</span>  Random search</a></li>
+  <li><a href="#grid-seach-on-all-the-models" id="toc-grid-seach-on-all-the-models" class="nav-link" data-scroll-target="#grid-seach-on-all-the-models"><span class="toc-section-number">10</span>  Grid seach on all the models</a></li>
   </ul>
 </nav>
     </div>
@@ -301,8 +297,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="import-libraries" class="level2" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="import-libraries"><span class="header-section-number">0.1</span> Import Libraries</h2>
+<section id="import-libraries" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="import-libraries"><span class="header-section-number">1</span> Import Libraries</h2>
 <div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:25:34.732117Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:25:34.731681Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:25:34.737643Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:25:34.736882Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:25:34.732083Z&quot;}" data-trusted="true" data-execution_count="110">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -322,24 +318,24 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <span id="cb1-16"><a href="#cb1-16"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="read-the-data" class="level2" data-number="0.2">
-<h2 data-number="0.2" class="anchored" data-anchor-id="read-the-data"><span class="header-section-number">0.2</span> Read the data</h2>
+<section id="read-the-data" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="read-the-data"><span class="header-section-number">2</span> Read the data</h2>
 <div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:25:37.351747Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:25:37.351271Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:25:37.656322Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:25:37.655071Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:25:37.351714Z&quot;}" data-trusted="true" data-execution_count="112">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>my_training_data <span class="op">=</span> pd.read_csv(<span class="st">'train.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2"></a>my_testing_data <span class="op">=</span> pd.read_csv(<span class="st">'test.csv'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3"></a>test_id <span class="op">=</span> my_testing_data[<span class="st">'ID'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="convert-to-onehot" class="level2" data-number="0.3">
-<h2 data-number="0.3" class="anchored" data-anchor-id="convert-to-onehot"><span class="header-section-number">0.3</span> Convert to onehot</h2>
+<section id="convert-to-onehot" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="convert-to-onehot"><span class="header-section-number">3</span> Convert to onehot</h2>
 <div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:25:37.990992Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:25:37.990583Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:25:38.011823Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:25:38.010617Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:25:37.990952Z&quot;}" data-trusted="true" data-execution_count="113">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>categorical_cols <span class="op">=</span> [<span class="st">'Cat_1'</span>,<span class="st">'Cat_2'</span>,<span class="st">'Cat_3'</span>]</span>
 <span id="cb3-2"><a href="#cb3-2"></a>my_training_data <span class="op">=</span> pd.get_dummies(my_training_data, columns <span class="op">=</span> categorical_cols)</span>
 <span id="cb3-3"><a href="#cb3-3"></a>my_testing_data <span class="op">=</span> pd.get_dummies(my_testing_data, columns <span class="op">=</span> categorical_cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="fill-missing-values" class="level2" data-number="0.4">
-<h2 data-number="0.4" class="anchored" data-anchor-id="fill-missing-values"><span class="header-section-number">0.4</span> Fill missing values</h2>
+<section id="fill-missing-values" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="fill-missing-values"><span class="header-section-number">4</span> Fill missing values</h2>
 <div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:25:38.961190Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:25:38.960763Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:25:38.970986Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:25:38.969787Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:25:38.961151Z&quot;}" data-trusted="true" data-execution_count="114">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a></span>
 <span id="cb4-2"><a href="#cb4-2"></a>my_training_data[<span class="st">'num_4'</span>].fillna((my_training_data[<span class="st">'num_4'</span>].median()), inplace<span class="op">=</span><span class="va">True</span>)</span>
@@ -349,8 +345,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <span id="cb4-6"><a href="#cb4-6"></a>my_testing_data[<span class="st">'num_5'</span>].fillna((my_testing_data[<span class="st">'num_5'</span>].median()), inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="normalize" class="level2" data-number="0.5">
-<h2 data-number="0.5" class="anchored" data-anchor-id="normalize"><span class="header-section-number">0.5</span> Normalize</h2>
+<section id="normalize" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="normalize"><span class="header-section-number">5</span> Normalize</h2>
 <div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:25:42.205783Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:25:42.205409Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:25:42.225812Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:25:42.224557Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:25:42.205752Z&quot;}" data-trusted="true" data-execution_count="115">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2"></a>scaled_columns<span class="op">=</span>[<span class="st">'num_1'</span>,<span class="st">'num_2'</span>,<span class="st">'num_3'</span>,<span class="st">'num_4'</span>,<span class="st">'num_5'</span>,<span class="st">'num_6'</span>]</span>
@@ -359,8 +355,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <span id="cb5-5"><a href="#cb5-5"></a>    my_testing_data[column] <span class="op">=</span> (my_testing_data[column] <span class="op">-</span> my_testing_data[column].mean()) <span class="op">/</span> my_testing_data[column].std() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="remove-unwanted-features" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Remove unwanted features</h1>
+<section id="remove-unwanted-features" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="remove-unwanted-features"><span class="header-section-number">6</span> Remove unwanted features</h2>
 <div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T15:19:04.298498Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T15:19:04.297665Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T15:19:04.310294Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T15:19:04.309020Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T15:19:04.298452Z&quot;}" data-outputid="a24bb4dd-5590-49fb-a7e4-287d671e0d97" data-trusted="true" data-execution_count="117">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a></span>
 <span id="cb6-2"><a href="#cb6-2"></a>Target <span class="op">=</span>[<span class="st">'target_class'</span>]</span>
@@ -618,8 +614,8 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <span id="cb10-7"><a href="#cb10-7"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size <span class="op">=</span> <span class="fl">0.1</span>, random_state <span class="op">=</span> <span class="dv">0</span>,stratify<span class="op">=</span>y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="test-performance-on-all-the-models" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Test performance on all the models</h1>
+<section id="test-performance-on-all-the-models" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="test-performance-on-all-the-models"><span class="header-section-number">7</span> Test performance on all the models</h2>
 <div class="cell" data-outputid="f1c0c708-3d33-429b-d0d9-707b130ac866" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a></span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> ada:"</span>)</span>
@@ -724,8 +720,8 @@ RealTest_score:  0.6636363636363637</code></pre>
 RealTest_score:  0.6824242424242424</code></pre>
 </div>
 </div>
-<section id="voting-classifier-tuning" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="voting-classifier-tuning"><span class="header-section-number">2.1</span> Voting classifier tuning</h2>
+<section id="voting-classifier-tuning" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="voting-classifier-tuning"><span class="header-section-number">7.1</span> Voting classifier tuning</h3>
 <div class="cell" data-outputid="57b0c9c6-1f4a-49a3-e90c-e17c84f4b7be" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a></span>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> VotingClassifier</span>
@@ -759,8 +755,9 @@ RealTest_score:  0.6824242424242424</code></pre>
 <span id="cb22-4"><a href="#cb22-4"></a>results.to_csv(gbc.__class__.<span class="va">__name__</span><span class="op">+</span><span class="st">'score_'</span><span class="op">+</span><span class="bu">str</span>(<span class="fl">0.6836363636363636</span>)<span class="op">+</span><span class="st">'_tuned_gbc.csv'</span>,index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="grid-search" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="grid-search"><span class="header-section-number">2.2</span> Grid Search</h2>
+</section>
+<section id="grid-search" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="grid-search"><span class="header-section-number">8</span> Grid Search</h2>
 <div class="cell" data-outputid="9d3628c4-6ebd-402d-c05d-79585128c3bc" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a></span>
 <span id="cb23-2"><a href="#cb23-2"></a></span>
@@ -797,8 +794,8 @@ RealTest_score:  0.6824242424242424</code></pre>
   'n_estimators': 50})</code></pre>
 </div>
 </div>
-<section id="use-best-param-to-check-the-score" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="use-best-param-to-check-the-score"><span class="header-section-number">2.2.1</span> use best param to check the score</h3>
+<section id="use-best-param-to-check-the-score" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="use-best-param-to-check-the-score"><span class="header-section-number">8.1</span> use best param to check the score</h3>
 <div class="cell" data-outputid="6f2a28e2-085c-44cc-af4c-6f7d52d79474" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>rf.set_params(<span class="op">**</span>grid_search.best_params_) </span>
 <span id="cb26-2"><a href="#cb26-2"></a>rf.fit(X_train,y_train)</span>
@@ -828,8 +825,8 @@ fitted_test_score 0.6505050505050505</code></pre>
 </div>
 </div>
 </section>
-<section id="save-the-prediction-on-test-data" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="save-the-prediction-on-test-data"><span class="header-section-number">2.2.2</span> Save the prediction on test data</h3>
+<section id="save-the-prediction-on-test-data" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="save-the-prediction-on-test-data"><span class="header-section-number">8.2</span> Save the prediction on test data</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>rf.fit(X,y)</span>
 <span id="cb30-2"><a href="#cb30-2"></a>results <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>[],columns<span class="op">=</span>[<span class="st">'ID'</span>,<span class="st">'target_class'</span>])</span>
@@ -839,8 +836,8 @@ fitted_test_score 0.6505050505050505</code></pre>
 </div>
 </section>
 </section>
-<section id="random-search" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="random-search"><span class="header-section-number">2.3</span> Random search</h2>
+<section id="random-search" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="random-search"><span class="header-section-number">9</span> Random search</h2>
 <div class="cell" data-outputid="bb0dce92-c69a-4dc8-ba44-bee3018155ef">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> RandomizedSearchCV</span>
 <span id="cb31-2"><a href="#cb31-2"></a></span>
@@ -910,8 +907,8 @@ fitted_test_score 0.6505050505050505</code></pre>
 </div>
 </div>
 </section>
-<section id="grid-seach-on-all-the-models" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="grid-seach-on-all-the-models"><span class="header-section-number">2.4</span> Grid seach on all the models</h2>
+<section id="grid-seach-on-all-the-models" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="grid-seach-on-all-the-models"><span class="header-section-number">10</span> Grid seach on all the models</h2>
 <div class="cell" data-execution="{&quot;iopub.execute_input&quot;:&quot;2022-11-06T14:54:14.887301Z&quot;,&quot;iopub.status.busy&quot;:&quot;2022-11-06T14:54:14.886897Z&quot;,&quot;iopub.status.idle&quot;:&quot;2022-11-06T14:54:14.893911Z&quot;,&quot;shell.execute_reply&quot;:&quot;2022-11-06T14:54:14.892559Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2022-11-06T14:54:14.887264Z&quot;}" data-trusted="true">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>vote_est <span class="op">=</span> [</span>
 <span id="cb39-2"><a href="#cb39-2"></a>    (<span class="st">'ada'</span>, ensemble.AdaBoostClassifier()),</span>
@@ -1065,7 +1062,6 @@ fitted_test_score 0.6505050505050505</code></pre>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
