@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Abhishek Kumar Dubey">
-<meta name="dcterms.date" content="2022-09-17">
-<meta name="description" content="Gaussian Elimination, Row-Echelon, Minus 1 Trick">
+<meta name="dcterms.date" content="2023-07-01">
+<meta name="description" content="Training Error, Generalization Error">
 
-<title>Linear Algebra 2</title>
+<title>Deep Learning 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Data_Science_Tutorial/CS6660/2022-10-01-CS6660-week6.html" rel="next">
-<link href="../../Data_Science_Tutorial/CS6660/2022-09-03-CS6660-week3.html" rel="prev">
+<link href="../../Data_Science_Tutorial/CS5590/2022-08-06-CS5590-week1.html" rel="next">
+<link href="../../Data_Science_Tutorial/index.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -94,11 +94,11 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Linear Algebra 2">
-<meta property="og:description" content="Gaussian Elimination, Row-Echelon, Minus 1 Trick">
-<meta property="og:image" content="http://localhost:4200/Data_Science_Tutorial/CS6660/CS6660_images/chrome_953N2qJlTi.png">
-<meta property="og:image:height" content="145">
-<meta property="og:image:width" content="342">
+<meta property="og:title" content="Deep Learning 1">
+<meta property="og:description" content="Training Error, Generalization Error">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Tutorial/CS5480/CS5480_images/chrome_mmOWWTaZry.png">
+<meta property="og:image:height" content="297">
+<meta property="og:image:width" content="638">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -152,7 +152,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Linear Algebra 2</h1>
+      <h1 class="quarto-secondary-nav-title">Deep Learning 1</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -163,14 +163,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Linear Algebra 2</h1>
+      <h1 class="title d-none d-lg-block">Deep Learning 1</h1>
                   <div>
         <div class="description">
-          Gaussian Elimination, Row-Echelon, Minus 1 Trick
+          Training Error, Generalization Error
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Linear Algebra</div>
+                <div class="quarto-category">Deep Learning</div>
               </div>
                   </div>
   </div>
@@ -188,7 +188,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 17, 2022</p>
+        <p class="date">July 1, 2023</p>
       </div>
     </div>
     
@@ -211,15 +211,15 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">CS5480</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">CS5480</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Tutorial/CS5480/2023-07-01-CS5480-week1.html" class="sidebar-item-text sidebar-link">Deep Learning 1</a>
+  <a href="../../Data_Science_Tutorial/CS5480/2023-07-01-CS5480-week1.html" class="sidebar-item-text sidebar-link active">Deep Learning 1</a>
   </div>
 </li>
       </ul>
@@ -281,12 +281,12 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">CS6660</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">CS6660</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Data_Science_Tutorial/CS6660/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
@@ -294,7 +294,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Tutorial/CS6660/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link active">Linear Algebra 2</a>
+  <a href="../../Data_Science_Tutorial/CS6660/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -340,15 +340,23 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#gaussian-elimination" id="toc-gaussian-elimination" class="nav-link active" data-scroll-target="#gaussian-elimination"><span class="toc-section-number">1</span>  Gaussian Elimination</a></li>
-  <li><a href="#row-echelon-form" id="toc-row-echelon-form" class="nav-link" data-scroll-target="#row-echelon-form"><span class="toc-section-number">2</span>  Row-Echelon Form</a></li>
-  <li><a href="#reduced-row-echelon-forms" id="toc-reduced-row-echelon-forms" class="nav-link" data-scroll-target="#reduced-row-echelon-forms"><span class="toc-section-number">3</span>  Reduced row Echelon Forms</a></li>
-  <li><a href="#solving-ax0-minus-1-trick" id="toc-solving-ax0-minus-1-trick" class="nav-link" data-scroll-target="#solving-ax0-minus-1-trick"><span class="toc-section-number">4</span>  Solving <span class="math inline">AX=0</span> (Minus <span class="math inline">1</span> Trick)</a></li>
-  <li><a href="#solving-a-system-of-liner-equation" id="toc-solving-a-system-of-liner-equation" class="nav-link" data-scroll-target="#solving-a-system-of-liner-equation"><span class="toc-section-number">5</span>  Solving a System of Liner Equation</a></li>
-  <li><a href="#vector-space" id="toc-vector-space" class="nav-link" data-scroll-target="#vector-space"><span class="toc-section-number">6</span>  Vector Space</a></li>
-  <li><a href="#subspace" id="toc-subspace" class="nav-link" data-scroll-target="#subspace"><span class="toc-section-number">7</span>  Subspace</a></li>
-  <li><a href="#liner-combination" id="toc-liner-combination" class="nav-link" data-scroll-target="#liner-combination"><span class="toc-section-number">8</span>  Liner Combination</a></li>
-  <li><a href="#linear-independence" id="toc-linear-independence" class="nav-link" data-scroll-target="#linear-independence"><span class="toc-section-number">9</span>  Linear Independence</a></li>
+  <li><a href="#history-of-deep-learning" id="toc-history-of-deep-learning" class="nav-link active" data-scroll-target="#history-of-deep-learning"><span class="toc-section-number">1</span>  History of Deep Learning</a>
+  <ul>
+  <li><a href="#mcculloch-pitts-neuron" id="toc-mcculloch-pitts-neuron" class="nav-link" data-scroll-target="#mcculloch-pitts-neuron"><span class="toc-section-number">1.1</span>  McCulloch-Pitts Neuron</a></li>
+  <li><a href="#rosenblatts-perceptron" id="toc-rosenblatts-perceptron" class="nav-link" data-scroll-target="#rosenblatts-perceptron"><span class="toc-section-number">1.2</span>  Rosenblatt’s Perceptron</a>
+  <ul>
+  <li><a href="#hebbian-learning" id="toc-hebbian-learning" class="nav-link" data-scroll-target="#hebbian-learning"><span class="toc-section-number">1.2.1</span>  Hebbian Learning:</a></li>
+  <li><a href="#perceptron-learning" id="toc-perceptron-learning" class="nav-link" data-scroll-target="#perceptron-learning"><span class="toc-section-number">1.2.2</span>  Perceptron Learning</a></li>
+  </ul></li>
+  <li><a href="#widrow-hoff-learning-rule" id="toc-widrow-hoff-learning-rule" class="nav-link" data-scroll-target="#widrow-hoff-learning-rule"><span class="toc-section-number">1.3</span>  Widrow-Hoff Learning Rule</a></li>
+  <li><a href="#perceptron-convergence-theorem" id="toc-perceptron-convergence-theorem" class="nav-link" data-scroll-target="#perceptron-convergence-theorem"><span class="toc-section-number">1.4</span>  Perceptron convergence theorem</a>
+  <ul>
+  <li><a href="#proof" id="toc-proof" class="nav-link" data-scroll-target="#proof"><span class="toc-section-number">1.4.1</span>  Proof</a></li>
+  </ul></li>
+  <li><a href="#perceptron-and-other-linear-classifiers" id="toc-perceptron-and-other-linear-classifiers" class="nav-link" data-scroll-target="#perceptron-and-other-linear-classifiers"><span class="toc-section-number">1.5</span>  Perceptron and Other Linear Classifiers</a></li>
+  <li><a href="#xor-gate-using-a-perceptron" id="toc-xor-gate-using-a-perceptron" class="nav-link" data-scroll-target="#xor-gate-using-a-perceptron"><span class="toc-section-number">1.6</span>  XOR Gate using a Perceptron</a></li>
+  </ul></li>
+  <li><a href="#recall-training-a-neural-network" id="toc-recall-training-a-neural-network" class="nav-link" data-scroll-target="#recall-training-a-neural-network"><span class="toc-section-number">2</span>  Recall: Training a Neural Network</a></li>
   </ul>
 </nav>
     </div>
@@ -358,107 +366,143 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="gaussian-elimination" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="gaussian-elimination"><span class="header-section-number">1</span> Gaussian Elimination</h2>
+<section id="history-of-deep-learning" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="history-of-deep-learning"><span class="header-section-number">1</span> History of Deep Learning</h2>
+<p><br></p>
+<p><img src="CS5480_images/chrome_np99k2xLxh.png" class="img-fluid"></p>
+<p><br><br></p>
+<section id="mcculloch-pitts-neuron" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="mcculloch-pitts-neuron"><span class="header-section-number">1.1</span> McCulloch-Pitts Neuron</h3>
+<p>Feed Forward McCulloch-Pitts net can compute any Boolean function <span class="math inline">f : \{0,1\}^n \rightarrow \{0,1\}</span><br> Recursive McCulloch-Pitts networks can simulate any Deterministic Finite Automaton (DFA).<br> McCulloch-Pitts networks can be represented mathematically as shown below:</p>
+<p><span class="math display">
+y(x_1,x_2,\dots,x_{n+m},\theta) = \begin{cases}
+   1 &amp;\displaystyle \text{if } \sum_{i=1}^n x_i \ge \theta  \text{ and  } \sum_{i=n+1}^m x_i =0\\
+   0 &amp;\displaystyle \text{if } \sum_{i=1}^n x_i &lt; \theta  \text{ or  } \sum_{i=n+1}^m x_i &gt;0
+\end{cases}
+</span></p>
 <ul>
-<li>Gaussian Elimination are elementary transformation of subsystems fo linear equations, which transforms the equation systems into a simple form.</li>
-<li>Elementary transformation that keep the solution set the same, but that transform the equation system.</li>
-<li>Process
-<ul>
-<li>Exchange fo two equations (rows in the matrix representing the system of equations)</li>
-<li>Multiplication of an equation (row) with a constant <span class="math inline">\lambda \in \mathbb{R}-\{0\}</span></li>
-<li>Addition of two equations (rows)</li>
-</ul></li>
-<li>Example : <br><br> <span class="math inline">\begin{array}{r r r r r r r r r r} -2x_1 &amp; + &amp; 4x_2 &amp; - &amp; 2x_3 &amp; - &amp; x_4 &amp; + &amp; 4x_5 &amp; = &amp; -3 \\ 4x_1 &amp; - &amp; 8x_2 &amp; + &amp; 3x_3 &amp; - &amp; 3x_4 &amp; + &amp; x_5 &amp; = &amp; 2 \\ x_1 &amp; - &amp; 2x_2 &amp; + &amp; x_3 &amp; - &amp; x_4 &amp; + &amp; x_5 &amp; = &amp; 0 \\ x_1 &amp; - &amp; 2x_2 &amp; &amp; &amp; - &amp; 3x_4 &amp; + &amp; 4x_5 &amp; = &amp; a \\ \end{array}</span> <br><br> Build the _augmented matrix (in the form of <span class="math inline">\left[A \mid b\right]</span> ) <br><br> <span class="math inline">\left[ \begin{array}{r r r r r | r} -2 &amp; 4 &amp; -2 &amp; -1 &amp; 4 &amp; -3 \\  4 &amp;-8 &amp; 3 &amp; -3 &amp; 1 &amp; 2 \\  1 &amp;-2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\  1 &amp;-2 &amp; 0 &amp; -3 &amp; 4 &amp; a \\ \end{array}\right]</span> <br><br> Exchange row <span class="math inline">3</span> and row <span class="math inline">1</span> for simplicity <br><br> <span class="math inline">\left[ \begin{array}{r r r r r | r}  1 &amp;-2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\  4 &amp;-8 &amp; 3 &amp; -3 &amp; 1 &amp; 2 \\ -2 &amp; 4 &amp; -2 &amp; -1 &amp; 4 &amp; -3 \\  1 &amp;-2 &amp; 0 &amp; -3 &amp; 4 &amp; a \\ \end{array}\right]</span> <br><br> Perform operations <span class="math inline">\{ R_2 \leftarrow R_2 - 4R_1, R_3 \leftarrow R_3+2R_1, R_4 \leftarrow R_4-R_1 \}</span><br><br> <span class="math inline">\left[ \begin{array}{r r r r r | r}  1 &amp;-2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\  0 &amp; 0 &amp; -1 &amp; 1 &amp; -3 &amp; 2 \\  0 &amp; 0 &amp; 0 &amp; -3 &amp; 6 &amp; -3 \\  0 &amp; 0 &amp; -1 &amp; -2 &amp; 3 &amp; a \\ \end{array}\right]</span> <br><br> Perform operations <span class="math inline">\{ R_4 \leftarrow R_4 - R_2 -R_3 \}</span><br><br> <span class="math inline">\left[ \begin{array}{r r r r r | r}  1 &amp;-2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\  0 &amp; 0 &amp; -1 &amp; 1 &amp; -3 &amp; 2 \\  0 &amp; 0 &amp; 0 &amp; -3 &amp; 6 &amp; -3 \\  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; a \\ \end{array}\right]</span> <br><br> Perform operations <span class="math inline">\{ R_2 \leftarrow -R_2 , R_3 \leftarrow -\frac{1}{3}R_3 \}</span><br><br> <span class="math inline">\left[ \begin{array}{r r r r r | r}  1 &amp;-2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\  0 &amp; 0 &amp; 1 &amp; -1 &amp; 3 &amp; -2 \\  0 &amp; 0 &amp; 0 &amp; 1 &amp; -2 &amp; 1 \\  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; a+1 \\ \end{array}\right]</span> <br><br> Above matrix is in <strong>row-echelon from</strong><br><br> Convert above matrix to normal equation form <br><br> <span class="math inline">\begin{array}{l l l l l l r}  x_1 &amp;-2x_2 &amp; +x_3 &amp; -x_4 &amp; +x_5 &amp; = &amp; 0 \\  &amp; &amp; +x_3 &amp; -x_4 &amp; +3x_5 &amp; = &amp; -2 \\  &amp; &amp; &amp; +x_4 &amp; -2x_5 &amp; = &amp; 1 \\  &amp; &amp; &amp; &amp; +0 &amp; = &amp; a+1 \\ \end{array}</span> <br><br> Only for <span class="math inline">a=1</span> this system can be solved, and can be solved using back substitution <br><br> <span class="math inline">\left[ \begin{array}{r} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \\ \end{array}\right] = \left[ \begin{array}{r}  2 \\  0\\ -1 \\ 1 \\ 0 \\ \end{array}\right]</span> <br><br> General solution of the above equation can be found as explained earlier, and is given as below <br> <br> <span class="math display">\left\{x\in\mathbb{R}^{5}:x= {\left[\begin{array}{r}{2}\\ {0}\\ {-1}\\ {1} \\0 \end{array}\right]}    + \lambda_{1}{\left[\begin{array}{r}{2}\\ {1}\\ {0}\\ {0} \\0 \end{array}\right]}   + \lambda_{2}{\left[\begin{array}{r}{2}\\ {0}\\ {-1}\\ {2} \\1\end{array}\right]},\;\;\ \lambda_{1},\lambda_{2}\in\mathbb{R}\right\}</span></li>
+<li>Here all signals are binary</li>
+<li>Threshold <span class="math inline">\theta \in \mathbb{N}</span></li>
+<li><span class="math inline">n</span> excitatory inputs <span class="math inline">x_1,\dots,x_n</span></li>
+<li><span class="math inline">m</span> inhibitory inputs <span class="math inline">x_{n+1},\dots,x_{n+m}</span></li>
+<li>One output <span class="math inline">y</span></li>
 </ul>
 </section>
-<section id="row-echelon-form" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="row-echelon-form"><span class="header-section-number">2</span> Row-Echelon Form</h2>
+<section id="rosenblatts-perceptron" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="rosenblatts-perceptron"><span class="header-section-number">1.2</span> Rosenblatt’s Perceptron</h3>
+<p>Rosenblatt’s Perceptron can be represented mathematically as shown below: <span class="math display">
+f(x) = \begin{cases}
+   1 &amp;\text{if } w\cdot x+b&gt;0 \\
+   0 &amp;\text{otherwise }
+\end{cases}
+</span></p>
+<p>Boolean Gates using a Perceptron</p>
+<p><img src="CS5480_images/chrome_mmOWWTaZry.png" class="img-fluid"></p>
 <ul>
-<li><p>Example matrix <br><br> <span class="math inline">\left[ \begin{array}{r r r r r | r}  \boxed 1 &amp;-2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\  0 &amp; 0 &amp; \boxed 1 &amp; -1 &amp; 3 &amp; -2 \\  0 &amp; 0 &amp; 0 &amp; \boxed 1 &amp; -2 &amp; 1 \\  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; a+1 \\ \end{array}\right]</span> <br><br></p></li>
-<li><p>Definition <br> A matrix is in row-echelon form if</p>
+<li>Hebb, in his influential book The organization of Behavior (1949), claimed
 <ul>
-<li>All rows that contains only zeros are at the bottom ot the matrix; correspondingly, all rows that contains at least one nonzero element are on top of rows that contain only zeros.</li>
-<li>Looking at nonzero rows only, the first nonzero number from the left ( also called the pivot or the leading coefficient ) is always strictly to the right of the pivot of the row above it.</li>
+<li>Behavior changes are primarily due to the changes of synaptic strengths <span class="math inline">(w_{ij})</span> between neurons <span class="math inline">i</span> and <span class="math inline">j</span></li>
+<li>Hebbian learning law: <span class="math inline">w_{ij}</span> increases only when both <span class="math inline">i</span> and <span class="math inline">j</span> are “on”.</li>
+<li><em>“Neurons that fire together, wire together. Neurons that fire out of sync, fail to link”</em></li>
+<li>In perceptron learning, Hebbian law can be restated as:
+<ul>
+<li><span class="math inline">w_{ij}</span> increases only if the outputs of both units <span class="math inline">x_i</span> and <span class="math inline">y</span> have the same sign.</li>
 </ul></li>
-<li><p>Basic and free variables : The variables corresponding to the pivots in the row-echelon form are called basic variables and the other variables are free variables. For example, <span class="math inline">x_1; x_3; x_4</span> are basic variables, whereas <span class="math inline">x_2;x_5</span> are free variables in above example matrix.</p></li>
-</ul>
-</section>
-<section id="reduced-row-echelon-forms" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="reduced-row-echelon-forms"><span class="header-section-number">3</span> Reduced row Echelon Forms</h2>
-<ul>
-<li>Definition <br> An equation system is in reduced row echelon form ( also: rwo reduced echelon form or row canonical from ) if
-<ul>
-<li>It is in row echelon from.</li>
-<li>Every pivot is 1.</li>
-<li>The pivot is the only nonzero entry in its column.</li>
-</ul></li>
-</ul>
-</section>
-<section id="solving-ax0-minus-1-trick" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="solving-ax0-minus-1-trick"><span class="header-section-number">4</span> Solving <span class="math inline">AX=0</span> (Minus <span class="math inline">1</span> Trick)</h2>
-<ul>
-<li>Example Matrix <br><br> <span class="math inline">\left[ \begin{array}{r r r r r} 1 &amp; 3 &amp; 0 &amp; 0 &amp; 3 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 9 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; -4 \\ \end{array}\right]</span><br><br> For finding the solutions of <span class="math inline">AX=0</span> is to look at the non-pivot columns, which we will need to express as a (linear) combination of the pivot columns. <br><br> <span class="math inline">\left\{x\in\mathbb{R}^{5}:x= \lambda_{1}{\left[\begin{array}{r}3\\ -1\\ 0\\ 0 \\0 \end{array}\right]} + \lambda_{2}{\left[\begin{array}{r}3\\ 0\\ 9\\ -4 \\ -1\end{array}\right]},\;\;\ \lambda_{1},\lambda_{2}\in\mathbb{R}\right\}</span> <br><br> Insert row in place of free variable ( <span class="math inline">2^{\text{nd}}</span> and <span class="math inline">5^{\text{th}}</span>) with <span class="math inline">-1</span> value in place of dependent variable as shown below <br><br> <span class="math inline">\tilde{A} = \left[ \begin{array}{r r r r r} 1 &amp; 3 &amp; 0 &amp; 0 &amp; 3 \\ \boxed 0 &amp; \boxed { \mathbf {-1}} &amp; \boxed 0 &amp; \boxed 0 &amp; \boxed 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 9 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; -4 \\ \boxed 0 &amp; \boxed 0 &amp; \boxed 0 &amp; \boxed 0 &amp; \boxed {\mathbf {-1}} \\ \end{array}\right]</span><br><br> Now the solution for <span class="math inline">AX=0</span> can be found by the columns of the the free variable which is <span class="math inline">2^{\text{nd}}</span> and <span class="math inline">5^{\text{th}}</span> column.</li>
-</ul>
-</section>
-<section id="solving-a-system-of-liner-equation" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="solving-a-system-of-liner-equation"><span class="header-section-number">5</span> Solving a System of Liner Equation</h2>
-<ul>
-<li><p>Inversion of matrices which are not square and non-invertible.<br> <span class="math inline">Ax=b</span> is given as <span class="math inline">x=A^{-1}b</span> <br> <span class="math inline">Ax=b \Longleftrightarrow A^TAx=A^Tb \Longleftrightarrow x= (A^TA)^{-1}A^Tb</span><br> This is called <em>Moore-Penrose pseudo-inverse</em> <br> The disadvantage of this method is that it requires a lot of computation.</p></li>
-<li><p>Gaussian Elimination plays a key role in</p>
-<ul>
-<li>Computing determinants</li>
-<li>Checking whether a set of vectors is linearly independent</li>
-<li>Computing the rank of the matrix</li>
-<li>Determining a basis of the vector space.</li>
+<li>In our simple network (one output and n input units) <span class="math display">\nabla W_{ij}=\nabla W_{ij}(\text{new})-\nabla W_{ij}(\text{old})=X_iY</span> Or <span class="math display">\nabla W_{ij}=\nabla W_{ij}(\text{new})-\nabla W_{ij}(\text{old})=\alpha X_iY</span></li>
 </ul></li>
 </ul>
-</section>
-<section id="vector-space" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="vector-space"><span class="header-section-number">6</span> Vector Space</h2>
+<section id="hebbian-learning" class="level4" data-number="1.2.1">
+<h4 data-number="1.2.1" class="anchored" data-anchor-id="hebbian-learning"><span class="header-section-number">1.2.1</span> Hebbian Learning:</h4>
 <ul>
-<li>A vector space <span class="math inline">V</span> is a set that is closed under finite vector addition and scalar multiplication.
-<ul>
-<li>we two vectors are added or multiplied it should stay in the same vector space.</li>
-</ul></li>
-<li>Vector space properties <br> In order for <span class="math inline">V</span> to be a vector space, the following condition must hold for all elements <span class="math inline">X,Y,Z \in V</span> and any scalars <span class="math inline">r,s \in F</span>:
-<ul>
-<li>Commutativity: <span class="math inline">X+Y=Y+X</span></li>
-<li>Associativity of vector addition: <span class="math inline">(X+Y)+Z = X+(Y+Z)</span></li>
-<li>Additive Identity: For all <span class="math inline">X, \;\; 0+X = X+0=X</span></li>
-<li>Existence of additive inverse: For any <span class="math inline">X</span>, there exists a <span class="math inline">-X</span> such that <span class="math inline">X+(-X) =0</span></li>
-<li>Associativity of vector multiplication: <span class="math inline">r(sX) = (rs)X</span></li>
-<li>Distributivity of scalar sums: <span class="math inline">(r+s)X = rX+sX</span></li>
-<li>Scalar multiplication identity: <span class="math inline">1X=X</span></li>
-</ul></li>
+<li>Initialization: <span class="math inline">b = 0, w_i = 0, i = 1 \text{ to } n</span></li>
+<li>For each of the training sample <span class="math inline">(x,y)</span>, do the following:</li>
+<li>Update weight and bias as : <span class="math display">\begin{align*}
+w_i&amp;:=w_i+x_i\times y_i, i=1 \text{ to } n \\
+b&amp;:=b+x_i \times y
+\end{align*}</span></li>
 </ul>
+<p>We can obtain AND function using bipolar units <span class="math inline">(-1,-1)</span>. In this case a correct boundary <span class="math inline">-1 +x_1+x_2=0</span> shall we learned. <br> But we can not obtain AND function using Binary Unit <span class="math inline">(1,0)</span> and <span class="math inline">\alpha =1</span>. In this case an incorrect boundary <span class="math inline">1+x_1+x_2=0</span> is learned.</p>
 </section>
-<section id="subspace" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="subspace"><span class="header-section-number">7</span> Subspace</h2>
+<section id="perceptron-learning" class="level4" data-number="1.2.2">
+<h4 data-number="1.2.2" class="anchored" data-anchor-id="perceptron-learning"><span class="header-section-number">1.2.2</span> Perceptron Learning</h4>
+<ol type="1">
+<li>Initialization: <span class="math inline">b = 0, w_i = 0, i = 1 \text{ to } n</span></li>
+<li>While stop condition is false do step 2 to 4</li>
+<li>For each of the training sample <span class="math inline">(x,y)</span> do steps 3 to 4</li>
+<li>compute output of perceptron, <span class="math inline">o</span></li>
+<li>if <span class="math inline">o\ne y</span> <span class="math display">\begin{align*}
+w_i&amp;:=w_i+\alpha \times x_i \times o ,\quad i= 1 \text{ to } n \\
+b&amp;:=b+\alpha \times o
+\end{align*}
+</span></li>
+</ol>
 <ul>
-<li>Let <span class="math inline">V</span> be a vector space, and let <span class="math inline">W</span> be the subspace of <span class="math inline">V</span>, if <span class="math inline">W</span> is a vector space with respect to the operation in <span class="math inline">V</span>, then <span class="math inline">W</span> is called a subspace of <span class="math inline">V</span></li>
-<li>Let <span class="math inline">V</span> be the vector space, with operations <span class="math inline">+</span> and <span class="math inline">\;\cdot \;</span> and let <span class="math inline">W</span> be subset of <span class="math inline">V</span>. Then <span class="math inline">W</span> is subspace of <span class="math inline">V</span> if and only if the following conditions hold.
+<li>Learning occurs only when a sample has <span class="math inline">o\ne y</span></li>
+<li>Two loops, a completion of the inner loop (each sample is used once) is called an epoch</li>
+<li>Stop when
 <ul>
-<li><span class="math inline">W</span> is non-empty: The zero vector belongs to <span class="math inline">W</span>.</li>
-<li>Closure under <span class="math inline">+</span>: If <span class="math inline">u</span> and <span class="math inline">v</span> are any vectors in <span class="math inline">W</span>, the <span class="math inline">u+v</span> is in <span class="math inline">W</span>.</li>
-<li>Closure under <span class="math inline">\cdot \;</span>:if <span class="math inline">v</span> is any vector in <span class="math inline">W</span>, and <span class="math inline">c</span> is nay real number, then <span class="math inline">c \cdot v</span> si in <span class="math inline">W</span>.</li>
+<li>When no weight is changed in the current epoch, or</li>
+<li>When pre-determined number of epochs is reached</li>
 </ul></li>
 </ul>
 </section>
-<section id="liner-combination" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="liner-combination"><span class="header-section-number">8</span> Liner Combination</h2>
+</section>
+<section id="widrow-hoff-learning-rule" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="widrow-hoff-learning-rule"><span class="header-section-number">1.3</span> Widrow-Hoff Learning Rule</h3>
 <ul>
-<li>Consider a vector space <span class="math inline">V</span> and a finite number of vectors <br> <span class="math inline">x_1, \dots , x_k \in V</span>, then every <span class="math inline">v \in V</span> of the form <br> <span class="math inline">\displaystyle v=\lambda_1 x_1+ \dots + \lambda_kx_k = \sum_{i=1}^k \lambda_i x_i \in V</span> <br> <span class="math inline">\lambda_1,\dots , \lambda_k \in \mathbb{R}</span> is a linear combination fo the vectors <span class="math inline">x_1, \dots ,x_k</span><br> <span class="math inline">\displaystyle 0=\sum_{i=1}^k 0 x_i</span></li>
+<li>It is also called the delta learning rule.</li>
+<li>Developed for a perceptron.</li>
+<li>Learning algorithm: same as Perceptron learning, just change step 4 as below <span class="math display">\begin{align*}
+w_i&amp;:=w_i+\alpha \times x_i \times \boxed{(o-y)} \quad i= 1 \text{ to } n \\
+b&amp;:=b+\alpha \times \boxed{(o-y)}
+\end{align*}
+</span></li>
 </ul>
 </section>
-<section id="linear-independence" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="linear-independence"><span class="header-section-number">9</span> Linear Independence</h2>
+<section id="perceptron-convergence-theorem" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="perceptron-convergence-theorem"><span class="header-section-number">1.4</span> Perceptron convergence theorem</h3>
+<p>If there exists an exact solution (if the training data set is linearly separable), then the perceptron learning algorithm is guaranteed to find an exact solution in a finite number of steps.</p>
+<section id="proof" class="level4" data-number="1.4.1">
+<h4 data-number="1.4.1" class="anchored" data-anchor-id="proof"><span class="header-section-number">1.4.1</span> Proof</h4>
+<p><br></p>
+<p><img src="CS5480_images/chrome_Myg1q0YkBZ.png" class="img-fluid"></p>
+<p>Consider the above image</p>
 <ul>
-<li><p>Let us consider a vector space <span class="math inline">V</span> with <span class="math inline">k \in \mathbb{N}</span> and <span class="math inline">x_1, \dots ,x_k \in V</span>. If there is a non trivial linear combination, such that <span class="math inline">0=\sum_{i=1}^k \lambda_i x_i</span> with at least one <span class="math inline">\lambda _i \ne 0,</span> the vectors <span class="math inline">x_1, \dots , x_k</span> are <em>linearly independent</em>. If only the trivial solution exists, i.e., <span class="math inline">\lambda_1 =\dots=\lambda_k=0</span> the vectors <span class="math inline">x_1, \dots , x_k</span> are linearly independent.</p></li>
-<li><p>If at-least one of the vectors <span class="math inline">x_1, \dots , x_k</span> is <span class="math inline">0</span> then they are linearly dependent. The same holds if two vectors are identical.</p></li>
-<li><p>To find if a system is linear independent, perform gaussian elimination, if there is no non-pivot column then the vectors are independent.</p></li>
+<li><p>Perceptron tries to find the boundary <span class="math inline">W^TX=0</span></p></li>
+<li><p>Angle between <span class="math inline">W</span> and any point <span class="math inline">X</span> which lies on that line will be <span class="math inline">90^{\circ}</span></p></li>
+<li><p>Angle between positive points <span class="math inline">(p_1,p_2,p_3,\dots)</span> and <span class="math inline">W</span> shall be less than <span class="math inline">90^{\circ}</span></p></li>
+<li><p>Angle between negative points <span class="math inline">(n_1,n_2,n_3,\dots)</span> and <span class="math inline">W</span> shall be greater than <span class="math inline">90^{\circ}</span></p></li>
+<li><p>If for any positive point say <span class="math inline">p_3</span> the angle with <span class="math inline">W</span> becomes more than <span class="math inline">90^{\circ}</span>, it means perceptron has made a mistake</p></li>
+<li><p>Because there is a mistake so the perceptron learning algorithm now tries to update the weight, with the rule <span class="math inline">\overline {W}=W+ \alpha X\times Y</span>, consider <span class="math inline">\alpha</span> and <span class="math inline">Y</span> to be <span class="math inline">1</span> for simplicity. So it becomes <span class="math inline">\overline W=W+ X</span></p></li>
+<li><p>The cos angle between <span class="math inline">p_3</span> and <span class="math inline">\overline W</span> is proportional to <span class="math inline">\overline W^TX</span> <span class="math display">\begin{align*}
+\cos \theta &amp;\propto \overline W^TX \\
+&amp;\propto ( W+X)^TX \\
+&amp;\propto  W^TX+X^TX
+\end{align*}
+</span></p></li>
+<li><p>Since <span class="math inline">X^TX</span> is positive have we can say that the value of <span class="math inline">\cos \theta</span> for <span class="math inline">\overline W</span> and <span class="math inline">X</span> is more than that of <span class="math inline">W</span> and <span class="math inline">X</span></p></li>
+<li><p>Hence we can say that the value of angle <span class="math inline">\theta</span> for <span class="math inline">\overline W</span> and <span class="math inline">X</span> is less than that of <span class="math inline">W</span> and <span class="math inline">X</span></p></li>
+<li><p>we can see that the angle between <span class="math inline">p_3</span> and <span class="math inline">W</span> is decreased after weight update</p></li>
+<li><p>Hence we can say that after certain number of iteration the angle between <span class="math inline">p_3</span> and <span class="math inline">W</span> will become less than <span class="math inline">90^{\circ}</span></p></li>
 </ul>
-<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Srijith, IIT Hyderabad }}}}</span></p>
+</section>
+</section>
+<section id="perceptron-and-other-linear-classifiers" class="level3" data-number="1.5">
+<h3 data-number="1.5" class="anchored" data-anchor-id="perceptron-and-other-linear-classifiers"><span class="header-section-number">1.5</span> Perceptron and Other Linear Classifiers</h3>
+<ul>
+<li>Logistic regression and perceptron with sigmoid activation are the same.</li>
+<li>Linear SVMs and perceptrons are ‘almost’ the same. ‘Almost’ because SVM provides best margin but preceptron doesn’t have such notion.</li>
+</ul>
+</section>
+<section id="xor-gate-using-a-perceptron" class="level3" data-number="1.6">
+<h3 data-number="1.6" class="anchored" data-anchor-id="xor-gate-using-a-perceptron"><span class="header-section-number">1.6</span> XOR Gate using a Perceptron</h3>
+<p>XOR can be solved by a more complex network with hidden units (Multi-Layer Perceptron)</p>
+</section>
+</section>
+<section id="recall-training-a-neural-network" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="recall-training-a-neural-network"><span class="header-section-number">2</span> Recall: Training a Neural Network</h2>
+<p>It was already discuss <a href="../../Data_Science_Tutorial/CS5590/2022-09-24-CS5590-week5.html#multi-layer-perceptrons">here</a> in Machine Learning.</p>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
 </section>
@@ -601,13 +645,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Data_Science_Tutorial/CS6660/2022-09-03-CS6660-week3.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Linear Algebra 1</span>
+      <a href="../../Data_Science_Tutorial/index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Data Science Tutorial</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Data_Science_Tutorial/CS6660/2022-10-01-CS6660-week6.html" class="pagination-link">
-        <span class="nav-page-text">Linear Algebra 3</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Data_Science_Tutorial/CS5590/2022-08-06-CS5590-week1.html" class="pagination-link">
+        <span class="nav-page-text">Machine Learning 1</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
