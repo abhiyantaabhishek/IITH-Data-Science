@@ -8,6 +8,7 @@ project:
     browser: false
 website:
   title: ""
+  site-url: http://localhost:4200/
   favicon: "logo.png"
   google-analytics: "G-5ZQX02R26E"
   open-graph: true
