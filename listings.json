@@ -6,17 +6,21 @@
     ]
   },
   {
+    "listing": "/index.html",
+    "items": []
+  },
+  {
     "listing": "/Data_Science_Tutorial/index.html",
     "items": [
       "/Data_Science_Tutorial/CS5480/2023-07-01-CS5480-week1.html",
       "/Data_Science_Tutorial/CS5590/2022-11-05-CS5590-week9.html",
       "/Data_Science_Tutorial/CS5590/2022-10-29-CS5590-week8.html",
-      "/Data_Science_Tutorial/CS6660/2022-10-15-CS6660-week7.html",
       "/Data_Science_Tutorial/CS5590/2022-10-15-CS5590-week7.html",
+      "/Data_Science_Tutorial/CS6660/2022-10-15-CS6660-week7.html",
       "/Data_Science_Tutorial/CS5590/2022-10-08-CS5590-week6.html",
       "/Data_Science_Tutorial/CS6660/2022-10-01-CS6660-week6.html",
-      "/Data_Science_Tutorial/CS6660/2022-09-24-CS6660-week5.html",
       "/Data_Science_Tutorial/CS5590/2022-09-24-CS5590-week5.html",
+      "/Data_Science_Tutorial/CS6660/2022-09-24-CS6660-week5.html",
       "/Data_Science_Tutorial/CS6660/2022-09-17-CS6660-week4_1.html",
       "/Data_Science_Tutorial/CS6660/2022-09-17-CS6660-week4_2.html",
       "/Data_Science_Tutorial/CS5590/2022-09-10-CS5590-week4.html",
@@ -24,12 +28,8 @@
       "/Data_Science_Tutorial/CS5590/2022-08-27-CS5590-week3.html",
       "/Data_Science_Tutorial/CS5590/2022-08-20-CS5590-week2.html",
       "/Data_Science_Tutorial/CS6660/2022-08-13-CS6660-week2.html",
-      "/Data_Science_Tutorial/CS6660/2022-08-06-CS6660-week1.html",
-      "/Data_Science_Tutorial/CS5590/2022-08-06-CS5590-week1.html"
+      "/Data_Science_Tutorial/CS5590/2022-08-06-CS5590-week1.html",
+      "/Data_Science_Tutorial/CS6660/2022-08-06-CS6660-week1.html"
     ]
-  },
-  {
-    "listing": "/index.html",
-    "items": []
   }
 ]
