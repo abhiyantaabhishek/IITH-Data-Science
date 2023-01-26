@@ -859,7 +859,7 @@ Guide-Line to Chose activation Function
 &amp;=-\frac{1}{m}\sum_{i=1}^{m}(y-\sigma(z))*x_j\\
 &amp;=\frac{1}{m}\sum_{i=1}^{m}(\sigma(z)-y)*x_j
 \end{align*}</span></li>
-<li>Even if we consider softmax as activation function <span class="math display">\left(a_{j}^{L}=\frac{e^{z_{j}^{L}}}{\sum_{k}\epsilon^{z_{k}^{L}}}\right)</span> we get similar derivative <span class="math display">\frac{\partial J}{\partial w_{j k}^{L}}=\overbrace{\boxed{a_{k}^{L-1}(a_{j}^{L}-y_{j})}}^{\text{similar to cross entropy}}  </span></li>
+<li>Even if we consider softmax as activation function <span class="math display">\left(a_{j}^{L}=\frac{e^{z_{j}^{L}}}{\sum_{k}e^{z_{k}^{L}}}\right)</span> we get similar derivative <span class="math display">\frac{\partial J}{\partial w_{j k}^{L}}=\overbrace{\boxed{a_{k}^{L-1}(a_{j}^{L}-y_{j})}}^{\text{similar to cross entropy}}  </span></li>
 </ul></li>
 </ul>
 </section>
