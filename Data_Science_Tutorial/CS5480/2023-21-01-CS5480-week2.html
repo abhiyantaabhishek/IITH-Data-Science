@@ -445,6 +445,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <li><a href="#activation-functions" id="toc-activation-functions" class="nav-link" data-scroll-target="#activation-functions"><span class="toc-section-number">16</span>  Activation Functions</a></li>
   <li><a href="#loss-functions" id="toc-loss-functions" class="nav-link" data-scroll-target="#loss-functions"><span class="toc-section-number">17</span>  Loss Functions</a></li>
   <li><a href="#torch-loss-function" id="toc-torch-loss-function" class="nav-link" data-scroll-target="#torch-loss-function"><span class="toc-section-number">18</span>  Torch Loss function</a></li>
+  <li><a href="#some-more-facts" id="toc-some-more-facts" class="nav-link" data-scroll-target="#some-more-facts"><span class="toc-section-number">19</span>  Some more facts</a></li>
   </ul>
 </nav>
     </div>
@@ -516,7 +517,7 @@ Note
 <ul>
 <li>If there is local minima across one cross section of cost function and local maxima across another cross section of the cost function then it is called a saddle point.<br> <img src="CS5480_images//Acrobat_2OJYOHomOb.png" class="img-fluid"><br></li>
 <li>In higher dimension space there are more saddle points than local minima.</li>
-<li>If there is a steep decline in the cost then it is called Cliff area. Search types of clips are very much possible in RNN because in such networks there are a lot of multiplication (over time) and when small terms multiplies many times then it becomes even smaller which causes cliffs.<br> <img src="CS5480_images//Acrobat_5doamnxGE8.png" class="img-fluid"><br></li>
+<li>If there is a steep decline in the cost then it is called Cliff area. Such types of clips are very much possible in RNN because in such networks there are a lot of multiplication (over time) and when small terms multiplies many times then it becomes even smaller which causes cliffs.<br> <img src="CS5480_images//Acrobat_5doamnxGE8.png" class="img-fluid"><br></li>
 </ul>
 </section>
 <section id="vanishingexploding-gradient" class="level2" data-number="4">
@@ -561,7 +562,7 @@ Note
 <li><p>Advantage of Stochastic gradient descent:</p>
 <ul>
 <li>It is faster than batch gradient descent because there is redundancy in the batch.</li>
-<li>Open results in more better than generalised solution because of the noisy update of the weight.</li>
+<li>Often results in more better than generalised solution because of the noisy update of the weight.</li>
 <li>This method can be useful where we need to track the system overtime. We can update the weight stochastically.</li>
 </ul></li>
 <li><p>Issue with Stochastic gradient descent:</p>
@@ -780,7 +781,7 @@ Here intuition behind the term <span class="math inline">\boxed{\theta_{t}-\gamm
 <li>Update biased second moment estimate <span class="math inline">{\bf r}=\rho_2{\bf r}+(1-\rho_2)(\nabla_{\theta}J\;\odot\;\nabla_{\theta}J)</span></li>
 <li>Correct bias in first moment <span class="math inline">\displaystyle \tilde{\bf s}=\frac{\bf s}{1-\rho_1^t}</span></li>
 <li>Now Correct bias in second moment <span class="math inline">\displaystyle \tilde{\bf r}=\frac{\bf r}{1-\rho_2^t}</span></li>
-<li>Compute update <span class="math inline">\displaystyle \Delta\theta_{t+1}={\alpha\frac{\tilde{\bf s}}{\delta+\sqrt{\tilde{\bf r}}}}\ \odot \ \nabla_\theta J</span> (division and square root computed elementwise)</li>
+<li>Compute update <span class="math inline">\displaystyle \Delta\theta_{t+1}={\alpha\frac{\tilde{\bf s}}{\delta+\sqrt{\tilde{\bf r}}}}</span> (division and square root computed elementwise)</li>
 </ol>
 </div>
 <ol start="10" type="1">
@@ -1017,6 +1018,35 @@ if (outputEl) {{
 <li>CosineEmbeddingCriterion: cosine distance between two inputs</li>
 </ul></li>
 </ul>
+</section>
+<section id="some-more-facts" class="level2" data-number="19">
+<h2 data-number="19" class="anchored" data-anchor-id="some-more-facts"><span class="header-section-number">19</span> Some more facts</h2>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A multilayer network of perceptrons with a single hidden layer can be used to represent any boolean function precisely (no errors), in fact for <span class="math inline">n</span> inputs, it needs <span class="math inline">{2}^n</span> perceptron on hidden layer and one perceptron on output layer to represent any boolean function.</p>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A multilayer network of neurons with a single hidden layer can be used to approximate any continuous function to any desired precision.<br> In other words, there is a guarantee that for any function <span class="math inline">f(x): \mathbb{R}^n \rightarrow \mathbb{R}^m</span>, we can always find a neural network (with <span class="math inline">1</span> hidden layer containing enough neurons) whose output <span class="math inline">g(x)</span> satisfies <span class="math inline">| g(x)-f(x)| &lt; \epsilon</span></p>
+</div>
+</div>
 <p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
