@@ -8,12 +8,12 @@ listing:
     template: ejs/custom.ejs
     contents: 
       - title: SVM in-depth
-        href: Data_Science_Tutorial/CS5590/2022-09-10-CS5590-week4.ipynb
+        href: Data_Science_Notes/CS5590/2022-09-10-CS5590-week4.ipynb
         description: SVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick
         card_type: card text-white bg-warning mb-3 
         card_header: September 10, 2022
       - title: Multi Layer Perceptrons
-        href: Data_Science_Tutorial/CS5590/2022-09-24-CS5590-week5.ipynb
+        href: Data_Science_Notes/CS5590/2022-09-24-CS5590-week5.ipynb
         description: Forward pass, backward pass, erro calculation of multipalyer models.
         card_type: card text-white bg-info mb-3
         card_header: September 24, 2022
@@ -21,12 +21,12 @@ listing:
     template: ejs/custom.ejs
     contents: 
       - title: Probability Theory
-        href: Data_Science_Tutorial/CS6660/2022-10-15-CS6660-week7.ipynb
+        href: Data_Science_Notes/CS6660/2022-10-15-CS6660-week7.ipynb
         description: Joint mass function, Marginal mass functions,Conditional mass function, Concentration Bounds
         card_type: card text-white bg-primary mb-3
         card_header: October 15, 2022
       - title: Linear Algebra 
-        href: Data_Science_Tutorial/CS6660/2022-09-17-CS6660-week4_2.ipynb
+        href: Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_2.ipynb
         description: Gaussian Elimination, Row-Echelon, Minus 1 Trick
         card_type: card text-white bg-success mb-3 
         card_header: September 17, 2022
@@ -72,7 +72,7 @@ listing:
 ```{=html}
 <h6 style="color:blue;">Home page contains only some Hand-picked Blog posts.<br><br>
 Please visit other pages like 
-<a href="Data_Science_Tutorial/" style="text-decoration: none"> 
+<a href="Data_Science_Notes/" style="text-decoration: none"> 
 	<button type="button" class="btn btn-primary" fdprocessedid="ds0j3o"><i class="fa-solid fa-book-open-reader"></i></button> 
 </a>   
 or 

@@ -19,8 +19,8 @@ website:
     left:
       - text: "{{< fa house >}} Home"
         file: index.qmd  
-      - text: "{{< fa book-open-reader >}} Data Science Tutorial"
-        file: Data_Science_Tutorial/index.qmd
+      - text: "{{< fa book-open-reader >}} Data Science Notes"
+        file: Data_Science_Notes/index.qmd
       - text: "{{< fa user-ninja >}} Data Science Hacks"
         file: Data_Science_Hacks/index.qmd     
       - href: about.qmd
@@ -35,10 +35,10 @@ website:
       collapse-level: 1
       contents:
         - auto: "Data_Science_Hacks/"
-    - id: Data_science_Tutorial
+    - id: Data_Science_Notes
       collapse-level: 1
       contents:
-        - auto: "Data_Science_Tutorial/"                   
+        - auto: "Data_Science_Notes/"                   
        
   page-navigation: true
   page-footer: 
