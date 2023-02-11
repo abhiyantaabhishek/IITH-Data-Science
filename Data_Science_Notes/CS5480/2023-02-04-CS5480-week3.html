@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Abhishek Kumar Dubey">
+<meta name="dcterms.date" content="2023-02-04">
+<meta name="description" content="History, Perceptrons, Neural Networks and Backpropagation">
+
+<title>Deep Learning 3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../Data_Science_Notes/CS5480/2023-02-11-CS5480-week4.html" rel="next">
+<link href="../../Data_Science_Notes/CS5480/2023-01-21-CS5480-week2.html" rel="prev">
+<link href="../../logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
+</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Deep Learning 3">
+<meta property="og:description" content="History, Perceptrons, Neural Networks and Backpropagation">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/CS5480/CS5480_images/chrome_mmOWWTaZry.png">
+<meta property="og:image:height" content="297">
+<meta property="og:image:width" content="638">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../Data_Science_Notes/index.html" aria-current="page">
+ <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Data_Science_Hacks/index.html">
+ <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Data Science Hacks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Deep Learning 3</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Deep Learning 3</h1>
+                  <div>
+        <div class="description">
+          History, Perceptrons, Neural Networks and Backpropagation
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Deep Learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Abhishek Kumar Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 4, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Data_Science_Notes/index.html" class="sidebar-item-text sidebar-link">Data Science Notes</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">CS5480</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5480/2023-01-07-CS5480-week1.html" class="sidebar-item-text sidebar-link">Deep Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5480/2023-01-21-CS5480-week2.html" class="sidebar-item-text sidebar-link">Deep Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5480/2023-02-04-CS5480-week3.html" class="sidebar-item-text sidebar-link active">Deep Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5480/2023-02-11-CS5480-week4.html" class="sidebar-item-text sidebar-link">Deep Learning 4</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">CS5590</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5590/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5590/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">Machine Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5590/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">Machine Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5590/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5590/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5590/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">Machine Learning 6</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5590/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">Machine Learning 7</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5590/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link">Machine Learning 8</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS5590/2022-11-05-CS5590-week9.html" class="sidebar-item-text sidebar-link">Machine Learning 9</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">CS6660</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS6660/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS6660/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS6660/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">Probability Theory 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS6660/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">Probability Theory 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS6660/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/CS6660/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">Probability Theory 5</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#regularization-methods" id="toc-regularization-methods" class="nav-link active" data-scroll-target="#regularization-methods"><span class="toc-section-number">1</span>  Regularization Methods</a></li>
+  <li><a href="#learning-and-generalization" id="toc-learning-and-generalization" class="nav-link" data-scroll-target="#learning-and-generalization"><span class="toc-section-number">2</span>  Learning and Generalization</a>
+  <ul>
+  <li><a href="#when-to-stop" id="toc-when-to-stop" class="nav-link" data-scroll-target="#when-to-stop"><span class="toc-section-number">2.1</span>  When to stop</a></li>
+  <li><a href="#weight-decay" id="toc-weight-decay" class="nav-link" data-scroll-target="#weight-decay"><span class="toc-section-number">2.2</span>  Weight Decay</a></li>
+  <li><a href="#dropout" id="toc-dropout" class="nav-link" data-scroll-target="#dropout"><span class="toc-section-number">2.3</span>  DropOut</a></li>
+  </ul></li>
+  <li><a href="#data-manipulation-methods" id="toc-data-manipulation-methods" class="nav-link" data-scroll-target="#data-manipulation-methods"><span class="toc-section-number">3</span>  Data Manipulation Methods</a>
+  <ul>
+  <li><a href="#normalizestandardize-the-inputs" id="toc-normalizestandardize-the-inputs" class="nav-link" data-scroll-target="#normalizestandardize-the-inputs"><span class="toc-section-number">3.1</span>  Normalize/standardize the inputs</a></li>
+  <li><a href="#batch-normalization" id="toc-batch-normalization" class="nav-link" data-scroll-target="#batch-normalization"><span class="toc-section-number">3.2</span>  Batch Normalization</a></li>
+  <li><a href="#shuffling-inputs" id="toc-shuffling-inputs" class="nav-link" data-scroll-target="#shuffling-inputs"><span class="toc-section-number">3.3</span>  Shuffling Inputs</a></li>
+  <li><a href="#curriculum-learning" id="toc-curriculum-learning" class="nav-link" data-scroll-target="#curriculum-learning"><span class="toc-section-number">3.4</span>  Curriculum Learning</a></li>
+  <li><a href="#data-augmentation" id="toc-data-augmentation" class="nav-link" data-scroll-target="#data-augmentation"><span class="toc-section-number">3.5</span>  Data Augmentation</a></li>
+  </ul></li>
+  <li><a href="#parameter-choices-initialization-method" id="toc-parameter-choices-initialization-method" class="nav-link" data-scroll-target="#parameter-choices-initialization-method"><span class="toc-section-number">4</span>  Parameter Choices / Initialization method</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="toc-section-number">5</span>  Takeaways</a></li>
+  <li><a href="#computer-vision-basics" id="toc-computer-vision-basics" class="nav-link" data-scroll-target="#computer-vision-basics"><span class="toc-section-number">6</span>  Computer Vision Basics</a></li>
+  <li><a href="#linear-filtering-correlation-example" id="toc-linear-filtering-correlation-example" class="nav-link" data-scroll-target="#linear-filtering-correlation-example"><span class="toc-section-number">7</span>  Linear Filtering: Correlation Example</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>why first derivate why not second</p>
+<p>second derive is called hassian matrix</p>
+<p>why not use Hassian instead of jaccobian</p>
+<p>because it is expensive to compute, also it was proved that SGD works better than this,</p>
+<p>SGD is noisy which is an advantage, and it helps us generalize better. SGD is the true success for generalization of the deep learning</p>
+<section id="regularization-methods" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="regularization-methods"><span class="header-section-number">1</span> Regularization Methods</h2>
+<p>Difference between Machine Learning and Optimization</p>
+<ul>
+<li><p>Generalization, In general optimization we do not focus on generalization.</p></li>
+<li><p>In DL we are interested in the data which will come, not in the data which is already there. In DL we are interested in the generalization error</p></li>
+<li><p>In mainstream optimization, minimizing J is itself the goal; whereas in deep learning, minimizing J so as to minimize a generalizable out-of-sample performance measure is the goal</p></li>
+<li><p>Empirical Risk Minimization (ERM): <span class="math display">|\mathrm{\tilde{s}_{x,y}\!\!\!\!/}\!\!\rangle\!\!\langle\langle\theta;{\bf x},y\rangle\!\rangle=\frac{1}{m}\sum_{i=1}^{m}J\!\left(\theta;{\bf x}_{i},y_{i}\right)</span></p></li>
+<li><p>However, ERM can lead to overfitting. Avoiding overfitting is regularization.</p></li>
+</ul>
+</section>
+<section id="learning-and-generalization" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="learning-and-generalization"><span class="header-section-number">2</span> Learning and Generalization</h2>
+<ul>
+<li>Simple idea to keep monitoring the cost function, and not let it become too consistently low; stop at an earlier iteration<br> <img src="CS5480_images/Teams_fVDfgzhc3E.png" class="img-fluid"></li>
+</ul>
+<p>After some time validation loss stops improving and we can do early stopping.</p>
+<section id="when-to-stop" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="when-to-stop"><span class="header-section-number">2.1</span> When to stop</h3>
+<ul>
+<li>Train n epochs; lower learning rate; train m epochs : But it’s bad idea, can’t assume one-size-fits-all approach</li>
+<li>Error-change criterion:
+<ul>
+<li>Stop when error isn’t dropping over a window of, say, 10 epochs</li>
+<li>Train for a fixed number of epochs after criterion is reached (possibly with lower learning rate)</li>
+</ul></li>
+<li>Weight-change criterion:
+<ul>
+<li>Compare weights at epochs t-10 and t and test: <span class="math inline">\Pi\mathrm{d}\times_{i}\left|\left|W_{i}^{t}\,-\,W_{i}^{t-10}\right|\right|\,&lt;\,\rho</span></li>
+<li>Don’t base on length of overall weight change vector</li>
+<li>Possibly express as a percentage of the weight</li>
+</ul></li>
+</ul>
+</section>
+<section id="weight-decay" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="weight-decay"><span class="header-section-number">2.2</span> Weight Decay</h3>
+<ul>
+<li>L1 regularization</li>
+<li>L2 regularization</li>
+</ul>
+</section>
+<section id="dropout" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="dropout"><span class="header-section-number">2.3</span> DropOut</h3>
+<ul>
+<li><p>Another standard approach to regularization in ML: Model Averaging</p></li>
+<li><p>DropOut → a very interesting way to perform model averaging in deep learning.</p></li>
+<li><p>Training Phase: For each hidden layer, for each training sample, for each iteration, ignore (zero out) a random fraction, p, of nodes (and corresponding activations)</p></li>
+<li><p>Test Phase: Use all activations, but reduce them by a factor p (to account for the missing activations during training) <img src="CS5480_images//Teams_KqkeL6M2fL.png" class="img-fluid"></p></li>
+<li><p>With <span class="math inline">H</span> hidden units, each of which can be dropped, we have <span class="math inline">2^H</span> possible models</p></li>
+<li><p>Each of the <span class="math inline">2^{H−1}</span> models that include hidden unit h must share the same weights for the unit</p>
+<ul>
+<li>serves as a form of regularization</li>
+<li>makes the models cooperate</li>
+</ul></li>
+<li><p>Including all hidden units at test with a scaling of <span class="math inline">0.5</span> is equivalent to computing the geometric mean of all <span class="math inline">2^H</span> models</p></li>
+<li><p>It’s like ensamble without doing it</p></li>
+<li><p>Here we are randomly dropping so that no neuron becomes specific to a task, but it learns to do all the task.</p></li>
+<li><p>DropConnect: An Extension<br> <img src="CS5480_images//Teams_81Mmd1u1CF.png" class="img-fluid"></p></li>
+</ul>
+<p>Using noise is another form of regularization; has shown some impressive results recently. Could be: - Data Noise</p>
+<pre><code>- Has been there for a while: add noise to data while training
+- Minimization of sum-of-squares error with zero-mean gaussian noise(added to training data) is equivalent to minimization of sum-of-squares error without noise with an added regularized term
+- Very similar to data augmentation that we will see later</code></pre>
+<ul>
+<li>Label Noise</li>
+<li>Gradient Noise</li>
+<li>Regularization through Label Noise
+<ul>
+<li>Disturb each training sample with the probability</li>
+</ul></li>
+<li>Regularization through Gradient Noise
+<ul>
+<li><p>Simple idea: add noise to gradient <span class="math display">g_{t}  \leftarrow g_{t} +\mathcal{N}(0,\sigma_{t}^{2})</span></p></li>
+<li><p>Annealed Gaussian noise by decaying the variance <span class="math display">\sigma_{t}^{2}\,=\,\frac{\eta}{(1\,+\,t)^{\gamma}}</span></p></li>
+<li><p>Showed significant improvement in performance</p></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="data-manipulation-methods" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="data-manipulation-methods"><span class="header-section-number">3</span> Data Manipulation Methods</h2>
+<section id="normalizestandardize-the-inputs" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="normalizestandardize-the-inputs"><span class="header-section-number">3.1</span> Normalize/standardize the inputs</h3>
+<ul>
+<li>Convergence is faster if average input over the training set is close to zero. look at 8Le Cun et al, Efficient Backprop, 1998 and find answer</li>
+<li>Scaled to have the same covariance - speeds learning
+<ul>
+<li>Ideally, value of covariance should be matched with output of activation function (e.g.&nbsp;sigmoid)
+<ul>
+<li>Initially we want to be in lierar reason, we can achieve</li>
+<li>After normalization, if the variance of the data is 2 we want the activation fucntion to have a linear range between 0 and 2</li>
+</ul></li>
+</ul></li>
+<li>PCA
+<ul>
+<li>Decorrelate the inputs</li>
+<li>Imagine one input is always twice the other, i.e.&nbsp;<span class="math inline">z_2 = 2z_1</span>. Output <span class="math inline">y</span> will be constant on lines <span class="math inline">w_2 + \frac{1}{2}w_1=</span> const. No use making weight changes on these lines. <img src="CS5480_images//Teams_BoYNEbdtR0.png" class="img-fluid"></li>
+</ul></li>
+</ul>
+</section>
+<section id="batch-normalization" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="batch-normalization"><span class="header-section-number">3.2</span> Batch Normalization</h3>
+<ul>
+<li><p>Change in distributions of data inputs is a problem because the model needs to continuously adapt to the new distribution, called covariate shift</p></li>
+<li><p>This is typically handled using domain adaptation</p></li>
+<li><p>Even while training minibatch distribution can change</p></li>
+<li><p>What if this happens in a subnetwork in DL? → called internal covariate shift. How to handle?</p></li>
+<li><p>Batch nor accelerate training and also regularize the network<br>
+</p></li>
+<li><p>BN layer usually inserted before non-linearity layer (after FC or convolutional layer)</p></li>
+<li><p>Allows higher learning rates.</p></li>
+<li><p>Reduces the strong dependence on initialization</p></li>
+<li><p>Acts as a form of regularization too</p></li>
+<li><p>Take average of last 10 minibatch of gamma and beta and use in inferencing</p></li>
+<li><p>Algo</p>
+<ul>
+<li><span class="math inline">\mu_{B}\leftarrow{\frac{1}{m}}\sum_{i=1}^{m}x_{i}</span></li>
+<li><span class="math inline">\sigma_{B}^{2}\leftarrow\frac{1}{m}\sum_{i=1}^{m}(x_{i}-\mu_{B})^{2}</span></li>
+<li><span class="math inline">\widehat{x}_{i}\leftarrow\frac{x_{i}-\mu_{B}}{\sqrt{\sigma_{B}^{2}+\epsilon}}</span></li>
+<li><span class="math inline">y_{i}\leftarrow\gamma\widehat{\alpha}_{i}\leftarrow\beta\equiv\mathrm{BN}_{\gamma,\beta}(x_{i})</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="shuffling-inputs" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="shuffling-inputs"><span class="header-section-number">3.3</span> Shuffling Inputs</h3>
+<ul>
+<li>Random sample data and do SGD</li>
+<li>Choose examples with maximum information content
+<ul>
+<li>Shuffle the training set so that successive training examples never (rarely) belong to the same class.</li>
+<li>Present input examples that produce a large error more frequently than examples that produce a small error.
+<ul>
+<li>Helps take large steps in the gradient descent</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="curriculum-learning" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="curriculum-learning"><span class="header-section-number">3.4</span> Curriculum Learning</h3>
+<ul>
+<li>Old idea, proposed by Elman in 1993</li>
+<li>Humans and animals learn much better when examples are not randomly presented but organized in a meaningful order which illustrates gradually more concepts, and gradually more complex ones</li>
+<li>Start small, learn easier aspects of the task or easier sub-tasks, and then gradually increase the difficulty level</li>
+<li>By choosing examples and their order, one can guide training and remarkably increase learning speed</li>
+<li>Introduces the concept of a teacher who:
+<ul>
+<li>has prior knowledge about the training data to decide on a sequence of concepts that can more easily be learned when presented in that order</li>
+<li>monitoring ’learner’s progress to decide when to move on to new material from the curriculum</li>
+</ul></li>
+</ul>
+</section>
+<section id="data-augmentation" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="data-augmentation"><span class="header-section-number">3.5</span> Data Augmentation</h3>
+<ul>
+<li>Data jittering</li>
+<li>Rotations</li>
+<li>Color changes</li>
+<li>Noise injection</li>
+<li>Mirroring</li>
+<li>Helps increase data; is useful when training data provided is less</li>
+<li>Also acts as a regularizer (by avoiding overfitting to provided data)</li>
+<li>MixUP: if we have data <span class="math inline">x_1, y_1</span> and <span class="math inline">x_2,y_2</span>, we can interpolate between <span class="math inline">x_1, x_2</span> and also for <span class="math inline">y_1,y_2</span> in this way we can create more data, and also it creates more labes, but that is ok, and it help in the genelarization of the models.</li>
+</ul>
+</section>
+</section>
+<section id="parameter-choices-initialization-method" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="parameter-choices-initialization-method"><span class="header-section-number">4</span> Parameter Choices / Initialization method</h2>
+<ul>
+<li><p>Activation Functions</p></li>
+<li><p>Loss Functions : should be differentiable</p></li>
+<li><p>Learning Rates : adaptive learning rates</p></li>
+<li><p>All of them decrease it when weight vector “oscillates”, and increase it when the weight vector follows a relatively steady direction</p></li>
+<li><p>Worthwhile picking a different learning rate for each weight (e.g.&nbsp;based on curvature)</p></li>
+<li><p>Assuming a binary classification problem, what do you choose the target labels to be? +1 and -1?</p></li>
+<li><p>What if these are the sigmoid’s asymptotes?</p>
+<ul>
+<li>Weights will be increased continuously to very high values to match the target</li>
+<li>Weights multiplied by small sigmoid derivative → small weight updates → Stuck!</li>
+</ul></li>
+<li><p>Choose target values at the point of the maximum second derivative on the sigmoid so as to avoid saturating the output units.</p></li>
+</ul>
+<p>Initially we want activation to be in the linear region.</p>
+<ul>
+<li>To be chosen randomly, but in such a way that the activation function is in its linear region
+<ul>
+<li>Both large and small weights can cause very low gradients (in case of sigmoid activation)</li>
+</ul></li>
+<li>Xavier’s initialization <span class="math display">\mathrm{uniform}\left(-{\frac{\sqrt{6}}{\sqrt{\mathrm{fan}_{\mathrm{in}}+\mathrm{fan}_{\mathrm{out}}}}},\;{\frac{\sqrt{6}}{\sqrt{\mathrm{fan}_{\mathrm{in}}+\mathrm{fan}_{\mathrm{out}}}}}\right)</span></li>
+<li>Caffe implements a simpler version of Xavier’s initialization as: <span class="math display">\mathrm{uniform}\left(-{\frac{2}{{\mathrm{fan}_{\mathrm{in}}+\mathrm{fan}_{\mathrm{out}}}}},\;{\frac{2}{{\mathrm{fan}_{\mathrm{in}}+\mathrm{fan}_{\mathrm{out}}}}}\right)</span></li>
+<li>He’s initialization <span class="math display">\mathrm{uniform}\left(-{\frac{4}{{\mathrm{fan}_{\mathrm{in}}+\mathrm{fan}_{\mathrm{out}}}}},\;{\frac{4}{{\mathrm{fan}_{\mathrm{in}}+\mathrm{fan}_{\mathrm{out}}}}}\right)</span></li>
+</ul>
+<p>Proof outline of Xavier’s initialization <br> We know <br> <span class="math display">Y= w_1x_1+w_2x_2 + \dots + w_nx_n</span> then <span class="math display">\begin{align*}
+  \mathrm{Var}(Y)&amp;=\sum_i\mathrm{Var}(w_ix_i)\\
+  &amp;=\sum_i \left( \underbrace{\mathbb{E}[x_i]^2\mathrm{Var}(w_i)}_{\;\;0,\text{ Since mean of input is 0}}  +\underbrace{ \mathbb{E}[w_i]^2\mathrm{Var}(x_i)}_{\;\;0,\text{ Since weight is normalized to 0}} +\mathrm{Var}(w_i)\mathrm{Var}(x_i) \right) \\
+  &amp;= \sum_i  \mathrm{Var}(w_i)\mathrm{Var}(x_i) \\
+  &amp;= n\times \mathrm{Var}(w_i)\mathrm{Var}(x_i)
+\end{align*}</span></p>
+<p>Now from above equation, if we want <span class="math inline">\mathrm{Var}(Y)</span> to be equal to <span class="math inline">\mathrm{Var}(x_i)</span> then $ (w_i)$ should be equal to <span class="math inline">\frac{1}{n}</span>, here <span class="math inline">n</span> is fan in, similarly we can get something similar when can consider from backprop prospective and we get <span class="math inline">\frac{1}{n}</span>, here <span class="math inline">n</span> is fan out, Putting the two together we want <span class="math display">\mathrm{Var}(w_i) = \frac{2}{{\mathrm{fan}_{\mathrm{in}}+\mathrm{fan}_{\mathrm{out}}}}</span> Which happens to be Caffe weight initialization method.</p>
+<p>Now if we consider uniform distribution to be in range of <span class="math inline">[-\theta, \theta]</span> then <br> <span class="math display">\mathrm{Var} = \frac{(\theta-(-\theta))^2}{12} = \frac{\theta^2}{3}</span> This is the term which introduces <span class="math inline">\sqrt{6}</span> in Xavier’s initialization</p>
+</section>
+<section id="takeaways" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">5</span> Takeaways</h2>
+<ul>
+<li>Some standard choices for training deep networks: SGD + Nesterov momentum, SGD with Adagrad/RMSProp/Adam</li>
+<li>ReLUs, Leaky ReLUs and MaxOut are the best bets for activation functions</li>
+<li>Batch Normalization layers are here to stay (at least, for now)</li>
+<li>DropOut is an excellent regularizer</li>
+<li>Data Augmentation is a must in vision applications</li>
+<li>Weight Initialization is very important while training a new network</li>
+</ul>
+</section>
+<section id="computer-vision-basics" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="computer-vision-basics"><span class="header-section-number">6</span> Computer Vision Basics</h2>
+<ul>
+<li>We can think of a (grayscale) image as a function <span class="math inline">f: \mathcal{R}^2 \rightarrow \mathcal{R}</span> giving the intensity at position <span class="math inline">(x, y)</span></li>
+<li>A digital image is a discrete (sampled, quantized) version of this function</li>
+<li>As with any function, we can apply operators to an image <br> <img src="CS5480_images/Teams_ewdyHST5WR.png" class="img-fluid"></li>
+</ul>
+<p>Image Processing Operations</p>
+<ul>
+<li>Point the output value at a specific coordinate is dependent only on the input value at that same coordinate.</li>
+<li>Local the output value at a specific coordinate is dependent on the input values in the neighborhood of that same coordinate.</li>
+<li>Global the output value at a specific coordinate is dependent on all the values in the input image. eg ( fourier, wavelet)</li>
+</ul>
+<p>Simple Point Operations: Image Enhancement</p>
+<ul>
+<li>Reversing the contrast new_pixel = max old_pixel + min</li>
+<li>Contrast stretching</li>
+</ul>
+<p>Noise Reduction</p>
+<ul>
+<li>Noise Reduction using 2D Moving Average</li>
+</ul>
+<p>Linear Filtering</p>
+<ul>
+<li>One simple version: linear filtering
+<ul>
+<li>Replace each pixel by a linear combination (a weighted sum) of its neighbors</li>
+</ul></li>
+<li>The prescription for the linear combination is called the “kernel” (or “mask”, “filter”)</li>
+</ul>
+<p>Linear Filtering: Cross correlation</p>
+<ul>
+<li><p>Say the averaging window size is <span class="math inline">2k+1 \times 2k+1</span>:</p>
+<p><span class="math display">G[i,j]=\underbrace{\frac{1}{(2k+1)^{2}}}_{\text{Uniform weight to each pixel} } \times \overbrace{ \sum_{u=-k}^{k}\sum_{v=-k}^{k}F[i+u,j+v]}^{\text{loop over all pixels in neighborhood}} </span></p></li>
+<li><p>Now generalize to allow different weights depending on neighboring pixel’s relative position: <span class="math display">G[i,j]=\sum_{u=-k}^{k}\sum_{v=-k}^{k}\underbrace{H[u,v]}_{\text{Non-uniform weight}} F[i+u,j+v]</span></p></li>
+<li><p>This is called cross correlation , denoted by <span class="math inline">G=H\otimes F</span></p></li>
+<li><p>Filtering an image: replace each pixel with a linear combination of its neighbors</p></li>
+<li><p>Can think of as a “dot product” between local neighborhood and kernel for each pixel</p></li>
+<li><p>The entries of the weight kernel or “mask” H[u,v] are called filter co efficients</p></li>
+</ul>
+</section>
+<section id="linear-filtering-correlation-example" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="linear-filtering-correlation-example"><span class="header-section-number">7</span> Linear Filtering: Correlation Example</h2>
+<ul>
+<li>Convolution operator <span class="math display">G[i,j] =\sum_{u=-k}^{k}\sum_{v=-k}^{k}H[u,v]F[i-u,j-v]</span> and <span class="math inline">H</span> is then called the impulse response function.</li>
+<li>Equivalent to flip the filter in both dimensions (bottom to top, right to left) and apply cross correlation. <span class="math display">G=H*F</span></li>
+</ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="abhiyantaabhishek/IITH-Data-Science" data-repo-id="R_kgDOILoB8A" data-category="Announcements" data-category-id="DIC_kwDOILoB8M4CSJcL" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../Data_Science_Notes/CS5480/2023-01-21-CS5480-week2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning 2</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../Data_Science_Notes/CS5480/2023-02-11-CS5480-week4.html" class="pagination-link">
+        <span class="nav-page-text">Deep Learning 4</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
