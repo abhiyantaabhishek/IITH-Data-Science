@@ -4,35 +4,36 @@
     "items": []
   },
   {
-    "listing": "/Data_Science_Hacks/index.html",
-    "items": [
-      "/Data_Science_Hacks/2022-11-22-sk-learn model search.html"
-    ]
-  },
-  {
     "listing": "/Data_Science_Notes/index.html",
     "items": [
+      "/Data_Science_Notes/CS5480/2023-02-25-CS5480-week5.html",
       "/Data_Science_Notes/CS5480/2023-02-11-CS5480-week4.html",
       "/Data_Science_Notes/CS5480/2023-02-04-CS5480-week3.html",
       "/Data_Science_Notes/CS5480/2023-01-21-CS5480-week2.html",
       "/Data_Science_Notes/CS5480/2023-01-07-CS5480-week1.html",
       "/Data_Science_Notes/CS5590/2022-11-05-CS5590-week9.html",
       "/Data_Science_Notes/CS5590/2022-10-29-CS5590-week8.html",
-      "/Data_Science_Notes/CS5590/2022-10-15-CS5590-week7.html",
       "/Data_Science_Notes/CS6660/2022-10-15-CS6660-week7.html",
+      "/Data_Science_Notes/CS5590/2022-10-15-CS5590-week7.html",
       "/Data_Science_Notes/CS5590/2022-10-08-CS5590-week6.html",
       "/Data_Science_Notes/CS6660/2022-10-01-CS6660-week6.html",
-      "/Data_Science_Notes/CS5590/2022-09-24-CS5590-week5.html",
       "/Data_Science_Notes/CS6660/2022-09-24-CS6660-week5.html",
-      "/Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_2.html",
+      "/Data_Science_Notes/CS5590/2022-09-24-CS5590-week5.html",
       "/Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_1.html",
+      "/Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_2.html",
       "/Data_Science_Notes/CS5590/2022-09-10-CS5590-week4.html",
       "/Data_Science_Notes/CS6660/2022-09-03-CS6660-week3.html",
       "/Data_Science_Notes/CS5590/2022-08-27-CS5590-week3.html",
       "/Data_Science_Notes/CS5590/2022-08-20-CS5590-week2.html",
       "/Data_Science_Notes/CS6660/2022-08-13-CS6660-week2.html",
-      "/Data_Science_Notes/CS5590/2022-08-06-CS5590-week1.html",
-      "/Data_Science_Notes/CS6660/2022-08-06-CS6660-week1.html"
+      "/Data_Science_Notes/CS6660/2022-08-06-CS6660-week1.html",
+      "/Data_Science_Notes/CS5590/2022-08-06-CS5590-week1.html"
+    ]
+  },
+  {
+    "listing": "/Data_Science_Hacks/index.html",
+    "items": [
+      "/Data_Science_Hacks/2022-11-22-sk-learn model search.html"
     ]
   }
 ]

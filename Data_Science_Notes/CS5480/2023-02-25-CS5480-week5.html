@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Abhishek Kumar Dubey">
-<meta name="dcterms.date" content="2022-08-13">
-<meta name="description" content="Mass Function">
+<meta name="dcterms.date" content="2023-02-25">
+<meta name="description" content="History, Perceptrons, Neural Networks and Backpropagation">
 
-<title>Probability Theory 2</title>
+<title>Deep Learning 5</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_1.html" rel="next">
-<link href="../../Data_Science_Notes/CS6660/2022-08-06-CS6660-week1.html" rel="prev">
+<link href="../../Data_Science_Notes/CS5590/2022-08-06-CS5590-week1.html" rel="next">
+<link href="../../Data_Science_Notes/CS5480/2023-02-11-CS5480-week4.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -94,9 +94,11 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Probability Theory 2">
-<meta property="og:description" content="Mass Function">
-<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/CS6660/CS6660_images/2022-08-13-CS6660-week2-preview.jpg">
+<meta property="og:title" content="Deep Learning 5">
+<meta property="og:description" content="History, Perceptrons, Neural Networks and Backpropagation">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/CS5480/CS5480_images/chrome_mmOWWTaZry.png">
+<meta property="og:image:height" content="297">
+<meta property="og:image:width" content="638">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -150,7 +152,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Probability Theory 2</h1>
+      <h1 class="quarto-secondary-nav-title">Deep Learning 5</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -161,14 +163,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Probability Theory 2</h1>
+      <h1 class="title d-none d-lg-block">Deep Learning 5</h1>
                   <div>
         <div class="description">
-          Mass Function
+          History, Perceptrons, Neural Networks and Backpropagation
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Probability Theory</div>
+                <div class="quarto-category">Deep Learning</div>
               </div>
                   </div>
   </div>
@@ -186,7 +188,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 13, 2022</p>
+        <p class="date">February 25, 2023</p>
       </div>
     </div>
     
@@ -209,12 +211,12 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">CS5480</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">CS5480</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Data_Science_Notes/CS5480/2023-01-07-CS5480-week1.html" class="sidebar-item-text sidebar-link">Deep Learning 1</a>
@@ -237,7 +239,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/CS5480/2023-02-25-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
+  <a href="../../Data_Science_Notes/CS5480/2023-02-25-CS5480-week5.html" class="sidebar-item-text sidebar-link active">Deep Learning 5</a>
   </div>
 </li>
       </ul>
@@ -299,12 +301,12 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">CS6660</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">CS6660</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Data_Science_Notes/CS6660/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
@@ -327,7 +329,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/CS6660/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link active">Probability Theory 2</a>
+  <a href="../../Data_Science_Notes/CS6660/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -354,23 +356,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#indicator-random-variable" id="toc-indicator-random-variable" class="nav-link active" data-scroll-target="#indicator-random-variable"><span class="toc-section-number">1</span>  Indicator random variable</a></li>
-  <li><a href="#mass-function" id="toc-mass-function" class="nav-link" data-scroll-target="#mass-function"><span class="toc-section-number">2</span>  Mass function</a></li>
-  <li><a href="#expectation" id="toc-expectation" class="nav-link" data-scroll-target="#expectation"><span class="toc-section-number">3</span>  Expectation</a></li>
-  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance"><span class="toc-section-number">4</span>  Variance</a>
-  <ul>
-  <li><a href="#properties-of-the-variance" id="toc-properties-of-the-variance" class="nav-link" data-scroll-target="#properties-of-the-variance"><span class="toc-section-number">4.1</span>  Properties of the Variance</a></li>
-  </ul></li>
-  <li><a href="#bernoulli-binomial" id="toc-bernoulli-binomial" class="nav-link" data-scroll-target="#bernoulli-binomial"><span class="toc-section-number">5</span>  Bernoulli, Binomial</a>
-  <ul>
-  <li><a href="#binomial-function" id="toc-binomial-function" class="nav-link" data-scroll-target="#binomial-function"><span class="toc-section-number">5.1</span>  Binomial Function</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -378,87 +364,9 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<p>A random variable is a function from a sample space <span class="math inline">\Omega</span> to the real numbers <span class="math inline">\mathbb{R}</span><br> A random variable <span class="math inline">X</span> that can take on finitely or countably infinitely many possible values is called discrete.</p>
-<section id="indicator-random-variable" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="indicator-random-variable"><span class="header-section-number">1</span> Indicator random variable</h2>
-<p><span class="math inline">X=\left\lbrace \begin{array}{ll} 1, &amp; \mathrm{if}\;\mathrm{event}\;E\;\mathrm{occurs}\\ 0, &amp; \mathrm{if}\;\mathrm{event}\;E^c \;\mathrm{occurs} \end{array}\right.</span><br> <span class="math inline">\mathrm{EX}=0\cdot p\left(0\right)+1\cdot p\left(1\right)=P\left\lbrace E\right\rbrace</span><br> <span class="math inline">\mathrm{VarX}={\mathrm{EX}}^2 -{\left(\mathrm{EX}\right)}^2 =\left(1^2 \cdot P\left\lbrace E\right\rbrace +0^2 \cdot P\left\lbrace E^c \right\rbrace \right)-{\left(P\left\lbrace E\right\rbrace \right)}^2 =P\left\lbrace E\right\rbrace \cdot \left(1-P\left\lbrace E\right\rbrace \right)</span><br> <span class="math inline">\mathrm{SD}\;X=\sqrt{P\left\lbrace E\right\rbrace \cdot \left(1-P\left\lbrace E\right\rbrace \right)}</span><br></p>
-</section>
-<section id="mass-function" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="mass-function"><span class="header-section-number">2</span> Mass function</h2>
-<p>Let <span class="math inline">X</span> be a discrete random variable with possible values <span class="math inline">X_1 ,X_2 ,\ldotp \ldotp \ldotp</span> The probability mass function (pmf), or distribution of a random variable tells us the probabilities of these possible values: <br> <span class="math inline">p_X \left(x_i \right)=P\left\lbrace X=x_i \right\rbrace</span> For any discrete random variable <span class="math inline">X</span> <br> <span class="math inline">p\left(X_i \right)\ge 0,</span> and <span class="math inline">\sum_i p\left(X_i \right)=1</span></p>
-</section>
-<section id="expectation" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="expectation"><span class="header-section-number">3</span> Expectation</h2>
-<ul>
-<li>The expection, or mean, or expected value of a discrete random variable <span class="math inline">X</span> is defined as<br> <span class="math inline">EX=\sum_i X_i \cdot p\left(X_i \right)</span>, provided that this sum exists</li>
-<li>Expected value is not necessarily a possible value</li>
-<li>Expected value can be infinity</li>
-<li>Expected value many not exist</li>
-<li><span class="math inline">E\left(\mathrm{aX}+b\right)=a\cdot \mathrm{EX}+b</span><br>
-<ul>
-<li>proof:<br> <span class="math inline">E\left(\mathrm{aX}+b\right)=\sum_i \left(\mathrm{aX}+b\right)\cdot p\left(i\right)=a\sum_i X\cdot p\left(i\right)+b\sum_i p\left(i\right)=a\cdot \mathrm{EX}+b</span></li>
-</ul></li>
-<li><span class="math inline">{\mathrm{EX}}^n =E\left(X^n \right)\not= {\left(\mathrm{EX}\right)}^n</span></li>
-</ul>
-</section>
-<section id="variance" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="variance"><span class="header-section-number">4</span> Variance</h2>
-<p>The variance and the standard deviation of a random variable are defined as <span class="math inline">\mathrm{VarX}:={E\left(X-\mathrm{EX}\right)}^2</span> and <span class="math inline">\mathrm{SDX}:=\sqrt{\;\mathrm{VarX}}</span></p>
-<section id="properties-of-the-variance" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="properties-of-the-variance"><span class="header-section-number">4.1</span> Properties of the Variance</h3>
-<ul>
-<li><p><span class="math inline">\mathrm{VarX}={\mathrm{EX}}^2 -{\left(\mathrm{EX}\right)}^2</span></p>
-<ul>
-<li>proof :<br></li>
-</ul>
-<p><span class="math display">\begin{align*}{}
-  \mathrm{VarX}&amp;:={E\left(X-\mathrm{EX}\right)}^2 \\
-  &amp;=E\left(\left(X^2 -2\cdot X\cdot \mathrm{EX}+{\left(\mathrm{EX}\right)}^2 \right)\right)\\
-  &amp;=E\left(X^2 \right)-E\left(2\cdot X\cdot \mathrm{EX}\right)+{E\left({\left(\mathrm{EX}\right)}^2 \right)}^{\;} \\
-  &amp;=E\left(X^2 \right)-2\cdot \mathrm{EX}\cdot \mathrm{EX}+{\left(\mathrm{EX}\right)}^2 ={E\left({\mathrm{X}}^2 \right)}^{\;} -{\left(\mathrm{EX}\right)}^2
-  \end{align*}</span></p>
-<p><br></p>
-<p>Here <span class="math inline">EX</span> is a constant so can come out of <span class="math inline">E\left(2\cdot X\cdot \mathrm{EX}\right)</span> and it becomes <span class="math inline">2\cdot \mathrm{EX}\cdot \mathrm{EX}</span> also expectation has no effect on <span class="math inline">{E\left({\left(\mathrm{EX}\right)}^2 \right)}^{\;}</span> for the same reason so it becomes <span class="math inline">{\left(\mathrm{EX}\right)}^2</span></p>
-<ul>
-<li>corollary: for any <span class="math inline">X,{\mathrm{EX}}^2 \ge {\left(\mathrm{EX}\right)}^2</span> here equality hold only if <span class="math inline">X=</span>constant a.s. (almost always means probability one)</li>
-</ul></li>
-<li><p><span class="math inline">\mathrm{Var}\left(\mathrm{aX}+b\right)=a^2 \cdot \mathrm{VarX}</span></p>
-<ul>
-<li>proof<br> <span class="math display">\begin{align*}{}
-  \mathrm{Var}\left(\mathrm{aX}+b\right)&amp;={E\left(\mathrm{aX}+b\right)}^2 -{\left(E\left(\mathrm{aX}+b\right)\right)}^2 \\
-  &amp;=E\left(a^2 X^2 +2\mathrm{abX}+b^2 \right)-{\left(\mathrm{aEX}+b\right)}^2 \\
-  &amp;=a^2 {\cdot \mathrm{EX}}^2 +2\mathrm{ab}\cdot \mathrm{EX}+b^2 -a^2 \cdot {\left(\mathrm{EX}\right)}^2 -2\mathrm{ab}\cdot \mathrm{EX}-b^2 \\
-  &amp;=a^2 \left({\mathrm{EX}}^2 -{\left(\mathrm{EX}\right)}^2 \right)=a^2 \mathrm{VarX}
-  \end{align*}</span></li>
-</ul></li>
-<li><p><span class="math inline">\mathrm{Var}\left(X+b\right)=\mathrm{VarX}=\mathrm{Var}\left(-X\right)</span></p></li>
-</ul>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><span class="math inline">\mathrm{VarX}={\mathrm{EX}}^2 -{\left(\mathrm{EX}\right)}^2</span><br><span class="math inline">\mathrm{Var}\left(\mathrm{aX}+b\right)=a^2 \cdot \mathrm{VarX}</span><br><span class="math inline">\mathrm{Var}\left(X+b\right)=\mathrm{VarX}=\mathrm{Var}\left(-X\right)</span></p>
-</div>
-</div>
-</section>
-</section>
-<section id="bernoulli-binomial" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="bernoulli-binomial"><span class="header-section-number">5</span> Bernoulli, Binomial</h2>
-<p>Suppose that <span class="math inline">n</span> independent trails are performed, each succeeding with probability <span class="math inline">p</span>. Let <span class="math inline">X</span> count the number of success within the <span class="math inline">n</span> trails. Then <span class="math inline">X</span> has the Binomial distribution with parameters <span class="math inline">n</span> and <span class="math inline">p</span> of, in short <span class="math inline">X~\mathrm{Binom}\left(n,p\right)</span></p>
-<section id="binomial-function" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="binomial-function"><span class="header-section-number">5.1</span> Binomial Function</h3>
-<p><span class="math inline">p\left(i\right)=P\left\lbrace X=i\right\rbrace = {n \choose i} p^i {\left(1-p\right)}^{n-i} ,\;\;\;\;i=0,1,\ldotp \ldotp \ldotp \ldotp ,n</span><br> <span class="math inline">\mathrm{EX}=\mathrm{np},</span> and <span class="math inline">\mathrm{VarX}=\mathrm{np}\left(1-p\right)</span></p>
-<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Subruk, IIT Hyderabad }}}}</span></p>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -598,13 +506,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Data_Science_Notes/CS6660/2022-08-06-CS6660-week1.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Probability Theory 1</span>
+      <a href="../../Data_Science_Notes/CS5480/2023-02-11-CS5480-week4.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning 4</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_1.html" class="pagination-link">
-        <span class="nav-page-text">Probability Theory 3</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Data_Science_Notes/CS5590/2022-08-06-CS5590-week1.html" class="pagination-link">
+        <span class="nav-page-text">Machine Learning 1</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
