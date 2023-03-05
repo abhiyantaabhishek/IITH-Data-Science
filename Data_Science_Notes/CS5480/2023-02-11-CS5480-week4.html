@@ -8,7 +8,7 @@
 
 <meta name="author" content="Abhishek Kumar Dubey">
 <meta name="dcterms.date" content="2023-02-11">
-<meta name="description" content="History, Perceptrons, Neural Networks and Backpropagation">
+<meta name="description" content="Filtering, correlation and convolution.">
 
 <title>Deep Learning 4</title>
 <style>
@@ -33,7 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Data_Science_Notes/CS5480/2023-02-25-CS5480-week5.html" rel="next">
+<link href="../../Data_Science_Notes/CS5480/2023-03-04-CS5480-week5.html" rel="next">
 <link href="../../Data_Science_Notes/CS5480/2023-02-04-CS5480-week3.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -95,10 +95,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Deep Learning 4">
-<meta property="og:description" content="History, Perceptrons, Neural Networks and Backpropagation">
-<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/CS5480/CS5480_images/chrome_mmOWWTaZry.png">
-<meta property="og:image:height" content="297">
-<meta property="og:image:width" content="638">
+<meta property="og:description" content="Filtering, correlation and convolution.">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/CS5480/CS5480_images/Acrobat_fJKIgb7Ffx.png">
+<meta property="og:image:height" content="282">
+<meta property="og:image:width" content="628">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -166,7 +166,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <h1 class="title d-none d-lg-block">Deep Learning 4</h1>
                   <div>
         <div class="description">
-          History, Perceptrons, Neural Networks and Backpropagation
+          Filtering, correlation and convolution.
         </div>
       </div>
                           <div class="quarto-categories">
@@ -239,7 +239,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/CS5480/2023-02-25-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
+  <a href="../../Data_Science_Notes/CS5480/2023-03-04-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
   </div>
 </li>
       </ul>
@@ -707,7 +707,87 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <ul>
 <li>Use Taylor expansion to locally approximate <span class="math inline">D(x,y, \sigma )</span> (i.e., DoG function) and estimate <span class="math inline">\Delta X</span> <span class="math display">D(\Delta X)=D(X_{i})+{\frac{\partial D^{T}(X_{i})}{\partial X}}\Delta X+{\frac{1}{2}}\Delta X^{T}\,{\frac{\partial^2 D(X_{i})}{\partial X^2}}\Delta X</span></li>
 <li>Find the extrema of <span class="math inline">D( \Delta X)</span>: <span class="math display">\frac{\partial D(X_{i})}{\partial X}+\frac{\partial ^{2}D(X_{i})}{\partial X^{2}}\Delta X=0</span> From above we get <span class="math display">\Delta X=-\frac{\displaystyle{\partial}^{2}D^{-1}(X_{i})}{\displaystyle{\partial}X^{2}}\frac{\partial D(X_{i})}{\displaystyle{\partial}X}</span></li>
-<li><span class="math inline">\Delta X</span> can be computed by solving a 3x3 linear system</li>
+<li><span class="math inline">\Delta X</span> can be computed by solving a 3x3 linear system <span class="math display">\displaystyle
+\begin{bmatrix}
+  \displaystyle\frac{\partial^2 D}{\partial \sigma^2} &amp;\displaystyle \frac{\partial^2 D}{\partial \sigma y} &amp;\displaystyle \frac{\partial^2 D}{\partial \sigma x}\\
+  \displaystyle\frac{\partial^2 D}{\partial \sigma y} &amp;\displaystyle \frac{\partial^2 D}{\partial  y^2} &amp;\displaystyle \frac{\partial^2 D}{y x} \\
+  \displaystyle\frac{\partial^2 D}{\partial \sigma x} &amp;\displaystyle \frac{\partial^2 D}{\partial  yx} &amp;\displaystyle \frac{\partial^2 D}{ \partial x^2}
+\end{bmatrix}
+\begin{bmatrix}
+  \Delta \sigma\\
+  \Delta y\\
+  \Delta x\\
+\end{bmatrix}=-
+\begin{bmatrix}
+\displaystyle \frac{\partial D}{ \partial \sigma} \\
+\displaystyle \frac{\partial D}{ \partial y}  \\
+\displaystyle \frac{\partial D}{ \partial x}
+\end{bmatrix}
+</span> where <span class="math display">\begin{align*}
+  {\frac{\partial D}{\partial\sigma}}&amp;={\frac{D_{k+1}^{i,j}-D_{k-1}^{i,j}}{2}}\\
+  \frac{{\partial}^{2}D}{{\partial}\sigma^{2}}&amp;=\frac{D_{k-1}^{i,j}-2D_{k}^{i,j}+D_{k+1}^{i,j}}{1}\\
+  \frac{\partial^{2}D}{\partial\sigma y}\!&amp;=\!\frac{({D}_{k+1}^{i+1,j}-{D}_{k-1}^{i+1,j})\!-\!({D}_{k+1}^{i-1,j}-{D}_{k-1}^{i-1,j})}{4}\\
+\end{align*}</span> if <span class="math inline">\Delta X&gt;0.5</span> in any dimension, repeat.</li>
+<li>Next, reject the low contrast points and the points that lie on the edge</li>
+<li>Low contrast points elimination:
+<ul>
+<li>if <span class="math inline">|D(X_{i}+\Delta X)|&lt;0.03</span> reject keypoint.
+<ul>
+<li>assumes that image values have been normalized in <span class="math inline">[0,1]</span></li>
+</ul></li>
+</ul></li>
+<li>Edge elimination
+<ul>
+<li><p>Similar to Harris corner detector!</p></li>
+<li><p>SIFT instead uses Hessian <span class="math display">\mathbf{H}={\left[\begin{array}{l l}{D_{x x}}&amp;{D_{x y}}\\ {D_{x y}}&amp;{D_{y y}}\end{array}\right]}</span> <span class="math display">\begin{align*}
+  \operatorname{Tr}(\mathbf{H})&amp;=D_{x x}+D_{y y}=\alpha+\beta,\\
+  \operatorname{Det}({\bf H})&amp;=D_{x x}D_{y y}-(D_{x y})^{2}=\alpha\beta.
+\end{align*}</span> Hence <span class="math display">{\frac{\operatorname{Tr}(\mathbf{H})^{2}}{\operatorname{Det}(\mathbf{H})}}={\frac{(\alpha+\beta)^{2}}{\alpha\beta}}={\frac{(r\beta+\beta)^{2}}{r\beta^{2}}}={\frac{(r+1)^{2}}{r}},</span> Reject key point if <span class="math display">\frac{\mathrm{Tr}({\bf H})^{2}}{\mathrm{Det}({\bf H})}&lt;\frac{(r+1)^{2}}{r}</span> (SIFT uses <span class="math inline">r = 10</span>) (<span class="math inline">r=\frac{\alpha}{\beta}</span>)</p>
+<p><img src="CS5480_images/Acrobat_xIzbcVfEtJ.png" class="img-fluid"></p></li>
+</ul></li>
+</ul>
+<p>SIFT: Orientation Assignment</p>
+<ul>
+<li><p>Use scale of point to choose correct image: <span class="math display">L(x,y)=G(x,y,\sigma)*I(x,y)</span></p></li>
+<li><p>Compute gradient magnitude and orientation using finite differences: <span class="math display">\begin{align*}
+  m\bigl(x,y\bigr)&amp;=\sqrt{\bigl(L(x+1,y)-L\bigl(x-1,y\bigr)\bigr)^{2}+\bigl(L(x,y+1)-L\bigl(x,y-1\bigr)\bigr)^{2}}\\
+  \theta(x,y)&amp;=\tan^{-1}\left(\frac{\left(L(x,y+1)-L(x,y-1)\right)}{\left(L(x+1,_{,}y)-L(x-1,_{,}y)\right)}\right)
+\end{align*}</span></p></li>
+<li><p>Use this to compute final descriptor.</p></li>
+<li><p>Create histogram of gradient directions, within a region around the keypoint, at selected scale: <span class="math display">L(x,y,\sigma)=G(x,y,\sigma){*}\,J(x,y)</span> and <span class="math display">m(x,y)={\sqrt{(L(x+1,y)-L(x-1,y))^{2}+(L(x,y+1)-L(x,y-1))^{2}}}</span> and <span class="math display">\theta(x,y)=a\tan2{\big(}(L(x,y+1)-L(x,y-1){\big)}/(L(x+1,y)-L(x-1,y){\big)})</span></p>
+<p><img src="CS5480_images/Acrobat_MThJ0iJaj2.png" class="img-fluid"></p></li>
+<li><p>Histogram entries are weighted by <span class="math inline">( i )</span> gradient magnitude and <span class="math inline">(ii)</span> a Gaussian function with <span class="math inline">\sigma</span> equal to <span class="math inline">1.5</span> times the scale of the keypoint</p></li>
+</ul>
+<p>SIFT: Feature descriptor</p>
+<ul>
+<li><p>Compute the gradient at each pixel in a <span class="math inline">16 \times 16</span> window around the detected keypoint, using the appropriate level of the Gaussian pyramid at which the keypoint was detected.</p></li>
+<li><p>Downweight gradients by a Gaussian fall off function (blue circle) to reduce the influence of gradients far from the center.</p></li>
+<li><p>In each 4 x 4 quadrant, compute a gradient orientation histogram using 8 orientation histogram bins.</p>
+<p><img src="CS5480_images/Acrobat_LVo3Y4bw6c.png" class="img-fluid"></p></li>
+<li><p>The resulting 128 nonnegative values form a raw version of the SIFT descriptor vector.</p></li>
+<li><p>To reduce the effects of contrast or gain (additive variations arealready removed by the gradient), the 128 D vector is normalized tounit length.</p></li>
+<li><p>Great engineering effort!</p></li>
+<li><p>Extraordinarily robust matching technique</p>
+<ul>
+<li>Changes in viewpoint: up to about 60 degree out of plane rotation</li>
+<li>Changes in illumination: sometimes even day vs.&nbsp;night</li>
+<li>Fast and efficientcan run in real time</li>
+<li>Lots of code available<br><br></li>
+</ul></li>
+</ul>
+<p>Review</p>
+<p><img src="CS5480_images/Acrobat_ts4bKZdd8E.png" class="img-fluid"></p>
+<p>SURF = Speeded Up Robust Features</p>
+<ul>
+<li>Uses box filters instead of Gaussians to approximate Laplacians</li>
+<li>Uses wavelets to get keypoint orientations</li>
+<li>Few more changes (including indescriptor generation)</li>
+<li>Leads to 3x speedup over SIFT</li>
+</ul>
+<p>More on image features: LBP Computer Vision</p>
+<ul>
+<li><p>LBP = Local Binary Patterns</p>
+<p><img src="CS5480_images/Acrobat_gVW7Ns7tmi.png" class="img-fluid"></p></li>
 </ul>
 <p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
@@ -857,7 +937,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Data_Science_Notes/CS5480/2023-02-25-CS5480-week5.html" class="pagination-link">
+      <a href="../../Data_Science_Notes/CS5480/2023-03-04-CS5480-week5.html" class="pagination-link">
         <span class="nav-page-text">Deep Learning 5</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

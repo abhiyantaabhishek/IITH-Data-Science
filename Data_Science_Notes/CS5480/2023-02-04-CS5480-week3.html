@@ -8,7 +8,7 @@
 
 <meta name="author" content="Abhishek Kumar Dubey">
 <meta name="dcterms.date" content="2023-02-04">
-<meta name="description" content="History, Perceptrons, Neural Networks and Backpropagation">
+<meta name="description" content="Regularization and Generalization.">
 
 <title>Deep Learning 3</title>
 <style>
@@ -95,10 +95,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Deep Learning 3">
-<meta property="og:description" content="History, Perceptrons, Neural Networks and Backpropagation">
-<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/CS5480/CS5480_images/chrome_mmOWWTaZry.png">
-<meta property="og:image:height" content="297">
-<meta property="og:image:width" content="638">
+<meta property="og:description" content="Regularization and Generalization.">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/CS5480/CS5480_images/Teams_fVDfgzhc3E.png">
+<meta property="og:image:height" content="420">
+<meta property="og:image:width" content="750">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -166,7 +166,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <h1 class="title d-none d-lg-block">Deep Learning 3</h1>
                   <div>
         <div class="description">
-          History, Perceptrons, Neural Networks and Backpropagation
+          Regularization and Generalization.
         </div>
       </div>
                           <div class="quarto-categories">
@@ -239,7 +239,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/CS5480/2023-02-25-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
+  <a href="../../Data_Science_Notes/CS5480/2023-03-04-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
   </div>
 </li>
       </ul>
@@ -388,7 +388,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<p>why first derivate why not second</p>
+<p>why do we go for first derivative in gradient descent why not second derivative</p>
 <p>second derive is called hassian matrix</p>
 <p>why not use Hassian instead of jaccobian</p>
 <p>because it is expensive to compute, also it was proved that SGD works better than this,</p>
@@ -400,7 +400,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><p>Generalization, In general optimization we do not focus on generalization.</p></li>
 <li><p>In DL we are interested in the data which will come, not in the data which is already there. In DL we are interested in the generalization error</p></li>
 <li><p>In mainstream optimization, minimizing J is itself the goal; whereas in deep learning, minimizing J so as to minimize a generalizable out-of-sample performance measure is the goal</p></li>
-<li><p>Empirical Risk Minimization (ERM): <span class="math display">|\mathrm{\tilde{s}_{x,y}\!\!\!\!/}\!\!\rangle\!\!\langle\langle\theta;{\bf x},y\rangle\!\rangle=\frac{1}{m}\sum_{i=1}^{m}J\!\left(\theta;{\bf x}_{i},y_{i}\right)</span></p></li>
+<li><p>Empirical Risk Minimization (ERM): <span class="math display">\mathbb{E}_{\mathbf{x,y}\approx{\widehat{p}}_{d a t a}(\mathbf{x,y})}(J(\theta;\mathbf{x},y))={\frac{1}{m}}\sum_{i=1}^{m}J(\theta;\mathbf{x}_{i},y_{i})</span></p></li>
 <li><p>However, ERM can lead to overfitting. Avoiding overfitting is regularization.</p></li>
 </ul>
 </section>
@@ -452,18 +452,21 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><p>Here we are randomly dropping so that no neuron becomes specific to a task, but it learns to do all the task.</p></li>
 <li><p>DropConnect: An Extension<br> <img src="CS5480_images//Teams_81Mmd1u1CF.png" class="img-fluid"></p></li>
 </ul>
-<p>Using noise is another form of regularization; has shown some impressive results recently. Could be: - Data Noise</p>
-<pre><code>- Has been there for a while: add noise to data while training
-- Minimization of sum-of-squares error with zero-mean gaussian noise(added to training data) is equivalent to minimization of sum-of-squares error without noise with an added regularized term
-- Very similar to data augmentation that we will see later</code></pre>
+<p>Using noise is another form of regularization; has shown some impressive results recently. Could be:</p>
 <ul>
-<li>Label Noise</li>
-<li>Gradient Noise</li>
-<li>Regularization through Label Noise
+<li><p>Data Noise</p>
+<ul>
+<li>Has been there for a while: add noise to data while training</li>
+<li>Minimization of sum-of-squares error with zero-mean gaussian noise(added to training data) is equivalent to minimization of sum-of-squares error without noise with an added regularized term</li>
+<li>Very similar to data augmentation that we will see later</li>
+</ul></li>
+<li><p>Label Noise</p></li>
+<li><p>Gradient Noise</p></li>
+<li><p>Regularization through Label Noise</p>
 <ul>
 <li>Disturb each training sample with the probability</li>
 </ul></li>
-<li>Regularization through Gradient Noise
+<li><p>Regularization through Gradient Noise</p>
 <ul>
 <li><p>Simple idea: add noise to gradient <span class="math display">g_{t}  \leftarrow g_{t} +\mathcal{N}(0,\sigma_{t}^{2})</span></p></li>
 <li><p>Annealed Gaussian noise by decaying the variance <span class="math display">\sigma_{t}^{2}\,=\,\frac{\eta}{(1\,+\,t)^{\gamma}}</span></p></li>
@@ -590,7 +593,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   &amp;= \sum_i  \mathrm{Var}(w_i)\mathrm{Var}(x_i) \\
   &amp;= n\times \mathrm{Var}(w_i)\mathrm{Var}(x_i)
 \end{align*}</span></p>
-<p>Now from above equation, if we want <span class="math inline">\mathrm{Var}(Y)</span> to be equal to <span class="math inline">\mathrm{Var}(x_i)</span> then $ (w_i)$ should be equal to <span class="math inline">\frac{1}{n}</span>, here <span class="math inline">n</span> is fan in, similarly we can get something similar when can consider from backprop prospective and we get <span class="math inline">\frac{1}{n}</span>, here <span class="math inline">n</span> is fan out, Putting the two together we want <span class="math display">\mathrm{Var}(w_i) = \frac{2}{{\mathrm{fan}_{\mathrm{in}}+\mathrm{fan}_{\mathrm{out}}}}</span> Which happens to be Caffe weight initialization method.</p>
+<p>Now from above equation, if we want <span class="math inline">\mathrm{Var}(Y)</span> to be equal to <span class="math inline">\mathrm{Var}(x_i)</span> then <span class="math inline">\mathrm{Var}(w_i)</span> should be equal to <span class="math inline">\frac{1}{n}</span>, here <span class="math inline">n</span> is fan in, similarly we can get something similar when can consider from backprop prospective and we get <span class="math inline">\frac{1}{n}</span>, here <span class="math inline">n</span> is fan out, Putting the two together we want <span class="math display">\mathrm{Var}(w_i) = \frac{2}{{\mathrm{fan}_{\mathrm{in}}+\mathrm{fan}_{\mathrm{out}}}}</span> Which happens to be Caffe weight initialization method.</p>
 <p>Now if we consider uniform distribution to be in range of <span class="math inline">[-\theta, \theta]</span> then <br> <span class="math display">\mathrm{Var} = \frac{(\theta-(-\theta))^2}{12} = \frac{\theta^2}{3}</span> This is the term which introduces <span class="math inline">\sqrt{6}</span> in Xavier’s initialization</p>
 </section>
 <section id="takeaways" class="level2" data-number="5">

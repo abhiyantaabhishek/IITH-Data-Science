@@ -8,7 +8,7 @@
 
 <meta name="author" content="Abhishek Kumar Dubey">
 <meta name="dcterms.date" content="2023-01-21">
-<meta name="description" content="History, Perceptrons, Neural Networks and Backpropagation">
+<meta name="description" content="Optimizers and activation functions">
 
 <title>Deep Learning 2</title>
 <style>
@@ -177,10 +177,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Deep Learning 2">
-<meta property="og:description" content="History, Perceptrons, Neural Networks and Backpropagation">
-<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/CS5480/CS5480_images/chrome_mmOWWTaZry.png">
-<meta property="og:image:height" content="297">
-<meta property="og:image:width" content="638">
+<meta property="og:description" content="Optimizers and activation functions">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/CS5480/CS5480_images/Acrobat_2OJYOHomOb.png">
+<meta property="og:image:height" content="208">
+<meta property="og:image:width" content="222">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -248,7 +248,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <h1 class="title d-none d-lg-block">Deep Learning 2</h1>
                   <div>
         <div class="description">
-          History, Perceptrons, Neural Networks and Backpropagation
+          Optimizers and activation functions
         </div>
       </div>
                           <div class="quarto-categories">
@@ -321,7 +321,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/CS5480/2023-02-25-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
+  <a href="../../Data_Science_Notes/CS5480/2023-03-04-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
   </div>
 </li>
       </ul>
@@ -501,7 +501,10 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The neural network with more than one layer has cost function which is almost always non convex, even if there is no activation function on any layer, it may sound non intuitive at first but it will become clear as we explore on this topic.</p>
+<p>The neural network with more than one layer is almost always non convex, even if there is no activation function on any layer</p>
+<div class="alert alert-dismissible alert-info">
+<p>Consider a neural network with some hidden layer producing some output.Now if we permute the neurons of the hidden layer the output will still remain the same.It means for many possible coordinates there are only one output. Now if we plot hidden layer coordinates with respect to the output, we can see that the graph will not look like a linear function.</p>
+</div>
 </div>
 </div></li>
 </ul>
