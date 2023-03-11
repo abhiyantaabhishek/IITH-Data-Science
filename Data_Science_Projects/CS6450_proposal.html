@@ -14,7 +14,7 @@
   <meta name="generator" content="quarto-1.2.335">
 
   <meta name="author" content="Abhishek Kumar Dubey">
-  <title>Point Cloud Based 3D Object Detection</title>
+  <title>Point cloud based 3d object detection</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -335,16 +335,16 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="Point Cloud Based 3D Object Detection">
+<meta property="og:title" content="Point cloud based 3d object detection">
 <meta property="og:description" content="VoxelNet- End-to-End Learning">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="images/imageMain.gif" data-background-opacity="0.3" class="quarto-title-block center">
-  <h1 class="title">Point Cloud Based 3D Object Detection</h1>
-  <p class="subtitle">VoxelNet End-to-End Learning</p>
+<section id="title-slide" data-background-image="images/heading.png" data-background-opacity="0.6" data-background-size="contain" class="quarto-title-block center">
+  <h1 class="title">Point cloud based 3d object detection</h1>
+  <p class="subtitle">Y. Zhou and O. Tuzel,Voxelnet End-to-end learning IEEE Conference on CVPR , pp.&nbsp;4490-4499, 2018.</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -354,9 +354,9 @@ Abhishek Kumar Dubey
 </div>
 </div>
 
-  <p class="date">3/5/23</p>
+  <p class="date">3/12/23</p>
 </section>
-<section id="motivation" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="motivation" class="slide level2">
 <h2>Motivation</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -383,7 +383,7 @@ Use LiDAR : Compared to image based detection, LiDAR provides reliable depth inf
 </div>
 </div>
 </section>
-<section id="problem-statement" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="problem-statement" class="slide level2">
 <h2>Problem Statement</h2>
 <ul>
 <li><p align="justify">
@@ -400,7 +400,7 @@ Develop an accurate, efficient, and robust model that can generalize to new envi
 </p></li>
 </ul>
 </section>
-<section id="challenges" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="challenges" class="slide level2">
 <h2>Challenges</h2>
 <ul>
 <li><p align="justify">
@@ -420,7 +420,7 @@ Addressing the sparsity and variability of LiDAR point clouds is a key challenge
 </p></li>
 </ul>
 </section>
-<section id="existing-methods-and-limitations" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="existing-methods-and-limitations" class="slide level2">
 <h2>Existing methods and Limitations</h2>
 <ul>
 <li><p align="justify">
@@ -434,7 +434,7 @@ Another method for 3D object detection from LiDAR point clouds involves converti
 </p></li>
 </ul>
 <aside></aside></section>
-<section id="voxelnet-introduction" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="voxelnet-introduction" class="slide level2">
 <h2>VoxelNet Introduction</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
@@ -451,7 +451,7 @@ VoxelNet directly operates on the raw point cloud.
 </div>
 </div>
 </section>
-<section id="voxelnet-architecture" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="voxelnet-architecture" class="slide level2">
 <h2>VoxelNet Architecture</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
@@ -466,7 +466,7 @@ VoxelNet directly operates on the raw point cloud.
 </div>
 </div>
 </section>
-<section id="feature-learning-network" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="feature-learning-network" class="slide level2">
 <h2>Feature Learning Network</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
@@ -481,7 +481,7 @@ VoxelNet directly operates on the raw point cloud.
 </div>
 </div>
 </section>
-<section id="section" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="section" class="slide level2">
 <h2></h2>
 <p>Feature Learning Network cont …</p>
 <h3 id="random-sampling" class="anchored">Random Sampling</h3>
@@ -496,7 +496,7 @@ VoxelNet directly operates on the raw point cloud.
 </ul></li>
 </ul>
 </section>
-<section id="section-1" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="section-1" class="slide level2">
 <h2></h2>
 <p>Feature Learning Network cont …</p>
 <h3 id="stacked-voxel-feature-encoding" class="anchored">Stacked Voxel Feature Encoding</h3>
@@ -507,7 +507,7 @@ VoxelNet directly operates on the raw point cloud.
 <li>Next Next, each <span class="math inline">\(\hat {\bf p}_i\)</span> is transformed through the fully connected network (FCN) into a feature space.</li>
 </ul>
 </section>
-<section id="section-2" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="section-2" class="slide level2">
 <h2></h2>
 <p>Feature Learning Network. VFE cont …</p>
 <div class="columns">
@@ -522,7 +522,7 @@ VoxelNet directly operates on the raw point cloud.
 </div>
 </div>
 </section>
-<section id="section-3" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="section-3" class="slide level2">
 <h2></h2>
 <p>Feature Learning Network. VFE cont …</p>
 <ul>
@@ -533,14 +533,14 @@ VoxelNet directly operates on the raw point cloud.
 <li>Voxel features, uniquely associated with their spatial coordinates, are obtained by <strong>processing only non-empty voxels</strong>, resulting in a sparse 4D tensor representation.</li>
 </ul>
 </section>
-<section id="convolutional-middle-layers" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="convolutional-middle-layers" class="slide level2">
 <h2>Convolutional Middle Layers</h2>
 <ul>
 <li>Each convolutional middle layer applies 3D convolution, BN layer, and ReLU layer sequentially.</li>
 <li>The convolutional middle layers aggregate voxel-wise features within a <strong>progressively expanding receptive field, adding more context to the shape description</strong></li>
 </ul>
 </section>
-<section id="region-proposal-network" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="region-proposal-network" class="slide level2">
 <h2>Region Proposal Network</h2>
 <ul>
 <li>RPN is combined with the feature learning network and convolutional middle layers to form an <strong>end-to-end trainable pipeline</strong>. <img data-src="images/Acrobat_gayrjAQFrA.png"></li>
@@ -549,7 +549,7 @@ VoxelNet directly operates on the raw point cloud.
 <li>The output of each block is upsampled to a fixed size and concatenated to construct a high-resolution feature map.</li>
 </ul>
 </section>
-<section id="loss-function" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="loss-function" class="slide level2">
 <h2>Loss Function</h2>
 <ul>
 <li>3D ground truth box is parameterized as <span class="math inline">\((x_{c}^{g},y_{c}^{g},z_{c}^{g},l^{g},w^{g},h^{g},\theta^{g}),\)</span> where <span class="math inline">\(x_{c}^{g},y_{c}^{g},z_{c}^{g}\)</span> represent the center location, <span class="math inline">\(l^{g},w^{g},h^{g}\)</span> are length, width, height of the box,<span class="math inline">\({\theta}^{g}\)</span> is the yaw rotation.</li>
@@ -560,7 +560,7 @@ VoxelNet directly operates on the raw point cloud.
 \end{align*}\]</span> Where <span class="math inline">\(\;d^{a}\,=\,\sqrt{(l^{a})^{2}+(w^{a})^{2}}\)</span></li>
 </ul>
 </section>
-<section id="section-4" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="section-4" class="slide level2">
 <h2></h2>
 <p>Loss Function cont …</p>
 <ul>
@@ -573,7 +573,7 @@ VoxelNet directly operates on the raw point cloud.
 <li><span class="math inline">\(\mathbf{u}_{i}\ \in\ \mathbb{R}^{7}\)</span> and <span class="math inline">\(\mathbf{u}_{i}^{*}\ \in\ \mathbb{R}^{7}\)</span> are the regression output and ground truth for positive anchor <span class="math inline">\(a_{i}^{\mathrm{pos}}\)</span></li>
 </ul>
 </section>
-<section id="network-details" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="network-details" class="slide level2">
 <h2>Network Details</h2>
 <h3 id="car-detection" class="anchored">Car Detection</h3>
 <ul>
@@ -586,7 +586,7 @@ VoxelNet directly operates on the raw point cloud.
 <li>Thus the feature learning net generates a sparse tensor of shape <span class="math inline">\(128\times10\times400\times352\)</span></li>
 </ul>
 </section>
-<section id="section-5" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="section-5" class="slide level2">
 <h2></h2>
 <p>Network Details, Car Detection cont …</p>
 <ul>
@@ -599,7 +599,7 @@ VoxelNet directly operates on the raw point cloud.
 <li>Set <span class="math inline">\(\alpha=1.5\)</span> and <span class="math inline">\(\beta=1\)</span> in equation <span class="math inline">\((2)\)</span></li>
 </ul>
 </section>
-<section id="training" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="training" class="slide level2">
 <h2>Training</h2>
 <ul>
 <li>A similar network with different parameters, was used for Pedestrian and Cyclist Detection
@@ -614,7 +614,7 @@ VoxelNet directly operates on the raw point cloud.
 </ul></li>
 </ul>
 </section>
-<section id="experiments" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="experiments" class="slide level2">
 <h2>Experiments</h2>
 <ul>
 <li>VoxelNet evaluated on KITTI 3D object detection benchmark</li>
@@ -627,23 +627,40 @@ VoxelNet directly operates on the raw point cloud.
 <li>HC-baseline uses the bird’s eye view features described in Multi-view 3d object detection network for autonomous driving<a href="#/footnotes" class="footnote-ref" id="fnref5" role="doc-noteref" data-footnote-href="#/fn5" onclick=""><sup>5</sup></a> which are computed at 0.1 m resolution.</li>
 </ul>
 <aside></aside></section>
-<section id="section-6" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <p>Experiments cont …</p>
 <ul>
 <li>Performance comparison in 3D detection: average precision (in %) on KITTI validation set.<br><br> <img data-src="images/Acrobat_AnoimWdvne.png"></li>
 </ul>
 </section>
-<section id="section-7" class="slide level2" data-background-image="images/imageMain.gif" data-background-opacity="0.1">
+<section id="section-7" class="slide level2">
 <h2></h2>
 <p>Experiments cont …</p>
 <ul>
 <li>Qualitative results. For better visualization 3D boxes detected using LiDAR are projected on to the RGB images..<br><br> <img data-src="images/Acrobat_PZ46SvlMD0.png"></li>
 </ul>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<ul>
+<li>Existing LiDAR-based 3D detection methods rely on hand-crafted features</li>
+<li>VoxelNet proposes an end-to-end trainable deep architecture for point cloud-based 3D detection</li>
+<li>VoxelNet can operate directly on sparse 3D points and efficiently capture 3D shape information</li>
+<li>VoxelNet outperforms state-of-the-art LiDAR-based 3D detection methods on the KITTI car detection task</li>
+</ul>
+</section>
+<section id="novelty" class="slide level2">
+<h2>Novelty</h2>
+<ul>
+<li>Extend VoxelNet for joint LiDAR and image-based end-to-end 3D detection.</li>
+<li>According to author “Note that, after concatenation operations in VFE, we reset the features corresponding to empty points to zero such that they do not affect the computed voxel features”, it can be set to zero even before feeding to VFE, it may help network learn better.</li>
+<li>Previous time frames can be taken into account improve the detection.</li>
+</ul>
 
-<p><img src="images/logo.png" class="slide-logo"></p>
-<div class="footer footer-default">
-<p>vehicle Detection</p>
+
+<img src="images/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<p>IIT Hyderabad</p>
 </div>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document smaller scrollable" role="doc-endnotes"><h2>Footnotes</h2>
