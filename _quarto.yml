@@ -22,7 +22,9 @@ website:
       - text: "{{< fa book-open-reader >}} Data Science Notes"
         file: Data_Science_Notes/index.qmd
       - text: "{{< fa user-ninja >}} Data Science Hacks"
-        file: Data_Science_Hacks/index.qmd     
+        file: Data_Science_Hacks/index.qmd    
+      - text: "{{< fa file-powerpoint >}} Data Science Projects"
+        file: Data_Science_Projects/index.qmd           
       - href: about.qmd
         text: "{{< fa address-card >}} About"                         
     right:             
@@ -38,7 +40,11 @@ website:
     - id: Data_Science_Notes
       collapse-level: 1
       contents:
-        - auto: "Data_Science_Notes/"                   
+        - auto: "Data_Science_Notes/"  
+    - id: Data_Science_Projects
+      collapse-level: 1
+      contents:
+        - auto: "Data_Science_Projects/"                          
        
   page-navigation: true
   page-footer: 
