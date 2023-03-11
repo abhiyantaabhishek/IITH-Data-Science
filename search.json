@@ -102,7 +102,7 @@
     "href": "Data_Science_Projects/CS6450_proposal.html#existing-methods-and-limitations",
     "title": "Point cloud based 3d object detection",
     "section": "Existing methods and Limitations",
-    "text": "Existing methods and Limitations\n\n\nUse pseudo Lidar instead of original Lidar and create the point cloud from the RGB image.However, these kind of method does not perform well, Because extracting point cloud from 2D images are not efficient. There are no depth information present in the 2D image.1\n\n\nSome approaches to 3D object detection from LiDAR point clouds convert the point cloud data into a 2D image-like format, and then use techniques typically used for analyzing images to identify and classify objects.2 3\n\n\nAnother method for 3D object detection from LiDAR point clouds involves converting the point cloud data into a 3D grid of small cubes (called voxels), and then manually designing features to represent the objects within each voxel.4"
+    "text": "Existing methods and Limitations\n\n\nUse pseudo Lidar instead of original Lidar and create the point cloud from the RGB image.However, these kind of method does not perform well, Because extracting point cloud from 2D images are not efficient. There are no depth information present in the 2D image.1\n\n\nSome methods for 3D object detection from LiDAR point clouds converts the point cloud data into a 2D image-like format, and then use techniques typically used for analyzing images to identify and classify objects.2 3\n\n\nAnother method for 3D object detection from LiDAR point clouds involves converting the point cloud data into a 3D grid of small cubes (called voxels), and then manually designing features to represent the objects within each voxel.4"
   },
   {
     "objectID": "Data_Science_Projects/CS6450_proposal.html#voxelnet-introduction",
@@ -137,7 +137,7 @@
     "href": "Data_Science_Projects/CS6450_proposal.html#section-1",
     "title": "Point cloud based 3d object detection",
     "section": "",
-    "text": "Feature Learning Network cont …\nStacked Voxel Feature Encoding\n\nlet \\({\\bf V}\\,=\\,\\{{\\bf p}_i\\,=\\,[x_{i},y_{i},z_{i},r_{i}]^{T}\\,\\in\\,\\mathbb{R}^{4}\\}_{i=1...t}\\) as a non-empty voxel containing \\(t <T\\) LiDAR points.\nHere \\({\\bf p}_i\\) contains \\(XYZ\\) coordinates for the \\(i^{\\text{th}}\\) point and \\(r_i\\) is the received reflectance.\nNow find \\({\\mathrm{\\bf V}}_{\\mathrm{in}}\\,=\\,\\{\\;\\mathrm{\\hat {\\bf p}_i}\\,=\\,[x_{i},y_{i},z_{i},r_{i},x_{i}-v_{x},y_{i}-v_{y},z_{i}-v_{z}]^{T}\\in\\mathbb{R}^{7}\\}_{i=1\\ldots t}.\\) Here \\((v_{x},v_{y},v_{z})\\) is the local mean as the centroid of all the points in \\({\\bf V}\\)\nNext Next, each \\(\\hat {\\bf p}_i\\) is transformed through the fully connected network (FCN) into a feature space."
+    "text": "Feature Learning Network cont …\nStacked Voxel Feature Encoding\n\nlet \\({\\bf V}\\,=\\,\\{{\\bf p}_i\\,=\\,[x_{i},y_{i},z_{i},r_{i}]^{T}\\,\\in\\,\\mathbb{R}^{4}\\}_{i=1...t}\\) as a non-empty voxel containing \\(t <T\\) LiDAR points.\nHere \\({\\bf p}_i\\) contains \\(XYZ\\) coordinates for the \\(i^{\\text{th}}\\) point and \\(r_i\\) is the received reflectance.\nNow find \\({\\mathrm{\\bf V}}_{\\mathrm{in}}\\,=\\,\\{\\;\\mathrm{\\hat {\\bf p}_i}\\,=\\,[x_{i},y_{i},z_{i},r_{i},x_{i}-v_{x},y_{i}-v_{y},z_{i}-v_{z}]^{T}\\in\\mathbb{R}^{7}\\}_{i=1\\ldots t}.\\) Here \\((v_{x},v_{y},v_{z})\\) is the local mean as the centroid of all the points in \\({\\bf V}\\)\nNext, each \\(\\hat {\\bf p}_i\\) is transformed through the fully connected network (FCN) into a feature space."
   },
   {
     "objectID": "Data_Science_Projects/CS6450_proposal.html#section-2",
@@ -235,7 +235,7 @@
     "href": "Data_Science_Projects/CS6450_proposal.html#novelty",
     "title": "Point cloud based 3d object detection",
     "section": "Novelty",
-    "text": "Novelty\n\nExtend VoxelNet for joint LiDAR and image-based end-to-end 3D detection.\nAccording to author “Note that, after concatenation operations in VFE, we reset the features corresponding to empty points to zero such that they do not affect the computed voxel features”, it can be set to zero even before feeding to VFE, it may help network learn better.\nPrevious time frames can be taken into account improve the detection.\nInstead of using point cloud from LiDAR, use Pseudo-LiDAR based point cloud.\n\n\n\n\nIIT Hyderabad"
+    "text": "Novelty\n\nExtend VoxelNet for joint LiDAR and image-based end-to-end 3D detection.\nAccording to author “Note that, after concatenation operations in VFE, we reset the features corresponding to empty points to zero such that they do not affect the computed voxel features”, it can be set to zero even before feeding to VFE, it may help network learn better.\nPrevious time frames can be taken into account improve the detection."
   },
   {
     "objectID": "Data_Science_Projects/index.html",
