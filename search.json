@@ -95,7 +95,7 @@
     "href": "Data_Science_Projects/CS6450_proposal.html#challenges",
     "title": "Point cloud based 3d object detection",
     "section": "Challenges",
-    "text": "Challenges\n\n\n\n\n\n\nLiDAR point clouds are inherently sparse.\n\n\nThe point density of LiDAR point clouds can vary significantly depending on factors such as the sensor’s effective range, scanning pattern, and the relative pose of the object and the sensor.\n\n\n\n\n\n\nOcclusion can also result in missing or incomplete point cloud data, further exacerbating the sparsity of the data.\n\n\nVariations in the point density of LiDAR point clouds can make it difficult to design effective feature extraction and object detection algorithms.\n\n\nAddressing the sparsity and variability of LiDAR point clouds is a key challenge in developing accurate and robust 3D object detection models."
+    "text": "Challenges\n\n\n\n\n\n\nLiDAR point clouds are inherently sparse.\n\n\nThe point density of LiDAR point clouds can vary significantly depending on factors such as the sensor’s effective range, scanning pattern, and the relative pose of the object and the sensor.\n\n\n\n\n\nOcclusion can also result in missing or incomplete point cloud data, further exacerbating the sparsity of the data.\n\n\nVariations in the point density of LiDAR point clouds can make it difficult to design effective feature extraction and object detection algorithms.\n\n\nAddressing the sparsity and variability of LiDAR point clouds is a key challenge in developing accurate and robust 3D object detection models."
   },
   {
     "objectID": "Data_Science_Projects/CS6450_proposal.html#existing-methods-and-limitations",
