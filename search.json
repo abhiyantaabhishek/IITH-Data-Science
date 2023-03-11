@@ -81,21 +81,21 @@
     "href": "Data_Science_Projects/CS6450_proposal.html#motivation",
     "title": "Point cloud based 3d object detection",
     "section": "Motivation",
-    "text": "Motivation\n\n\nThe motivations are:\n\n\nSafety:Improve safety on the road.\n\n\nTraffic Management: Manage traffic flow by identifying areas with high congestion.\n\n\nImproved Navigation: Better path planning, trajectory calculation.\n\n\nFlexibility:can be used robotics, and augmented reality as well.\n\n\nUse LiDAR : Compared to image based detection, LiDAR provides reliable depth information that can be used to accurately localize objects and characterize their shapes."
+    "text": "Motivation\n\n\nThe motivations are:\n\n\nSafety:Improve safety on the road.\n\n\nTraffic Management: Manage traffic flow by identifying areas with high congestion.\n\n\nImproved Navigation: Better path planning, trajectory calculation.\n\n\nUse LiDAR : Compared to image based detection, LiDAR provides reliable depth information that can be used to accurately localize objects and characterize their shapes.\n\n\n\n\n\n\n\n\nFlexibility:can be used robotics, and augmented reality as well."
   },
   {
     "objectID": "Data_Science_Projects/CS6450_proposal.html#problem-statement",
     "href": "Data_Science_Projects/CS6450_proposal.html#problem-statement",
     "title": "Point cloud based 3d object detection",
     "section": "Problem Statement",
-    "text": "Problem Statement\n\n\nDevelop a solution that can accurately locate a object in 3D space using LiDAR point Cloud.\n\n\nThe solution must not use any hand-crafted features or prior assumptions, which can limit accuracy and generalization.\n\n\nDirectly process raw LiDAR point clouds.\n\n\nDevelop an accurate, efficient, and robust model that can generalize to new environments and tasks."
+    "text": "Problem Statement\n\n\n\n\nDevelop a solution that can accurately locate a object in 3D space using LiDAR point Cloud.\n\n\nThe solution must not use any hand-crafted features or prior assumptions, which can limit accuracy and generalization.\n\n\n\n\n\n\n\n\nDirectly process raw LiDAR point clouds.\n\n\nDevelop an accurate, efficient, and robust model that can generalize to new environments and tasks."
   },
   {
     "objectID": "Data_Science_Projects/CS6450_proposal.html#challenges",
     "href": "Data_Science_Projects/CS6450_proposal.html#challenges",
     "title": "Point cloud based 3d object detection",
     "section": "Challenges",
-    "text": "Challenges\n\n\nLiDAR point clouds are inherently sparse, unlike images which has dense pixel representations.\n\n\nThe point density of LiDAR point clouds can vary significantly depending on factors such as the sensor’s effective range, scanning pattern, and the relative pose of the object and the sensor.\n\n\nOcclusion can also result in missing or incomplete point cloud data, further exacerbating the sparsity of the data.\n\n\nVariations in the point density of LiDAR point clouds can make it difficult to design effective feature extraction and object detection algorithms.\n\n\nAddressing the sparsity and variability of LiDAR point clouds is a key challenge in developing accurate and robust 3D object detection models."
+    "text": "Challenges\n\n\n\n\n\n\nLiDAR point clouds are inherently sparse.\n\n\nThe point density of LiDAR point clouds can vary significantly depending on factors such as the sensor’s effective range, scanning pattern, and the relative pose of the object and the sensor.\n\n\n\n\n\n\nOcclusion can also result in missing or incomplete point cloud data, further exacerbating the sparsity of the data.\n\n\nVariations in the point density of LiDAR point clouds can make it difficult to design effective feature extraction and object detection algorithms.\n\n\nAddressing the sparsity and variability of LiDAR point clouds is a key challenge in developing accurate and robust 3D object detection models."
   },
   {
     "objectID": "Data_Science_Projects/CS6450_proposal.html#existing-methods-and-limitations",
@@ -144,21 +144,21 @@
     "href": "Data_Science_Projects/CS6450_proposal.html#section-2",
     "title": "Point cloud based 3d object detection",
     "section": "",
-    "text": "Feature Learning Network. VFE cont …\n\n\n\nInformation from point feature \\({\\bf f}_{i}\\ \\in\\ \\mathbb{R}^{m}\\) is aggregated to encode the shape of the surface contained within the voxel\nThe FCN is composed of a linear layer, a batch normalization (BN) layer, and a rectified linear unit (ReLU) layer\nElementwise MaxPooling across all \\(\\bf f_i\\) is used to get the locally aggregated feature \\(\\hat{\\mathbf{f}}\\ \\in\\ \\mathbb{R}^{m}\\)"
+    "text": "Feature Learning Network. VFE cont …\n\n\n\nInformation from point feature \\({\\bf f}_{i}\\ \\in\\ \\mathbb{R}^{m}\\) is aggregated to encode the shape of the surface contained within the voxel\nThe FCN is composed of a linear layer, a batch normalization (BN) layer, and a rectified linear unit (ReLU) layer\n\n\n\n\n\n\nElementwise MaxPooling across all \\(\\bf f_i\\) is used to get the locally aggregated feature \\(\\hat{\\mathbf{f}}\\ \\in\\ \\mathbb{R}^{m}\\)"
   },
   {
     "objectID": "Data_Science_Projects/CS6450_proposal.html#section-3",
     "href": "Data_Science_Projects/CS6450_proposal.html#section-3",
     "title": "Point cloud based 3d object detection",
     "section": "",
-    "text": "Feature Learning Network. VFE cont …\n\nNow form the form the point-wise concatenated feature as \\(\\mathbf{f}_{i}^{o u t}\\,=\\,\\left[\\mathbf{f}_{i}^{T},{\\tilde{\\mathbf{f}}}^{T}\\right]^{T}\\,\\in\\,\\mathbb{R}^{2m}.\\)\nFinally we get \\({\\bf V_{\\ o u t}}\\ =\\ \\{{\\bf f}_{i}^{o u t}\\}_{i...t}.\\)\nThe output feature combines point-wise and locally aggregated features.\nStacking VFE layers allows encoding of point interactions within a voxel, enabling the final feature representation to learn descriptive shape information.\nVoxel features, uniquely associated with their spatial coordinates, are obtained by processing only non-empty voxels, resulting in a sparse 4D tensor representation."
+    "text": "Feature Learning Network. VFE cont …\n\n\n\nNow form the form the point-wise concatenated feature as \\(\\mathbf{f}_{i}^{o u t}\\,=\\,\\left[\\mathbf{f}_{i}^{T},{\\tilde{\\mathbf{f}}}^{T}\\right]^{T}\\,\\in\\,\\mathbb{R}^{2m}.\\)\nFinally we get \\({\\bf V_{\\ o u t}}\\ =\\ \\{{\\bf f}_{i}^{o u t}\\}_{i...t}.\\)\nThe output feature combines point-wise and locally aggregated features.\nStacking VFE layers allows encoding of point interactions within a voxel, enabling the final feature representation to learn descriptive shape information.\n\n\n\n\n\n\nVoxel features, uniquely associated with their spatial coordinates, are obtained by processing only non-empty voxels, resulting in a sparse 4D tensor representation."
   },
   {
     "objectID": "Data_Science_Projects/CS6450_proposal.html#convolutional-middle-layers",
     "href": "Data_Science_Projects/CS6450_proposal.html#convolutional-middle-layers",
     "title": "Point cloud based 3d object detection",
     "section": "Convolutional Middle Layers",
-    "text": "Convolutional Middle Layers\n\nEach convolutional middle layer applies 3D convolution, BN layer, and ReLU layer sequentially.\nThe convolutional middle layers aggregate voxel-wise features within a progressively expanding receptive field, adding more context to the shape description"
+    "text": "Convolutional Middle Layers\n\nEach convolutional middle layer applies 3D convolution, BN layer, and ReLU layer sequentially.\nThe convolutional middle layers aggregate voxel-wise features within a progressively expanding receptive field, adding more context to the shape description\nDepending on the task this layer’ details can vary."
   },
   {
     "objectID": "Data_Science_Projects/CS6450_proposal.html#region-proposal-network",
@@ -210,18 +210,32 @@
     "text": "Experiments\n\nVoxelNet evaluated on KITTI 3D object detection benchmark\n7,481 training images/point clouds and 7,518 test images/point clouds\nThree categories: Car, Pedestrian, and Cyclist\nDetection outcomes evaluated based on three difficulty levels: easy, moderate, and hard\nEvaluation protocol based on object size, occlusion state, and truncation level\n3,712 data samples for training and 3,769 for validation\nHand-crafted baseline (HC-baseline) was implemented and trained to evaluate the importance of end-to-end learning.\nHC-baseline uses the bird’s eye view features described in Multi-view 3d object detection network for autonomous driving5 which are computed at 0.1 m resolution."
   },
   {
-    "objectID": "Data_Science_Projects/CS6450_proposal.html#section-6",
-    "href": "Data_Science_Projects/CS6450_proposal.html#section-6",
+    "objectID": "Data_Science_Projects/CS6450_proposal.html#quantitative-results.",
+    "href": "Data_Science_Projects/CS6450_proposal.html#quantitative-results.",
     "title": "Point cloud based 3d object detection",
-    "section": "",
-    "text": "Experiments cont …\n\nPerformance comparison in 3D detection: average precision (in %) on KITTI validation set."
+    "section": "Quantitative results.",
+    "text": "Quantitative results.\n\n\nPerformance comparison in 3D detection: average precision (in %) on KITTI validation set"
   },
   {
-    "objectID": "Data_Science_Projects/CS6450_proposal.html#section-7",
-    "href": "Data_Science_Projects/CS6450_proposal.html#section-7",
+    "objectID": "Data_Science_Projects/CS6450_proposal.html#qualitative-results-for-car",
+    "href": "Data_Science_Projects/CS6450_proposal.html#qualitative-results-for-car",
     "title": "Point cloud based 3d object detection",
-    "section": "",
-    "text": "Experiments cont …\n\nQualitative results. For better visualization 3D boxes detected using LiDAR are projected on to the RGB images.."
+    "section": "Qualitative results for car",
+    "text": "Qualitative results for car"
+  },
+  {
+    "objectID": "Data_Science_Projects/CS6450_proposal.html#qualitative-results-for-pedestrian",
+    "href": "Data_Science_Projects/CS6450_proposal.html#qualitative-results-for-pedestrian",
+    "title": "Point cloud based 3d object detection",
+    "section": "Qualitative results for pedestrian",
+    "text": "Qualitative results for pedestrian"
+  },
+  {
+    "objectID": "Data_Science_Projects/CS6450_proposal.html#qualitative-results-for-cyclist",
+    "href": "Data_Science_Projects/CS6450_proposal.html#qualitative-results-for-cyclist",
+    "title": "Point cloud based 3d object detection",
+    "section": "Qualitative results for cyclist",
+    "text": "Qualitative results for cyclist"
   },
   {
     "objectID": "Data_Science_Projects/CS6450_proposal.html#conclusion",
@@ -235,7 +249,7 @@
     "href": "Data_Science_Projects/CS6450_proposal.html#novelty",
     "title": "Point cloud based 3d object detection",
     "section": "Novelty",
-    "text": "Novelty\n\nExtend VoxelNet for joint LiDAR and image-based end-to-end 3D detection.\nAccording to author “Note that, after concatenation operations in VFE, we reset the features corresponding to empty points to zero such that they do not affect the computed voxel features”, it can be set to zero even before feeding to VFE, it may help network learn better.\nPrevious time frames can be taken into account improve the detection."
+    "text": "Novelty\nShort term achievable\n\nExtend VoxelNet for joint LiDAR and image-based end-to-end 3D detection.\nWe do not need to predict separately for positive and negative.\n\n\nRequires much involved research\n\nPrevious time frames can be taken into account improve the detection.\nVoxel Feature Encoding can be improved with the help of transformer positional encoding.\nOne universal network instead of two."
   },
   {
     "objectID": "Data_Science_Projects/index.html",
