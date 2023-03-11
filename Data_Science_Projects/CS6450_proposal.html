@@ -344,7 +344,7 @@
 
 <section id="title-slide" data-background-image="images/heading.png" data-background-opacity="0.6" data-background-size="contain" class="quarto-title-block center">
   <h1 class="title">Point cloud based 3d object detection</h1>
-  <p class="subtitle">Y. Zhou and O. Tuzel,Voxelnet End-to-end learning IEEE Conference on CVPR , pp.&nbsp;4490-4499, 2018.</p>
+  <p class="subtitle">Y. Zhou and O. Tuzel,Voxelnet IEEE Conference on CVPR, pp.&nbsp;4490-4499, 2018.</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -390,7 +390,7 @@ Use LiDAR : Compared to image based detection, LiDAR provides reliable depth inf
 Develop a solution that can accurately locate a object in 3D space using LiDAR point Cloud.
 </p></li>
 <li><p align="justify">
-The solution must not use any hand-crafted features or prior assumptions, which can limiting accuracy and generalization.
+The solution must not use any hand-crafted features or prior assumptions, which can limit accuracy and generalization.
 </p></li>
 <li><p align="justify">
 Directly process raw LiDAR point clouds.
@@ -404,7 +404,7 @@ Develop an accurate, efficient, and robust model that can generalize to new envi
 <h2>Challenges</h2>
 <ul>
 <li><p align="justify">
-LiDAR point clouds are inherently sparse, unlike images which have dense pixel representations.
+LiDAR point clouds are inherently sparse, unlike images which has dense pixel representations.
 </p></li>
 <li><p align="justify">
 The point density of LiDAR point clouds can vary significantly depending on factors such as the sensor’s effective range, scanning pattern, and the relative pose of the object and the sensor.
@@ -656,6 +656,7 @@ VoxelNet directly operates on the raw point cloud.
 <li>Extend VoxelNet for joint LiDAR and image-based end-to-end 3D detection.</li>
 <li>According to author “Note that, after concatenation operations in VFE, we reset the features corresponding to empty points to zero such that they do not affect the computed voxel features”, it can be set to zero even before feeding to VFE, it may help network learn better.</li>
 <li>Previous time frames can be taken into account improve the detection.</li>
+<li>Instead of using point cloud from LiDAR, use Pseudo-LiDAR based point cloud.</li>
 </ul>
 
 
