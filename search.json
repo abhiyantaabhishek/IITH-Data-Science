@@ -193,6 +193,13 @@
     "href": "Data_Science_Projects/CS6450_proposal.html#section-5",
     "title": "Point cloud based 3d object detection",
     "section": "",
+    "text": "Network Details, Car Detection cont …"
+  },
+  {
+    "objectID": "Data_Science_Projects/CS6450_proposal.html#section-6",
+    "href": "Data_Science_Projects/CS6450_proposal.html#section-6",
+    "title": "Point cloud based 3d object detection",
+    "section": "",
     "text": "Network Details, Car Detection cont …\n\nTo aggregate voxel-wise features, three convolution middle layers was employed sequentially as \\(\\mathrm{Conv3D}(128, 64, 3,(2,1,1), (1,1,1)),\\) \\(\\mathrm{Conv3D}(64, 64, 3, (1,1,1), (0,1,1)),\\) and \\(\\mathrm{Conv3D}(64, 64, 3, (2,1,1), (1,1,1)),\\)\nwhich yields a 4D tensor of size \\(64\\times2\\times400\\times352.\\)\nAfter reshaping, size becomes \\(128\\times400\\times352.\\) and is input to RPN.\nOnly one anchor size was used \\(l^{a}\\,=\\,3.9.\\,w^{a}\\,=\\,1.6.\\,h^{a}\\,=\\,1.56\\) meters centered at \\(z_{c}^{a}\\,=\\,-1.0\\) meters with two rotations, \\(0^\\circ\\) and \\(90^\\circ\\)\nPositive anchor: if it has the highest Intersection over Union (IoU) with a ground truth or its IoU with ground truth is above 0.6 (in bird’s eye view).\nPositive anchor: if the IoU between it and all ground truth boxes is less than 0.45.\nSet \\(\\alpha=1.5\\) and \\(\\beta=1\\) in equation \\((2)\\)"
   },
   {
