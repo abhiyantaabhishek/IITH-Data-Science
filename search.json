@@ -263,7 +263,7 @@
     "href": "Data_Science_Projects/CS6450_proposal.html#novelty-1",
     "title": "Point cloud based 3d object detection",
     "section": "Novelty",
-    "text": "Novelty\n\n\nPrevious time frames can be taken into account improve the detection.\nVoxel Feature Encoding can be improved with the help of transformer positional encoding.\nOne universal network instead of two."
+    "text": "Novelty\n\nPrevious time frames can be taken into account improve the detection. \nVFE can be improved with the help of transformer positional encoding.\nOne universal network instead of two."
   },
   {
     "objectID": "Data_Science_Projects/index.html",
