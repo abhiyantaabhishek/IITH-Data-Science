@@ -256,7 +256,14 @@
     "href": "Data_Science_Projects/CS6450_proposal.html#novelty",
     "title": "Point cloud based 3d object detection",
     "section": "Novelty",
-    "text": "Novelty\nShort term achievable\n\nExtend VoxelNet for joint LiDAR and image-based end-to-end 3D detection.\nWe do not need to predict separately for positive and negative.\n\n\nRequires much involved research\n\nPrevious time frames can be taken into account improve the detection.\nVoxel Feature Encoding can be improved with the help of transformer positional encoding.\nOne universal network instead of two."
+    "text": "Novelty\n\n\nWe do not need to predict separately for positive and negative.\nExtend VoxelNet for joint LiDAR and image-based end-to-end 3D detection."
+  },
+  {
+    "objectID": "Data_Science_Projects/CS6450_proposal.html#novelty-1",
+    "href": "Data_Science_Projects/CS6450_proposal.html#novelty-1",
+    "title": "Point cloud based 3d object detection",
+    "section": "Novelty",
+    "text": "Novelty\n\n\nPrevious time frames can be taken into account improve the detection.\nVoxel Feature Encoding can be improved with the help of transformer positional encoding.\nOne universal network instead of two."
   },
   {
     "objectID": "Data_Science_Projects/index.html",
