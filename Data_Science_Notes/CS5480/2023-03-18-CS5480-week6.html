@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Abhishek Kumar Dubey">
-<meta name="dcterms.date" content="2022-09-03">
-<meta name="description" content="System of equation">
+<meta name="dcterms.date" content="2023-03-18">
+<meta name="description" content="residual neural network,explainable AI">
 
-<title>Linear Algebra 1</title>
+<title>Deep Learning 6</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_2.html" rel="next">
-<link href="../../Data_Science_Notes/CS5590/2022-11-05-CS5590-week9.html" rel="prev">
+<link href="../../Data_Science_Notes/CS5590/2022-08-06-CS5590-week1.html" rel="next">
+<link href="../../Data_Science_Notes/CS5480/2023-03-04-CS5480-week5.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -94,11 +94,11 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Linear Algebra 1">
-<meta property="og:description" content="System of equation">
-<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/CS6660/CS6660_images/Acrobat_DdKtM5v6Sg.png">
-<meta property="og:image:height" content="248">
-<meta property="og:image:width" content="463">
+<meta property="og:title" content="Deep Learning 6">
+<meta property="og:description" content="residual neural network,explainable AI">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/CS5480/CS5480_images/VoiceAccess_56w2Jughz5.png">
+<meta property="og:image:height" content="229">
+<meta property="og:image:width" content="658">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -156,7 +156,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Linear Algebra 1</h1>
+      <h1 class="quarto-secondary-nav-title">Deep Learning 6</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -167,14 +167,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Linear Algebra 1</h1>
+      <h1 class="title d-none d-lg-block">Deep Learning 6</h1>
                   <div>
         <div class="description">
-          System of equation
+          residual neural network,explainable AI
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Linear Algebra</div>
+                <div class="quarto-category">Deep Learning</div>
               </div>
                   </div>
   </div>
@@ -192,7 +192,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 3, 2022</p>
+        <p class="date">March 18, 2023</p>
       </div>
     </div>
     
@@ -215,12 +215,12 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">CS5480</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">CS5480</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Data_Science_Notes/CS5480/2023-01-07-CS5480-week1.html" class="sidebar-item-text sidebar-link">Deep Learning 1</a>
@@ -248,7 +248,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/CS5480/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link">Deep Learning 6</a>
+  <a href="../../Data_Science_Notes/CS5480/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link active">Deep Learning 6</a>
   </div>
 </li>
       </ul>
@@ -310,15 +310,15 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">CS6660</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">CS6660</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/CS6660/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link active">Linear Algebra 1</a>
+  <a href="../../Data_Science_Notes/CS6660/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -369,7 +369,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#system-of-linear-equations" id="toc-system-of-linear-equations" class="nav-link active" data-scroll-target="#system-of-linear-equations"><span class="toc-section-number">1</span>  system of Linear equations</a></li>
+  <li><a href="#reidual-nets" id="toc-reidual-nets" class="nav-link active" data-scroll-target="#reidual-nets"><span class="toc-section-number">1</span>  Reidual Nets</a></li>
+  <li><a href="#other-networks" id="toc-other-networks" class="nav-link" data-scroll-target="#other-networks"><span class="toc-section-number">2</span>  Other Networks</a></li>
+  <li><a href="#understanding-and-visualizing-cnns" id="toc-understanding-and-visualizing-cnns" class="nav-link" data-scroll-target="#understanding-and-visualizing-cnns"><span class="toc-section-number">3</span>  Understanding and Visualizing CNNs</a></li>
+  <li><a href="#understanding-convolutional-neural-network." id="toc-understanding-convolutional-neural-network." class="nav-link" data-scroll-target="#understanding-convolutional-neural-network."><span class="toc-section-number">4</span>  Understanding convolutional neural network.</a></li>
+  <li><a href="#optimization-to-image" id="toc-optimization-to-image" class="nav-link" data-scroll-target="#optimization-to-image"><span class="toc-section-number">5</span>  optimization to image</a></li>
+  <li><a href="#class-activation-mapping-cam" id="toc-class-activation-mapping-cam" class="nav-link" data-scroll-target="#class-activation-mapping-cam"><span class="toc-section-number">6</span>  Class Activation Mapping (CAM)</a></li>
+  <li><a href="#grad-cam-and-guided-grad-cam" id="toc-grad-cam-and-guided-grad-cam" class="nav-link" data-scroll-target="#grad-cam-and-guided-grad-cam"><span class="toc-section-number">7</span>  Grad CAM (and Guided Grad CAM)</a></li>
+  <li><a href="#grad-cam-for-image-captioning" id="toc-grad-cam-for-image-captioning" class="nav-link" data-scroll-target="#grad-cam-for-image-captioning"><span class="toc-section-number">8</span>  Grad CAM for Image Captioning</a></li>
   </ul>
 </nav>
     </div>
@@ -379,38 +386,158 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="system-of-linear-equations" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="system-of-linear-equations"><span class="header-section-number">1</span> system of Linear equations</h2>
 <ul>
-<li>Let us see some Systems of linear equations<br>
-<ul>
-<li>A company produce products <span class="math inline">N_1, \dots ,N_n</span> for which resources <span class="math inline">R_1, \dots ,R_m</span> are required. To produce a unit of porduct <span class="math inline">N_j, a_{ij}</span> units of resources <span class="math inline">R_i</span> are needed, where <span class="math inline">i=1,\dots ,m</span> and <span class="math inline">j=1, \dots ,n</span>. <br> The objective is to find an optimal production plan, i.e., a plan of how many units <span class="math inline">x_j</span> of product <span class="math inline">N_j</span> should be produced if a total of <span class="math inline">b_i</span> units of resource <span class="math inline">R_i</span> are available and (ideally) no resources are left over.<br> write system of equation of the same <span class="math display">\left\lbrace \begin{array}{c}
-  a_{11}x_1 + \dots +a_{1n}x_n =b_1\\
-  \vdots \\
-  a_{m1}x_1+\dots +a_{mn}x_n=b_n
-  \end{array}\right.</span></li>
-<li>John received an inheritance of <span class="math inline">\$12000</span> that he divided in three parts and invested in three ways: in a money market fund paying <span class="math inline">3\%</span> annual interest; in municipal bonds paying <span class="math inline">4\%</span> of annual interest; and in mutual fund paying <span class="math inline">7\%</span> of interest, john invested <span class="math inline">\$4,000</span> more in mutual funds than in municipal bonds. He earned <span class="math inline">\$670</span> in interest the first year.How much did john invest in each type of found <span class="math display">\left\lbrace \begin{array}{c}
-  x+y+z=12000\\
-  0.03x+0.04y+0.07z=670 \\
-  -x+z=4000
-  \end{array}\right.\\
-   </span></li>
-<li>solution of above question: <span class="math inline">x=3500,y=1000,z=7500</span></li>
-</ul></li>
+<li>Do you know the deeper the model better it performs.</li>
+<li>Adding layer improves the performance.</li>
+<li>If we continue stacking deeper layers on a plane convolutional network.The training loss keeps decreasing.But the testing loss does not decrease as much.</li>
+<li>Deeper the network, gradients vanish quickly, thereby slowing the rate of change in initial layers. <br><br> <img src="CS5480_images/VoiceAccess_OLY3E5z45G.png" class="img-fluid"></li>
 </ul>
-<p><img src="CS6660_images/chrome_eVuQqkmGsE.png" class="img-fluid"></p>
+<section id="reidual-nets" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="reidual-nets"><span class="header-section-number">1</span> Reidual Nets</h2>
+<p><img src="CS5480_images/VoiceAccess_56w2Jughz5.png" class="img-fluid"></p>
 <ul>
-<li><p>If there are more variables than equations than there <strong>might be</strong> infinitely many solutions.</p></li>
-<li><p>If <span class="math inline">AX=b</span> has infinitely many solutions then to find other solutions we find <span class="math inline">Y</span> such that <span class="math inline">AY=b</span>, then we can write <span class="math inline">A(X+Y)=b</span> as <span class="math inline">A(X+Y)=AX+AY=AX</span> because <span class="math inline">AY=0</span> here, <span class="math inline">X+Y</span> is another solution here.<br> If <span class="math inline">AX=b</span> and <span class="math inline">AY=0</span> then <span class="math inline">A(X+Y)=b</span></p></li>
-<li><p>Particular and general solutions</p>
-<ul>
-<li><span class="math inline">1</span>. Find a particular solution to <span class="math inline">AX=b</span></li>
-<li><span class="math inline">2</span>. Find all the solutions to <span class="math inline">AX=0</span></li>
-<li><span class="math inline">3</span>. Combine the solution from step <span class="math inline">1</span> and <span class="math inline">2</span> to get the general solution</li>
-</ul></li>
-<li><p>For Example, consider <br><br> <span class="math inline">{\left[\begin{array}{l l l}{1}&amp;{0}&amp;{8}&amp;{-4}\\ {0}&amp;{1}&amp;{2}&amp;{12}\end{array}\right]} {\left[\begin{array}{l}{x_1}\\ {x_2}\end{array}\right]}={\left[\begin{array}{l}{42}\\ {8}\end{array}\right]}</span><br><br> solution for <span class="math inline">AX=b</span> (particular solution) <br><br> <span class="math inline">{\left[\begin{array}{l l l}{1}&amp;{0}&amp;{8}&amp;{-4}\\ {0}&amp;{1}&amp;{2}&amp;{12}\end{array}\right]} {\left[\begin{array}{l}{x_1}\\ {x_2}\end{array}\right]}={\left[\begin{array}{l}{48}\\ {8}\end{array}\right]}</span><br><br> is given by <br><br> <span class="math inline">{\left[\begin{array}{l}{x_1}\\ {x_2}\end{array}\right]}={\left[\begin{array}{l}{42}\\ {8}\end{array}\right]}</span><br><br> Now we find solution for <span class="math inline">AX=0</span> (general solution )<br><br> <span class="math inline">{\left[\begin{array}{l l l}{1}&amp;{0}&amp;{8}&amp;{-4}\\ {0}&amp;{1}&amp;{2}&amp;{12}\end{array}\right]} {\left[\begin{array}{l}{x_1}\\ {x_2}\end{array}\right]}={\left[\begin{array}{l}{0}\\ {0}\end{array}\right]}</span><br><br> We can find that there are two vectors which satisfy it <br><br> <span class="math inline">{\left[\begin{array}{l}{x_1}\\ {x_2}\\ {x_3}\\ {x_4} \end{array}\right]}={\left[\begin{array}{l}{8}\\ {2}\\ {-1}\\ {0}\end{array}\right]}</span><br><br> <span class="math inline">{\left[\begin{array}{l}{x_1}\\ {x_2}\\ {x_3}\\ {x_4} \end{array}\right]}={\left[\begin{array}{l}{-4}\\ {12}\\ {0}\\ {-1}\end{array}\right]}</span><br><br> We can represent the final solution by combining particular and general solution<br><br> <span class="math display">\left\{x\in\mathbb{R}^{4}:x= {\left[\begin{array}{r}{42}\\ {8}\\ {0}\\ {0} \end{array}\right]}    + \lambda_{1}{\left[\begin{array}{r}{8}\\ {2}\\ {-1}\\ {0} \end{array}\right]}   + \lambda_{2}{\left[\begin{array}{r}{-4}\\ {12}\\ {0}\\ {-1} \end{array}\right]},\;\;\ \lambda_{1},\lambda_{2}\in\mathbb{R}\right\}</span></p></li>
+<li><p>The deeper model should be able to perform at least as well as the shallower model.</p></li>
+<li><p>Solution is to use the network layer to fit a residual mapping instead of directly trying to fit a desired underlying nothing.</p></li>
+<li><p>use skip connection. Such a block is called residual block.</p></li>
+<li><p>Bypass some layers.</p></li>
+<li><p>Stack residual blocks, every residual block has 2, 3 x 3 convolution layers.</p></li>
+<li><p>No fully connected layer at the end.</p></li>
+<li><p>additional convolutional layer at the beginning</p></li>
+<li><p>Periodically double the filter.down sample reaching stride of two.</p></li>
+<li><p>Alex net had fully connected network at last.</p></li>
+<li><p>For deeper network use bottleneck layer to improve efficiency.</p></li>
+<li><p>Short circuit path provides a path for the gradient to flow deeper.</p></li>
+<li><p>Able to train very deep neural network</p></li>
+<li><p>deeper layer networks now achieve lower training error as expected.</p></li>
 </ul>
-<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Srijith, IIT Hyderabad }}}}</span></p>
+</section>
+<section id="other-networks" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="other-networks"><span class="header-section-number">2</span> Other Networks</h2>
+<p>Network in network.</p>
+<ul>
+<li>Between every convolution, there has MLP in between.</li>
+<li>these micro network within each convolutional layer helps to compute more abstract feature for local batches.</li>
+<li>micron network uses multilayer perceptron fully connected That is 1 x 1 convolutional layer</li>
+<li>this network was not so famous</li>
+</ul>
+<p>Wide residual network.</p>
+<ul>
+<li>it argues that residuals are important factor not the depth.</li>
+<li>use wide residual block of F x K filters instead of F filter in each layer.</li>
+<li>50 layer wide residual network outperforms 152 layer original residual network.</li>
+<li>Increasing width at instead of depth is more computationally efficient because it helps in parallelization of the computation</li>
+</ul>
+<p>Deep Networks with Stochastic Depth</p>
+<ul>
+<li>It reduces vanishing gradient and training time through short network during training.</li>
+<li>Randomly drop subset of layer during each training pass.</li>
+<li>It’s like dropout, but drops out the residual block.</li>
+<li>In every Iteration randomly drop one residual block.</li>
+</ul>
+<p>Dens net.</p>
+<ul>
+<li>Dense blocks where each layer is connected to every layer in feet forward fashion.</li>
+<li>Simply connect every layer with every layer. Let the neural network figure out.</li>
+<li>Alleviates Vanishing gradient, strengthens feature propagation,Encourages Feature Reuse.</li>
+</ul>
+<div class="alert alert-dismissible alert-info">
+<p>Top five means check if prediction is among the top five.</p>
+</div>
+</section>
+<section id="understanding-and-visualizing-cnns" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="understanding-and-visualizing-cnns"><span class="header-section-number">3</span> Understanding and Visualizing CNNs</h2>
+<p>CNN Features are Generic</p>
+<ul>
+<li>CNN features are generic, so we can reuse the CNN feature for the small problem.</li>
+<li>We can reuse the feature.That led to the notion of transfer learning.</li>
+<li>Initially train a CNN or any new network.On large database like Image net. Now use the network, for different problem.It is called transfer learning.</li>
+<li>Depending on the data, decide how many layer of the neural network we want to fine tune.</li>
+<li>This works because features are generic in earlier network.</li>
+<li>Extend to more number of losses just by fine tuning.</li>
+<li>Extend to new task. Extend from object classification to scene classification.</li>
+<li>Also can be used to extend to new datasets, if the data set is similar.</li>
+</ul>
+</section>
+<section id="understanding-convolutional-neural-network." class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="understanding-convolutional-neural-network."><span class="header-section-number">4</span> Understanding convolutional neural network.</h2>
+<ul>
+<li><p>Visualize patches that maximally activate neurons.</p></li>
+<li><p>visualize the weights.For example, by looking at the filter, we can say whether its edge detector.</p></li>
+<li><p>visualize the representation space. using t-SNE,</p></li>
+<li><p>Occlusion experiment.</p></li>
+<li><p>Deconvolution based approaches.</p></li>
+<li><p>Optimization over image approaches.</p></li>
+<li><p>Initial layer of neural network Weight looks like gabor-like filters.<br><br> <img src="CS5480_images/VoiceAccess_94HnFdJpvG.png" class="img-fluid"></p></li>
+</ul>
+<p>Occlusion experiment.</p>
+<ul>
+<li>Here we black out some of the area of the image and study the effect of this, on the output.<br><br> <img src="CS5480_images/VoiceAccess_UtPs9plrjC.png" class="img-fluid"></li>
+</ul>
+<p>DeConv approach.</p>
+<ul>
+<li>feed image to the network.</li>
+<li>Pick a layer set the gradient there to be all zero, except for one some neuron of interest.</li>
+<li>Back propagate to the image.<br><br> <img src="CS5480_images/VoiceAccess_kG4DK7uppb.png" class="img-fluid"></li>
+<li>In guided bank propagation, we guide the gradient.So that negative gradient doesn’t flow.An image looks little better.<br><br> <img src="CS5480_images/VoiceAccess_3BjmLGNuyD.png" class="img-fluid"></li>
+<li>In case of guided back propagation, we first zero out all those activation, which was negative just before rectified linear unit in case of forward pass.</li>
+<li>Then we zero out all those gradients which are negative while doing backward pass.</li>
+<li>this is explained in below picture:.<br><br> <img src="CS5480_images/VoiceAccess_Ve2wDPTSwQ.png" class="img-fluid"></li>
+</ul>
+</section>
+<section id="optimization-to-image" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="optimization-to-image"><span class="header-section-number">5</span> optimization to image</h2>
+<ul>
+<li>can we find an image that maximizes some class score <br><br> <img src="CS5480_images/VoiceAccess_JgckJOT9eD.png" class="img-fluid"></li>
+<li>Score of a class c before softmax <span class="math inline">\arg \max_I S_c(I)-\lambda \vert| I \vert | ^2_2</span></li>
+</ul>
+<p>I start with black image are you using gradient descent on that image we maximize the score on output neuron</p>
+<ol type="1">
+<li>feed in zero</li>
+<li>Set the gradient of all vectors zero except the one which we are interested in and perform the back propagation.</li>
+<li>do the small input update</li>
+<li>go back to step 2</li>
+</ol>
+<p><img src="CS5480_images/VoiceAccess_M2LnjzYMpM.png" class="img-fluid"></p>
+<ul>
+<li><p>visualize the data gradient <br><br> <img src="CS5480_images/VoiceAccess_c6LcbMI4lN.png" class="img-fluid"></p></li>
+<li><p>now we can use grab cut using the same approach for segmentation.<br><br> <img src="CS5480_images/VoiceAccess_B4tJeGqYxK.png" class="img-fluid"></p></li>
+<li><p>we can use this approach even for the object detection.</p></li>
+<li><p>we can minimize this code: <span class="math display">\mathbf{x}^{*}=\operatorname*{argmin}_{\mathbf{x}\in\mathbb{R}^{H}\times W\times C}\ell(\Phi(\mathbf{x}),\Phi_{0})+\lambda\mathcal{R}(\mathbf{x})</span> where <span class="math display">\ell(\Phi({\bf x}),\Phi_{0})=\|\Phi({\bf x})-\Phi_{0}\|^{2}</span></p>
+<p><img src="CS5480_images/VoiceAccess_f4pURXrnrV.png" class="img-fluid"></p></li>
+</ul>
+</section>
+<section id="class-activation-mapping-cam" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="class-activation-mapping-cam"><span class="header-section-number">6</span> Class Activation Mapping (CAM)</h2>
+<ul>
+<li>in this method we train a linear regression model for each and every class at the output layer</li>
+<li>we take the global average pooling from the layer which comes before the classification layer.</li>
+<li>now from this average pooling we construct a linear regression for each class.</li>
+<li>once we obtain the weight of each class we multiply the weight of each linear regression with the feature which we used for global leverage pooling.</li>
+<li>then we project this image what we obtain after multiplication to the original image to obtain class activation map. <br><br> <img src="CS5480_images/VoiceAccess_pYoJj8w6KL.png" class="img-fluid"></li>
+</ul>
+</section>
+<section id="grad-cam-and-guided-grad-cam" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="grad-cam-and-guided-grad-cam"><span class="header-section-number">7</span> Grad CAM (and Guided Grad CAM)</h2>
+<ul>
+<li>the class activation map requires to train a linear regression model can we avoid this.</li>
+<li>this issue is addressed by grad CAM.</li>
+<li>we use the weight which is already there in the network and we do the global average pulling of rectified convolutional layer, we multiply this with the weight of the fully connected layer and we do the same process as we did in class activation map to obtain the Heat map.<br><br> <img src="CS5480_images/VoiceAccess_fDl7XreUJh.png" class="img-fluid"></li>
+</ul>
+</section>
+<section id="grad-cam-for-image-captioning" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="grad-cam-for-image-captioning"><span class="header-section-number">8</span> Grad CAM for Image Captioning</h2>
+<p><img src="CS5480_images/VoiceAccess_umQTVcf9zZ.png" class="img-fluid"></p>
+<p>Other methods</p>
+<ul>
+<li>Grad CAM++</li>
+<li>Integrated Gradients</li>
+<li>SmoothGrad</li>
+<li>LIME</li>
+<li>LRP</li>
+<li>DeepSHAP</li>
+<li>DeepLIFT</li>
+</ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
 </section>
@@ -553,13 +680,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Data_Science_Notes/CS5590/2022-11-05-CS5590-week9.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Machine Learning 9</span>
+      <a href="../../Data_Science_Notes/CS5480/2023-03-04-CS5480-week5.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning 5</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_2.html" class="pagination-link">
-        <span class="nav-page-text">Linear Algebra 2</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Data_Science_Notes/CS5590/2022-08-06-CS5590-week1.html" class="pagination-link">
+        <span class="nav-page-text">Machine Learning 1</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
