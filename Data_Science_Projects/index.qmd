@@ -1,5 +1,5 @@
 ---
-title: Data Science Hacks
+title: Data Science Projects
 listing:
   contents: .
   sort: "date desc"

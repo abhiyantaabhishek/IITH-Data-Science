@@ -48,7 +48,7 @@ sidebar: false
 ```{=html}
 <button type="button" class="btn btn-secondary disabled" fdprocessedid="kc61ad">
     <p align="justify">
-      I work as senior data scientist <i class="fa-solid fa-atom"></i>, also I am an mtech student <i class="fa-solid fa-graduation-cap"></i> at IIT hyderabad, I love doing reseach <i class="fa-solid fa-flask"></i>, exploring new topics, my area of interest are deep learning, autonomous driving. I love conceptual thinking <i class="fa-solid fa-brain"></i>.
+      I work as a senior data scientist <i class="fa-solid fa-atom"></i>, and I am an mtech student <i class="fa-solid fa-graduation-cap"></i> at IIT hyderabad, I love doing reseach <i class="fa-solid fa-flask"></i>, exploring new topics, my area of interest are deep learning, autonomous driving. I love conceptual thinking <i class="fa-solid fa-brain"></i>.
     </p>
 </button>
 ```
@@ -69,7 +69,7 @@ sidebar: false
 
 <br>
 
-<p class="text-secondary">If resume doesn't appear below, refresh the page or click above button to download it.</p>
+<p class="text-secondary">If resume doesn't appear below, refresh the page or click on the above button to download it.</p>
 ::: column-screen-inset-shaded
 
 <object 
