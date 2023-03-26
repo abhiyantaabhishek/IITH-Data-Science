@@ -23,3 +23,13 @@
   h6 {
     color:#66ADD6;
   }
+
+  body {
+    /* background-image: url("https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg"); */
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+
+  }
