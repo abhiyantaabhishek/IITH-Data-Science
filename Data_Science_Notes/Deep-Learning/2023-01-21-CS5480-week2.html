@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.475">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Abhishek Kumar Dubey">
+<meta name="dcterms.date" content="2023-01-21">
+<meta name="description" content="Optimizers and activation functions">
+
+<title>Deep Learning 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" rel="next">
+<link href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" rel="prev">
+<link href="../../logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+        <script type="text/javascript">
+        window.PlotlyConfig = {MathJaxConfig: 'local'};
+        if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+        if (typeof require !== 'undefined') {
+        require.undef("plotly");
+        requirejs.config({
+            paths: {
+                'plotly': ['https://cdn.plot.ly/plotly-2.12.1.min']
+            }
+        });
+        require(['plotly'], function(Plotly) {
+            window._Plotly = Plotly;
+        });
+        }
+        </script>
+        
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Deep Learning 2">
+<meta property="og:description" content="Optimizers and activation functions">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/Deep-Learning/CS5480_images/Acrobat_2OJYOHomOb.png">
+<meta property="og:image:height" content="208">
+<meta property="og:image:width" content="222">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../Data_Science_Notes/index.html" aria-current="page">
+ <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Data_Science_Hacks/index.html">
+ <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Data Science Hacks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Data_Science_Projects/index.html">
+ <span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Data Science Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Deep Learning 2</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Deep Learning 2</h1>
+                  <div>
+        <div class="description">
+          Optimizers and activation functions
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Deep Learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Abhishek Kumar Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 21, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Data_Science_Notes/index.html" class="sidebar-item-text sidebar-link">Data Science Notes</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Deep Learning</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" class="sidebar-item-text sidebar-link">Deep Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html" class="sidebar-item-text sidebar-link active">Deep Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" class="sidebar-item-text sidebar-link">Deep Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-11-CS5480-week4.html" class="sidebar-item-text sidebar-link">Deep Learning 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link">Deep Learning 6</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" class="sidebar-item-text sidebar-link">Deep Learning 7</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">Machine Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">Machine Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">Machine Learning 6</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">Machine Learning 7</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link">Machine Learning 8</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html" class="sidebar-item-text sidebar-link">Machine Learning 9</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Mathematics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">Probability Theory 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">Probability Theory 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">Probability Theory 5</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#gradient-descent-using-backpropagation" id="toc-gradient-descent-using-backpropagation" class="nav-link active" data-scroll-target="#gradient-descent-using-backpropagation"><span class="toc-section-number">1</span>  Gradient Descent using Backpropagation</a></li>
+  <li><a href="#local-minima" id="toc-local-minima" class="nav-link" data-scroll-target="#local-minima"><span class="toc-section-number">2</span>  Local Minima</a></li>
+  <li><a href="#saddle-points-and-plateaus" id="toc-saddle-points-and-plateaus" class="nav-link" data-scroll-target="#saddle-points-and-plateaus"><span class="toc-section-number">3</span>  Saddle Points and Plateaus</a></li>
+  <li><a href="#vanishingexploding-gradient" id="toc-vanishingexploding-gradient" class="nav-link" data-scroll-target="#vanishingexploding-gradient"><span class="toc-section-number">4</span>  Vanishing/Exploding Gradient</a></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges"><span class="toc-section-number">5</span>  Challenges</a></li>
+  <li><a href="#how-to-address" id="toc-how-to-address" class="nav-link" data-scroll-target="#how-to-address"><span class="toc-section-number">6</span>  How to address</a></li>
+  <li><a href="#momentum" id="toc-momentum" class="nav-link" data-scroll-target="#momentum"><span class="toc-section-number">7</span>  Momentum</a></li>
+  <li><a href="#sgd-with-momentum" id="toc-sgd-with-momentum" class="nav-link" data-scroll-target="#sgd-with-momentum"><span class="toc-section-number">8</span>  SGD with Momentum</a></li>
+  <li><a href="#nesterov-accelerated-momentum" id="toc-nesterov-accelerated-momentum" class="nav-link" data-scroll-target="#nesterov-accelerated-momentum"><span class="toc-section-number">9</span>  Nesterov Accelerated Momentum</a></li>
+  <li><a href="#sgd-with-nesterov-momentum" id="toc-sgd-with-nesterov-momentum" class="nav-link" data-scroll-target="#sgd-with-nesterov-momentum"><span class="toc-section-number">10</span>  SGD with Nesterov Momentum</a></li>
+  <li><a href="#adaptive-learning-rate-methods-adagrad" id="toc-adaptive-learning-rate-methods-adagrad" class="nav-link" data-scroll-target="#adaptive-learning-rate-methods-adagrad"><span class="toc-section-number">11</span>  Adaptive Learning Rate Methods: Adagrad</a></li>
+  <li><a href="#rmsprop" id="toc-rmsprop" class="nav-link" data-scroll-target="#rmsprop"><span class="toc-section-number">12</span>  RMSProp</a></li>
+  <li><a href="#rmsprop-with-nesterov-momentum" id="toc-rmsprop-with-nesterov-momentum" class="nav-link" data-scroll-target="#rmsprop-with-nesterov-momentum"><span class="toc-section-number">13</span>  RMSProp with Nesterov Momentum</a></li>
+  <li><a href="#adam" id="toc-adam" class="nav-link" data-scroll-target="#adam"><span class="toc-section-number">14</span>  Adam</a></li>
+  <li><a href="#interesting-facts" id="toc-interesting-facts" class="nav-link" data-scroll-target="#interesting-facts"><span class="toc-section-number">15</span>  Interesting Facts</a></li>
+  <li><a href="#activation-functions" id="toc-activation-functions" class="nav-link" data-scroll-target="#activation-functions"><span class="toc-section-number">16</span>  Activation Functions</a></li>
+  <li><a href="#loss-functions" id="toc-loss-functions" class="nav-link" data-scroll-target="#loss-functions"><span class="toc-section-number">17</span>  Loss Functions</a></li>
+  <li><a href="#torch-loss-function" id="toc-torch-loss-function" class="nav-link" data-scroll-target="#torch-loss-function"><span class="toc-section-number">18</span>  Torch Loss function</a></li>
+  <li><a href="#some-more-facts" id="toc-some-more-facts" class="nav-link" data-scroll-target="#some-more-facts"><span class="toc-section-number">19</span>  Some more facts</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="gradient-descent-using-backpropagation" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="gradient-descent-using-backpropagation"><span class="header-section-number">1</span> Gradient Descent using Backpropagation</h2>
+<ol type="1">
+<li><p>set <span class="math inline">\Delta W^{(l)}:=0,\Delta b^{(l)}:=0</span> (matrix/vector of zeros) for all <span class="math inline">l</span></p></li>
+<li><p>For <span class="math inline">i = 1</span> to <span class="math inline">m</span></p>
+<ol type="1">
+<li>Use backpropagation to compute <span class="math inline">\nabla_{\theta^{(l)}}J(\theta;X,y)</span></li>
+<li>Set <span class="math inline">\Delta\theta^{(l)}:=\Delta\theta^{(l)}+\nabla_{\theta^{(l)}}J(\theta;X,y)</span></li>
+</ol></li>
+<li><p>Update the parameters: <span class="math display">
+\begin{align*}
+W^{(l)}&amp;=W^{(l)}-\alpha\left[\left(\frac{1}{m}\Delta W^{(l)}\right)+\lambda W^{(l)}\right]\\
+b^{(l)}&amp;=b^{(l)}-\alpha\left[\frac{1}{m}\Delta b^{(l)}\right]
+\end{align*}
+</span></p></li>
+<li><p>Repeat for all data points until convergence.</p></li>
+</ol>
+<ul>
+<li>Iteration: When weight is updated then it is called one iteration.</li>
+<li>Epoch : When training is done at least once on the whole data set then it is called one epoch.</li>
+<li>Convex objective function has One global minima but Non convex objective function has many local minima.</li>
+<li><div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The neural network with more than one layer is almost always non convex, even if there is no activation function on any layer</p>
+<div class="alert alert-dismissible alert-info">
+<p>Consider a neural network with some hidden layer producing some output.Now if we permute the neurons of the hidden layer the output will still remain the same.It means for many possible coordinates there are only one output. Now if we plot hidden layer coordinates with respect to the output, we can see that the graph will not look like a linear function.</p>
+</div>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="local-minima" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="local-minima"><span class="header-section-number">2</span> Local Minima</h2>
+<ul>
+<li>The non-identifiability problem results in multiple equivalent local minima → Not problematic though, since cost function value is the same</li>
+<li>If there are local minima with significant different cost value then that could be a problem.</li>
+<li>It’s not required to find the true global minimum, recent work shows that even finding the parameter space which has low but not global minimum cost is enough.</li>
+<li><div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Plot the norm of the gradient over time. If the norm is very small, it is likely to be a local minimum (or a critical point).</p>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="saddle-points-and-plateaus" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="saddle-points-and-plateaus"><span class="header-section-number">3</span> Saddle Points and Plateaus</h2>
+<ul>
+<li>If there is local minima across one cross section of cost function and local maxima across another cross section of the cost function then it is called a saddle point.<br> <img src="CS5480_images//Acrobat_2OJYOHomOb.png" class="img-fluid"><br></li>
+<li>In higher dimension space there are more saddle points than local minima.</li>
+<li>If there is a steep decline in the cost then it is called Cliff area. Such types of clips are very much possible in RNN because in such networks there are a lot of multiplication (over time) and when small terms multiplies many times then it becomes even smaller which causes cliffs.<br> <img src="CS5480_images//Acrobat_5doamnxGE8.png" class="img-fluid"><br></li>
+</ul>
+</section>
+<section id="vanishingexploding-gradient" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="vanishingexploding-gradient"><span class="header-section-number">4</span> Vanishing/Exploding Gradient</h2>
+<ul>
+<li>While doing gradient descent if the smaller number multiplies many times it becomes even smaller and it causes vanishing gradient problem in very deep neural network.</li>
+<li>If the activation function has more steep slope or it has narrow range then it can cause vanishing gradient problem, One such example is sigmoid activation function.</li>
+<li>In the same way there may happen exploding gradient issue if the number is greater than one while doing gradient descent.</li>
+</ul>
+</section>
+<section id="challenges" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="challenges"><span class="header-section-number">5</span> Challenges</h2>
+<ul>
+<li>Cost functions are often high dimensional non quadratic non convex,There can be many minima shadow points and also many flat regions,</li>
+<li>There is no guarantee that a network will converge to an optimal point or it will converge at all.</li>
+<li>Most of the time problems are ill conditioned,</li>
+<li>The gradient can be inexact.</li>
+<li>Poor correspondence between local and global structure.</li>
+<li>We need to hyper tune learning rate and many other parameters.</li>
+</ul>
+</section>
+<section id="how-to-address" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="how-to-address"><span class="header-section-number">6</span> How to address</h2>
+<p>There are many techniques which can help address this issue up to some extent.</p>
+<ul>
+<li><p>Algorithmic approach.</p>
+<ul>
+<li>Batch gradient descent, stochastic gradient descent, mini batch gradient descent.</li>
+<li>Momentum based methods Nestrov momentum.</li>
+<li>Adagrad, Adadelta, RMSprobe, Adam.</li>
+<li>Other advanced optimization methods.</li>
+</ul></li>
+<li><p>Practical tricks.</p>
+<ul>
+<li>Regularization method such as dropout.</li>
+<li>Data manipulation methods.</li>
+<li>Parameter in slicing method.</li>
+</ul></li>
+<li><p>Batch gradient descent: In this method we compute the gradient for entire training set and then we update the parameters or weights.</p></li>
+<li><p>Stochastic gradient descent: In this method we first randomly shuffle the training set and then we compute the gradient for each and every training example and update the parameter or weights.</p></li>
+<li><p>Mini batch Stochastic gradient descent: In this method we first draw a mini batch from randomly shuffled data set. And we compute the gradient for this mini batch and update the parameter or weights.</p></li>
+<li><p>Advantage of Stochastic gradient descent:</p>
+<ul>
+<li>It is faster than batch gradient descent because there is redundancy in the batch.</li>
+<li>Often results in more better than generalised solution because of the noisy update of the weight.</li>
+<li>This method can be useful where we need to track the system overtime. We can update the weight stochastically.</li>
+</ul></li>
+<li><p>Issue with Stochastic gradient descent:</p>
+<ul>
+<li>Sometimes noise in stochastic gradient descent may lead to no convergence at all.</li>
+<li>Equivalent to use of “mini-batches” in SGD (Start with a small batch size and increase size as training proceeds.</li>
+<li>Can be controlled using learning rate.</li>
+</ul></li>
+<li><p>Advantages of Batch GD</p>
+<ul>
+<li>Conditions of convergence are well understood.</li>
+<li>Many acceleration techniques (e.g.&nbsp;conjugate gradient) only operate in batch learning.</li>
+<li>Theoretical analysis of the weight dynamics and convergence rates are simpler.</li>
+<li><div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mini-batch SGD is the most commonly used method, with a mini-batch size of 20 or so (can be higher depending on dataset size).</p>
+</div>
+</div></li>
+</ul></li>
+</ul>
+</section>
+<section id="momentum" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="momentum"><span class="header-section-number">7</span> Momentum</h2>
+<p>Weight update is given by <br> <span class="math display">\Delta\theta_{t+1}=\alpha\nabla_{\theta}J(\theta_{t};x^{(i)},y)^{(i)}+ \overbrace{\boxed{\gamma \Delta \theta _t}}^{\text{Momentum term}}   </span></p>
+<ul>
+<li>Can increase speed when the cost surface is highly non-spherical.</li>
+<li>Damps step sizes along directions of high curvature, yielding a larger effective learning rate along the directions of low curvature.</li>
+<li><div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Here the idea is that, if we are going in one direction, we build a momentum to that direction, so if there is a sudden change in the direction, we do not suddenly change the direction but go for a average as per the above equation.</p>
+</div>
+</div></li>
+<li>Larger the <span class="math inline">\gamma</span>, more the previous gradients affect the current step.</li>
+<li>Generally <span class="math inline">\gamma</span> is set to <span class="math inline">0.5</span> until initial learning stabilizes and then increased to <span class="math inline">0.9</span> or higher.</li>
+</ul>
+</section>
+<section id="sgd-with-momentum" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sgd-with-momentum"><span class="header-section-number">8</span> SGD with Momentum</h2>
+<p>Assume: <br></p>
+<blockquote class="blockquote">
+<p>Learning rate <span class="math inline">\alpha</span> <br> momentum parameter <span class="math inline">\gamma</span> <br> minibatch size <span class="math inline">m</span> <br> Initial weights <span class="math inline">\theta_t</span></p>
+</blockquote>
+<div class="alert alert-dismissible alert-success">
+<ol type="1">
+<li><em>while</em> stopping criterion not met <em>do</em></li>
+<li>Sample a minibatch of <span class="math inline">m</span> examples from the training set.</li>
+<li>Compute gradient estimate <span class="math inline">{\nabla}_{\theta}{\sum}_{i=1}^{m}J({\theta}_{t};X^{(i)},y^{(i)})</span></li>
+<li>Compute update <span class="math inline">\Delta\theta_{t+1}=\alpha\nabla_{\theta}J+\gamma\Delta\theta_{t}</span></li>
+<li>Apply update <span class="math inline">\theta_{t+1}=\theta_{t}-\Delta\theta_{t+1}</span></li>
+<li><em>End while</em></li>
+</ol>
+</div>
+<p>Alternate view of momentum update</p>
+<p><span class="math display">\overbrace{\mathrm{v}_{t+1}}^{\text{Velocity }} =\gamma \times \overbrace{\mathrm{v}_{t}}^{\text{past velocity}} +\alpha\nabla_{\theta}J(\theta_{t};X^{(i)},y^{(i)})</span></p>
+</section>
+<section id="nesterov-accelerated-momentum" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="nesterov-accelerated-momentum"><span class="header-section-number">9</span> Nesterov Accelerated Momentum</h2>
+<ul>
+<li><p>In this method weight update is given as below. <span class="math display">
+\begin{align*}
+  \mathrm{v}_{t+1}&amp;=\gamma\mathrm{v}_{t}+\alpha\nabla_{\theta}J(\boxed{\theta_{t}-\gamma\mathrm{v}_{t}} ;X^{(i)},y^{(i)})\\
+  \theta_{t+1}&amp;=\theta_{t}-\mathrm{v}_{t+1}
+\end{align*}
+</span></p>
+<div class="btn btn-secondary disabled">
+<p align="justify">
+Here intuition behind the term <span class="math inline">\boxed{\theta_{t}-\gamma\mathrm{v}_{t}}</span> is that, If you know the stock market price for tomorrow, we can do much better on stocks. In the same way we take a step forward and find the cost and then compute derivative, so that we can do better.
+</p>
+</div></li>
+<li><p>In general, this method performs better.<br><br> <img src="CS5480_images//Acrobat_hqsl9yl8Vn.png" class="img-fluid"> <br></p></li>
+</ul>
+</section>
+<section id="sgd-with-nesterov-momentum" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="sgd-with-nesterov-momentum"><span class="header-section-number">10</span> SGD with Nesterov Momentum</h2>
+<blockquote class="blockquote">
+<p>Learning rate <span class="math inline">\alpha</span> <br> momentum parameter <span class="math inline">\gamma</span> <br> minibatch size <span class="math inline">m</span> <br> Initial weights <span class="math inline">\theta_t</span> Initial velocity <span class="math inline">v_t</span></p>
+</blockquote>
+<div class="alert alert-dismissible alert-success">
+<ol type="1">
+<li><em>while</em> stopping criterion not met <em>do</em></li>
+<li>Sample a minibatch of <span class="math inline">m</span> examples from the training set.</li>
+<li>Apply interim update <span class="math inline">\tilde{\theta}_{t}=\theta_{t}-\gamma\bf{v}_{t}</span></li>
+<li>Compute gradient estimate <span class="math inline">{\nabla}_{\theta}{\sum}_{i=1}^{m}J(\tilde{\theta}_{t};X^{(i)},y^{(i)})</span></li>
+<li>Compute update <span class="math inline">{\bf v_{t+1}}=\gamma{\bf v}_{t}+\alpha\nabla_{\theta}\Sigma_{i=1}^{m}J(\tilde{\theta}_{t};x^{(i)},y^{(i)})</span></li>
+<li>Apply update <span class="math inline">\theta_{t+1}=\theta_{t}-\bf v_{t+1}</span></li>
+<li><em>End while</em></li>
+</ol>
+</div>
+<div class="text-danger">
+<p>Momentum parameter (<span class="math inline">\gamma</span>): Weightage given to earlier steps taken in the process of gradient descent.</p>
+</div>
+</section>
+<section id="adaptive-learning-rate-methods-adagrad" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="adaptive-learning-rate-methods-adagrad"><span class="header-section-number">11</span> Adaptive Learning Rate Methods: Adagrad</h2>
+<blockquote class="blockquote">
+<p>Global Learning rate <span class="math inline">\alpha</span> <br> minibatch size <span class="math inline">m</span> <br> Initial weights <span class="math inline">\theta_t</span><br> Small constant <span class="math inline">\delta</span> near to <span class="math inline">10^{-7}</span> for numerical stability</p>
+</blockquote>
+<div class="alert alert-dismissible alert-success">
+<ol type="1">
+<li>Initialize gradient accumulation variable <span class="math inline">\mathbf{r=0}</span></li>
+<li><em>while</em> stopping criterion not met <em>do</em></li>
+<li>Sample a minibatch of <span class="math inline">m</span> examples from the training set.</li>
+<li>Compute gradient estimate <span class="math inline">{\nabla}_{\theta}{\sum}_{i=1}^{m}J({\theta}_{t};X^{(i)},y^{(i)})</span></li>
+</ol>
+<div class="text-danger">
+<ol start="5" type="1">
+<li>Compute squared gradient <span class="math inline">{\bf r}={\bf r}+(\nabla_{\theta}J\;\odot\;\nabla_{\theta}J)</span></li>
+<li>Compute update <span class="math inline">\displaystyle \Delta\theta_{t+1}={\frac{\alpha}{\delta+\sqrt{\bf r}}}\ \odot \ \nabla_\theta J</span> (division and square root computed elementwise)</li>
+</ol>
+</div>
+<ol start="7" type="1">
+<li>Apply update <span class="math inline">\theta_{t+1}=\theta_{t}-\Delta\theta_{t+1}</span></li>
+<li><em>End while</em></li>
+</ol>
+</div>
+<ul>
+<li>Intuition
+<ul>
+<li>Calculates a different learning rate for each feature.</li>
+<li>Sparse features have higher learning rate.</li>
+</ul></li>
+</ul>
+</section>
+<section id="rmsprop" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="rmsprop"><span class="header-section-number">12</span> RMSProp</h2>
+<blockquote class="blockquote">
+<p>Global Learning rate <span class="math inline">\alpha</span> <br> Decay rate <span class="math inline">\rho</span> <br> minibatch size <span class="math inline">m</span> <br> Initial weights <span class="math inline">\theta_t</span><br> Small constant <span class="math inline">\delta</span> near to <span class="math inline">10^{-6}</span> for numerical stability</p>
+</blockquote>
+<div class="alert alert-dismissible alert-success">
+<ol type="1">
+<li>Initialize gradient accumulation variable <span class="math inline">\mathbf{r=0}</span></li>
+<li><em>while</em> stopping criterion not met <em>do</em></li>
+<li>Sample a minibatch of <span class="math inline">m</span> examples from the training set.</li>
+<li>Compute gradient estimate <span class="math inline">{\nabla}_{\theta}{\sum}_{i=1}^{m}J({\theta}_{t};X^{(i)},y^{(i)})</span></li>
+</ol>
+<div class="text-danger">
+<ol start="5" type="1">
+<li>Accumulate squared gradient <span class="math inline">{\bf r}=\rho{\bf r}+(1-\rho)(\nabla_{\theta}J\;\odot\;\nabla_{\theta}J)</span></li>
+<li>Compute update <span class="math inline">\displaystyle \Delta\theta_{t+1}={\frac{\alpha}{\delta+\sqrt{\bf r}}}\ \odot \ \nabla_\theta J</span> (division and square root computed elementwise)</li>
+</ol>
+</div>
+<ol start="7" type="1">
+<li>Apply update <span class="math inline">\theta_{t+1}=\theta_{t}-\Delta\theta_{t+1}</span></li>
+<li><em>End while</em></li>
+</ol>
+</div>
+<ul>
+<li>Intuition
+<ul>
+<li>Calculates a different learning rate for each feature.</li>
+<li>Sparse features have higher learning rate.</li>
+<li>Now we can control the accumulation using <span class="math inline">\rho</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="rmsprop-with-nesterov-momentum" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="rmsprop-with-nesterov-momentum"><span class="header-section-number">13</span> RMSProp with Nesterov Momentum</h2>
+<blockquote class="blockquote">
+<p>Global Learning rate <span class="math inline">\alpha</span> <br> Decay rate <span class="math inline">\rho</span> <br> Momentum co-efficient <span class="math inline">\gamma</span><br> Inital velocity <span class="math inline">\bf v</span><br> minibatch size <span class="math inline">m</span> <br> Initial weights <span class="math inline">\theta_t</span><br> Small constant <span class="math inline">\delta</span> near to <span class="math inline">10^{-6}</span> for numerical stability</p>
+</blockquote>
+<div class="alert alert-dismissible alert-success">
+<ol type="1">
+<li>Initialize gradient accumulation variable <span class="math inline">\mathbf{r=0}</span></li>
+<li><em>while</em> stopping criterion not met <em>do</em></li>
+<li>Sample a minibatch of <span class="math inline">m</span> examples from the training set.</li>
+</ol>
+<div class="text-warning">
+<ol start="4" type="1">
+<li>Apply interim update <span class="math inline">\tilde{\theta}_{t}=\theta_{t}-\gamma\bf{v}_{t}</span></li>
+<li>Compute gradient estimate <span class="math inline">{\nabla}_{\theta}{\sum}_{i=1}^{m}J(\tilde{\theta}_{t};X^{(i)},y^{(i)})</span></li>
+</ol>
+</div>
+<div class="text-danger">
+<ol start="6" type="1">
+<li>Accumulate squared gradient <span class="math inline">{\bf r}=\rho{\bf r}+(1-\rho)(\nabla_{\theta}J\;\odot\;\nabla_{\theta}J)</span></li>
+<li>Compute update <span class="math inline">\displaystyle \Delta\theta_{t+1}={\frac{\alpha}{\delta+\sqrt{\bf r}}}\ \odot \ \nabla_\theta J</span> (division and square root computed elementwise)</li>
+</ol>
+</div>
+<ol start="8" type="1">
+<li>Apply update <span class="math inline">\theta_{t+1}=\theta_{t}-\Delta\theta_{t+1}</span></li>
+<li><em>End while</em></li>
+</ol>
+</div>
+</section>
+<section id="adam" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="adam"><span class="header-section-number">14</span> Adam</h2>
+<blockquote class="blockquote">
+<p>Global Learning rate <span class="math inline">\alpha</span> <br> Decay rates for moment estimate <span class="math inline">\rho_1</span> and <span class="math inline">\rho_2</span> <br> Momentum co-efficient <span class="math inline">\gamma</span><br> minibatch size <span class="math inline">m</span> <br> Initial weights <span class="math inline">\theta_t</span><br> Small constant <span class="math inline">\delta</span> near to <span class="math inline">10^{-8}</span> for numerical stability</p>
+</blockquote>
+<div class="alert alert-dismissible alert-success">
+<ol type="1">
+<li>Initialize first and second moment variables <span class="math inline">\mathbf{r=0}</span> and <span class="math inline">\mathbf{s=0}</span></li>
+<li><em>while</em> stopping criterion not met <em>do</em></li>
+<li>Sample a minibatch of <span class="math inline">m</span> examples from the training set.</li>
+</ol>
+<div class="text-danger">
+<ol start="4" type="1">
+<li>Compute gradient estimate <span class="math inline">{\nabla}_{\theta}{\sum}_{i=1}^{m}J({\theta}_{t};X^{(i)},y^{(i)})</span></li>
+<li>Update biased first moment estimate <span class="math inline">{\bf s}=\rho_1{\bf s}+(1-\rho_1)\nabla_{\theta}J</span></li>
+<li>Update biased second moment estimate <span class="math inline">{\bf r}=\rho_2{\bf r}+(1-\rho_2)(\nabla_{\theta}J\;\odot\;\nabla_{\theta}J)</span></li>
+<li>Correct bias in first moment <span class="math inline">\displaystyle \tilde{\bf s}=\frac{\bf s}{1-\rho_1^t}</span></li>
+<li>Now Correct bias in second moment <span class="math inline">\displaystyle \tilde{\bf r}=\frac{\bf r}{1-\rho_2^t}</span></li>
+<li>Compute update <span class="math inline">\displaystyle \Delta\theta_{t+1}={\alpha\frac{\tilde{\bf s}}{\delta+\sqrt{\tilde{\bf r}}}}</span> (division and square root computed elementwise)</li>
+</ol>
+</div>
+<ol start="10" type="1">
+<li>Apply update <span class="math inline">\theta_{t+1}=\theta_{t}-\Delta\theta_{t+1}</span></li>
+<li><em>End while</em></li>
+</ol>
+</div>
+<ul>
+<li>Intuition
+<ul>
+<li>Similar to RMSProp with momentum</li>
+<li>Uses the idea of momentum, as well as having a different learning rate for each dimension (which is automatically adjusted, as in Adagrad, Adadelta or RMS)</li>
+</ul></li>
+</ul>
+</section>
+<section id="interesting-facts" class="level2" data-number="15">
+<h2 data-number="15" class="anchored" data-anchor-id="interesting-facts"><span class="header-section-number">15</span> Interesting Facts</h2>
+<div class="card bg-light mb-3">
+<div class="card-header">
+<p><i class="fa-solid fa-bolt" aria-label="bolt"></i></p>
+</div>
+<div class="card-body">
+<div class="card-title">
+<h4 class="anchored">
+Interesting Facts
+</h4>
+</div>
+<div class="card-text">
+<ul>
+<li>If input data is sparse, adaptive learning-rate methods may be best.No need to tune learning rate</li>
+<li>Learning rates diminish fast in Adagrad, RMSProp addresses this issue.</li>
+<li>Adam adds bias-correction and momentum to RMSprop.</li>
+<li>RMSprop, Adadelta, and Adam are similar algorithms, bias-correction helps Adam slightly outperform RMSprop towards the end of optimization as gradients become sparser</li>
+<li>Adam might be the best overall choice (May not be always true!)</li>
+<li>Vanilla SGD depends on a robust initialization and annealing schedule, and may get stuck in saddle points rather than local minima.</li>
+<li>Many recent papers use vanilla SGD without momentum, but with a simple learning rate annealing schedule</li>
+<li>Some standard choices for training deep networks: SGD + Nesterov momentum, SGD with Adagrad/RMSProp/Adam.</li>
+<li>ReLUs, Leaky ReLUs and MaxOut are the best bets for activation functions</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="activation-functions" class="level2" data-number="16">
+<h2 data-number="16" class="anchored" data-anchor-id="activation-functions"><span class="header-section-number">16</span> Activation Functions</h2>
+<ul>
+<li>Sigmoid
+<ul>
+<li>This function takes any real value as input and outputs values in the range of 0 to 1.</li>
+<li>Formulae : <span class="math display">f(x)=\frac{1}{1+e^{-x}} </span></li>
+<li>It is commonly used for models where we have to predict the probability as an output. Since probability of anything exists only between the range of 0 and 1, sigmoid is the right choice because of its range.</li>
+</ul></li>
+<li>Tanh Function
+<ul>
+<li>It’s output range is -1 to 1.</li>
+<li>Formulae : <span class="math display">f(x)=\frac{e^{x}-e^{-x}}{e^{x}+e^{-x}} </span><br>
+</li>
+<li>The output of the tanh activation function is Zero centered; hence we can easily map the output values as strongly negative, neutral, or strongly positive.</li>
+<li>Usually used in hidden layers of a neural network as its values lie between -1 to 1; therefore, the mean for the hidden layer comes out to be 0 or very close to it. It helps in centering the data and makes learning for the next layer much easier.</li>
+<li><div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Although both sigmoid and tanh face vanishing gradient issue, tanh is zero centered, and the gradients are not restricted to move in a certain direction. Therefore, in practice, tanh nonlinearity is always preferred to sigmoid nonlinearity.</p>
+</div>
+</div></li>
+</ul></li>
+<li>ReLU
+<ul>
+<li>The neurons will only be deactivated if the output of the linear transformation is less than 0.</li>
+<li>Formulae : <span class="math display"> f(x)=\max(0,x)</span></li>
+<li>Since only a certain number of neurons are activated, the ReLU function is far more computationally efficient when compared to the sigmoid and tanh functions.</li>
+<li>ReLU accelerates the convergence of gradient descent towards the global minimum of the loss function due to its linear, non-saturating property.</li>
+<li>Found to accelerate convergence of SGD compared to sigmoid/tanh functions (a factor of 6) in AlexNet</li>
+<li>It has the The Dying ReLU problem
+<ul>
+<li>The negative side of the graph makes the gradient value zero. Due to this reason, during the backpropagation process, the weights and biases for some neurons are not updated. This can create dead neurons which never get activated.</li>
+<li>All the negative input values become zero immediately, which decreases the model’s ability to fit or train from the data properly.</li>
+</ul></li>
+</ul></li>
+<li>Leaky ReLU
+<ul>
+<li>Leaky ReLU is an improved version of ReLU function to solve the Dying ReLU problem as it has a small positive slope in the negative area.</li>
+<li>formula: <span class="math display">f(x)=\max(0.1x,x)</span></li>
+<li>The predictions may not be consistent for negative input values.</li>
+<li>The gradient for negative values is a small value that makes the learning of model parameters time-consuming.</li>
+</ul></li>
+<li>Parametric ReLU
+<ul>
+<li>formula: <span class="math display">f(x)=\max(ax,x)</span></li>
+<li>Parametric ReLU is another variant of ReLU that aims to solve the problem of gradient’s becoming zero for the left half of the axis.</li>
+<li>This function provides the slope of the negative part of the function as an argument <span class="math inline">a</span>. By performing backpropagation, the most appropriate value of <span class="math inline">a</span> is learnt.</li>
+<li>The parameterized ReLU function is used when the leaky ReLU function still fails at solving the problem of dead neurons, and the relevant information is not successfully passed to the next layer.</li>
+</ul></li>
+<li>Exponential Linear Units (ELUs)
+<ul>
+<li>ELU uses a log curve to define the negativ values unlike the leaky ReLU and Parametric ReLU functions with a straight line.</li>
+<li>formula: <span class="math display">f(x) = \begin{cases}
+  x &amp;\text{if } x \ge 0 \\
+  \alpha(e^x-1) &amp;\text{if } x&lt;0
+  \end{cases}</span></li>
+<li>ELU becomes smooth slowly until its output equal to <span class="math inline">\alpha</span> whereas RELU sharply smoothes.</li>
+<li>Avoids dead ReLU problem by introducing log curve for negative values of input. It helps the network nudge weights and biases in the right direction.</li>
+<li>No learning of the <span class="math inline">\alpha</span> value takes place</li>
+</ul></li>
+<li>Softmax
+<ul>
+<li>It is used for multiclass classification.</li>
+<li>formula: <span class="math display">f(x_i)=\frac{e^{x_i}}{\sum_{j}e^{x_j} } </span></li>
+</ul></li>
+<li>swish
+<ul>
+<li>Formulae : <span class="math display">f(x)=\frac{x}{1+e^{-x}} </span></li>
+<li>Swish is a smooth function that means that it does not abruptly change direction like ReLU does near x = 0. Rather, it smoothly bends from 0 towards values &lt; 0 and then upwards again.</li>
+<li>The swish function being non-monotonous enhances the expression of input data and weight to be learnt.</li>
+</ul></li>
+<li>Max Out
+<ul>
+<li>It is generalization of ReLU.</li>
+<li>formula: <span class="math display">f(x)=\max(w_1^Tx+b_1,w_2^Tx+b_2)</span></li>
+</ul></li>
+<li><div class="alert alert-dismissible alert-secondary">
+<h5 class="anchored">
+Guide-Line to Chose activation Function
+</h5>
+<ul>
+<li>Regression — Linear Activation Function</li>
+<li>Binary Classification — Sigmoid/Logistic Activation Function</li>
+<li>Multiclass Classification — Softmax</li>
+<li>Multilabel Classification — Sigmoid</li>
+<li>ReLU activation function should only be used in the hidden layers.</li>
+<li>Sigmoid/Logistic and Tanh functions should not be used in hidden layers as they make the model more susceptible to problems during training (due to vanishing gradients)</li>
+<li>Swish function is used in neural networks having a depth greater than 40 layers.</li>
+<li>Try tanh, but expect it to work worse than ReLU/Maxout.</li>
+</ul>
+</div></li>
+</ul>
+<div class="cell" data-execution_count="59">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> plotly.io <span class="im">as</span> pio</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="im">from</span> plotly.subplots <span class="im">import</span> make_subplots</span>
+<span id="cb1-6"><a href="#cb1-6"></a>pio.renderers.default <span class="op">=</span> <span class="st">"plotly_mimetype+notebook_connected"</span> <span class="co"># this is reqired only to render html not for notebook</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a>fig <span class="op">=</span> make_subplots(rows<span class="op">=</span><span class="dv">3</span>, cols<span class="op">=</span><span class="dv">2</span>,subplot_titles<span class="op">=</span>(<span class="st">"Sigmoid"</span>, <span class="st">"tanh"</span>, <span class="st">"ReLU"</span>, <span class="st">"Leaky ReLU"</span>, <span class="st">"ELU"</span>,<span class="st">"swish"</span>))</span>
+<span id="cb1-9"><a href="#cb1-9"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">50</span>)</span>
+<span id="cb1-10"><a href="#cb1-10"></a>sigmoid <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>x))</span>
+<span id="cb1-11"><a href="#cb1-11"></a>fig.append_trace(go.Line(x<span class="op">=</span>x,y<span class="op">=</span><span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>x))),row<span class="op">=</span><span class="dv">1</span>,col<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-12"><a href="#cb1-12"></a>fig.append_trace(go.Line(x<span class="op">=</span>x,y<span class="op">=</span>np.tanh(x)),row<span class="op">=</span><span class="dv">1</span>,col<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-13"><a href="#cb1-13"></a>fig.append_trace(go.Line(x<span class="op">=</span>x,y<span class="op">=</span>np.where(x<span class="op">&gt;</span><span class="dv">0</span>,x,<span class="dv">0</span>)),row<span class="op">=</span><span class="dv">2</span>,col<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-14"><a href="#cb1-14"></a>fig.append_trace(go.Line(x<span class="op">=</span>x,y<span class="op">=</span>np.where(x<span class="op">&gt;</span><span class="dv">0</span>,x,<span class="fl">0.1</span><span class="op">*</span>x)),row<span class="op">=</span><span class="dv">2</span>,col<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-15"><a href="#cb1-15"></a>fig.append_trace(go.Line(x<span class="op">=</span>x,y<span class="op">=</span>np.where(x<span class="op">&gt;</span><span class="dv">0</span>,x,<span class="dv">5</span><span class="op">*</span>(np.exp(x)<span class="op">-</span><span class="dv">1</span>))),row<span class="op">=</span><span class="dv">3</span>,col<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-16"><a href="#cb1-16"></a>fig.append_trace(go.Line(x<span class="op">=</span>x,y<span class="op">=</span>x<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>x))),row<span class="op">=</span><span class="dv">3</span>,col<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb1-17"><a href="#cb1-17"></a>fig.update(layout_showlegend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-18"><a href="#cb1-18"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+
+<div>                            <div id="1d771e4e-7b24-4d6e-9d6f-40d5fcbea4df" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("1d771e4e-7b24-4d6e-9d6f-40d5fcbea4df")) {                    Plotly.newPlot(                        "1d771e4e-7b24-4d6e-9d6f-40d5fcbea4df",                        [{"x":[-5.0,-4.795918367346939,-4.591836734693878,-4.387755102040816,-4.183673469387755,-3.979591836734694,-3.7755102040816326,-3.571428571428571,-3.36734693877551,-3.163265306122449,-2.9591836734693877,-2.7551020408163263,-2.5510204081632653,-2.3469387755102042,-2.142857142857143,-1.9387755102040813,-1.7346938775510203,-1.5306122448979593,-1.3265306122448979,-1.1224489795918364,-0.9183673469387754,-0.7142857142857144,-0.5102040816326525,-0.3061224489795915,-0.1020408163265305,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"y":[0.0066928509242848554,0.008195682245394699,0.010032555186013372,0.012276025071468199,0.015013569057033847,0.018350241705691772,0.022411596418032444,0.02734678679618289,0.033331686533853294,0.040571758423092276,0.04930425596537221,0.059799151969359574,0.07235796333544683,0.08730940263865966,0.10500058502026482,0.12578244121862014,0.14998816555871142,0.1779041247108555,0.209733821699624,0.2455573055902638,0.2852906753756516,0.32865254651727,0.3751456852515014,0.424061486151752,0.4745119079463219,0.5254880920536781,0.575938513848248,0.624854314748499,0.6713474534827301,0.7147093246243483,0.7544426944097363,0.790266178300376,0.8220958752891444,0.8500118344412885,0.87421755878138,0.8949994149797352,0.9126905973613403,0.9276420366645531,0.9402008480306404,0.9506957440346279,0.9594282415769078,0.9666683134661466,0.9726532132038171,0.9775884035819675,0.9816497582943083,0.9849864309429661,0.9877239749285319,0.9899674448139867,0.9918043177546053,0.9933071490757153],"type":"scatter","xaxis":"x","yaxis":"y"},{"x":[-5.0,-4.795918367346939,-4.591836734693878,-4.387755102040816,-4.183673469387755,-3.979591836734694,-3.7755102040816326,-3.571428571428571,-3.36734693877551,-3.163265306122449,-2.9591836734693877,-2.7551020408163263,-2.5510204081632653,-2.3469387755102042,-2.142857142857143,-1.9387755102040813,-1.7346938775510203,-1.5306122448979593,-1.3265306122448979,-1.1224489795918364,-0.9183673469387754,-0.7142857142857144,-0.5102040816326525,-0.3061224489795915,-0.1020408163265305,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"y":[-0.9999092042625951,-0.9998634415507954,-0.9997946159642279,-0.999691107575254,-0.9995354456794231,-0.9993013676153218,-0.9989494050572058,-0.9984202681165271,-0.9976249455842615,-0.9964299299508876,-0.9946352534407366,-0.9919420332830022,-0.9879049562527997,-0.9818637011172895,-0.9728461661125113,-0.9594367963458108,-0.939608189243296,-0.9105293071885276,-0.8683988338721091,-0.8084190680766979,-0.7251241351036911,-0.6133572603953827,-0.470104194194287,-0.29690544684776476,-0.10168812436848527,0.10168812436848527,0.29690544684776476,0.47010419419428773,0.6133572603953827,0.7251241351036911,0.8084190680766983,0.8683988338721091,0.9105293071885276,0.939608189243296,0.9594367963458108,0.9728461661125113,0.9818637011172895,0.9879049562527997,0.9919420332830023,0.9946352534407366,0.9964299299508876,0.9976249455842615,0.9984202681165271,0.9989494050572058,0.9993013676153218,0.9995354456794231,0.999691107575254,0.9997946159642279,0.9998634415507954,0.9999092042625951],"type":"scatter","xaxis":"x2","yaxis":"y2"},{"x":[-5.0,-4.795918367346939,-4.591836734693878,-4.387755102040816,-4.183673469387755,-3.979591836734694,-3.7755102040816326,-3.571428571428571,-3.36734693877551,-3.163265306122449,-2.9591836734693877,-2.7551020408163263,-2.5510204081632653,-2.3469387755102042,-2.142857142857143,-1.9387755102040813,-1.7346938775510203,-1.5306122448979593,-1.3265306122448979,-1.1224489795918364,-0.9183673469387754,-0.7142857142857144,-0.5102040816326525,-0.3061224489795915,-0.1020408163265305,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"y":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"type":"scatter","xaxis":"x3","yaxis":"y3"},{"x":[-5.0,-4.795918367346939,-4.591836734693878,-4.387755102040816,-4.183673469387755,-3.979591836734694,-3.7755102040816326,-3.571428571428571,-3.36734693877551,-3.163265306122449,-2.9591836734693877,-2.7551020408163263,-2.5510204081632653,-2.3469387755102042,-2.142857142857143,-1.9387755102040813,-1.7346938775510203,-1.5306122448979593,-1.3265306122448979,-1.1224489795918364,-0.9183673469387754,-0.7142857142857144,-0.5102040816326525,-0.3061224489795915,-0.1020408163265305,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"y":[-0.5,-0.4795918367346939,-0.4591836734693878,-0.4387755102040816,-0.41836734693877553,-0.39795918367346944,-0.3775510204081633,-0.35714285714285715,-0.33673469387755106,-0.3163265306122449,-0.29591836734693877,-0.2755102040816326,-0.25510204081632654,-0.23469387755102045,-0.2142857142857143,-0.19387755102040816,-0.17346938775510204,-0.15306122448979595,-0.1326530612244898,-0.11224489795918365,-0.09183673469387754,-0.07142857142857144,-0.05102040816326525,-0.030612244897959152,-0.010204081632653052,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"x":[-5.0,-4.795918367346939,-4.591836734693878,-4.387755102040816,-4.183673469387755,-3.979591836734694,-3.7755102040816326,-3.571428571428571,-3.36734693877551,-3.163265306122449,-2.9591836734693877,-2.7551020408163263,-2.5510204081632653,-2.3469387755102042,-2.142857142857143,-1.9387755102040813,-1.7346938775510203,-1.5306122448979593,-1.3265306122448979,-1.1224489795918364,-0.9183673469387754,-0.7142857142857144,-0.5102040816326525,-0.3061224489795915,-0.1020408163265305,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"y":[-4.966310265004573,-4.9586829675033615,-4.949328863092571,-4.93785700568645,-4.923787939684302,-4.906533661570005,-4.885373044852443,-4.85942170125514,-4.827595018531553,-4.788562830105934,-4.7406938219996055,-4.6819873535818655,-4.609989842657312,-4.521692220282109,-4.4134041695287465,-4.280599892125506,-4.117728956930945,-3.9179843248314334,-3.673017854878351,-3.37259140150874,-3.0041489207825816,-2.5522917022152347,-1.9981347940079763,-1.3185177240683155,-0.485036529639849,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"x":[-5.0,-4.795918367346939,-4.591836734693878,-4.387755102040816,-4.183673469387755,-3.979591836734694,-3.7755102040816326,-3.571428571428571,-3.36734693877551,-3.163265306122449,-2.9591836734693877,-2.7551020408163263,-2.5510204081632653,-2.3469387755102042,-2.142857142857143,-1.9387755102040813,-1.7346938775510203,-1.5306122448979593,-1.3265306122448979,-1.1224489795918364,-0.9183673469387754,-0.7142857142857144,-0.5102040816326525,-0.3061224489795915,-0.1020408163265305,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"y":[-0.03346425462142428,-0.03930582301362764,-0.04606785544597978,-0.053864191640115563,-0.06281187054473344,-0.0730264720940795,-0.08461521096604085,-0.09766709570065317,-0.11223935261399579,-0.12833923582814905,-0.1459003492852851,-0.1647527656298682,-0.18458664116185416,-0.20490982251930331,-0.22500125361485318,-0.24386391664834514,-0.2601835524998055,-0.27230223170028905,-0.2782183349076645,-0.27562554709111237,-0.2620016406511086,-0.2347518189409072,-0.19140085982219437,-0.12981474065869947,-0.04841958244350218,0.05362123388302832,0.17630770832089204,0.31880322181045884,0.4795338953448072,0.6563657062876668,0.8468234325007249,1.0483122773372338,1.25831001319767,1.4745103250512146,1.6949115935557364,1.9178558892422901,2.1420289529909007,2.366433767001411,2.5903492751864587,2.8132833241841033,3.0349260702943,3.255107586161514,3.473761475727918,3.690894993115591,3.9065653646406155,4.120861598843023,4.333890910400702,4.545768879247898,4.756612544333311,4.966535745378576],"type":"scatter","xaxis":"x6","yaxis":"y6"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,0.45]},"yaxis":{"anchor":"x","domain":[0.7777777777777778,1.0]},"xaxis2":{"anchor":"y2","domain":[0.55,1.0]},"yaxis2":{"anchor":"x2","domain":[0.7777777777777778,1.0]},"xaxis3":{"anchor":"y3","domain":[0.0,0.45]},"yaxis3":{"anchor":"x3","domain":[0.3888888888888889,0.6111111111111112]},"xaxis4":{"anchor":"y4","domain":[0.55,1.0]},"yaxis4":{"anchor":"x4","domain":[0.3888888888888889,0.6111111111111112]},"xaxis5":{"anchor":"y5","domain":[0.0,0.45]},"yaxis5":{"anchor":"x5","domain":[0.0,0.22222222222222224]},"xaxis6":{"anchor":"y6","domain":[0.55,1.0]},"yaxis6":{"anchor":"x6","domain":[0.0,0.22222222222222224]},"annotations":[{"font":{"size":16},"showarrow":false,"text":"Sigmoid","x":0.225,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"tanh","x":0.775,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"ReLU","x":0.225,"xanchor":"center","xref":"paper","y":0.6111111111111112,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Leaky ReLU","x":0.775,"xanchor":"center","xref":"paper","y":0.6111111111111112,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"ELU","x":0.225,"xanchor":"center","xref":"paper","y":0.22222222222222224,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"swish","x":0.775,"xanchor":"center","xref":"paper","y":0.22222222222222224,"yanchor":"bottom","yref":"paper"}],"showlegend":false},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('1d771e4e-7b24-4d6e-9d6f-40d5fcbea4df');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+</section>
+<section id="loss-functions" class="level2" data-number="17">
+<h2 data-number="17" class="anchored" data-anchor-id="loss-functions"><span class="header-section-number">17</span> Loss Functions</h2>
+<ul>
+<li>Cross-Entropy Loss Function
+<ul>
+<li>Formula <span class="math display">J=-\frac{1}{m}\sum_{i=1}^{m}y_{i}\log\hat{y_{i}}+(1-y_{i})\log(1-\hat{y_{i}})</span></li>
+<li>If the activation function is sigmoid <span class="math inline">\left(\sigma(z)=\,\frac{1}{1+e^{-z}}\right)</span> the darivative of cross-entropy is:<br> so,<br>
+<span class="math display">\hat y=\sigma(w^Tz) \text{ and } \sigma(z)=\frac{1}{1+e^{-z}}</span> so we can simplify it as below considering just one record <span class="math display">J = -\frac{1}{m}\sum_{i=1}^{m} \left(y\log(\sigma(z))+(1-y)\log(1-\sigma(z))\right)</span> Now we find derivative <span class="math display">\begin{align*}
+\frac{\partial J}{\partial w_j} &amp;= -\frac{1}{m}\sum_{i=1}^{m} \left(y \frac{1}{\sigma(z)}\sigma(z)'x_j+(1-y) \left( \frac{1}{1-\sigma(z)}\right) (-\sigma(z)'x_j)\right) \\
+&amp;=-\frac{1}{m}\sum_{i=1}^{m}\left(  \frac{y}{\sigma(z)}-  \frac{1-y}{1-\sigma(z)}\right) \sigma(z)'x_j \\
+&amp;= -\frac{1}{m}\sum_{i=1}^{m}\frac{y(1-\sigma(z))-\sigma(z)(1-y)}{\sigma(z)(1-\sigma(z))}\sigma(z)'x_j  \\
+&amp;= -\frac{1}{m}\sum_{i=1}^{m}\frac{y-y*\sigma(z)-\sigma(z)+\sigma(z)*y}{\sigma(z)(1-\sigma(z))}\sigma(z)'x_j  \\
+&amp;= -\frac{1}{m}\sum_{i=1}^{m}\frac{y-\sigma(z)}{\sigma(z)(1-\sigma(z))}\sigma(z)(1-\sigma(z))*x_j  \\
+&amp;=-\frac{1}{m}\sum_{i=1}^{m}(y-\sigma(z))*x_j\\
+&amp;=\frac{1}{m}\sum_{i=1}^{m}(\sigma(z)-y)*x_j
+\end{align*}</span></li>
+<li>Even if we consider softmax as activation function <span class="math display">\left(a_{j}^{L}=\frac{e^{z_{j}^{L}}}{\sum_{k}e^{z_{k}^{L}}}\right)</span> we get similar derivative <span class="math display">\frac{\partial J}{\partial w_{j k}^{L}}=\overbrace{\boxed{a_{k}^{L-1}(a_{j}^{L}-y_{j})}}^{\text{similar to cross entropy}}  </span></li>
+</ul></li>
+</ul>
+</section>
+<section id="torch-loss-function" class="level2" data-number="18">
+<h2 data-number="18" class="anchored" data-anchor-id="torch-loss-function"><span class="header-section-number">18</span> Torch Loss function</h2>
+<ul>
+<li>Classification
+<ul>
+<li>BCECriterion: binary cross-entropy for Sigmoid (two-class version)</li>
+<li>ClassNLLCriterion: negative log-likelihood (multi-class)</li>
+<li>MarginCriterion: two class margin-based loss</li>
+</ul></li>
+<li>Regression
+<ul>
+<li>AbsCriterion: measures the mean absolute value of the element wise difference between input</li>
+<li>MSECriterion: mean square error (a classic)</li>
+<li>DistKLDivCriterion: Kullback–Leibler divergence (for fitting continuous probability distributions)</li>
+</ul></li>
+<li>Embedding (measuring whether two inputs are similar or dissimilar)
+<ul>
+<li>L1HingeEmbeddingCriterion: L1 distance between two inputs</li>
+<li>CosineEmbeddingCriterion: cosine distance between two inputs</li>
+</ul></li>
+</ul>
+</section>
+<section id="some-more-facts" class="level2" data-number="19">
+<h2 data-number="19" class="anchored" data-anchor-id="some-more-facts"><span class="header-section-number">19</span> Some more facts</h2>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A multilayer network of perceptrons with a single hidden layer can be used to represent any boolean function precisely (no errors), in fact for <span class="math inline">n</span> inputs, it needs <span class="math inline">{2}^n</span> perceptron on hidden layer and one perceptron on output layer to represent any boolean function.</p>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A multilayer network of neurons with a single hidden layer can be used to approximate any continuous function to any desired precision.<br> In other words, there is a guarantee that for any function <span class="math inline">f(x): \mathbb{R}^n \rightarrow \mathbb{R}^m</span>, we can always find a neural network (with <span class="math inline">1</span> hidden layer containing enough neurons) whose output <span class="math inline">g(x)</span> satisfies <span class="math inline">| g(x)-f(x)| &lt; \epsilon</span></p>
+</div>
+</div>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="abhiyantaabhishek/IITH-Data-Science" data-repo-id="R_kgDOILoB8A" data-category="Announcements" data-category-id="DIC_kwDOILoB8M4CSJcL" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning 1</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" class="pagination-link">
+        <span class="nav-page-text">Deep Learning 3</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

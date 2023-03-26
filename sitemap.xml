@@ -1,123 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5480/2023-03-18-CS5480-week6.html</loc>
-    <lastmod>2023-03-23T02:32:18.527Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html</loc>
+    <lastmod>2023-03-26T00:10:23.494Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5480/2023-03-04-CS5480-week5.html</loc>
-    <lastmod>2023-03-23T02:32:19.891Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html</loc>
+    <lastmod>2023-03-26T00:10:24.862Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5480/2023-01-21-CS5480-week2.html</loc>
-    <lastmod>2023-03-23T02:32:20.999Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html</loc>
+    <lastmod>2023-03-26T00:10:25.958Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5480/2023-02-04-CS5480-week3.html</loc>
-    <lastmod>2023-03-23T02:32:21.883Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.html</loc>
+    <lastmod>2023-03-26T00:10:27.270Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5480/2023-02-11-CS5480-week4.html</loc>
-    <lastmod>2023-03-23T02:32:23.155Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-10-29-CS5590-week8.html</loc>
+    <lastmod>2023-03-26T00:10:28.342Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5480/2023-01-07-CS5480-week1.html</loc>
-    <lastmod>2023-03-23T02:32:24.743Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-10-08-CS5590-week6.html</loc>
+    <lastmod>2023-03-26T00:10:29.354Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS6660/2022-08-06-CS6660-week1.html</loc>
-    <lastmod>2023-03-23T02:32:25.603Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html</loc>
+    <lastmod>2023-03-26T00:10:30.390Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_2.html</loc>
-    <lastmod>2023-03-23T02:32:26.591Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.html</loc>
+    <lastmod>2023-03-26T00:10:31.518Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS6660/2022-09-03-CS6660-week3.html</loc>
-    <lastmod>2023-03-23T02:32:27.355Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-10-15-CS5590-week7.html</loc>
+    <lastmod>2023-03-26T00:10:32.654Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS6660/2022-10-01-CS6660-week6.html</loc>
-    <lastmod>2023-03-23T02:32:28.171Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html</loc>
+    <lastmod>2023-03-26T00:10:33.618Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS6660/2022-09-24-CS6660-week5.html</loc>
-    <lastmod>2023-03-23T02:32:29.095Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html</loc>
+    <lastmod>2023-03-26T00:10:34.598Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_1.html</loc>
-    <lastmod>2023-03-23T02:32:30.315Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html</loc>
+    <lastmod>2023-03-26T00:10:35.442Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS6660/2022-08-13-CS6660-week2.html</loc>
-    <lastmod>2023-03-23T02:32:31.099Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html</loc>
+    <lastmod>2023-03-26T00:10:36.370Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS6660/2022-10-15-CS6660-week7.html</loc>
-    <lastmod>2023-03-23T02:32:32.063Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-09-24-CS6660-week5.html</loc>
+    <lastmod>2023-03-26T00:10:37.442Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5590/2022-11-05-CS5590-week9.html</loc>
-    <lastmod>2023-03-23T02:32:33.031Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html</loc>
+    <lastmod>2023-03-26T00:10:38.550Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5590/2022-08-06-CS5590-week1.html</loc>
-    <lastmod>2023-03-23T02:32:33.811Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html</loc>
+    <lastmod>2023-03-26T00:10:39.418Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5590/2022-08-20-CS5590-week2.html</loc>
-    <lastmod>2023-03-23T02:32:34.803Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-10-15-CS6660-week7.html</loc>
+    <lastmod>2023-03-26T00:10:40.698Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5590/2022-09-10-CS5590-week4.html</loc>
-    <lastmod>2023-03-23T02:32:35.951Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html</loc>
+    <lastmod>2023-03-26T00:10:41.638Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5590/2022-10-29-CS5590-week8.html</loc>
-    <lastmod>2023-03-23T02:32:36.863Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html</loc>
+    <lastmod>2023-03-26T00:10:42.834Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5590/2022-10-08-CS5590-week6.html</loc>
-    <lastmod>2023-03-23T02:32:37.763Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html</loc>
+    <lastmod>2023-03-26T00:10:44.114Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5590/2022-08-27-CS5590-week3.html</loc>
-    <lastmod>2023-03-23T02:32:38.655Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html</loc>
+    <lastmod>2023-03-26T00:10:45.182Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5590/2022-09-24-CS5590-week5.html</loc>
-    <lastmod>2023-03-23T02:32:39.563Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-02-11-CS5480-week4.html</loc>
+    <lastmod>2023-03-26T00:10:46.378Z</lastmod>
   </url>
   <url>
-    <loc>http://localhost:4200/Data_Science_Notes/CS5590/2022-10-15-CS5590-week7.html</loc>
-    <lastmod>2023-03-23T02:32:40.551Z</lastmod>
+    <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html</loc>
+    <lastmod>2023-03-26T00:10:47.406Z</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html</loc>
+    <lastmod>2023-03-26T00:10:49.390Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/index.html</loc>
-    <lastmod>2023-03-23T02:32:41.671Z</lastmod>
+    <lastmod>2023-03-26T00:10:50.994Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Projects/index.html</loc>
-    <lastmod>2023-03-23T02:32:42.431Z</lastmod>
+    <lastmod>2023-03-26T00:10:51.842Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Projects/CS6450_proposal.html</loc>
-    <lastmod>2023-03-23T02:32:43.083Z</lastmod>
+    <lastmod>2023-03-26T00:10:52.662Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/about.html</loc>
-    <lastmod>2023-03-23T02:32:43.775Z</lastmod>
+    <lastmod>2023-03-26T00:10:53.562Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/index.html</loc>
-    <lastmod>2023-03-23T02:32:44.515Z</lastmod>
+    <lastmod>2023-03-26T00:10:54.394Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Hacks/2022-11-22-sk-learn model search.html</loc>
-    <lastmod>2023-03-23T02:32:45.779Z</lastmod>
+    <lastmod>2023-03-26T00:10:55.958Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Hacks/index.html</loc>
-    <lastmod>2023-03-23T02:32:46.567Z</lastmod>
+    <lastmod>2023-03-26T00:10:56.866Z</lastmod>
   </url>
 </urlset>

@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.475">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Abhishek Kumar Dubey">
+<meta name="dcterms.date" content="2023-03-25">
+<meta name="description" content="Recurrent Neural Networks, Attention and Transformers">
+
+<title>Deep Learning 7</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" rel="next">
+<link href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" rel="prev">
+<link href="../../logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
+</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Deep Learning 7">
+<meta property="og:description" content="Recurrent Neural Networks, Attention and Transformers">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/Deep-Learning/CS5480_images/VoiceAccess_56w2Jughz5.png">
+<meta property="og:image:height" content="229">
+<meta property="og:image:width" content="658">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../Data_Science_Notes/index.html" aria-current="page">
+ <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Data_Science_Hacks/index.html">
+ <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Data Science Hacks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Data_Science_Projects/index.html">
+ <span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Data Science Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Deep Learning 7</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Deep Learning 7</h1>
+                  <div>
+        <div class="description">
+          Recurrent Neural Networks, Attention and Transformers
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Deep Learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Abhishek Kumar Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 25, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Data_Science_Notes/index.html" class="sidebar-item-text sidebar-link">Data Science Notes</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Deep Learning</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" class="sidebar-item-text sidebar-link">Deep Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html" class="sidebar-item-text sidebar-link">Deep Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" class="sidebar-item-text sidebar-link">Deep Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-11-CS5480-week4.html" class="sidebar-item-text sidebar-link">Deep Learning 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link">Deep Learning 6</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" class="sidebar-item-text sidebar-link active">Deep Learning 7</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">Machine Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">Machine Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">Machine Learning 6</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">Machine Learning 7</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link">Machine Learning 8</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html" class="sidebar-item-text sidebar-link">Machine Learning 9</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Mathematics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">Probability Theory 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">Probability Theory 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">Probability Theory 5</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#recurrent-neural-networks-introduction" id="toc-recurrent-neural-networks-introduction" class="nav-link active" data-scroll-target="#recurrent-neural-networks-introduction"><span class="toc-section-number">1</span>  Recurrent Neural Networks Introduction</a></li>
+  <li><a href="#backprop-through-time-bptt" id="toc-backprop-through-time-bptt" class="nav-link" data-scroll-target="#backprop-through-time-bptt"><span class="toc-section-number">2</span>  Backprop Through Time (BPTT)</a></li>
+  <li><a href="#long-short-term-memory-lstm" id="toc-long-short-term-memory-lstm" class="nav-link" data-scroll-target="#long-short-term-memory-lstm"><span class="toc-section-number">3</span>  Long Short Term Memory (LSTM)</a></li>
+  <li><a href="#lstm-variant" id="toc-lstm-variant" class="nav-link" data-scroll-target="#lstm-variant"><span class="toc-section-number">4</span>  LSTM variant</a></li>
+  <li><a href="#grus" id="toc-grus" class="nav-link" data-scroll-target="#grus"><span class="toc-section-number">5</span>  GRUs</a></li>
+  <li><a href="#example-applications" id="toc-example-applications" class="nav-link" data-scroll-target="#example-applications"><span class="toc-section-number">6</span>  Example Applications</a></li>
+  <li><a href="#attention-and-transformers" id="toc-attention-and-transformers" class="nav-link" data-scroll-target="#attention-and-transformers"><span class="toc-section-number">7</span>  Attention and Transformers</a></li>
+  <li><a href="#motivation-for-transformers" id="toc-motivation-for-transformers" class="nav-link" data-scroll-target="#motivation-for-transformers"><span class="toc-section-number">8</span>  Motivation for Transformers</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="recurrent-neural-networks-introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="recurrent-neural-networks-introduction"><span class="header-section-number">1</span> Recurrent Neural Networks Introduction</h2>
+<ul>
+<li><p>Traditional feed-forward network assume that all inputs and outputs are independent of each other.</p></li>
+<li><p>Counterexample language/speech modeling</p>
+<ul>
+<li>Predicting the next word in a sentence depends on the entire sequence of words before the current word</li>
+<li>Example: “The man who wore a wig on his head went inside”
+<ul>
+<li>Who went inside? Man or wig?</li>
+</ul></li>
+</ul></li>
+<li><p>Use the same weights/layers for every time step (hence, recurrent ), and pass on the output to the next time step Courtesy: <br><br> <img src="CS5480_images/Acrobat_iduxTVwnBA.png" class="img-fluid"></p></li>
+<li><p>A recurrent neural network and the unfolding in time of the computation involved in its forward computation <br><br> <img src="CS5480_images/VoiceAccess_FDHN2gQ7fh.png" class="img-fluid"></p></li>
+<li><p>We can notice that <br></p>
+<p><span class="math display">\begin{align*}
+  s_{t}&amp;=\operatorname{tanh}(U x_{t}+W s_{t-1})\\
+  \hat{y}_{t}&amp;=\mathrm{softrnax}(Vs_{t})\\
+  E_{t}(y_{t},\hat{y_{t}})&amp;=-y_{t}\log\hat{y_{t}} \\
+  E(y,{\hat{y}})&amp;=\sum_{t}E_{t}(y_{t},{\hat{y}}_{t})\\
+  &amp;=-\sum_{t}y_{t}\log\;{\hat{y}}_{t}
+\end{align*}</span></p></li>
+</ul>
+<p>Kinds of RNNs</p>
+<p><img src="CS5480_images/VoiceAccess_J6FmUvHCo5.png" class="img-fluid"></p>
+</section>
+<section id="backprop-through-time-bptt" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="backprop-through-time-bptt"><span class="header-section-number">2</span> Backprop Through Time (BPTT)</h2>
+<ul>
+<li><p>Unrolled RNN <br><br> <img src="CS5480_images/VoiceAccess_DQEZ5vcZAU.png" class="img-fluid"></p></li>
+<li><p>Goal</p>
+<ul>
+<li>Calculate error gradients w.r.t U, V and W</li>
+<li>Learn weights using SGD</li>
+</ul></li>
+<li><p>Just like we sum up errors, we also sum up gradients at each time step for one training example <span class="math display">{\frac{\partial E}{\partial W}}=\sum_{t}{\frac{\partial E_{t}}{\partial W}}</span></p></li>
+</ul>
+<p><span class="math display">\begin{align*}
+    \frac{\partial E_{3}}{\partial V}&amp;=\frac{\partial E_{3}}{\partial\hat{y}_{3}}\frac{\partial\hat{y}_{3}}{\partial V}\\
+    &amp;=\frac{\partial E_{3}}{\partial\hat{y}_{3}}\frac{\partial\hat{y}_{3}}{\partial z_{3}}\frac{\partial z_{3}}{\partial V}\\
+    &amp;=(\hat y_{3}-y_{3})\otimes s_{3}
+\end{align*}</span></p>
+<p>Here - <span class="math inline">\otimes</span> is outer product - <span class="math inline">\frac{\partial E_{3}}{\partial\hat{y}_{3}} = \hat y_{3}-y_{3}</span> (if we use mean square type of error) - <span class="math inline">\frac{\partial\hat{y}_{3}}{\partial z_{3}}</span> is ignored, assuming we are not using the activation function - <span class="math inline">\frac{\partial z_{3}}{\partial V}=s_{3}</span></p>
+<p><img src="CS5480_images/VoiceAccess_uBKGn1RSWv.png" class="img-fluid"> <img src="CS5480_images/VoiceAccess_UY69EgVNKH.png" class="img-fluid"></p>
+<p><span class="math display">{\frac{\partial E_{3}}{\partial W}}={\frac{\partial E_{3}}{\partial{\hat{y}}_{3}}}{\frac{\partial{\hat{y}}_{3}}{\partial s_{3}}}\left[{\frac{\partial s_{3}}{\partial W}}+{\frac{\partial s_{3}}{\partial s_2}}{\frac{\partial s_{2}}{\partial W}}+{\frac{\partial s_{3}}{\partial s_2}}{\frac{\partial s_{2}}{\partial s_1}}{\frac{\partial s_{1}}{\partial W}}\right]</span></p>
+<p>It can be generalized days:</p>
+<p><span class="math display">{\cfrac{\partial E_{3}}{\partial W}}=\sum_{k=0}^{3}{\cfrac{\partial E_{3}}{\partial{\hat{y}}_{3}}}{\cfrac{\partial{\hat{y}}_{3}}{\partial s_{3}}}{\cfrac{\partial s_{3}}{\partial s_{k}}}{\cfrac{\partial s_{k}}{\partial W}}</span></p>
+<p><span class="math inline">\cfrac{\partial E_{3}}{\partial U}</span> can be calculate in same was <span class="math inline">\cfrac{\partial E_{3}}{\partial W}</span></p>
+<p><span class="math display">s_{3}=\operatorname{tanh}(U x_{t}+W s_{2})</span></p>
+<p>Similar to backprop , we can define: <span class="math display">\delta_{2}^{(3)}\,=\,\frac{\partial E_{3}}{\partial z_{2}}\,=\frac{\partial E_{3}}{\partial s_{3}}\frac{\partial s_{3}}{\partial s_{2}}\frac{\partial s_{2}}{\partial z_{2}}</span> here we assume <span class="math display">z_{2}=U x_{2}+W s_{1}</span> and <span class="math inline">s_2</span> is obtained by applying some activation function on <span class="math inline">z_2</span></p>
+<p><span class="math display">\frac{\partial E}{\partial W}=\sum_{i=0}^T \frac{\partial E_i }{\partial W}\propto\sum_{i=0}^T \left(\prod_{i=k+1}^y \frac{\partial s_i }{\partial s_{i-1} }\right)\frac{\partial s_k }{\partial W}</span></p>
+<ul>
+<li>Problems
+<ul>
+<li>Vanishing gradient <span class="math inline">\left\|{\frac{\partial s_{i}}{\partial s_{i-1}}}\right\|_{2}&lt;1</span></li>
+<li>Exploding gradient <span class="math inline">\left\|{\frac{\partial s_{i}}{\partial s_{i-1}}}\right\|_{2}&gt;1</span></li>
+</ul></li>
+</ul>
+<p>vanishing gradient problem:</p>
+<p><span class="math display">{\frac{\partial E_{3}}{\partial W}}=\sum_{k=0}^{3}{\frac{\partial E_{3}}{\partial{\hat{y}}_{3}}}{\frac{\partial{\hat{y}}_{3}}{\partial s_{3}}}\left(\prod_{j=k+1}^{3}{\frac{\partial s_{j}}{\partial s_{j-1}}}\right){\frac{\partial s_{k}}{\partial W}}</span> - For sigmoid activation function gradient age upper bounded by 1. - it means that gradient will vanish overtime if there is a long range dependency - it can be solved using truncated gradient descent but this is inefficient. And this issue is solved by LSTM up to some extent</p>
+<p>exploding gradient problem</p>
+<ul>
+<li>if the weights are high the gradient will explode.</li>
+<li>but this problem can easily be solved by clipping the gradient.</li>
+</ul>
+</section>
+<section id="long-short-term-memory-lstm" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="long-short-term-memory-lstm"><span class="header-section-number">3</span> Long Short Term Memory (LSTM)</h2>
+<p><img src="CS5480_images/VoiceAccess_cekucnJian.png" class="img-fluid"></p>
+<ul>
+<li>Input gate: scales input to cell (write)</li>
+<li>Output gate: Scales output from cell (read)</li>
+<li>Forget gate: Scales old cell value (reset)</li>
+</ul>
+<p><span class="math display">\begin{array}{l}
+i=\sigma (x_t U^i +s_{t-1} W^i )\\
+f=\sigma (x_t U^f +s_{t-1} W^f )\\
+o=\sigma (x_t U^o +s_{t-1} W^g )\\
+g=\tanh (x_t U^g +s_{t-1} W^g )\\
+c_t =c_{t-1} \circ f+g\circ i\\
+s_t =\tanh \left(c_t \right)\circ o
+\end{array}</span></p>
+<ul>
+<li>here bias is ignored.</li>
+<li>for all the garing function sigmoid activation fucntion is used, and for others tanh is used. sigmoid is used for gating, becasue for gate we need values between 0 and 1.</li>
+</ul>
+<div class="alert alert-dismissible alert-primary">
+<ul>
+<li>if he picks the input gate to always one and the forget gate to always zero, then we get the fucntion of almost RNN.</li>
+<li>almost because tanh is added.</li>
+</ul>
+</div>
+<div class="alert alert-dismissible alert-secondary">
+<ul>
+<li>now if we have a closer look at <span class="math inline">c_t =c_{t-1} \circ f+g\circ i</span>, we can see that the sales state doesnt only depend on the gated inputbut it also depends on the previous cell state. it means there is a skip connection between previous state to current state. it helps the gradient flow for long run</li>
+</ul>
+</div>
+</section>
+<section id="lstm-variant" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="lstm-variant"><span class="header-section-number">4</span> LSTM variant</h2>
+<p>peepholes LSTM</p>
+<p><img src="CS5480_images/VoiceAccess_XC2slb8Wbk.png" class="img-fluid"></p>
+<ul>
+<li><p>LSTM with peephole connections <span class="math display">\begin{array}{l}{{f_{t}=\sigma\left(W_{f}\cdot[C_{t-1},h_{t-1},x_{t}]\right)}}\\
+{{{i}_{t}=\sigma\left(W_{i}\cdot[C_{t-1},h_{t-1},x_{t}]\ +\ b_{i}\right)}}\\  
+{{o_{t}=\sigma\left(W_{o}\cdot[C_{t},h_{t-1},x_{t}]\ +\ b_{\sigma}\right)}}\end{array}</span></p></li>
+<li><p>Coupled forget and input gates <span class="math display">C_{t}=f_{t}\star C_{t-1}+(1-f_{t})\ast{\bar{C}}_{t}</span></p></li>
+</ul>
+</section>
+<section id="grus" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="grus"><span class="header-section-number">5</span> GRUs</h2>
+<p><img src="CS5480_images/VoiceAccess_WmWfbx5H8i.png" class="img-fluid"></p>
+<p><span class="math display">\begin{align*}
+    z&amp;=\sigma(x_{t}U^{z}+s_{t-1}W^{z})\\
+    r&amp;=\sigma(x_{t}U^{r}+s_{t-1}W^{r})\\
+    h&amp;=\tanh(x_{t}U^{h}+\left(s_{t-1}\circ r)W^{h}\right)\\
+    s_{t}&amp;=(1-z)\circ h+z\circ s_{t-1}
+\end{align*}</span></p>
+<ul>
+<li>Reset gate: defines how much of the previous memory to keep around.</li>
+<li>Update gate: determines how to combine the new input with the previous memory.</li>
+<li>A GRU has two gates, an LSTM has three gates.</li>
+<li>In GRUs
+<ul>
+<li>No internal memory (<span class="math inline">c_t</span>) different from the exposed hidden state.</li>
+<li>No output gate as in LSTMs.</li>
+<li>The input and forget gates of LSTMs are coupled by an update gate in GRUs, and the reset gate (GRUs) is applied directly to the previous hidden state.</li>
+</ul></li>
+</ul>
+<div class="alert alert-dismissible alert-info">
+<ul>
+<li>if the reset rate is set to all 1 and update get is set to all 0, then it behaves like RNN</li>
+</ul>
+</div>
+</section>
+<section id="example-applications" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="example-applications"><span class="header-section-number">6</span> Example Applications</h2>
+<p>Language Modeling and Generating Text</p>
+<ul>
+<li>Given a sequence of words we want to predict the probability of each word given the previous words</li>
+<li>Can also be looked at as a generative model = fun!</li>
+<li>Typical input is a sequence of words; output = sequence of predicted words
+<ul>
+<li>During training, <span class="math inline">o_t=x_{t-1}</span></li>
+</ul></li>
+</ul>
+<p>Machine Translation</p>
+<ul>
+<li>Sequence of words in source language <span class="math inline">\Rightarrow</span> Sequence of words in target language</li>
+</ul>
+<p>Speech Recognition</p>
+<ul>
+<li>Given an input sequence of acoustic signals from a sound wave, predict a sequence of phonetic segments together with their probabilities.</li>
+</ul>
+<p>Combining CNNs and RNNs: Image Captioning</p>
+<ul>
+<li>the Image can be passed to a pre-trained network and the output of that network can be passed to RNN. <br><br> <img src="CS5480_images/VoiceAccess_921MmMvpfk.png" class="img-fluid"></li>
+</ul>
+</section>
+<section id="attention-and-transformers" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="attention-and-transformers"><span class="header-section-number">7</span> Attention and Transformers</h2>
+<p>History:</p>
+<p>Visual attention computation model</p>
+<ul>
+<li>Attention modeled as a way to focus on parts of images <br><br> <img src="CS5480_images/VoiceAccess_X1QjjudVA4.png" class="img-fluid"> <br></li>
+<li>Notions of top-down and bottom-up attention
+<ul>
+<li>bottom up attention: Suppose we are going somewhere, and something attractive passes in front of us, we pay attention to that, so here we pay attention to any content which is attractive we are not selective here.</li>
+<li>top down attention: Now suppose we are searching for something very passionately, now we will not be attracted if other things comes in front of us, we will pay attention only if we see what we are looking for.</li>
+</ul></li>
+</ul>
+<p>Spatial Transformer Networks</p>
+<ul>
+<li>here author introduced a kind of localization network and grid generator, which creates the attention mechanism and adds this to the original net of path.<br><br> <img src="CS5480_images/VoiceAccess_mXWhBdjNAO.png" class="img-fluid"></li>
+</ul>
+<p>Attention in Image Captioning</p>
+<ul>
+<li>Generate captions from an input image using the attention mechanism.</li>
+<li>VGGnet as encoder for extracting features from input image</li>
+<li>LSTM decoder generates captions by producing one word at each time step by using the context vector, previous hidden state and previously generated words.<br><br> <img src="CS5480_images/VoiceAccess_M6vYx4czp7.png" class="img-fluid"></li>
+<li>Here the network predicts attention and the distribution over vocab, the attention is then multiplied with the features as shown in the epoch figure.</li>
+<li><span class="math inline">z_2</span> can get either <span class="math inline">a_1</span> attended feature or <span class="math inline">a_1</span> and <span class="math inline">a_2</span> attended feature. ( shown in the above figure )</li>
+<li>Context Vector : The context vector <span class="math inline">z_t</span> is computed by a function <span class="math inline">\phi</span> using the attention vectors <span class="math inline">a_i</span> and the positive weights <span class="math inline">\alpha_i, i = 1, 2, \dots,L</span> correspond to different locations of the input image. <span class="math display">\begin{align*}
+  e_{t i}&amp;=\,f_{a t t}(\mathrm{a}_{i},\mathrm{h}_{t-1})\\
+  \alpha_{t i}&amp;={\frac{e x p(e_{t i})}{\sum_{k=1}^{L}e x p(e_{t k})}}\\
+  \hat{z}_{t}&amp;=\phi(\{\mathbf{a}_{i}\},\{\alpha_{i}\})
+  \end{align*}</span></li>
+<li>At each location <span class="math inline">i</span>, the weight <span class="math inline">\alpha_i</span> for the annotation vector <span class="math inline">a_i</span> is calculated by an attention mechanism <span class="math inline">f_{att}</span>.</li>
+<li><span class="math inline">\alpha_i</span> can be interpreted in two ways based on the two versions of this attention mechanism, namely the stochastic <em>Hard</em> and the deterministic <em>Soft</em></li>
+<li>Hard attention:
+<ul>
+<li>In hard attention, to generate the word <span class="math inline">y_i</span>, the weight <span class="math inline">\alpha_i</span> is seen as the probability that location <span class="math inline">i</span> is the correct place to focus on.</li>
+<li><span class="math inline">s_t</span> is defined as the location variable that determines where the attention should be focused while producing the <span class="math inline">t^{th}</span> word.</li>
+<li>They assign a multinoulli distribution with weights <span class="math inline">\alpha_i</span> as the parameters and view <span class="math inline">\hat z_t</span> as a random variable. <span class="math display">p(s_{t i}=1|s_{j&lt;t},\mathbf{a})=\alpha_{t,i}</span> <span class="math display">\hat{\mathbf{z}}_{t}=\sum_{t}s_{t,i}\mathbf{a}_{i}</span></li>
+<li>We can’t simply train the model with back propagation while using hard attention as we probabilistically sample from one of the attention vectors <span class="math inline">a_i</span> and use that as the context vector <span class="math inline">\hat z_t</span>.</li>
+</ul></li>
+<li>Soft Attention:
+<ul>
+<li>In hard attention, to generate the word <span class="math inline">y_i</span>, the weight <span class="math inline">\alpha_i</span> is seen as as the relative importance given to location <span class="math inline">i</span> in combining the attention vectors <span class="math inline">a^′_i</span> s.</li>
+<li>Instead of sampling the location vector st every time as in the hard attention, an expectation of the context vector <span class="math inline">\hat z_t</span> is taken and a deterministic attention model is formulated as: <span class="math display">\mathbb{E}_{p(s_{t}|a)}[{\hat{\mathbf{E}}}_{t}]=\sum_{i=1}^{L}\alpha_{t,i}\mathbf{a}_{i}</span> <span class="math display">\phi(\{\mathbf{a}_{i}\},\{\alpha_{i}\})=\sum_{i}^{L}\alpha_{i}\mathbf{a}_{i}</span></li>
+<li>As this model is differentiable under the deterministic attention, it can be trained end-to-end using back propagation.</li>
+</ul></li>
+<li>Hard vs Soft Attention <br><br> <img src="CS5480_images/VoiceAccess_6CkbIf5HaT.png" class="img-fluid"></li>
+</ul>
+<p>DRAW: Deep Recurrent Attentive Writer</p>
+<ul>
+<li>here they used variational autoencoder, it is a generative model.</li>
+<li>they shown that image can be generated in recurrent way.</li>
+<li>attention was implemented using read and write module as shown in the figure.<br><br> <img src="CS5480_images/VoiceAccess_r5pqtsdAHJ.png" class="img-fluid"><br></li>
+<li>the method was learning the grid, where to focus on the image <br><br> <img src="CS5480_images/VoiceAccess_QlGWRpoSx3.png" class="img-fluid"></li>
+<li>The grid has central coordinate as <span class="math inline">(g_x,g_y)</span> and <span class="math inline">\delta</span> is the gap between the grid locations,</li>
+<li>At each grid location they implement a gaussian with the variance <span class="math inline">\sigma</span></li>
+<li>Now the network can learn which area of the image to focus at, it can learn <span class="math inline">(g_x,g_y)</span> adjust the <span class="math inline">\delta</span> and can manage to focus on small part or large part the image, and <span class="math inline">\sigma</span> tells how much of the local neighbor to take into account. <span class="math display">(\tilde{g}_{X},\tilde{g}_{Y},\log\sigma^{2},\log\tilde{\delta},\log\gamma)=\,W(h^{d e c})</span></li>
+</ul>
+<p>self-attention</p>
+<ul>
+<li>Largely inspired by the need in machine translation</li>
+<li>Encoder-becoder DNN models (RNNs, LSTMs, GRUs) were used for neural machine translation then
+<ul>
+<li>Encoder takes input sentence and creates a summary (last hidden layer also called Context Vector ).</li>
+<li>Decoder translates input sentence sequentially by processing the summary.</li>
+</ul></li>
+<li>Problems with this approach:
+<ul>
+<li>Translation quality depends on quality of summary.</li>
+<li>RNNs/LSTMs create bad summaries for longer sentences (long-range dependency problem).</li>
+<li>We can’t give more importance to a set of words compared to others in the input sentence</li>
+</ul></li>
+</ul>
+<p>Origin of Self-Attention and Transformers</p>
+<ul>
+<li>Introduced by Bahdanau et al to improve the encoder-decoder based neural machine translation in NLP<br><br> <img src="CS5480_images/VoiceAccess_HMEoB1Oq6Q.png" class="img-fluid"><br></li>
+<li>They use a BiRNN as encoder and generate annotation <span class="math inline">h_j</span> by concatenating forward and backward hidden states.</li>
+<li>Each annotation <span class="math inline">h_j</span> contains information about the whole input sequence with more emphasis around the <span class="math inline">j^{th}</span> word.</li>
+<li>To focus on all input word embeddings while creating a context vector, they use a weighted sum of the hidden states rather than the final hidden state.</li>
+<li>For output word <span class="math inline">y_i</span>, context vector <span class="math inline">c_i</span> is the weighted sum of annotations <span class="math inline">h_j</span> <span class="math display">c_{i}=\sum_{j=1}^{T_{x}}\alpha_{i j}h_{j}</span></li>
+<li>The weight <span class="math inline">\alpha_{ij}</span> for a given annotation <span class="math inline">h_j</span> is: <span class="math display">\alpha_{i j}=\frac{\exp(e_{i j})}{\sum_{k=1}^{T_{x}}\exp(e_{i k})}</span> where <span class="math display">e_{i j}=a(s_{i-1},h_{j})</span> is an alignment model that finds how well the <span class="math inline">j^{th}</span> input matches with the <span class="math inline">i^{th}</span> output.</li>
+</ul>
+</section>
+<section id="motivation-for-transformers" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="motivation-for-transformers"><span class="header-section-number">8</span> Motivation for Transformers</h2>
+<ul>
+<li>Sequential computation prevents parallelization <br><br> <img src="CS5480_images/VoiceAccess_HUw4SOz2C7.png" class="img-fluid"></li>
+<li>Despite GRUs and LSTMs, RNNs still need attention mechanism to deal with long-range dependencies – path length for co-dependent computation between states grows with sequence length.</li>
+<li>But if attention gives us access to any state, maybe we don’t need the RNN?!</li>
+</ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="abhiyantaabhishek/IITH-Data-Science" data-repo-id="R_kgDOILoB8A" data-category="Announcements" data-category-id="DIC_kwDOILoB8M4CSJcL" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning 6</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="pagination-link">
+        <span class="nav-page-text">Machine Learning 1</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
