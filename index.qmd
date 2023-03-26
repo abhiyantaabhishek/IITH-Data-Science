@@ -4,29 +4,29 @@ title: "IITH-Data-Science"
 page-layout: article
 title-block-banner: true
 listing:
-  - id: CS5590
+  - id: Machine-Learning
     template: ejs/custom.ejs
     contents: 
       - title: SVM in-depth
-        href: Data_Science_Notes/CS5590/2022-09-10-CS5590-week4.ipynb
+        href: Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.ipynb
         description: SVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick
         card_type: card text-white bg-warning mb-3 
         card_header: September 10, 2022
       - title: Multi Layer Perceptrons
-        href: Data_Science_Notes/CS5590/2022-09-24-CS5590-week5.ipynb
+        href: Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.ipynb
         description: Forward pass, backward pass, erro calculation of multipalyer models.
         card_type: card text-white bg-info mb-3
         card_header: September 24, 2022
-  - id: CS6660
+  - id: Mathematics
     template: ejs/custom.ejs
     contents: 
       - title: Probability Theory
-        href: Data_Science_Notes/CS6660/2022-10-15-CS6660-week7.ipynb
+        href: Data_Science_Notes/Mathematics/2022-10-15-CS6660-week7.ipynb
         description: Joint mass function, Marginal mass functions,Conditional mass function, Concentration Bounds
         card_type: card text-white bg-primary mb-3
         card_header: October 15, 2022
       - title: Linear Algebra 
-        href: Data_Science_Notes/CS6660/2022-09-17-CS6660-week4_2.ipynb
+        href: Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.ipynb
         description: Gaussian Elimination, Row-Echelon, Minus 1 Trick
         card_type: card text-white bg-success mb-3 
         card_header: September 17, 2022
@@ -51,7 +51,7 @@ listing:
 
 ::: {.g-col-12 .g-col-md-6  }
 
-::: {#CS5590}
+::: {#Machine-Learning}
 
 :::
 
@@ -59,7 +59,7 @@ listing:
 
 ::: {.g-col-12 .g-col-md-6}
 
-::: {#CS6660}
+::: {#Mathematics}
 
 :::
 
