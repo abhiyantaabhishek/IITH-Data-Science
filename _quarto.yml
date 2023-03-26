@@ -38,7 +38,7 @@ website:
       collapse-level: 1
       contents:
         - auto: "Data_Science_Hacks/"
-      background: primary #"#CBE4FA"
+      background: "#CBE4FA"  #  "#B4E3F5" #"#CBE4FA" #"#D6E8FC" #"#CBE4FA"
     - id: Data_Science_Notes
       collapse-level: 1
       contents:
