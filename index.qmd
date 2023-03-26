@@ -80,7 +80,7 @@ to see other contents.</h6><br>
   <h2 class="display-3">Hi, there!</h2>
   <p class="lead"> This blog contains posts related to data science and mathematics behind it. Some of those are refered from the class notes of IIT hyderabad, and some are from my exprience.</p>
   <hr class="my-4">
-  <p>I work as Senior Data Scientist also I am mtech (Data science ) student at IIT hyderabad. Mostly I work on deep learning topic. I have exprience on Deep Learning domain of Autonomous Driving and  Medical Imaging. </p>
+  <p>I work as Senior Data Scientist and I am mtech (Data science ) student at IIT hyderabad. Mostly I work on deep learning topics. I have exprience on Deep Learning domain of Autonomous Driving and  Medical Imaging. </p>
   <p class="lead">
     <a class="btn btn-primary btn-lg" href="about.qmd" role="button">Learn more about me</a>
   </p>
