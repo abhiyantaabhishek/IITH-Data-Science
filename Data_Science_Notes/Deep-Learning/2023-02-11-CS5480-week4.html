@@ -413,15 +413,17 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <ul>
 <li>Replace each pixel by a linear combination (a weighted sum) of its neighbors</li>
 </ul></li>
-<li>The prescription for the linear combination is called the “kernel” (or “mask”, “</li>
+<li>The prescription for the linear combination is called the “kernel” (or “mask”)</li>
 </ul>
-<p>Linear Filtering: Cross correlation - simple averge <span class="math display">G[i,j]=\underbrace{\frac{1}{(2k+1)^{2}}}_{\text{Uniform weight to each pixel} } \times \overbrace{ \sum_{u=-k}^{k}\sum_{v=-k}^{k}F[i+u,j+v]}^{\text{loop over all pixels in neighborhood}} </span> - weighted average, <span class="math display">G[i,j]=\sum_{u=-k}^{k}\sum_{v=-k}^{k}\underbrace{H[u,v]}_{\text{Non-uniform weight}} F[i+u,j+v]</span></p>
+<p>Linear Filtering: Cross correlation</p>
 <ul>
-<li>what we get in <span class="math inline">G</span> depends on how we choose <span class="math inline">H</span></li>
-<li>different <span class="math inline">H</span> is required for different features</li>
-<li>THis kind of linear filter is called cross corelation</li>
-<li>it is a measure of correlation between <span class="math inline">H</span> and <span class="math inline">F</span>, it can be also viewed as local operation</li>
-<li><span class="math inline">H</span> is called kernel as well</li>
+<li><p>simple averge <span class="math display">G[i,j]=\underbrace{\frac{1}{(2k+1)^{2}}}_{\text{Uniform weight to each pixel} } \times \overbrace{ \sum_{u=-k}^{k}\sum_{v=-k}^{k}F[i+u,j+v]}^{\text{loop over all pixels in neighborhood}} </span></p></li>
+<li><p>weighted average, <span class="math display">G[i,j]=\sum_{u=-k}^{k}\sum_{v=-k}^{k}\underbrace{H[u,v]}_{\text{Non-uniform weight}} F[i+u,j+v]</span></p></li>
+<li><p>what we get in <span class="math inline">G</span> depends on how we choose <span class="math inline">H</span></p></li>
+<li><p>different <span class="math inline">H</span> is required for different features</p></li>
+<li><p>THis kind of linear filter is called cross corelation</p></li>
+<li><p>it is a measure of correlation between <span class="math inline">H</span> and <span class="math inline">F</span>, it can be also viewed as local operation</p></li>
+<li><p><span class="math inline">H</span> is called kernel as well</p></li>
 </ul>
 <p>Smoothing by Averaging Computer Vision</p>
 <ul>
@@ -700,7 +702,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <section id="sift" class="level2" data-number="22">
 <h2 data-number="22" class="anchored" data-anchor-id="sift"><span class="header-section-number">22</span> SIFT</h2>
 <ul>
-<li><p>Step 1: Scales-pace extrema Detection: Detect interesting points (invariant to scale and orientation) using DOG.</p></li>
+<li><p>Step 1: Step 1: Scale-space extrema Detection: Detect interesting points (invariant to scale and orientation) using DOG.</p></li>
 <li><p>Step 2:Keypoint Localization: Determine location and scale at each candidate location, and select them based on stability.</p></li>
 <li><p>Step 3: Orientation Estimation: Use local image gradients to assigned orientation to each localized key point . Preserve theta, scale and location for each feature.</p></li>
 <li><p>Step 4:Keypoint Descriptor: Extract local image gradients at selected scale around keypoint and form a representation invariant to local shape distortion and representation invariant to local shape distortion and illumination them.</p></li>
@@ -774,18 +776,18 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </ul>
 <p>SIFT: Feature descriptor</p>
 <ul>
-<li><p>Compute the gradient at each pixel in a <span class="math inline">16 \times 16</span> window around the detected keypoint, using the appropriate level of the Gaussian pyramid at which the keypoint was detected.</p></li>
-<li><p>Downweight gradients by a Gaussian fall off function (blue circle) to reduce the influence of gradients far from the center.</p></li>
+<li><p>Compute the gradient at each pixel in a <span class="math inline">16 \times 16</span> window around the detected key point, using the appropriate level of the Gaussian pyramid at which the key point was detected.</p></li>
+<li><p>Down weight gradients by a Gaussian fall off function (blue circle) to reduce the influence of gradients far from the center.</p></li>
 <li><p>In each 4 x 4 quadrant, compute a gradient orientation histogram using 8 orientation histogram bins.</p>
 <p><img src="CS5480_images/Acrobat_LVo3Y4bw6c.png" class="img-fluid"></p></li>
 <li><p>The resulting 128 nonnegative values form a raw version of the SIFT descriptor vector.</p></li>
-<li><p>To reduce the effects of contrast or gain (additive variations arealready removed by the gradient), the 128 D vector is normalized tounit length.</p></li>
+<li><p>To reduce the effects of contrast or gain (additive variations are already removed by the gradient), the 128 D vector is normalized to unit length.</p></li>
 <li><p>Great engineering effort!</p></li>
 <li><p>Extraordinarily robust matching technique</p>
 <ul>
 <li>Changes in viewpoint: up to about 60 degree out of plane rotation</li>
 <li>Changes in illumination: sometimes even day vs.&nbsp;night</li>
-<li>Fast and efficientcan run in real time</li>
+<li>Fast and efficient can run in real time</li>
 <li>Lots of code available<br><br></li>
 </ul></li>
 </ul>
