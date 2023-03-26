@@ -13,6 +13,7 @@ website:
   google-analytics: "G-5ZQX02R26E"
   open-graph: true
   navbar:
+    # background: transparent
     pinned: false
     search: true
     logo: logo.png
@@ -37,14 +38,17 @@ website:
       collapse-level: 1
       contents:
         - auto: "Data_Science_Hacks/"
+      background: transparent
     - id: Data_Science_Notes
       collapse-level: 1
       contents:
         - auto: "Data_Science_Notes/"  
+      # background: transparent
     - id: Data_Science_Projects
       collapse-level: 1
       contents:
-        - auto: "Data_Science_Projects/"                          
+        - auto: "Data_Science_Projects/"    
+      # background: transparent                      
        
   page-navigation: true
   page-footer: 
