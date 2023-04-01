@@ -952,6 +952,160 @@
     "text": "19 Some more facts\n\n\n\n\n\n\nImportant\n\n\n\nA multilayer network of perceptrons with a single hidden layer can be used to represent any boolean function precisely (no errors), in fact for n inputs, it needs {2}^n perceptron on hidden layer and one perceptron on output layer to represent any boolean function.\n\n\n\n\n\n\n\n\nImportant\n\n\n\nA multilayer network of neurons with a single hidden layer can be used to approximate any continuous function to any desired precision. In other words, there is a guarantee that for any function f(x): \\mathbb{R}^n \\rightarrow \\mathbb{R}^m, we can always find a neural network (with 1 hidden layer containing enough neurons) whose output g(x) satisfies | g(x)-f(x)| < \\epsilon\n\n\n \\tiny {\\textcolor{#808080}{\\boxed{\\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}"
   },
   {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html",
+    "title": "Deep Learning 8",
+    "section": "",
+    "text": "Transformers are primarily encoder decoder model.\nEncoder takes input sentence and creates a bottleneck representation.\nBottleneck is smaller in size compared to input\nIn general, Decoder takes bottleneck as an input.And reconstructs the input back.\nIt is a translation task. The quality of the translation depends on the summary provided by the encoder.\nRNN or LSTM Doesn’t provide a good Summary.\n\nKey component of the transformer:\n\nSelf attention.\nMulti head attention.\nPositional encoding.\nEncoder Decoder architecture. \nTransformers in a Nutshell:    \n\nSelf-Attention\n\nConsider two input sentences we want to translate:\n\nThe animal didn’t cross the street because it was too tired.\nThe animal didn’t cross the street because it was too wide\n\n“it” refers to “animal” in first case, but to “street” in second case; this is hard for traditional Seq2Seq models to model\nAs the model processes each word, self-attention allows it to look at other positions in input sequence to help get a better encoding"
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#self-attention-explained",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#self-attention-explained",
+    "title": "Deep Learning 8",
+    "section": "2 Self-Attention Explained",
+    "text": "2 Self-Attention Explained\n\nSTEP 1 \n\nCreate three vectors from encoder’s input vector (x_i)\n\nQuery vector (q_i)\nKey vector (k_i)\nValue vector (v_i)\n\nThese are created by multiplying input with weight matrices W^Q,W^K,W^V learned during training.\nIn the paper q,k,v \\in \\mathbb{R}^{64} and x \\in \\mathbb{R}^{512}\nq, k, v doesn’t have to be smaller then x, It was tend to make computation of multi head attention constant.\nDimensions of W^Q,W^K,W^V are 512\\times 64\n\nSTEP 2 \n\nCalculate self-attention scores : score all words of input sentence against themselves;\nTake dot product of query vector with key vector of respective words.\nE.g. for input “Thinking”, first score would be q_1 \\cdot k_1 (with itself); second score would be dot product of q_1 \\cdot k_2 (with ”Machines”), and so on …\nScores then divided by \\sqrt{\\text{length}(k)}\nThis is Scaled Dot-Product Attention, this design choice leads to more stable gradients.\n\nSTEP 3 \n\nSoftmax used to get normalized probability scores; determines how much each word will be expressed at this position.\nClearly, word at this position will have highest softmax score, but sometimes it’s useful to attend to another word that is relevant.\n\nSTEP 4\n\nMultiply each value vector by softmax score; It Keeps values of word(s) we want to focus on intact, and drown out irrelevant words.\n\nSTEP 5\n\nSum up weighted value vectors : Produces output of self-attention layer at this position (for first word)."
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#self-attention-illustration",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#self-attention-illustration",
+    "title": "Deep Learning 8",
+    "section": "3 Self-Attention: Illustration",
+    "text": "3 Self-Attention: Illustration"
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#multi-head-attention",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#multi-head-attention",
+    "title": "Deep Learning 8",
+    "section": "4 Multi-Head Attention",
+    "text": "4 Multi-Head Attention\n\nImproves performance of the attention layer in two ways: \n\nExpands model’s ability to focus on different positions. In example above, z_1 contains a bit of every other encoding, but dominated by actual word itself\nGives attention layer multiple “representation subspaces”; we have not one, but multiple sets of Query/Key/Value weight matrices; after training, each set is used to project input embeddings into different representation subspaces."
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#multi-head-attention-illustration",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#multi-head-attention-illustration",
+    "title": "Deep Learning 8",
+    "section": "5 Multi-Head Attention: Illustration",
+    "text": "5 Multi-Head Attention: Illustration"
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#positional-encoding",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#positional-encoding",
+    "title": "Deep Learning 8",
+    "section": "6 Positional Encoding",
+    "text": "6 Positional Encoding\n\nUnlike RNN and CNN encoders, attention encoder outputs do not depend on order of inputs.\nBut order of sequence conveys important information for machine translation tasks and language modeling.\nThe idea: Add positional information of input token in the sequence into input embedding vectors. PE_{pos,2i}=\\sin\\left(\\frac{pos}{1000^{\\frac{2i}{d_{emb}}}}\\right) PE_{pos,2i+1}=\\cos\\left(\\frac{pos}{1000^{\\frac{2i}{d_{emb}}}}\\right)\n\nFinal input embeddings are concatenation of learnable embedding and positional encoding."
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#encoder",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#encoder",
+    "title": "Deep Learning 8",
+    "section": "7 Encoder",
+    "text": "7 Encoder\n\nStack of N=6 identical layers   \nEach layer has a multi-head self-attention layer and a simple position-wise fully connected feed forward network.\nEach sub-layer has a residual connection and layer-normalization; all sub-layers output data of same dimension d_{\\text{model}} = 512"
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#decoder",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#decoder",
+    "title": "Deep Learning 8",
+    "section": "8 Decoder",
+    "text": "8 Decoder\n\nStack of N=6 identical layers \nEach layer has two sub-layers of multi-head attention mechanisms and one sub-layer of fully-connected feedforward network.\nSimilar to encoder, each sub-layer adopts a residual connection and a layer-normalization.\nFirst multi-head attention sub-layer is modified to prevent positions from attending to subsequent positions, as we don’t want to look into future of target sequence when predicting current position."
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#transformers-full-architecture",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#transformers-full-architecture",
+    "title": "Deep Learning 8",
+    "section": "9 Transformers: Full Architecture",
+    "text": "9 Transformers: Full Architecture"
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#transformers-in-nlp-language-understanding",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#transformers-in-nlp-language-understanding",
+    "title": "Deep Learning 8",
+    "section": "10 Transformers in NLP: Language Understanding",
+    "text": "10 Transformers in NLP: Language Understanding\n\nPre-training language models showed impressive results on multiple natural language processing tasks like natural language inference, paraphrasing, named entity recognition and question answering.\nTo apply the learnt language representations to downstream tasks, two strategies are followed: feature − based and fine − tuning.\n\nFeature-based methods develop task specific architectures and utilize the pre-trained knowledge in solving the task\nFine-tuning approaches try to minimize task-specific parameters and solve the task by fine-tuning pre-trained parameters.\n\nBoth these strategies used unidirectional language models for pre-training which restricted the power of the language representations for fine-tuning\nJacob et al solved this problem by using a ‘masked language model’ (MLM) pre-training objective in their paper, BERT. \nRecent works achieved performance gains on many NLP tasks by pre-training on large data and fine-tuning on specific tasks\nAlthough task-agnostic, these methods still require large task-specific data for fine-tuning. In contrary, humans can learn a new language task by simple instructions only.\nIn an attempt to bridge this gap, Brown et al show that we can improve task-agnostic few-shot performance by scaling up language models.\nTheir model, named GPT-3 is trained with 175 billion parameters and it shows significant performance gain when tested in few-shot setting."
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#transformers-in-computer-vision-object-detection",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#transformers-in-computer-vision-object-detection",
+    "title": "Deep Learning 8",
+    "section": "11 Transformers in Computer Vision: Object Detection",
+    "text": "11 Transformers in Computer Vision: Object Detection\n  \n\nImage split into fixed-size patches\nEach of them linearly embedded\nPosition embeddings added to resulting sequence of vectors\nPatches fed to standard Transformer encoder\nIn order to perform classification, standard approach of adding an extra learnable “classification token” added to sequence."
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#transformers-in-computer-vision-general-purpose-backbone",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#transformers-in-computer-vision-general-purpose-backbone",
+    "title": "Deep Learning 8",
+    "section": "12 Transformers in Computer Vision: General Purpose Backbone",
+    "text": "12 Transformers in Computer Vision: General Purpose Backbone\n\nProblems in the previous transformer architectures:\n\nTokens are of fixed scale in NLP problems, which is not suitable in vision tasks.\nComputational complexity is quadratic to image size in ViT model and using high resolution images for dense pixel level prediction tasks would make the computation intractable.\n\nTo solve these problems, Liu et al proposed Swin Transformer with hierarchical feature maps and linear computational complexity.\nAn image is split into non-overlapping patches and to produce hierarchical feature maps, these patches are merged as we go deep into the network.\nThe original transformer block is replaced by a Swin transformer block that uses shifted windows and generates feature maps with a linear computational complexity."
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#transformers-in-other-applications",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#transformers-in-other-applications",
+    "title": "Deep Learning 8",
+    "section": "13 Transformers in other applications",
+    "text": "13 Transformers in other applications\n\nTransformers now used in various applications like image classification, object detection/tracking, speech recognition and graph representation\nDong et al proposed Speech-Transformer that proposes a 2D-Attention mechanism that attends to both time and frequency axes jointly\nLiu et al introduced a self-supervised speech pre-training method called TERA which uses alteration along three orthogonal axes to pre-train Transformer Encoders on a large amount of unlabeled speech\nGraph Neural Networks (GNNs) used to learn node representations on fixed and homogeneous graphs.Yun et al proposed Graph Transformer Networks (GTNs) that are capable of learning from mis-specified and heterogeneous graphs.\nYing et al proposed Graphormer, which attained excellent results on a broad range of graph representation learning tasks."
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#deep-generative-models",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#deep-generative-models",
+    "title": "Deep Learning 8",
+    "section": "14 Deep Generative Models",
+    "text": "14 Deep Generative Models\nDiscriminative vs Generative Models\n\nDiscriminative models: Learn conditional distribution p( y|x)\nGenerative models: Learn joint distribution p( x,y ) and infer conditional through Bayes’ rule\nAdvantage of generative models\n\nPotential to understand and explain the underlying structure of input data even when there are no labels\nSimulate environments\nMultimodal learning\n\n\nApplications of Deep Generative Models\n\n(High resolution/Interactive) Image generation\nDebiasing\nOutlier detection\nImage inpainting\nText to image generation\nImage to image translation\n\nTaxonomy of Generative Models"
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#generative-adversarial-networks",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#generative-adversarial-networks",
+    "title": "Deep Learning 8",
+    "section": "15 Generative Adversarial Networks",
+    "text": "15 Generative Adversarial Networks\n\nGenerator \nDiscriminator  \nGenerative Adversarial Networks \nGenerator G picks a point z from noise distribution, and produces a sample.\nG(z) represents a mapping from noise distribution to the input space.\nG(\\cdot) is a network\nDiscriminator D takes input from both real world images and generated image G(z), and assigns the correct label to both real world image data and generated image.\nWe simultaneously train G and D\n\n\n15.1 GAN: 2 Player Game\n\n\nGenerator G tries to:\n\nmaximize D(G(z)) or, minimize (1- D(G(z)))\nminimize D(x)\nSo, we can combine both and get: \\boxed{\\text{minimize } D(x) + (1-D(G(z)))}\n\n\nDiscriminator D tries to:\n\nmaximize D(x)\nminimize D(G(z)) or, maximize (1 -D(G(z)))\nSo, we can combine both and get: \\boxed{\\text{maximize } D(x) + (1-D(G(z)))}\n\n\n\nSo finally both plays mix max game: \\boxed{\\min_G \\max_D D(x) + (1-D(G(z)))} To analyze average behaviour, we will take expectation: \\boxed{\\min_G \\max_D \\mathbb{E}[D(x)] + \\mathbb{E}[(1-D(G(z)))]}\nNow we know that x is sampled from real data , z is sampled from normal distribution \\mathcal{N}(0,1), we can write the above equation in log form as below\n\\boxed{\\min_G \\max_D V(D,G)= \\mathbb{E}_{x\\sim p_{\\text{data}}(x)}[\\log D(x)] + \\mathbb{E}_{z\\sim p_z{(z)}}[\\log(1-D(G(z)))]}\nThis tries to find NASH equilibrium.\nBelow is the snap from the paper which describes the algorithm: \n\n\n15.2 Pitfalls of GANs\n\nNo guarantee to equilibrium\n\nMode collapsing\nOscillation\nNo indicator when to finish"
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#dcgan-hacks",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#dcgan-hacks",
+    "title": "Deep Learning 8",
+    "section": "16 DCGAN Hacks",
+    "text": "16 DCGAN Hacks\n\nNormalize the inputs\n\nNormalize the images between -1 and 1\nTanh as the last layer of the generator output\n\nA modified loss function\n\nIn GAN papers, the loss function to optimize G is \\min (\\log (1- D)), but in practice we practically use \\max \\log D\nFlip labels when training generator: real = fake, fake = real\n\nDon’t sample from a uniform distribution, sample from a Gaussian distribution (spherical)\nBatchNorm\n\nConstruct different mini batches for real and fake, i.e. each mini batch needs to contain only all real images or all generated images.\nWhen batch norm is not an option, use instance normalization (for each sample, subtract mean and divide by standard deviation)\n\nAvoid Sparse Gradients\n\nStability of the GAN game suffers if we have sparse gradients\nLeaky ReLU = good ( in both G and D )\nFor down sampling , use: Average Pooling, Conv2d + stride\nFor Upsampling, use: PixelShuffle, ConvTranspose2d + stride\n\nUse soft and noisy labels\n\nLabel Smoothing, i.e. if we have two target labels: Real=1 and Fake=0, then for each incoming sample, if it is real, then replace the label with a random number between 0.7 and 1.2, and if it is a fake sample, replace it with 0.0 and 0.3 (this is an example)\nMake the labels noisy for the discriminator: occasionally flip the labels when training the discriminator."
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#variations-of-gan",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#variations-of-gan",
+    "title": "Deep Learning 8",
+    "section": "17 Variations of GAN",
+    "text": "17 Variations of GAN"
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#popular-variants-wasserstein-gan",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#popular-variants-wasserstein-gan",
+    "title": "Deep Learning 8",
+    "section": "18 Popular Variants: Wasserstein GAN",
+    "text": "18 Popular Variants: Wasserstein GAN\n\nWeight clamping to maintain k Lipschitz continuity\nJSD to earth mover distance"
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#popular-variants-cycle-gans",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#popular-variants-cycle-gans",
+    "title": "Deep Learning 8",
+    "section": "19 Popular Variants: Cycle GANs",
+    "text": "19 Popular Variants: Cycle GANs\n\nIt is Unpaired Image-to-Image Translation"
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#popular-variants-progressive-gans",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#popular-variants-progressive-gans",
+    "title": "Deep Learning 8",
+    "section": "20 Popular Variants: Progressive GANs",
+    "text": "20 Popular Variants: Progressive GANs\n\nIt generates high resolution image progressively as explained below:"
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#popular-variants-big-gans-gans",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#popular-variants-big-gans-gans",
+    "title": "Deep Learning 8",
+    "section": "21 Popular Variants: Big GANs GANs",
+    "text": "21 Popular Variants: Big GANs GANs\n\nState-of-the-art at this time for large-scale image generation\nPuts together multiple steps to obtain the improvements\nModel design: Self-attention GAN\nClass-conditional batch normalization\nUpdate discriminator more\nMoving average of model weights, etc…."
+  },
+  {
+    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#gans-takeaways",
+    "href": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html#gans-takeaways",
+    "title": "Deep Learning 8",
+    "section": "22 GANs: Takeaways",
+    "text": "22 GANs: Takeaways\n\nGANs can generate sharp samples from high dimensional output space\nFinding Nash point is almost impossible\nNo stopping criteria\nGenerally produce sharp images with artifacts\n\nFollowing resources were referred in this notes:\n\nIllustrated transformer\nTransformer architecture positional encoding\nGanhacks\nThe gan zoo\nReally awesome gan\nGoodfellow talk\n\n \\tiny {\\textcolor{#808080}{\\boxed{\\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}"
+  },
+  {
     "objectID": "Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html",
     "href": "Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html",
     "title": "Deep Learning 3",
@@ -1236,7 +1390,7 @@
     "href": "Data_Science_Notes/index.html",
     "title": "Data Science Notes",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nDeep Learning 7\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nRecurrent Neural Networks, Attention and Transformers\n\n\n\n\n\n\nMar 25, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 6\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nresidual neural network,explainable AI\n\n\n\n\n\n\nMar 18, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 5\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nConvolutional Neural Networks\n\n\n\n\n\n\nMar 4, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 4\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nFiltering, correlation and convolution.\n\n\n\n\n\n\nFeb 11, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 3\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nRegularization and Generalization.\n\n\n\n\n\n\nFeb 4, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 2\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nOptimizers and activation functions\n\n\n\n\n\n\nJan 21, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 1\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nHistory, Perceptrons, Neural Networks and Backpropagation\n\n\n\n\n\n\nJan 7, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 9\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nSupport Vector Regression,Linear Regression\n\n\n\n\n\n\nNov 5, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 8\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nIntroduction to Learning Theory, Regression Formulation\n\n\n\n\n\n\nOct 29, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 7\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nClassifier System Design,Introduction to Learning Theory\n\n\n\n\n\n\nOct 15, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 5\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nJoint, Conditional, Marginal, Discrete Convolution\n\n\n\n\n\n\nOct 15, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 6\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nEnsemble Classifier\n\n\n\n\n\n\nOct 8, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nLinear Algebra 3\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nIndependence, Basis, Space\n\n\n\n\n\n\nOct 1, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 5\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nMulti Layer Perceptrons\n\n\n\n\n\n\nSep 24, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 4\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nUniform, Exponential, Normal\n\n\n\n\n\n\nSep 24, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nLinear Algebra 2\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nGaussian Elimination, Row-Echelon, Minus 1 Trick\n\n\n\n\n\n\nSep 17, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 3\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nBinomial, Poisson\n\n\n\n\n\n\nSep 17, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 4\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nSVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick\n\n\n\n\n\n\nSep 10, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nLinear Algebra 1\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nSystem of equation\n\n\n\n\n\n\nSep 3, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 3\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nDecision Trees, Naive Bayes, Bayesian Belief network\n\n\n\n\n\n\nAug 27, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 2\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nClassification Error, ROC/PR curve, KNN\n\n\n\n\n\n\nAug 20, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 2\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nMass Function\n\n\n\n\n\n\nAug 13, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 1\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nTraining Error, Generalization Error\n\n\n\n\n\n\nAug 6, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 1\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nBasics, Bayes Theorem\n\n\n\n\n\n\nAug 6, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nDeep Learning 8\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nTransformer.Attention is all you need. Deep Generative Models\n\n\n\n\n\n\nApr 1, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 7\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nRecurrent Neural Networks, Attention and Transformers\n\n\n\n\n\n\nMar 25, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 6\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nresidual neural network,explainable AI\n\n\n\n\n\n\nMar 18, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 5\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nConvolutional Neural Networks\n\n\n\n\n\n\nMar 4, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 4\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nFiltering, correlation and convolution.\n\n\n\n\n\n\nFeb 11, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 3\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nRegularization and Generalization.\n\n\n\n\n\n\nFeb 4, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 2\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nOptimizers and activation functions\n\n\n\n\n\n\nJan 21, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 1\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nHistory, Perceptrons, Neural Networks and Backpropagation\n\n\n\n\n\n\nJan 7, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 9\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nSupport Vector Regression,Linear Regression\n\n\n\n\n\n\nNov 5, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 8\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nIntroduction to Learning Theory, Regression Formulation\n\n\n\n\n\n\nOct 29, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 7\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nClassifier System Design,Introduction to Learning Theory\n\n\n\n\n\n\nOct 15, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 5\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nJoint, Conditional, Marginal, Discrete Convolution\n\n\n\n\n\n\nOct 15, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 6\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nEnsemble Classifier\n\n\n\n\n\n\nOct 8, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nLinear Algebra 3\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nIndependence, Basis, Space\n\n\n\n\n\n\nOct 1, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 5\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nMulti Layer Perceptrons\n\n\n\n\n\n\nSep 24, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 4\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nUniform, Exponential, Normal\n\n\n\n\n\n\nSep 24, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nLinear Algebra 2\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nGaussian Elimination, Row-Echelon, Minus 1 Trick\n\n\n\n\n\n\nSep 17, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 3\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nBinomial, Poisson\n\n\n\n\n\n\nSep 17, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 4\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nSVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick\n\n\n\n\n\n\nSep 10, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nLinear Algebra 1\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nSystem of equation\n\n\n\n\n\n\nSep 3, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 3\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nDecision Trees, Naive Bayes, Bayesian Belief network\n\n\n\n\n\n\nAug 27, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 2\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nClassification Error, ROC/PR curve, KNN\n\n\n\n\n\n\nAug 20, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 2\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nMass Function\n\n\n\n\n\n\nAug 13, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 1\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nTraining Error, Generalization Error\n\n\n\n\n\n\nAug 6, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 1\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nBasics, Bayes Theorem\n\n\n\n\n\n\nAug 6, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "Data_Science_Projects/index.html",

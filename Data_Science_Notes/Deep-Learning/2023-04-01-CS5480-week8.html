@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.475">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Abhishek Kumar Dubey">
+<meta name="dcterms.date" content="2023-04-01">
+<meta name="description" content="Transformer.Attention is all you need. Deep Generative Models">
+
+<title>Deep Learning 8</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" rel="next">
+<link href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" rel="prev">
+<link href="../../logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5ZQX02R26E"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
+</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Deep Learning 8">
+<meta property="og:description" content="Transformer.Attention is all you need. Deep Generative Models">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/Deep-Learning/CS5480_images/VoiceAccess_z1E32fzQvA.png">
+<meta property="og:image:height" content="242">
+<meta property="og:image:width" content="445">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../Data_Science_Notes/index.html" aria-current="page">
+ <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Data_Science_Hacks/index.html">
+ <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Data Science Hacks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../Data_Science_Projects/index.html">
+ <span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Data Science Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Deep Learning 8</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Deep Learning 8</h1>
+                  <div>
+        <div class="description">
+          Transformer.Attention is all you need. Deep Generative Models
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Deep Learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Abhishek Kumar Dubey </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 1, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../Data_Science_Notes/index.html" class="sidebar-item-text sidebar-link">Data Science Notes</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Deep Learning</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" class="sidebar-item-text sidebar-link">Deep Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html" class="sidebar-item-text sidebar-link">Deep Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" class="sidebar-item-text sidebar-link">Deep Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-11-CS5480-week4.html" class="sidebar-item-text sidebar-link">Deep Learning 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link">Deep Learning 6</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" class="sidebar-item-text sidebar-link">Deep Learning 7</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html" class="sidebar-item-text sidebar-link active">Deep Learning 8</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Machine Learning</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">Machine Learning 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">Machine Learning 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">Machine Learning 6</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">Machine Learning 7</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link">Machine Learning 8</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html" class="sidebar-item-text sidebar-link">Machine Learning 9</a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Mathematics</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">Probability Theory 1</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">Probability Theory 3</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Mathematics/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">Probability Theory 5</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#attention-and-transformer" id="toc-attention-and-transformer" class="nav-link active" data-scroll-target="#attention-and-transformer"><span class="toc-section-number">1</span>  Attention and transformer</a></li>
+  <li><a href="#self-attention-explained" id="toc-self-attention-explained" class="nav-link" data-scroll-target="#self-attention-explained"><span class="toc-section-number">2</span>  Self-Attention Explained</a></li>
+  <li><a href="#self-attention-illustration" id="toc-self-attention-illustration" class="nav-link" data-scroll-target="#self-attention-illustration"><span class="toc-section-number">3</span>  Self-Attention: Illustration</a></li>
+  <li><a href="#multi-head-attention" id="toc-multi-head-attention" class="nav-link" data-scroll-target="#multi-head-attention"><span class="toc-section-number">4</span>  Multi-Head Attention</a></li>
+  <li><a href="#multi-head-attention-illustration" id="toc-multi-head-attention-illustration" class="nav-link" data-scroll-target="#multi-head-attention-illustration"><span class="toc-section-number">5</span>  Multi-Head Attention: Illustration</a></li>
+  <li><a href="#positional-encoding" id="toc-positional-encoding" class="nav-link" data-scroll-target="#positional-encoding"><span class="toc-section-number">6</span>  Positional Encoding</a></li>
+  <li><a href="#encoder" id="toc-encoder" class="nav-link" data-scroll-target="#encoder"><span class="toc-section-number">7</span>  Encoder</a></li>
+  <li><a href="#decoder" id="toc-decoder" class="nav-link" data-scroll-target="#decoder"><span class="toc-section-number">8</span>  Decoder</a></li>
+  <li><a href="#transformers-full-architecture" id="toc-transformers-full-architecture" class="nav-link" data-scroll-target="#transformers-full-architecture"><span class="toc-section-number">9</span>  Transformers: Full Architecture</a></li>
+  <li><a href="#transformers-in-nlp-language-understanding" id="toc-transformers-in-nlp-language-understanding" class="nav-link" data-scroll-target="#transformers-in-nlp-language-understanding"><span class="toc-section-number">10</span>  Transformers in NLP: Language Understanding</a></li>
+  <li><a href="#transformers-in-computer-vision-object-detection" id="toc-transformers-in-computer-vision-object-detection" class="nav-link" data-scroll-target="#transformers-in-computer-vision-object-detection"><span class="toc-section-number">11</span>  Transformers in Computer Vision: Object Detection</a></li>
+  <li><a href="#transformers-in-computer-vision-general-purpose-backbone" id="toc-transformers-in-computer-vision-general-purpose-backbone" class="nav-link" data-scroll-target="#transformers-in-computer-vision-general-purpose-backbone"><span class="toc-section-number">12</span>  Transformers in Computer Vision: General Purpose Backbone</a></li>
+  <li><a href="#transformers-in-other-applications" id="toc-transformers-in-other-applications" class="nav-link" data-scroll-target="#transformers-in-other-applications"><span class="toc-section-number">13</span>  Transformers in other applications</a></li>
+  <li><a href="#deep-generative-models" id="toc-deep-generative-models" class="nav-link" data-scroll-target="#deep-generative-models"><span class="toc-section-number">14</span>  Deep Generative Models</a></li>
+  <li><a href="#generative-adversarial-networks" id="toc-generative-adversarial-networks" class="nav-link" data-scroll-target="#generative-adversarial-networks"><span class="toc-section-number">15</span>  Generative Adversarial Networks</a>
+  <ul>
+  <li><a href="#gan-2-player-game" id="toc-gan-2-player-game" class="nav-link" data-scroll-target="#gan-2-player-game"><span class="toc-section-number">15.1</span>  GAN: 2 Player Game</a></li>
+  <li><a href="#pitfalls-of-gans" id="toc-pitfalls-of-gans" class="nav-link" data-scroll-target="#pitfalls-of-gans"><span class="toc-section-number">15.2</span>  Pitfalls of GANs</a></li>
+  </ul></li>
+  <li><a href="#dcgan-hacks" id="toc-dcgan-hacks" class="nav-link" data-scroll-target="#dcgan-hacks"><span class="toc-section-number">16</span>  DCGAN Hacks</a></li>
+  <li><a href="#variations-of-gan" id="toc-variations-of-gan" class="nav-link" data-scroll-target="#variations-of-gan"><span class="toc-section-number">17</span>  Variations of GAN</a></li>
+  <li><a href="#popular-variants-wasserstein-gan" id="toc-popular-variants-wasserstein-gan" class="nav-link" data-scroll-target="#popular-variants-wasserstein-gan"><span class="toc-section-number">18</span>  Popular Variants: Wasserstein GAN</a></li>
+  <li><a href="#popular-variants-cycle-gans" id="toc-popular-variants-cycle-gans" class="nav-link" data-scroll-target="#popular-variants-cycle-gans"><span class="toc-section-number">19</span>  Popular Variants: Cycle GANs</a></li>
+  <li><a href="#popular-variants-progressive-gans" id="toc-popular-variants-progressive-gans" class="nav-link" data-scroll-target="#popular-variants-progressive-gans"><span class="toc-section-number">20</span>  Popular Variants: Progressive GANs</a></li>
+  <li><a href="#popular-variants-big-gans-gans" id="toc-popular-variants-big-gans-gans" class="nav-link" data-scroll-target="#popular-variants-big-gans-gans"><span class="toc-section-number">21</span>  Popular Variants: Big GANs GANs</a></li>
+  <li><a href="#gans-takeaways" id="toc-gans-takeaways" class="nav-link" data-scroll-target="#gans-takeaways"><span class="toc-section-number">22</span>  GANs: Takeaways</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="attention-and-transformer" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="attention-and-transformer"><span class="header-section-number">1</span> Attention and transformer</h2>
+<ul>
+<li>Transformers are primarily encoder decoder model.</li>
+<li>Encoder takes input sentence and creates a bottleneck representation.</li>
+<li>Bottleneck is smaller in size compared to input</li>
+<li>In general, Decoder takes bottleneck as an input.And reconstructs the input back.</li>
+<li>It is a translation task. The quality of the translation depends on the summary provided by the encoder.</li>
+<li>RNN or LSTM Doesn’t provide a good Summary.</li>
+</ul>
+<p>Key component of the transformer:</p>
+<ul>
+<li><p>Self attention.</p></li>
+<li><p>Multi head attention.</p></li>
+<li><p>Positional encoding.</p></li>
+<li><p>Encoder Decoder architecture. <br><br></p></li>
+<li><p>Transformers in a Nutshell:<br><br> <img src="CS5480_images/VoiceAccess_V61qdBU65b.png" class="img-fluid"><br><br> <img src="CS5480_images/VoiceAccess_zJJCB4CiGy.png" class="img-fluid"><br><br> <img src="CS5480_images/VoiceAccess_Pb8m3aFp28.png" class="img-fluid"><br><br> <img src="CS5480_images/VoiceAccess_9R273DW1o1.png" class="img-fluid"><br><br></p></li>
+</ul>
+<p>Self-Attention</p>
+<ul>
+<li>Consider two input sentences we want to translate:
+<ul>
+<li>The animal didn’t cross the street because it was too tired.</li>
+<li>The animal didn’t cross the street because it was too wide</li>
+</ul></li>
+<li>“it” refers to “animal” in first case, but to “street” in second case; this is hard for traditional Seq2Seq models to model</li>
+<li>As the model processes each word, self-attention allows it to look at other positions in input sequence to help get a better encoding<br><br> <img src="CS5480_images/VoiceAccess_0cqvlyBB66.png" class="img-fluid"></li>
+</ul>
+</section>
+<section id="self-attention-explained" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="self-attention-explained"><span class="header-section-number">2</span> Self-Attention Explained</h2>
+<ul>
+<li>STEP 1<br><br> <img src="CS5480_images/VoiceAccess_y7rqLCQ9T5.png" class="img-fluid"><br><br>
+<ul>
+<li>Create three vectors from encoder’s input vector <span class="math inline">(x_i)</span>
+<ul>
+<li>Query vector <span class="math inline">(q_i)</span></li>
+<li>Key vector <span class="math inline">(k_i)</span></li>
+<li>Value vector <span class="math inline">(v_i)</span></li>
+</ul></li>
+<li>These are created by multiplying input with weight matrices <span class="math inline">W^Q,W^K,W^V</span> learned during training.</li>
+<li>In the paper <span class="math inline">q,k,v \in \mathbb{R}^{64}</span> and <span class="math inline">x \in \mathbb{R}^{512}</span></li>
+<li><span class="math inline">q, k, v</span> doesn’t have to be smaller then <span class="math inline">x</span>, It was tend to make computation of multi head attention constant.</li>
+<li>Dimensions of <span class="math inline">W^Q,W^K,W^V</span> are <span class="math inline">512\times 64</span></li>
+</ul></li>
+<li>STEP 2<br><br> <img src="CS5480_images/VoiceAccess_6FUXClgCYJ.png" class="img-fluid"><br><br>
+<ul>
+<li>Calculate self-attention scores : score all words of input sentence against themselves;</li>
+<li>Take dot product of query vector with key vector of respective words.</li>
+<li>E.g. for input “Thinking”, first score would be <span class="math inline">q_1 \cdot k_1</span> (with itself); second score would be dot product of <span class="math inline">q_1 \cdot k_2</span> (with ”Machines”), and so on …</li>
+<li>Scores then divided by <span class="math inline">\sqrt{\text{length}(k)}</span></li>
+<li>This is Scaled Dot-Product Attention, this design choice leads to more stable gradients.<br><br></li>
+</ul></li>
+<li>STEP 3<br><br> <img src="CS5480_images/VoiceAccess_8m1UoW4e4o.png" class="img-fluid">
+<ul>
+<li>Softmax used to get normalized probability scores; determines how much each word will be expressed at this position.</li>
+<li>Clearly, word at this position will have highest softmax score, but sometimes it’s useful to attend to another word that is relevant.</li>
+</ul></li>
+<li>STEP 4
+<ul>
+<li>Multiply each value vector by softmax score; It Keeps values of word(s) we want to focus on intact, and drown out irrelevant words.</li>
+</ul></li>
+<li>STEP 5
+<ul>
+<li>Sum up weighted value vectors : Produces output of self-attention layer at this position (for first word).</li>
+</ul></li>
+</ul>
+</section>
+<section id="self-attention-illustration" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="self-attention-illustration"><span class="header-section-number">3</span> Self-Attention: Illustration</h2>
+<p><img src="CS5480_images/VoiceAccess_sUvKVQ9Awg.png" class="img-fluid"></p>
+</section>
+<section id="multi-head-attention" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="multi-head-attention"><span class="header-section-number">4</span> Multi-Head Attention</h2>
+<ul>
+<li>Improves performance of the attention layer in two ways:<br><br> <img src="CS5480_images/VoiceAccess_omGGIQzzOe.png" class="img-fluid"><br><br>
+<ul>
+<li>Expands model’s ability to focus on different positions. In example above, <span class="math inline">z_1</span> contains a bit of every other encoding, but dominated by actual word itself</li>
+<li>Gives attention layer multiple “representation subspaces”; we have not one, but multiple sets of Query/Key/Value weight matrices; after training, each set is used to project input embeddings into different representation subspaces.</li>
+</ul></li>
+</ul>
+</section>
+<section id="multi-head-attention-illustration" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="multi-head-attention-illustration"><span class="header-section-number">5</span> Multi-Head Attention: Illustration</h2>
+<p><img src="CS5480_images/VoiceAccess_x7a00yNbeH.png" class="img-fluid"></p>
+</section>
+<section id="positional-encoding" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="positional-encoding"><span class="header-section-number">6</span> Positional Encoding</h2>
+<ul>
+<li>Unlike RNN and CNN encoders, attention encoder outputs do not depend on order of inputs.</li>
+<li>But order of sequence conveys important information for machine translation tasks and language modeling.</li>
+<li>The idea: Add positional information of input token in the sequence into input embedding vectors. <span class="math display">PE_{pos,2i}=\sin\left(\frac{pos}{1000^{\frac{2i}{d_{emb}}}}\right)</span> <span class="math display">PE_{pos,2i+1}=\cos\left(\frac{pos}{1000^{\frac{2i}{d_{emb}}}}\right)</span><br>
+</li>
+<li>Final input embeddings are concatenation of learnable embedding and positional encoding.</li>
+</ul>
+</section>
+<section id="encoder" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="encoder"><span class="header-section-number">7</span> Encoder</h2>
+<ul>
+<li>Stack of N=6 identical layers <br><br> <img src="CS5480_images/VoiceAccess_z1E32fzQvA.png" class="img-fluid"><br><br> <img src="CS5480_images/VoiceAccess_m1nmG5Pcx5.png" class="img-fluid"><br><br></li>
+<li>Each layer has a multi-head self-attention layer and a simple position-wise fully connected feed forward network.</li>
+<li>Each sub-layer has a residual connection and layer-normalization; all sub-layers output data of same dimension <span class="math inline">d_{\text{model}} = 512</span><br><br> <img src="CS5480_images/VoiceAccess_83AW5w6jyq.png" class="img-fluid"></li>
+</ul>
+</section>
+<section id="decoder" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="decoder"><span class="header-section-number">8</span> Decoder</h2>
+<ul>
+<li>Stack of N=6 identical layers<br><br> <img src="CS5480_images/VoiceAccess_NQxHvCdS9h.png" class="img-fluid"><br><br></li>
+<li>Each layer has two sub-layers of multi-head attention mechanisms and one sub-layer of fully-connected feedforward network.</li>
+<li>Similar to encoder, each sub-layer adopts a residual connection and a layer-normalization.</li>
+<li>First multi-head attention sub-layer is modified to prevent positions from attending to subsequent positions, as we don’t want to look into future of target sequence when predicting current position.</li>
+</ul>
+</section>
+<section id="transformers-full-architecture" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="transformers-full-architecture"><span class="header-section-number">9</span> Transformers: Full Architecture</h2>
+<p><img src="CS5480_images/VoiceAccess_FzItVRymZa.png" class="img-fluid"><br><br></p>
+</section>
+<section id="transformers-in-nlp-language-understanding" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="transformers-in-nlp-language-understanding"><span class="header-section-number">10</span> Transformers in NLP: Language Understanding</h2>
+<ul>
+<li>Pre-training language models showed impressive results on multiple natural language processing tasks like natural language inference, paraphrasing, named entity recognition and question answering.</li>
+<li>To apply the learnt language representations to downstream tasks, two strategies are followed: feature − based and fine − tuning.
+<ul>
+<li>Feature-based methods develop task specific architectures and utilize the pre-trained knowledge in solving the task</li>
+<li>Fine-tuning approaches try to minimize task-specific parameters and solve the task by fine-tuning pre-trained parameters.</li>
+</ul></li>
+<li>Both these strategies used unidirectional language models for pre-training which restricted the power of the language representations for fine-tuning</li>
+<li>Jacob et al solved this problem by using a ‘masked language model’ (MLM) pre-training objective in their paper, BERT.<br><br> <img src="CS5480_images/VoiceAccess_avTvLXIlzV.png" class="img-fluid"><br><br></li>
+<li>Recent works achieved performance gains on many NLP tasks by pre-training on large data and fine-tuning on specific tasks</li>
+<li>Although task-agnostic, these methods still require large task-specific data for fine-tuning. In contrary, humans can learn a new language task by simple instructions only.</li>
+<li>In an attempt to bridge this gap, Brown et al show that we can improve task-agnostic few-shot performance by scaling up language models.</li>
+<li>Their model, named GPT-3 is trained with 175 billion parameters and it shows significant performance gain when tested in few-shot setting.</li>
+</ul>
+</section>
+<section id="transformers-in-computer-vision-object-detection" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="transformers-in-computer-vision-object-detection"><span class="header-section-number">11</span> Transformers in Computer Vision: Object Detection</h2>
+<p><img src="CS5480_images/VoiceAccess_nV23kN7fUE.png" class="img-fluid"><br><br> <img src="CS5480_images/VoiceAccess_jCynWy6UYw.png" class="img-fluid"><br><br> <img src="CS5480_images/VoiceAccess_5fZQ0fEPKO.png" class="img-fluid"><br><br></p>
+<ul>
+<li>Image split into fixed-size patches</li>
+<li>Each of them linearly embedded</li>
+<li>Position embeddings added to resulting sequence of vectors</li>
+<li>Patches fed to standard Transformer encoder</li>
+<li>In order to perform classification, standard approach of adding an extra learnable “classification token” added to sequence.</li>
+</ul>
+</section>
+<section id="transformers-in-computer-vision-general-purpose-backbone" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="transformers-in-computer-vision-general-purpose-backbone"><span class="header-section-number">12</span> Transformers in Computer Vision: General Purpose Backbone</h2>
+<ul>
+<li>Problems in the previous transformer architectures:
+<ul>
+<li>Tokens are of fixed scale in NLP problems, which is not suitable in vision tasks.</li>
+<li>Computational complexity is quadratic to image size in ViT model and using high resolution images for dense pixel level prediction tasks would make the computation intractable.</li>
+</ul></li>
+<li>To solve these problems, Liu et al proposed Swin Transformer with hierarchical feature maps and linear computational complexity.</li>
+<li>An image is split into non-overlapping patches and to produce hierarchical feature maps, these patches are merged as we go deep into the network.</li>
+<li>The original transformer block is replaced by a Swin transformer block that uses shifted windows and generates feature maps with a linear computational complexity.<br><br></li>
+</ul>
+<p><img src="CS5480_images/VoiceAccess_ce3SgnjODp.png" class="img-fluid"><br><br></p>
+</section>
+<section id="transformers-in-other-applications" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="transformers-in-other-applications"><span class="header-section-number">13</span> Transformers in other applications</h2>
+<ul>
+<li>Transformers now used in various applications like image classification, object detection/tracking, speech recognition and graph representation</li>
+<li>Dong et al proposed Speech-Transformer that proposes a 2D-Attention mechanism that attends to both time and frequency axes jointly</li>
+<li>Liu et al introduced a self-supervised speech pre-training method called TERA which uses alteration along three orthogonal axes to pre-train Transformer Encoders on a large amount of unlabeled speech</li>
+<li>Graph Neural Networks (GNNs) used to learn node representations on fixed and homogeneous graphs.Yun et al proposed Graph Transformer Networks (GTNs) that are capable of learning from mis-specified and heterogeneous graphs.</li>
+<li>Ying et al proposed Graphormer, which attained excellent results on a broad range of graph representation learning tasks.</li>
+</ul>
+</section>
+<section id="deep-generative-models" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="deep-generative-models"><span class="header-section-number">14</span> Deep Generative Models</h2>
+<p>Discriminative vs Generative Models</p>
+<ul>
+<li>Discriminative models: Learn conditional distribution <span class="math inline">p( y|x)</span></li>
+<li>Generative models: Learn joint distribution <span class="math inline">p( x,y )</span> and infer conditional through Bayes’ rule</li>
+<li>Advantage of generative models
+<ul>
+<li>Potential to understand and explain the underlying structure of input data even when there are no labels</li>
+<li>Simulate environments</li>
+<li>Multimodal learning</li>
+</ul></li>
+</ul>
+<p>Applications of Deep Generative Models</p>
+<ul>
+<li>(High resolution/Interactive) Image generation</li>
+<li>Debiasing</li>
+<li>Outlier detection</li>
+<li>Image inpainting</li>
+<li>Text to image generation</li>
+<li>Image to image translation</li>
+</ul>
+<p>Taxonomy of Generative Models</p>
+<p><img src="CS5480_images/VoiceAccess_q1yPqYvXtv.png" class="img-fluid"></p>
+</section>
+<section id="generative-adversarial-networks" class="level2" data-number="15">
+<h2 data-number="15" class="anchored" data-anchor-id="generative-adversarial-networks"><span class="header-section-number">15</span> Generative Adversarial Networks</h2>
+<ul>
+<li>Generator<br><br> <img src="CS5480_images/VoiceAccess_HcTdckzmKU.png" class="img-fluid"><br><br></li>
+<li>Discriminator <br><br> <img src="CS5480_images/VoiceAccess_TfqiVmy47A.png" class="img-fluid"><br><br></li>
+<li>Generative Adversarial Networks<br><br> <img src="CS5480_images/VoiceAccess_otPTVqGFaV.png" class="img-fluid"><br><br></li>
+<li>Generator <span class="math inline">G</span> picks a point <span class="math inline">z</span> from noise distribution, and produces a sample.</li>
+<li><span class="math inline">G(z)</span> represents a mapping from noise distribution to the input space.</li>
+<li><span class="math inline">G(\cdot)</span> is a network</li>
+<li>Discriminator <span class="math inline">D</span> takes input from both real world images and generated image <span class="math inline">G(z)</span>, and assigns the correct label to both real world image data and generated image.</li>
+<li>We simultaneously train <span class="math inline">G</span> and <span class="math inline">D</span></li>
+</ul>
+<section id="gan-2-player-game" class="level3" data-number="15.1">
+<h3 data-number="15.1" class="anchored" data-anchor-id="gan-2-player-game"><span class="header-section-number">15.1</span> GAN: 2 Player Game</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Generator G tries to:</p>
+<ul>
+<li>maximize <span class="math inline">D(G(z))</span> or,<br> minimize <span class="math inline">(1- D(G(z)))</span></li>
+<li>minimize <span class="math inline">D(x)</span></li>
+<li>So, we can combine both and get: <span class="math display">\boxed{\text{minimize } D(x) + (1-D(G(z)))}</span></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p>Discriminator D tries to:</p>
+<ul>
+<li>maximize <span class="math inline">D(x)</span></li>
+<li>minimize <span class="math inline">D(G(z))</span> or,<br> maximize <span class="math inline">(1 -D(G(z)))</span></li>
+<li>So, we can combine both and get: <span class="math display">\boxed{\text{maximize } D(x) + (1-D(G(z)))}</span></li>
+</ul>
+</div>
+</div>
+<p>So finally both plays mix max game: <span class="math display">\boxed{\min_G \max_D D(x) + (1-D(G(z)))}</span> To analyze average behaviour, we will take expectation: <span class="math display">\boxed{\min_G \max_D \mathbb{E}[D(x)] + \mathbb{E}[(1-D(G(z)))]}</span></p>
+<p>Now we know that <span class="math inline">x</span> is sampled from real data , <span class="math inline">z</span> is sampled from normal distribution <span class="math inline">\mathcal{N}(0,1)</span>, we can write the above equation in log form as below</p>
+<p><span class="math display">\boxed{\min_G \max_D V(D,G)= \mathbb{E}_{x\sim p_{\text{data}}(x)}[\log D(x)] + \mathbb{E}_{z\sim p_z{(z)}}[\log(1-D(G(z)))]}</span></p>
+<p>This tries to find NASH equilibrium.</p>
+<p>Below is the snap from the paper which describes the algorithm:<br><br> <img src="CS5480_images/VoiceAccess_Ajm0NIi1rd.png" class="img-fluid"></p>
+</section>
+<section id="pitfalls-of-gans" class="level3" data-number="15.2">
+<h3 data-number="15.2" class="anchored" data-anchor-id="pitfalls-of-gans"><span class="header-section-number">15.2</span> Pitfalls of GANs</h3>
+<ul>
+<li>No guarantee to equilibrium
+<ul>
+<li>Mode collapsing</li>
+<li>Oscillation</li>
+<li>No indicator when to finish</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="dcgan-hacks" class="level2" data-number="16">
+<h2 data-number="16" class="anchored" data-anchor-id="dcgan-hacks"><span class="header-section-number">16</span> DCGAN Hacks</h2>
+<ul>
+<li>Normalize the inputs
+<ul>
+<li>Normalize the images between -1 and 1</li>
+<li>Tanh as the last layer of the generator output</li>
+</ul></li>
+<li>A modified loss function
+<ul>
+<li>In GAN papers, the loss function to optimize <span class="math inline">G</span> is <span class="math inline">\min (\log (1- D))</span>, but in practice we practically use <span class="math inline">\max \log D</span></li>
+<li>Flip labels when training generator: real = fake, fake = real</li>
+</ul></li>
+<li>Don’t sample from a uniform distribution, sample from a Gaussian distribution (spherical)</li>
+<li>BatchNorm
+<ul>
+<li>Construct different mini batches for real and fake, i.e.&nbsp;each mini batch needs to contain only all real images or all generated images.</li>
+<li>When batch norm is not an option, use instance normalization (for each sample, subtract mean and divide by standard deviation)</li>
+</ul></li>
+<li>Avoid Sparse Gradients
+<ul>
+<li>Stability of the GAN game suffers if we have sparse gradients</li>
+<li>Leaky ReLU = good ( in both <span class="math inline">G</span> and <span class="math inline">D</span> )</li>
+<li>For down sampling , use: Average Pooling, Conv2d + stride</li>
+<li>For Upsampling, use: <a href="https://arxiv.org/abs/1609.05158">PixelShuffle</a>, ConvTranspose2d + stride</li>
+</ul></li>
+<li>Use soft and noisy labels
+<ul>
+<li>Label Smoothing, i.e.&nbsp;if we have two target labels: Real=1 and Fake=0, then for each incoming sample, if it is real, then replace the label with a random number between 0.7 and 1.2, and if it is a fake sample, replace it with 0.0 and 0.3 (this is an example)</li>
+<li>Make the labels noisy for the discriminator: occasionally flip the labels when training the discriminator.</li>
+</ul></li>
+</ul>
+</section>
+<section id="variations-of-gan" class="level2" data-number="17">
+<h2 data-number="17" class="anchored" data-anchor-id="variations-of-gan"><span class="header-section-number">17</span> Variations of GAN</h2>
+<p><img src="CS5480_images/VoiceAccess_K0V3UZNAyo.png" class="img-fluid"><br><br> <img src="CS5480_images/VoiceAccess_TWvqQ7A2Ep.png" class="img-fluid"><br><br></p>
+</section>
+<section id="popular-variants-wasserstein-gan" class="level2" data-number="18">
+<h2 data-number="18" class="anchored" data-anchor-id="popular-variants-wasserstein-gan"><span class="header-section-number">18</span> Popular Variants: Wasserstein GAN</h2>
+<ul>
+<li>Weight clamping to maintain k Lipschitz continuity</li>
+<li>JSD to earth mover distance</li>
+</ul>
+</section>
+<section id="popular-variants-cycle-gans" class="level2" data-number="19">
+<h2 data-number="19" class="anchored" data-anchor-id="popular-variants-cycle-gans"><span class="header-section-number">19</span> Popular Variants: Cycle GANs</h2>
+<ul>
+<li>It is Unpaired Image-to-Image Translation<br><br> <img src="CS5480_images/VoiceAccess_stTjgWeAi8.png" class="img-fluid"><br><br> <img src="CS5480_images/VoiceAccess_cHmZXBJkC5.png" class="img-fluid"><br><br></li>
+</ul>
+</section>
+<section id="popular-variants-progressive-gans" class="level2" data-number="20">
+<h2 data-number="20" class="anchored" data-anchor-id="popular-variants-progressive-gans"><span class="header-section-number">20</span> Popular Variants: Progressive GANs</h2>
+<ul>
+<li>It generates high resolution image progressively as explained below:<br><br> <img src="CS5480_images/VoiceAccess_XUDqFvcszC.png" class="img-fluid"></li>
+</ul>
+</section>
+<section id="popular-variants-big-gans-gans" class="level2" data-number="21">
+<h2 data-number="21" class="anchored" data-anchor-id="popular-variants-big-gans-gans"><span class="header-section-number">21</span> Popular Variants: Big GANs GANs</h2>
+<ul>
+<li>State-of-the-art at this time for large-scale image generation</li>
+<li>Puts together multiple steps to obtain the improvements</li>
+<li>Model design: Self-attention GAN</li>
+<li>Class-conditional batch normalization</li>
+<li>Update discriminator more</li>
+<li>Moving average of model weights, etc….</li>
+</ul>
+</section>
+<section id="gans-takeaways" class="level2" data-number="22">
+<h2 data-number="22" class="anchored" data-anchor-id="gans-takeaways"><span class="header-section-number">22</span> GANs: Takeaways</h2>
+<ul>
+<li>GANs can generate sharp samples from high dimensional output space</li>
+<li>Finding Nash point is almost impossible</li>
+<li>No stopping criteria</li>
+<li>Generally produce sharp images with artifacts</li>
+</ul>
+<p>Following resources were referred in this notes:</p>
+<ul>
+<li><a href="http://jalammar.github.io/illustrated-transformer/">Illustrated transformer</a><br></li>
+<li><a href="https://kazemnejad.com/blog/transformer_architecture_positional_encoding/">Transformer architecture positional encoding</a></li>
+<li><a href="https://github.com/soumith/ganhacks">Ganhacks</a></li>
+<li><a href="https://github.com/hindupuravinash/the-gan-zoo">The gan zoo</a></li>
+<li><a href="https://github.com/nightrome/really-awesome-gan">Really awesome gan</a></li>
+<li><a href="https://www.youtube.com/watch?v=AJVyzd0rqdc&amp;t=1184s">Goodfellow talk</a></li>
+</ul>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="abhiyantaabhishek/IITH-Data-Science" data-repo-id="R_kgDOILoB8A" data-category="Announcements" data-category-id="DIC_kwDOILoB8M4CSJcL" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning 7</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="pagination-link">
+        <span class="nav-page-text">Machine Learning 1</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
