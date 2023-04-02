@@ -13,7 +13,7 @@ website:
   google-analytics: "G-5ZQX02R26E"
   open-graph: true
   navbar:
-    # background: transparent
+    # background:  #"transparent"
     pinned: false
     search: true
     logo: logo.png
@@ -38,7 +38,7 @@ website:
       collapse-level: 1
       contents:
         - auto: "Data_Science_Hacks/"
-      background: "#CBE4FA"  #  "#B4E3F5" #"#CBE4FA" #"#D6E8FC" #"#CBE4FA"
+      background: "#CBE4FA"  # corr "#CBE4FA" 
     - id: Data_Science_Notes
       collapse-level: 1
       contents:
@@ -74,6 +74,7 @@ format:
     highlight-style: tango
     fig-align: center
     fig-responsive: true
+    
 
 
 

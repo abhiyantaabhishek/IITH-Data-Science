@@ -6,23 +6,28 @@
     overflow-y: hidden;
   }
   h1 {
-    color:#5204ac; /* 852ee8 b512e7 */
+    color:#005180; /* 852ee8 b512e7 */
   }
   h2 {
     color:#352EE8;
   }
   h3 {
-    color:#2E69E8;
+    color:#2E53E8;
   }
   h4 {
-    color:#2EA4E8;
+    color:#2E78E8;
   }
   h5 {
-    color:#5BB3E6;
+    color:#2E97E8;
   }
   h6 {
-    color:#66ADD6;
+    color:#2EB6E8;
   }
+  h6 {
+    color:#2EB6E8;
+  }
+
+
 
   body {
     background-image: url("background.jpg");
