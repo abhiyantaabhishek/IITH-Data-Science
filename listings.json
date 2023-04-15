@@ -6,8 +6,7 @@
   {
     "listing": "/Data_Science_Projects/index.html",
     "items": [
-      "/Data_Science_Projects/CS6450_proposal.html",
-      "/Data_Science_Projects/CS6450_Impletemtation.html"
+      "/Data_Science_Projects/CS6450_proposal.html"
     ]
   },
   {
@@ -19,7 +18,6 @@
   {
     "listing": "/Data_Science_Notes/index.html",
     "items": [
-      "/Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html",
       "/Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html",
       "/Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html",
       "/Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html",

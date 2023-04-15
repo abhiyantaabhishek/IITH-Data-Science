@@ -261,11 +261,6 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <a href="../../Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html" class="sidebar-item-text sidebar-link">Deep Learning 8</a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html" class="sidebar-item-text sidebar-link">Deep Learning 9</a>
-  </div>
-</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -413,12 +408,12 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li>Who went inside? Man or wig?</li>
 </ul></li>
 </ul></li>
-<li><p>Use the same weights/layers for every time step (hence, recurrent ), and pass on the output to the next time step <br><br> <img src="CS5480_images/Acrobat_iduxTVwnBA.png" class="img-fluid"></p></li>
+<li><p>Use the same weights/layers for every time step (hence, recurrent ), and pass on the output to the next time step Courtesy: <br><br> <img src="CS5480_images/Acrobat_iduxTVwnBA.png" class="img-fluid"></p></li>
 <li><p>A recurrent neural network and the unfolding in time of the computation involved in its forward computation <br><br> <img src="CS5480_images/VoiceAccess_FDHN2gQ7fh.png" class="img-fluid"></p></li>
 <li><p>We can notice that <br></p>
 <p><span class="math display">\begin{align*}
   s_{t}&amp;=\operatorname{tanh}(U x_{t}+W s_{t-1})\\
-  \hat{y}_{t}&amp;=\mathrm{softmax}(Vs_{t})\\
+  \hat{y}_{t}&amp;=\mathrm{softrnax}(Vs_{t})\\
   E_{t}(y_{t},\hat{y_{t}})&amp;=-y_{t}\log\hat{y_{t}} \\
   E(y,{\hat{y}})&amp;=\sum_{t}E_{t}(y_{t},{\hat{y}}_{t})\\
   &amp;=-\sum_{t}y_{t}\log\;{\hat{y}}_{t}
@@ -453,7 +448,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <li><p>Consider the below pic <br><br> <img src="CS5480_images/VoiceAccess_uBKGn1RSWv.png" class="img-fluid"><br><br></p>
 <p><img src="CS5480_images/VoiceAccess_UY69EgVNKH.png" class="img-fluid"><br></p>
 <p><span class="math display">{\frac{\partial E_{3}}{\partial W}}={\frac{\partial E_{3}}{\partial{\hat{y}}_{3}}}{\frac{\partial{\hat{y}}_{3}}{\partial s_{3}}}\left[{\frac{\partial s_{3}}{\partial W}}+{\frac{\partial s_{3}}{\partial s_2}}{\frac{\partial s_{2}}{\partial W}}+{\frac{\partial s_{3}}{\partial s_2}}{\frac{\partial s_{2}}{\partial s_1}}{\frac{\partial s_{1}}{\partial W}}\right]</span></p>
-<p>It can be generalized as:</p>
+<p>It can be generalized days:</p>
 <p><span class="math display">{\cfrac{\partial E_{3}}{\partial W}}=\sum_{k=0}^{3}{\cfrac{\partial E_{3}}{\partial{\hat{y}}_{3}}}{\cfrac{\partial{\hat{y}}_{3}}{\partial s_{3}}}{\cfrac{\partial s_{3}}{\partial s_{k}}}{\cfrac{\partial s_{k}}{\partial W}}</span></p>
 <p><span class="math inline">\cfrac{\partial E_{3}}{\partial U}</span> can be calculate in same was <span class="math inline">\cfrac{\partial E_{3}}{\partial W}</span></p>
 <p><span class="math display">s_{3}=\operatorname{tanh}(U x_{t}+W s_{2})</span></p>

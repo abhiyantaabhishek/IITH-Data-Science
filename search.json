@@ -11,7 +11,7 @@
     "href": "Data_Science_Projects/index.html",
     "title": "Data Science Projects",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nPoint cloud based 3d object detection\n\n\nY. Zhou and O. Tuzel,Voxelnet, IEEE Conference on CVPR, pp. 4490-4499, 2018.\n\n\n\n\n3D vehicle Detection\n\n\n\n\nPROPOSAL\n\n\n\n\n\n\nMar 12, 2023\n\n\nAbhishek Kumar Dubey  cs22mds15010\n\n\n\n\n\n\n  \n\n\n\n\nPoint cloud based 3d object detection\n\n\nY. Zhou and O. Tuzel,Voxelnet, IEEE Conference on CVPR, pp. 4490-4499, 2018.\n\n\n\n\n3D vehicle Detection\n\n\n\n\nIMPLEMENTATION\n\n\n\n\n\n\nMar 12, 2023\n\n\nAbhishek Kumar Dubey  cs22mds15010\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nPoint cloud based 3d object detection\n\n\nY. Zhou and O. Tuzel,Voxelnet, IEEE Conference on CVPR, pp. 4490-4499, 2018.\n\n\n\n\n3D vehicle Detection\n\n\n\n\nVoxelNet- End-to-End Learning\n\n\n\n\n\n\nMar 12, 2023\n\n\nAbhishek Kumar Dubey  cs22mds15010\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "Data_Science_Projects/CS6450_proposal.html#motivation",
@@ -203,139 +203,6 @@
     "text": "Novelty\n\nPrevious time frames can be taken into account improve the detection. \nVFE can be improved with the help of transformer positional encoding.\nOne universal network instead of two."
   },
   {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#voxelnet-introduction",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#voxelnet-introduction",
-    "title": "Point cloud based 3d object detection",
-    "section": "VoxelNet Introduction",
-    "text": "VoxelNet Introduction\n\n\n\n\nit is a generic 3D detection framework that simultaneously learns a discriminative feature representation from point clouds and predicts accurate 3D bounding boxes\n\n\nVoxelNet directly operates on the raw point cloud."
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#voxelnet-architecture",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#voxelnet-architecture",
-    "title": "Point cloud based 3d object detection",
-    "section": "VoxelNet Architecture",
-    "text": "VoxelNet Architecture\n\n\n\n\nThe VoxelNet consists of three functional blocks\n\nFeature learning network\nConvolutional middle layers\nRegion proposal network"
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#feature-learning-network",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#feature-learning-network",
-    "title": "Point cloud based 3d object detection",
-    "section": "Feature Learning Network",
-    "text": "Feature Learning Network\n\n\nVoxel Partition\n\nSuppose the point cloud encompasses 3D space with range \\(D, H, W\\) along the \\(Z, Y, X\\) axes respectively.\nThe resulting 3D voxel grid is of size \\(D'=D/v_D, H'=H/v_H, W'=W/v_W\\) where \\(v_D,v_H,v_W\\) defines the voxel size accordingly\nPoint density in LiDAR point clouds is variable, resulting in varying numbers of points within each voxel."
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#section",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#section",
-    "title": "Point cloud based 3d object detection",
-    "section": "",
-    "text": "Feature Learning Network cont …\nRandom Sampling\n\nA high-definition LiDAR point cloud typically has around 100k points.\nDirectly processing all points can overload computing resources and create biased detection due to variable point density.\nTo avoid this, a fixed number of points (T) is randomly sampled from voxels that contain more than T points.\nThis sampling strategy has two purposes:\n\ncomputational savings and\ndecreases the imbalance of points between the voxels which reduces the sampling bias, and adds more variation to training."
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#section-1",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#section-1",
-    "title": "Point cloud based 3d object detection",
-    "section": "",
-    "text": "Feature Learning Network cont …\nStacked Voxel Feature Encoding\n\nlet \\({\\bf V}\\,=\\,\\{{\\bf p}_i\\,=\\,[x_{i},y_{i},z_{i},r_{i}]^{T}\\,\\in\\,\\mathbb{R}^{4}\\}_{i=1...t}\\) as a non-empty voxel containing \\(t <T\\) LiDAR points.\nHere \\({\\bf p}_i\\) contains \\(XYZ\\) coordinates for the \\(i^{\\text{th}}\\) point and \\(r_i\\) is the received reflectance.\nNow find \\({\\mathrm{\\bf V}}_{\\mathrm{in}}\\,=\\,\\{\\;\\mathrm{\\hat {\\bf p}_i}\\,=\\,[x_{i},y_{i},z_{i},r_{i},x_{i}-v_{x},y_{i}-v_{y},z_{i}-v_{z}]^{T}\\in\\mathbb{R}^{7}\\}_{i=1\\ldots t}.\\) Here \\((v_{x},v_{y},v_{z})\\) is the local mean as the centroid of all the points in \\({\\bf V}\\)\nNext, each \\(\\hat {\\bf p}_i\\) is transformed through the fully connected network (FCN) into a feature space."
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#section-2",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#section-2",
-    "title": "Point cloud based 3d object detection",
-    "section": "",
-    "text": "Feature Learning Network. VFE cont …\n\n\n\nInformation from point feature \\({\\bf f}_{i}\\ \\in\\ \\mathbb{R}^{m}\\) is aggregated to encode the shape of the surface contained within the voxel\nThe FCN is composed of a linear layer, a batch normalization (BN) layer, and a rectified linear unit (ReLU) layer\n\n\n\n\n\n\nElementwise MaxPooling across all \\(\\bf f_i\\) is used to get the locally aggregated feature \\(\\hat{\\mathbf{f}}\\ \\in\\ \\mathbb{R}^{m}\\)"
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#section-3",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#section-3",
-    "title": "Point cloud based 3d object detection",
-    "section": "",
-    "text": "Feature Learning Network. VFE cont …\n\n\n\nNow form the form the point-wise concatenated feature as \\(\\mathbf{f}_{i}^{o u t}\\,=\\,\\left[\\mathbf{f}_{i}^{T},{\\tilde{\\mathbf{f}}}^{T}\\right]^{T}\\,\\in\\,\\mathbb{R}^{2m}.\\)\nFinally we get \\({\\bf V_{\\ o u t}}\\ =\\ \\{{\\bf f}_{i}^{o u t}\\}_{i...t}.\\)\nThe output feature combines point-wise and locally aggregated features.\nStacking VFE layers allows encoding of point interactions within a voxel, enabling the final feature representation to learn descriptive shape information.\n\n\n\n\n\n\nVoxel features, uniquely associated with their spatial coordinates, are obtained by processing only non-empty voxels, resulting in a sparse 4D tensor representation."
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#convolutional-middle-layers",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#convolutional-middle-layers",
-    "title": "Point cloud based 3d object detection",
-    "section": "Convolutional Middle Layers",
-    "text": "Convolutional Middle Layers\n\nEach convolutional middle layer applies 3D convolution, BN layer, and ReLU layer sequentially.\nThe convolutional middle layers aggregate voxel-wise features within a progressively expanding receptive field, adding more context to the shape description\nDepending on the task this layer’ details can vary."
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#region-proposal-network",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#region-proposal-network",
-    "title": "Point cloud based 3d object detection",
-    "section": "Region Proposal Network",
-    "text": "Region Proposal Network\n\nRPN is combined with the feature learning network and convolutional middle layers to form an end-to-end trainable pipeline. \nThe first layer of each block downsamples the feature map by half. via convolution with a stride of 2\nFollowed by a sequence of convolutions of stride 1, BN and ReLU\nThe output of each block is upsampled to a fixed size and concatenated to construct a high-resolution feature map."
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#loss-function",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#loss-function",
-    "title": "Point cloud based 3d object detection",
-    "section": "Loss Function",
-    "text": "Loss Function\n\n3D ground truth box is parameterized as \\((x_{c}^{g},y_{c}^{g},z_{c}^{g},l^{g},w^{g},h^{g},\\theta^{g}),\\) where \\(x_{c}^{g},y_{c}^{g},z_{c}^{g}\\) represent the center location, \\(l^{g},w^{g},h^{g}\\) are length, width, height of the box,\\({\\theta}^{g}\\) is the yaw rotation.\nTo retrieve the ground truth box from a matching positive anchor parameterized as \\((x_{c}^{a},y_{c}^{a},z_{c}^{a},l^{a},w^{a},h^{a},\\theta^{a})\\) a vector \\(\\mathbf{u}^{*}\\in\\mathbb{R}^{7}\\) containing below 7 elements are calculated as below: \\[\\begin{align*}\n    &\\Delta x={\\frac{x_{c}^{g}-x_{c}^{a}}{d^{a}}},\\Delta y={\\frac{y_{c}^{g}-y_{c}^{a}}{d^{a}}},\\Delta z={\\frac{z_{c}^{g}-z_{c}^{a}}{h^{a}}},\\\\\n    &\\Delta l=\\log(\\frac{l^{g}}{l^{a}}),\\Delta w=\\log(\\frac{w^{g}}{w^{a}}),\\Delta h=\\log(\\frac{h^{g}}{h^{a}}), \\tag{1} \\\\\n    &\\Delta\\theta=\\theta^{g}-\\theta^{a}\n\\end{align*}\\] Where \\(\\;d^{a}\\,=\\,\\sqrt{(l^{a})^{2}+(w^{a})^{2}}\\)"
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#section-4",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#section-4",
-    "title": "Point cloud based 3d object detection",
-    "section": "",
-    "text": "Loss Function cont …\n\nNow we find loss as shown below \\[\\begin{align*}\n   L&=\\alpha{\\frac{1}{N_{\\mathrm{pos}}}}\\sum_{i}L_{\\mathrm{cls}}(p_{i}^{\\mathrm{pos}},1)\\\\\n   &+\\beta{\\frac{1}{N_{\\mathrm{neg}}}}\\sum_{j}L_{\\mathrm{cls}}(p_{j}^{\\mathrm{neg}},0)\\\\\n   &+\\frac{1}{N_{\\mathrm{pos}}}\\sum_{i}L_{\\mathrm{reg}}({\\bf u}_{i},{\\bf u}_{i}^{*}) \\tag{2}\n\\end{align*}\\]\nwhere \\(p_{i}^{\\mathrm{pos}}\\) and \\(p_{j}^{\\mathrm{neg}}\\) represent the softmax output for positive anchor \\(a_{i}^{\\mathrm{pos}}\\) and negative anchor \\(a_{j}^{\\mathrm{neg}}\\) respectively,\n\\(\\mathbf{u}_{i}\\ \\in\\ \\mathbb{R}^{7}\\) and \\(\\mathbf{u}_{i}^{*}\\ \\in\\ \\mathbb{R}^{7}\\) are the regression output and ground truth for positive anchor \\(a_{i}^{\\mathrm{pos}}\\)"
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#network-details",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#network-details",
-    "title": "Point cloud based 3d object detection",
-    "section": "Network Details",
-    "text": "Network Details\nCar Detection\n\nPoint clouds within the range of \\([-3,1]\\times[-40,40]\\times[0,70.4]\\) meters along \\(X,Y,Z\\) respectively is considered.\n\\(v_{D}\\,=\\,0.4,v_{H}\\,=\\,0.2,v_{W}\\,=\\,0.2\\)\n\\(D^{\\prime}\\;=\\;10,\\;H^{\\prime}\\;=\\;400,\\;W^{\\prime}\\;=\\;352\\)\nThe maximum number of randomly sampled points in each non-empty voxel \\(T\\,=\\,35\\)\nFor \\(\\mathrm{VFE}-1(7, 32)\\) and and \\(\\mathrm{VFE}-2(32, 128)\\) was used.\nThe final \\(\\mathrm{FCN}\\) maps \\(\\mathrm{VFE}\\) output to \\(\\mathbb{R}^{128}\\)\nThus the feature learning net generates a sparse tensor of shape \\(128\\times10\\times400\\times352\\)"
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#section-5",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#section-5",
-    "title": "Point cloud based 3d object detection",
-    "section": "",
-    "text": "Network Details, Car Detection cont …"
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#section-6",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#section-6",
-    "title": "Point cloud based 3d object detection",
-    "section": "",
-    "text": "Network Details, Car Detection cont …\n\nTo aggregate voxel-wise features, three convolution middle layers was employed sequentially as \\(\\mathrm{Conv3D}(128, 64, 3,(2,1,1), (1,1,1)),\\) \\(\\mathrm{Conv3D}(64, 64, 3, (1,1,1), (0,1,1)),\\) and \\(\\mathrm{Conv3D}(64, 64, 3, (2,1,1), (1,1,1)),\\)\nwhich yields a 4D tensor of size \\(64\\times2\\times400\\times352.\\)\nAfter reshaping, size becomes \\(128\\times400\\times352.\\) and is input to RPN.\nOnly one anchor size was used \\(l^{a}\\,=\\,3.9.\\,w^{a}\\,=\\,1.6.\\,h^{a}\\,=\\,1.56\\) meters centered at \\(z_{c}^{a}\\,=\\,-1.0\\) meters with two rotations, \\(0^\\circ\\) and \\(90^\\circ\\)\nPositive anchor: if it has the highest Intersection over Union (IoU) with a ground truth or its IoU with ground truth is above 0.6 (in bird’s eye view).\nPositive anchor: if the IoU between it and all ground truth boxes is less than 0.45.\nSet \\(\\alpha=1.5\\) and \\(\\beta=1\\) in equation \\((2)\\)"
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#training",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#training",
-    "title": "Point cloud based 3d object detection",
-    "section": "Training",
-    "text": "Training\n\nA similar network with different parameters, was used for Pedestrian and Cyclist Detection\n\n2 anchors, smaller anchors, small stride to capture fine details etc.\n\nDuring training, stochastic gradient descent (SGD) with learning rate 0.01 was used for the first 150 epochs and decreased the learning rate to 0.001 for the last 10 epochs.\nData Augmentation\n\nperturbation independently to each ground truth 3D bounding box together with those LiDAR points within the box.\nGlobal scaling."
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#experiments",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#experiments",
-    "title": "Point cloud based 3d object detection",
-    "section": "Experiments",
-    "text": "Experiments\n\nVoxelNet evaluated on KITTI 3D object detection benchmark\n7,481 training images/point clouds and 7,518 test images/point clouds\nThree categories: Car, Pedestrian, and Cyclist\nDetection outcomes evaluated based on three difficulty levels: easy, moderate, and hard\nEvaluation protocol based on object size, occlusion state, and truncation level\n3,712 data samples for training and 3,769 for validation\nHand-crafted baseline (HC-baseline) was implemented and trained to evaluate the importance of end-to-end learning.\nHC-baseline uses the bird’s eye view features described in Multi-view 3d object detection network for autonomous driving1 which are computed at 0.1 m resolution."
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#novelty",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#novelty",
-    "title": "Point cloud based 3d object detection",
-    "section": "Novelty",
-    "text": "Novelty\n\n\nWe do not need to predict separately for positive and negative.\nExtend VoxelNet for joint LiDAR and image-based end-to-end 3D detection."
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#novelty-1",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#novelty-1",
-    "title": "Point cloud based 3d object detection",
-    "section": "Novelty",
-    "text": "Novelty\n\nPrevious time frames can be taken into account improve the detection. \nVFE can be improved with the help of transformer positional encoding.\nOne universal network instead of two."
-  },
-  {
-    "objectID": "Data_Science_Projects/CS6450_Impletemtation.html#work",
-    "href": "Data_Science_Projects/CS6450_Impletemtation.html#work",
-    "title": "Point cloud based 3d object detection",
-    "section": "WORK",
-    "text": "WORK\n\nMVX-Net: Multimodal VoxelNet for 3D Object Detection\nImVoxelNet: Image to Voxels Projection for Monocular and Multi-View General-Purpose 3D Object Detection\nMVX-Net: Multimodal VoxelNet for 3D Object Detection\nGroup-Free 3D Object Detection via Transformers\nEnd-to-End Multi-View Fusion for 3D Object Detection in LiDAR Point Clouds (Dynamic Voxelization)"
-  },
-  {
     "objectID": "Data_Science_Hacks/index.html",
     "href": "Data_Science_Hacks/index.html",
     "title": "Data Science Hacks",
@@ -417,7 +284,7 @@
     "href": "Data_Science_Notes/index.html",
     "title": "Data Science Notes",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nDeep Learning 9\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nAutoencoders and Variational Autoencoder\n\n\n\n\n\n\nApr 15, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 8\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nTransformer.Attention is all you need. Deep Generative Models\n\n\n\n\n\n\nApr 1, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 7\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nRecurrent Neural Networks, Attention and Transformers\n\n\n\n\n\n\nMar 25, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 6\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nresidual neural network,explainable AI\n\n\n\n\n\n\nMar 18, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 5\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nConvolutional Neural Networks\n\n\n\n\n\n\nMar 4, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 4\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nFiltering, correlation and convolution.\n\n\n\n\n\n\nFeb 11, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 3\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nRegularization and Generalization.\n\n\n\n\n\n\nFeb 4, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 2\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nOptimizers and activation functions\n\n\n\n\n\n\nJan 21, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 1\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nHistory, Perceptrons, Neural Networks and Backpropagation\n\n\n\n\n\n\nJan 7, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 9\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nSupport Vector Regression,Linear Regression\n\n\n\n\n\n\nNov 5, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 8\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nIntroduction to Learning Theory, Regression Formulation\n\n\n\n\n\n\nOct 29, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 5\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nJoint, Conditional, Marginal, Discrete Convolution\n\n\n\n\n\n\nOct 15, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 7\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nClassifier System Design,Introduction to Learning Theory\n\n\n\n\n\n\nOct 15, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 6\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nEnsemble Classifier\n\n\n\n\n\n\nOct 8, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nLinear Algebra 3\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nIndependence, Basis, Space\n\n\n\n\n\n\nOct 1, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 4\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nUniform, Exponential, Normal\n\n\n\n\n\n\nSep 24, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 5\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nMulti Layer Perceptrons\n\n\n\n\n\n\nSep 24, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 3\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nBinomial, Poisson\n\n\n\n\n\n\nSep 17, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nLinear Algebra 2\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nGaussian Elimination, Row-Echelon, Minus 1 Trick\n\n\n\n\n\n\nSep 17, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 4\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nSVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick\n\n\n\n\n\n\nSep 10, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nLinear Algebra 1\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nSystem of equation\n\n\n\n\n\n\nSep 3, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 3\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nDecision Trees, Naive Bayes, Bayesian Belief network\n\n\n\n\n\n\nAug 27, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 2\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nClassification Error, ROC/PR curve, KNN\n\n\n\n\n\n\nAug 20, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 2\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nMass Function\n\n\n\n\n\n\nAug 13, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 1\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nBasics, Bayes Theorem\n\n\n\n\n\n\nAug 6, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 1\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nTraining Error, Generalization Error\n\n\n\n\n\n\nAug 6, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n  \n\n\n\n\nDeep Learning 8\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nTransformer.Attention is all you need. Deep Generative Models\n\n\n\n\n\n\nApr 1, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 7\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nRecurrent Neural Networks, Attention and Transformers\n\n\n\n\n\n\nMar 25, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 6\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nresidual neural network,explainable AI\n\n\n\n\n\n\nMar 18, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 5\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nConvolutional Neural Networks\n\n\n\n\n\n\nMar 4, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 4\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nFiltering, correlation and convolution.\n\n\n\n\n\n\nFeb 11, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 3\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nRegularization and Generalization.\n\n\n\n\n\n\nFeb 4, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 2\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nOptimizers and activation functions\n\n\n\n\n\n\nJan 21, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nDeep Learning 1\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\nHistory, Perceptrons, Neural Networks and Backpropagation\n\n\n\n\n\n\nJan 7, 2023\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 9\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nSupport Vector Regression,Linear Regression\n\n\n\n\n\n\nNov 5, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 8\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nIntroduction to Learning Theory, Regression Formulation\n\n\n\n\n\n\nOct 29, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 5\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nJoint, Conditional, Marginal, Discrete Convolution\n\n\n\n\n\n\nOct 15, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 7\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nClassifier System Design,Introduction to Learning Theory\n\n\n\n\n\n\nOct 15, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 6\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nEnsemble Classifier\n\n\n\n\n\n\nOct 8, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nLinear Algebra 3\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nIndependence, Basis, Space\n\n\n\n\n\n\nOct 1, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 4\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nUniform, Exponential, Normal\n\n\n\n\n\n\nSep 24, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 5\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nMulti Layer Perceptrons\n\n\n\n\n\n\nSep 24, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 3\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nBinomial, Poisson\n\n\n\n\n\n\nSep 17, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nLinear Algebra 2\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nGaussian Elimination, Row-Echelon, Minus 1 Trick\n\n\n\n\n\n\nSep 17, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 4\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nSVM, Lagrange Multipliers, KKT condition, Mercer’s condition, Kernel Trick\n\n\n\n\n\n\nSep 10, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nLinear Algebra 1\n\n\n\n\n\n\n\nLinear Algebra\n\n\n\n\nSystem of equation\n\n\n\n\n\n\nSep 3, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 3\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nDecision Trees, Naive Bayes, Bayesian Belief network\n\n\n\n\n\n\nAug 27, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 2\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nClassification Error, ROC/PR curve, KNN\n\n\n\n\n\n\nAug 20, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 2\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nMass Function\n\n\n\n\n\n\nAug 13, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nProbability Theory 1\n\n\n\n\n\n\n\nProbability Theory\n\n\n\n\nBasics, Bayes Theorem\n\n\n\n\n\n\nAug 6, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\n  \n\n\n\n\nMachine Learning 1\n\n\n\n\n\n\n\nMachine Learning\n\n\n\n\nTraining Error, Generalization Error\n\n\n\n\n\n\nAug 6, 2022\n\n\nAbhishek Kumar Dubey\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html",
@@ -572,62 +439,6 @@
     "title": "Deep Learning 8",
     "section": "22 GANs: Takeaways",
     "text": "22 GANs: Takeaways\n\nGANs can generate sharp samples from high dimensional output space\nFinding Nash point is almost impossible\nNo stopping criteria\nGenerally produce sharp images with artifacts\n\nFollowing resources were referred in this notes:\n\nIllustrated transformer\nTransformer architecture positional encoding\nGanhacks\nThe gan zoo\nReally awesome gan\nGoodfellow talk\n\n \\tiny {\\textcolor{#808080}{\\boxed{\\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}"
-  },
-  {
-    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html",
-    "href": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html",
-    "title": "Deep Learning 9",
-    "section": "",
-    "text": "Autoencoder neural network:an unsupervised learning algorithm that applies backpropagation, setting target values to be equal to the inputs. ie it uses y^{(i)}=x^{(i)}\nwe go from input to bottelneck layer.\nTried to learn a function h_{w,b}(x)=x\nLearn an approximation to identity function, so as to make output \\hat x similar to x\nDecoder need not be a mirror reflection of the encoder.\nIf input were completely random—say, each x_i comes from an IID Gaussian independent of the other features—then very difficult\nIf there is structure in data, e.g., if some input features are correlated, then this model will be able to discover correlations\nOften ends up learning a low-dimensional representation very similar to PCAs.\nDenoising Auto encoder\n\nAdd the noise in the input and the generate the original input, it helps noise to get removed\nIdea: Representation should be robust to introduction of noise:\n\nRandom assignment of subset of inputs to 0, with probability v\nGaussian additive noise\n\nReconstruction \\hat x computed from the corrupted input \\hat x\nLoss function compares \\hat x reconstruction with the noiseless input \\bf X"
-  },
-  {
-    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#variational-autoencoder",
-    "href": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#variational-autoencoder",
-    "title": "Deep Learning 9",
-    "section": "2 Variational Autoencoder",
-    "text": "2 Variational Autoencoder\n\n\nGiven an input, send it to encoder, force the encoder to take it to mean and std vector, (mean 0 std 1)\nNow we sample form the unit gaussian, and pass through the decoder, generate the image which looks similar to the original image.\nNow due this sampling , we can’t do back prop\nLeverage neural network to learn a latent variable model.  p(x)=\\int p(x,z)~d z where p(x,z)=p(x\\mid z)p(z) p(z)= something simple, p(x\\mid z)=g(z)  \nWhere does z come form? The classic directed model dilemma.\nComputing the posterior p(z \\mid x) is intractable.\nWe need it to train the directed model.\nA Bayesian spin on an autoencoder!\nAssume oue data \\left\\{x^{(i)}\\right\\}_{i=1}^N is generated like this. \n\n\n\n\n\nIntuition: \\bf X is an image, \\bf z gives class, orientation attributes, etc\nProblem : Estimate \\theta without access to latent states!\n\n\n\n\n\n\n\nPrior: Assume p_\\theta(z) is a unit Gaussian.\nConditional: Assume p_\\theta(x \\mid z) is a diagonal Gaussian, predict mean and variance with neural net\n\n\n\n\n\nBy Bayes Rules the posterior is:\n\n\np_\\theta(z\\mid x)=\\frac{p_\\theta(x\\mid z)p_\\theta(z)}{p_\\theta(x)}\n\nUse decoder network = p_\\theta(x\\mid z)\nGaussian = p_\\theta(z)\nIntractable integral = p_\\theta(x)\n\n\n\n\n\n\n\n\n\n\nTraining like a normal autoencoder:\n\nReconstruction loss at the end, regularization toward prior in the middle.\n\nMean and (diagonal) covariance of p_\\theta(x \\mid z)\n\nShould be close to data x\n\nMean and (diagonal) covariance of q_\\phi(z \\mid x)\n\nshould be close to prior p_\\theta(z)"
-  },
-  {
-    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#variational-autoencoders-the-math",
-    "href": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#variational-autoencoders-the-math",
-    "title": "Deep Learning 9",
-    "section": "3 Variational Autoencoders : The Math",
-    "text": "3 Variational Autoencoders : The Math\n\nMaximum Likelihood od dataset \\left\\{x^{\\left(i\\right)}\\right\\}_{i=1}^N\n\\begin{align*}\n    \\theta^{*}&=\\arg\\operatorname*{max}_{\\theta}\\prod_{i=1}^{N}p_{\\theta}(x^{(i)})\\\\\n    &=\\arg\\operatorname*{max}_{\\theta}\\sum_{i=1}^{N}\\log p_{\\theta}(x^{(i)})\\\\\n\\end{align*}\nMarginalize joint distribution p_{\\theta}(x^{(i)})=\\int p_{\\theta}(x^{(i)},z)d z = \\int{p_{\\theta}(x^{(i)}\\mid z)p_{\\theta}(z)d z}\n\nwhich is intractible integral\n\n\n\\begin{align*}\n    \\mathrm{log}\\,p_{\\theta}(x^{(i)})&= \\mathbf{E}_{z \\sim q_{\\phi}(z|x^{(i)})}\\left[\\log p_{\\theta}(x^{(i)})\\right] \\quad (p_{\\theta}(x^{i})\\text{ does not depend on } z) \\\\\n    &= \\mathbf{E}_z \\left[\\log\\frac{p_{\\theta}(x^{(i)}\\mid z)p_{\\theta}(z)}{p_{\\theta}(z\\mid x^{(i)})}\\right] \\quad \\text{ Bayes' Rule }\\\\\n    &= \\mathbf{E}_z \\left[\\log\\frac{p_{\\theta}(x^{(i)}\\mid z)p_{\\theta}(z)}{p_{\\theta}(z\\mid x^{(i)})}\\frac{q_{\\phi}(z\\mid x^{(i)})}{q_{\\phi}(z\\mid x^{(i)})}\\right] \\text{ Multiply by constant }\\\\\n    &= \\mathbf{E}_{z}\\left[\\log p_{\\theta}(x^{(i)}\\mid z)\\right]-\\mathbf{E}_{z}\\left[\\log\\frac{q_{\\phi}(z\\mid x^{(i)})}{p_{\\theta}(z)}\\right]+\\mathbf{E}_{z}\\left[\\log\\frac{q_{\\phi}(z\\mid x^{(i)})}{p_{\\theta}(z\\mid x^{(i)})}\\right]\\\\\n    &= \\underbrace{\\mathrm{\\bf{E}}_{z}\\left[\\log p_{\\theta}(x^{(i)}\\mid z)\\right]-D_{K L}(q_{\\phi}(z\\mid x^{(i)})\\mid\\mid p_{\\theta}(z))}_{\\mathcal{L}\\big(x^{(i)},\\theta,\\phi\\big) \\text{ELBOW}} + \\underbrace{D_{K L}({q_{\\phi}}(z\\mid x^{(i)})\\mid\\mid p_{\\theta}(z\\mid x^{(i)}))}_{\\ge 0}\n\\end{align*}\n\nVariational lower bound (elbow):  \\mathrm{log}\\,p_{\\theta}(x^{(i)})\\ge \\mathcal {L}(x^{(i)},\\theta,\\phi)\nTraining: Maximize lower bound  \\displaystyle {\\theta^{*},\\phi^{*}}=\\arg\\operatorname*{max}_{\\theta,\\phi}\\sum_{i=1}^{N}\\mathcal{L}(x^{(i)},\\theta,\\phi)\n\\log p\\theta(x^{(i)}\\mid z) : Here we do sampling with reparametrization trick, Reconstruct input data\nD_{K L}(q_{\\phi}(z\\mid x^{(i)})\\mid\\mid p_{\\theta}(z)) : Latent space should follow prior, Everything is Gaussian closed form solution."
-  },
-  {
-    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#variational-autoencoders-inference",
-    "href": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#variational-autoencoders-inference",
-    "title": "Deep Learning 9",
-    "section": "4 Variational Autoencoders: Inference",
-    "text": "4 Variational Autoencoders: Inference\n\nThe VAE approach: introduced an inference model q_\\phi(z \\mid x) that learns to approximates the intractable posterior p_\\theta(z \\mid x) by optimizing the variational lower bound: \\mathcal{L}(\\theta,\\phi,x)=-D_{\\mathrm{KL}}\\left(q_{\\phi}(z\\mid x)\\|\\,p_{\\theta}(z)\\right)+\\mathbb{E}_{q_{\\phi}(z|x)}\\left[\\log p_{\\theta}(x\\mid z)\\right]\nwe parametrize q_\\phi(z \\mid x) with another neural network:"
-  },
-  {
-    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#reparametrization-trick",
-    "href": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#reparametrization-trick",
-    "title": "Deep Learning 9",
-    "section": "5 Reparametrization Trick",
-    "text": "5 Reparametrization Trick\n\nProblem with respect to the VLB: updating \\phi \\begin{align*}\n  \\mathcal{L}_{\\mathrm{VAE}}&=\\mathbb{E}_{q_\\phi(z|x)}\\left[\\log\\frac{p_{\\theta}(z,x)}{q_{\\phi}(z|x)}\\right]\\\\\n  &=-D_{\\mathrm{KL}}(q_{\\phi}(z|x)||p_{\\theta}(z))+\\mathbb{E}_{q_{\\phi}(z|x)}[\\log p_{\\theta}(x|z)]\n\\end{align*}\nZ{\\sim}q_{\\phi}{\\left(Z|X\\right)} : need to differentiate through the sampling process w.r.t \\phi (encoder is probablistic)\nLet’s consider z to be real and q_{\\phi}(z\\mid x)=\\mathcal {N}(z;\\mu_{z}(x),\\sigma_{z}(x))\nParametrize z as z=\\mu_{z}(x)+\\sigma_{z}(x)\\epsilon_{z} where \\epsilon_{z}={\\mathcal{N}}(0,1)\nvariational inference: A concept where we replace one distribution with another approximation.\nWhat VAE’s can do\n\nchange in the latent space and get the different image, like different pose, or rotation.\nVAE’s have more control on this as compared to GAN"
-  },
-  {
-    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#kl-divergence-between-gaussians",
-    "href": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#kl-divergence-between-gaussians",
-    "title": "Deep Learning 9",
-    "section": "6 KL Divergence between Gaussians",
-    "text": "6 KL Divergence between Gaussians\nThe Kullback Leibler divergence between a Gaussian distribution p with mean \\mu_1 and variance \\sigma_1^2 and a Gaussian distribution q with mean \\mu_2 and variance \\sigma_2^2 is given by: \\mathrm{KL}(p,q)=\\log{\\frac{\\sigma_{2}}{\\sigma_{1}}}+{\\frac{\\sigma_{1}^{2}+(\\mu_{1}-\\mu_{2})^{2}}{2\\sigma_{2}^{2}}}-{\\frac{1}{2}}"
-  },
-  {
-    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#training-with-backprop",
-    "href": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#training-with-backprop",
-    "title": "Deep Learning 9",
-    "section": "7 Training with Backprop",
-    "text": "7 Training with Backprop\n\nDue to a reparametrization trick, we can simultaneously train both the generative model p_\\theta(x \\mid z) and the inference model q_\\phi(z \\mid x) by optimizing the variational bound using gradient back propagation. Objective Function: \\mathcal{L(\\theta,\\phi,x)=-D_{\\mathrm{KL}}\\left(q_{\\phi}(z\\mid x)||\\,p_{\\theta}(z)\\right)+\\mathbb{E}_{q_{\\phi}(z|x)}\\left[\\log p_{\\theta}(x\\mid z)\\right]}"
-  },
-  {
-    "objectID": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#applications-of-vaes",
-    "href": "Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html#applications-of-vaes",
-    "title": "Deep Learning 9",
-    "section": "8 Applications of VAEs",
-    "text": "8 Applications of VAEs\n\nConditional VAE\nSemi supervised VAEs\nImportance-weighted VAEs\nRecurrent VAEs\nVAE + GAN\nDisentangled VAEs\n\nRecent Developments in Deep Generative Models \n\nGANs give sharper image, VAEs give blurry image reason is that we sample from a distribution\nSo there are a variant where we combine both VAE and GAN\nDisentangled VAEs\n\nknowing a true generative process is very important which VAEs does\nHow to learn VAE so that the Latent space dimension correspond to some semantic.\n\n\nFollowing resources were referred in this notes:\n\nlilianweng\n\n \\tiny {\\textcolor{#808080}{\\boxed{\\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}"
   },
   {
     "objectID": "Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html",
@@ -823,14 +634,14 @@
     "href": "Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html",
     "title": "Deep Learning 7",
     "section": "",
-    "text": "Traditional feed-forward network assume that all inputs and outputs are independent of each other.\nCounterexample language/speech modeling\n\nPredicting the next word in a sentence depends on the entire sequence of words before the current word\nExample: “The man who wore a wig on his head went inside”\n\nWho went inside? Man or wig?\n\n\nUse the same weights/layers for every time step (hence, recurrent ), and pass on the output to the next time step  \nA recurrent neural network and the unfolding in time of the computation involved in its forward computation  \nWe can notice that \n\\begin{align*}\n  s_{t}&=\\operatorname{tanh}(U x_{t}+W s_{t-1})\\\\\n  \\hat{y}_{t}&=\\mathrm{softmax}(Vs_{t})\\\\\n  E_{t}(y_{t},\\hat{y_{t}})&=-y_{t}\\log\\hat{y_{t}} \\\\\n  E(y,{\\hat{y}})&=\\sum_{t}E_{t}(y_{t},{\\hat{y}}_{t})\\\\\n  &=-\\sum_{t}y_{t}\\log\\;{\\hat{y}}_{t}\n\\end{align*}\n\nKinds of RNNs"
+    "text": "Traditional feed-forward network assume that all inputs and outputs are independent of each other.\nCounterexample language/speech modeling\n\nPredicting the next word in a sentence depends on the entire sequence of words before the current word\nExample: “The man who wore a wig on his head went inside”\n\nWho went inside? Man or wig?\n\n\nUse the same weights/layers for every time step (hence, recurrent ), and pass on the output to the next time step Courtesy:  \nA recurrent neural network and the unfolding in time of the computation involved in its forward computation  \nWe can notice that \n\\begin{align*}\n  s_{t}&=\\operatorname{tanh}(U x_{t}+W s_{t-1})\\\\\n  \\hat{y}_{t}&=\\mathrm{softrnax}(Vs_{t})\\\\\n  E_{t}(y_{t},\\hat{y_{t}})&=-y_{t}\\log\\hat{y_{t}} \\\\\n  E(y,{\\hat{y}})&=\\sum_{t}E_{t}(y_{t},{\\hat{y}}_{t})\\\\\n  &=-\\sum_{t}y_{t}\\log\\;{\\hat{y}}_{t}\n\\end{align*}\n\nKinds of RNNs"
   },
   {
     "objectID": "Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html#backprop-through-time-bptt",
     "href": "Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html#backprop-through-time-bptt",
     "title": "Deep Learning 7",
     "section": "2 Backprop Through Time (BPTT)",
-    "text": "2 Backprop Through Time (BPTT)\n\nUnrolled RNN  \nGoal\n\nCalculate error gradients w.r.t U, V and W\nLearn weights using SGD\n\nJust like we sum up errors, we also sum up gradients at each time step for one training example {\\frac{\\partial E}{\\partial W}}=\\sum_{t}{\\frac{\\partial E_{t}}{\\partial W}} \\begin{align*}\n  \\frac{\\partial E_{3}}{\\partial V}&=\\frac{\\partial E_{3}}{\\partial\\hat{y}_{3}}\\frac{\\partial\\hat{y}_{3}}{\\partial V}\\\\\n  &=\\frac{\\partial E_{3}}{\\partial\\hat{y}_{3}}\\frac{\\partial\\hat{y}_{3}}{\\partial z_{3}}\\frac{\\partial z_{3}}{\\partial V}\\\\\n  &=(\\hat y_{3}-y_{3})\\otimes s_{3}\n\\end{align*}\n\nHere\n\n\\otimes is outer product\n\\frac{\\partial E_{3}}{\\partial\\hat{y}_{3}} = \\hat y_{3}-y_{3} (if we use mean square type of error)\n\\frac{\\partial\\hat{y}_{3}}{\\partial z_{3}} is ignored, assuming we are not using the activation function\n\\frac{\\partial z_{3}}{\\partial V}=s_{3}\n\n\nConsider the below pic  \n\n{\\frac{\\partial E_{3}}{\\partial W}}={\\frac{\\partial E_{3}}{\\partial{\\hat{y}}_{3}}}{\\frac{\\partial{\\hat{y}}_{3}}{\\partial s_{3}}}\\left[{\\frac{\\partial s_{3}}{\\partial W}}+{\\frac{\\partial s_{3}}{\\partial s_2}}{\\frac{\\partial s_{2}}{\\partial W}}+{\\frac{\\partial s_{3}}{\\partial s_2}}{\\frac{\\partial s_{2}}{\\partial s_1}}{\\frac{\\partial s_{1}}{\\partial W}}\\right]\nIt can be generalized as:\n{\\cfrac{\\partial E_{3}}{\\partial W}}=\\sum_{k=0}^{3}{\\cfrac{\\partial E_{3}}{\\partial{\\hat{y}}_{3}}}{\\cfrac{\\partial{\\hat{y}}_{3}}{\\partial s_{3}}}{\\cfrac{\\partial s_{3}}{\\partial s_{k}}}{\\cfrac{\\partial s_{k}}{\\partial W}}\n\\cfrac{\\partial E_{3}}{\\partial U} can be calculate in same was \\cfrac{\\partial E_{3}}{\\partial W}\ns_{3}=\\operatorname{tanh}(U x_{t}+W s_{2})\nSimilar to backprop , we can define: \\delta_{2}^{(3)}\\,=\\,\\frac{\\partial E_{3}}{\\partial z_{2}}\\,=\\frac{\\partial E_{3}}{\\partial s_{3}}\\frac{\\partial s_{3}}{\\partial s_{2}}\\frac{\\partial s_{2}}{\\partial z_{2}} here we assume z_{2}=U x_{2}+W s_{1} and s_2 is obtained by applying some activation function on z_2\n\\frac{\\partial E}{\\partial W}=\\sum_{i=0}^T \\frac{\\partial E_i }{\\partial W}\\propto\\sum_{i=0}^T \\left(\\prod_{i=k+1}^y \\frac{\\partial s_i }{\\partial s_{i-1} }\\right)\\frac{\\partial s_k }{\\partial W}\n\nProblems\n\nVanishing gradient \\left\\|{\\frac{\\partial s_{i}}{\\partial s_{i-1}}}\\right\\|_{2}<1\nExploding gradient \\left\\|{\\frac{\\partial s_{i}}{\\partial s_{i-1}}}\\right\\|_{2}>1\n\n\n\nvanishing gradient problem:\n{\\frac{\\partial E_{3}}{\\partial W}}=\\sum_{k=0}^{3}{\\frac{\\partial E_{3}}{\\partial{\\hat{y}}_{3}}}{\\frac{\\partial{\\hat{y}}_{3}}{\\partial s_{3}}}\\left(\\prod_{j=k+1}^{3}{\\frac{\\partial s_{j}}{\\partial s_{j-1}}}\\right){\\frac{\\partial s_{k}}{\\partial W}}\n\nFor sigmoid activation function gradient age upper bounded by 1.\nit means that gradient will vanish overtime if there is a long range dependency\nit can be solved using truncated gradient descent but this is inefficient. And this issue is solved by LSTM up to some extent\n\nexploding gradient problem\n\nif the weights are high the gradient will explode.\nbut this problem can easily be solved by clipping the gradient."
+    "text": "2 Backprop Through Time (BPTT)\n\nUnrolled RNN  \nGoal\n\nCalculate error gradients w.r.t U, V and W\nLearn weights using SGD\n\nJust like we sum up errors, we also sum up gradients at each time step for one training example {\\frac{\\partial E}{\\partial W}}=\\sum_{t}{\\frac{\\partial E_{t}}{\\partial W}} \\begin{align*}\n  \\frac{\\partial E_{3}}{\\partial V}&=\\frac{\\partial E_{3}}{\\partial\\hat{y}_{3}}\\frac{\\partial\\hat{y}_{3}}{\\partial V}\\\\\n  &=\\frac{\\partial E_{3}}{\\partial\\hat{y}_{3}}\\frac{\\partial\\hat{y}_{3}}{\\partial z_{3}}\\frac{\\partial z_{3}}{\\partial V}\\\\\n  &=(\\hat y_{3}-y_{3})\\otimes s_{3}\n\\end{align*}\n\nHere\n\n\\otimes is outer product\n\\frac{\\partial E_{3}}{\\partial\\hat{y}_{3}} = \\hat y_{3}-y_{3} (if we use mean square type of error)\n\\frac{\\partial\\hat{y}_{3}}{\\partial z_{3}} is ignored, assuming we are not using the activation function\n\\frac{\\partial z_{3}}{\\partial V}=s_{3}\n\n\nConsider the below pic  \n\n{\\frac{\\partial E_{3}}{\\partial W}}={\\frac{\\partial E_{3}}{\\partial{\\hat{y}}_{3}}}{\\frac{\\partial{\\hat{y}}_{3}}{\\partial s_{3}}}\\left[{\\frac{\\partial s_{3}}{\\partial W}}+{\\frac{\\partial s_{3}}{\\partial s_2}}{\\frac{\\partial s_{2}}{\\partial W}}+{\\frac{\\partial s_{3}}{\\partial s_2}}{\\frac{\\partial s_{2}}{\\partial s_1}}{\\frac{\\partial s_{1}}{\\partial W}}\\right]\nIt can be generalized days:\n{\\cfrac{\\partial E_{3}}{\\partial W}}=\\sum_{k=0}^{3}{\\cfrac{\\partial E_{3}}{\\partial{\\hat{y}}_{3}}}{\\cfrac{\\partial{\\hat{y}}_{3}}{\\partial s_{3}}}{\\cfrac{\\partial s_{3}}{\\partial s_{k}}}{\\cfrac{\\partial s_{k}}{\\partial W}}\n\\cfrac{\\partial E_{3}}{\\partial U} can be calculate in same was \\cfrac{\\partial E_{3}}{\\partial W}\ns_{3}=\\operatorname{tanh}(U x_{t}+W s_{2})\nSimilar to backprop , we can define: \\delta_{2}^{(3)}\\,=\\,\\frac{\\partial E_{3}}{\\partial z_{2}}\\,=\\frac{\\partial E_{3}}{\\partial s_{3}}\\frac{\\partial s_{3}}{\\partial s_{2}}\\frac{\\partial s_{2}}{\\partial z_{2}} here we assume z_{2}=U x_{2}+W s_{1} and s_2 is obtained by applying some activation function on z_2\n\\frac{\\partial E}{\\partial W}=\\sum_{i=0}^T \\frac{\\partial E_i }{\\partial W}\\propto\\sum_{i=0}^T \\left(\\prod_{i=k+1}^y \\frac{\\partial s_i }{\\partial s_{i-1} }\\right)\\frac{\\partial s_k }{\\partial W}\n\nProblems\n\nVanishing gradient \\left\\|{\\frac{\\partial s_{i}}{\\partial s_{i-1}}}\\right\\|_{2}<1\nExploding gradient \\left\\|{\\frac{\\partial s_{i}}{\\partial s_{i-1}}}\\right\\|_{2}>1\n\n\n\nvanishing gradient problem:\n{\\frac{\\partial E_{3}}{\\partial W}}=\\sum_{k=0}^{3}{\\frac{\\partial E_{3}}{\\partial{\\hat{y}}_{3}}}{\\frac{\\partial{\\hat{y}}_{3}}{\\partial s_{3}}}\\left(\\prod_{j=k+1}^{3}{\\frac{\\partial s_{j}}{\\partial s_{j-1}}}\\right){\\frac{\\partial s_{k}}{\\partial W}}\n\nFor sigmoid activation function gradient age upper bounded by 1.\nit means that gradient will vanish overtime if there is a long range dependency\nit can be solved using truncated gradient descent but this is inefficient. And this issue is solved by LSTM up to some extent\n\nexploding gradient problem\n\nif the weights are high the gradient will explode.\nbut this problem can easily be solved by clipping the gradient."
   },
   {
     "objectID": "Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html#long-short-term-memory-lstm",
