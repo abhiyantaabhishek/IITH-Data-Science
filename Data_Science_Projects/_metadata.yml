@@ -22,7 +22,8 @@ code-copy: true
 ## Appendix
 citation: false  
 
-sidebar: Data_science_Projects
+# sidebar: Data_science_Projects
+sidebar: false
 # number-sections: true
 
 
