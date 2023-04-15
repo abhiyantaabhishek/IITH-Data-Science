@@ -336,7 +336,7 @@
     }
   </style>
 <meta property="og:title" content="Point cloud based 3d object detection">
-<meta property="og:description" content="PROPOSAL">
+<meta property="og:description" content="IMPLEMENTATION">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -356,101 +356,6 @@ Abhishek Kumar Dubey <br> cs22mds15010
 
   <p class="date">3/12/23</p>
 </section>
-<section id="motivation" class="slide level2">
-<h2>Motivation</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<p>The motivations are:</p>
-<ul>
-<li><p align="justify">
-Safety:Improve safety on the road.
-</p></li>
-<li><p align="justify">
-Traffic Management: Manage traffic flow by identifying areas with high congestion.
-</p></li>
-<li><p align="justify">
-Improved Navigation: Better path planning, trajectory calculation.
-</p></li>
-<li><p align="justify">
-Use LiDAR : Compared to image based detection, LiDAR provides reliable depth information that can be used to accurately localize objects and characterize their shapes.
-</p></li>
-</ul>
-</div><div class="column" style="width:40%;">
-<p><img data-src="images/Acrobat_Jy4Az0Sjhm.png"></p>
-</div>
-</div>
-<ul>
-<li><p align="justify">
-Flexibility:can be used robotics, and augmented reality as well.
-</p></li>
-</ul>
-</section>
-<section id="problem-statement" class="slide level2">
-<h2>Problem Statement</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<ul>
-<li><p align="justify">
-Develop a solution that can accurately locate a object in 3D space using LiDAR point Cloud.
-</p></li>
-<li><p align="justify">
-The solution must not use any hand-crafted features or prior assumptions, which can limit accuracy and generalization.
-</p></li>
-</ul>
-</div><div class="column" style="width:60%;">
-<p><img data-src="images/Acrobat_UClLO5CYIH.png"></p>
-</div>
-</div>
-<ul>
-<li><p align="justify">
-Directly process raw LiDAR point clouds.
-</p></li>
-<li><p align="justify">
-Develop an accurate, efficient, and robust model that can generalize to new environments and tasks.
-</p></li>
-</ul>
-</section>
-<section id="challenges" class="slide level2">
-<h2>Challenges</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<p><img data-src="images/Acrobat_YOwpXCawvB.png"></p>
-</div><div class="column" style="width:60%;">
-<ul>
-<li><p align="justify">
-LiDAR point clouds are inherently sparse.
-</p></li>
-<li><p align="justify">
-The point density of LiDAR point clouds can vary significantly depending on factors such as the sensor’s effective range, scanning pattern, and the relative pose of the object and the sensor.</p></li>
-</ul>
-</div>
-</div>
-<ul>
-<li><p align="justify">
-Occlusion can also result in missing or incomplete point cloud data, further exacerbating the sparsity of the data.
-</p></li>
-<li><p align="justify">
-Variations in the point density of LiDAR point clouds can make it difficult to design effective feature extraction and object detection algorithms.
-</p></li>
-<li><p align="justify">
-Addressing the sparsity and variability of LiDAR point clouds is a key challenge in developing accurate and robust 3D object detection models.
-</p></li>
-</ul>
-</section>
-<section id="existing-methods-and-limitations" class="slide level2">
-<h2>Existing methods and Limitations</h2>
-<ul>
-<li><p align="justify">
-Use pseudo Lidar instead of original Lidar and create the point cloud from the RGB image.However, these kind of method does not perform well, Because extracting point cloud from 2D images are not efficient. There are no depth information present in the 2D image.<a href="#/footnotes" class="footnote-ref" id="fnref1" role="doc-noteref" data-footnote-href="#/fn1" onclick=""><sup>1</sup></a>
-</p></li>
-<li><p align="justify">
-Some methods for 3D object detection from LiDAR point clouds converts the point cloud data into a 2D image-like format, and then use techniques typically used for analyzing images to identify and classify objects.<a href="#/footnotes" class="footnote-ref" id="fnref2" role="doc-noteref" data-footnote-href="#/fn2" onclick=""><sup>2</sup></a> <a href="#/footnotes" class="footnote-ref" id="fnref3" role="doc-noteref" data-footnote-href="#/fn3" onclick=""><sup>3</sup></a>
-</p></li>
-<li><p align="justify">
-Another method for 3D object detection from LiDAR point clouds involves converting the point cloud data into a 3D grid of small cubes (called voxels), and then manually designing features to represent the objects within each voxel.<a href="#/footnotes" class="footnote-ref" id="fnref4" role="doc-noteref" data-footnote-href="#/fn4" onclick=""><sup>4</sup></a>
-</p></li>
-</ul>
-<aside></aside></section>
 <section id="voxelnet-introduction" class="slide level2">
 <h2>VoxelNet Introduction</h2>
 <div class="columns">
@@ -658,58 +563,9 @@ VoxelNet directly operates on the raw point cloud.
 <li>Evaluation protocol based on object size, occlusion state, and truncation level</li>
 <li>3,712 data samples for training and 3,769 for validation</li>
 <li>Hand-crafted baseline (HC-baseline) was implemented and trained to evaluate the importance of end-to-end learning.</li>
-<li>HC-baseline uses the bird’s eye view features described in Multi-view 3d object detection network for autonomous driving<a href="#/footnotes" class="footnote-ref" id="fnref5" role="doc-noteref" data-footnote-href="#/fn5" onclick=""><sup>5</sup></a> which are computed at 0.1 m resolution.</li>
+<li>HC-baseline uses the bird’s eye view features described in Multi-view 3d object detection network for autonomous driving<a href="#/footnotes" class="footnote-ref" id="fnref1" role="doc-noteref" data-footnote-href="#/fn1" onclick=""><sup>1</sup></a> which are computed at 0.1 m resolution.</li>
 </ul>
 <aside></aside></section>
-<section id="quantitative-results." class="slide level2">
-<h2>Quantitative results.</h2>
-<p><br></p>
-<ul>
-<li>Performance comparison in 3D detection: average precision (in %) on KITTI validation set <img data-src="images/Acrobat_FtLnL5LR5N.png"></li>
-</ul>
-</section>
-<section id="qualitative-results-for-car" class="slide level2">
-<h2>Qualitative results for car</h2>
-<p><br></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><img data-src="images/Acrobat_DslR4apvOA.png"> <img data-src="images/Acrobat_33FtFdyehe.png"></p>
-</div><div class="column" style="width:50%;">
-<p><img data-src="images/Acrobat_6H3QmfEkNv.png"> <img data-src="images/Acrobat_sTmPlMHP48.png"></p>
-</div>
-</div>
-</section>
-<section id="qualitative-results-for-pedestrian" class="slide level2">
-<h2>Qualitative results for pedestrian</h2>
-<p><br></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><img data-src="images/Acrobat_9Tjq4xFei9.png"> <img data-src="images/Acrobat_DgRwmDIplZ.png"></p>
-</div><div class="column" style="width:50%;">
-<p><img data-src="images/Acrobat_6JoySlaJbb.png"> <img data-src="images/Acrobat_Dtk61MhKCI.png"></p>
-</div>
-</div>
-</section>
-<section id="qualitative-results-for-cyclist" class="slide level2">
-<h2>Qualitative results for cyclist</h2>
-<p><br></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><img data-src="images/Acrobat_WoOn9jcs4T.png"> <img data-src="images/Acrobat_HZMsnkVH36.png"></p>
-</div><div class="column" style="width:50%;">
-<p><img data-src="images/Acrobat_14gpVJ4qbh.png"> <img data-src="images/Acrobat_FTiptHGBZ0.png"></p>
-</div>
-</div>
-</section>
-<section id="conclusion" class="slide level2">
-<h2>Conclusion</h2>
-<ul>
-<li>Existing LiDAR-based 3D detection methods rely on hand-crafted features</li>
-<li>VoxelNet proposes an end-to-end trainable deep architecture for point cloud-based 3D detection</li>
-<li>VoxelNet can operate directly on sparse 3D points and efficiently capture 3D shape information</li>
-<li>VoxelNet outperforms state-of-the-art LiDAR-based 3D detection methods on the KITTI car detection task</li>
-</ul>
-</section>
 <section id="novelty" class="slide level2">
 <h2>Novelty</h2>
 <p><br><br></p>
@@ -726,6 +582,16 @@ VoxelNet directly operates on the raw point cloud.
 <li>One universal network instead of two.</li>
 </ul>
 </section>
+<section id="work" class="slide level2">
+<h2>WORK</h2>
+<ul>
+<li><a href="https://arxiv.org/pdf/1904.01649.pdf">MVX-Net: Multimodal VoxelNet for 3D Object Detection</a></li>
+<li><a href="https://arxiv.org/pdf/2106.01178.pdf">ImVoxelNet: Image to Voxels Projection for Monocular and Multi-View General-Purpose 3D Object Detection</a></li>
+<li><a href="https://arxiv.org/pdf/1904.01649.pdf">MVX-Net: Multimodal VoxelNet for 3D Object Detection</a></li>
+<li><a href="https://arxiv.org/pdf/2104.00678.pdf">Group-Free 3D Object Detection via Transformers</a></li>
+<li><a href="https://arxiv.org/pdf/1910.06528.pdf">End-to-End Multi-View Fusion for 3D Object Detection in LiDAR Point Clouds (Dynamic Voxelization)</a></li>
+</ul>
+</section>
 <section id="mathcalthanks" class="title-slide slide level1 center">
 <h1><span class="math display">\[\mathcal{THANKS!}\]</span></h1>
 
@@ -738,11 +604,7 @@ VoxelNet directly operates on the raw point cloud.
 <section id="footnotes" class="footnotes footnotes-end-of-document smaller scrollable" role="doc-endnotes"><h2>Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Yan, Wang., Wei-Lun, Chao., Divyansh, Garg., Bharath, Hariharan., Mark, Campbell., Kilian, Q., Weinberger. (2019). Pseudo-LiDAR From Visual Depth Estimation: Bridging the Gap in 3D Object Detection for Autonomous Driving. 8445-8453. doi: 10.1109/CVPR.2019.00864</p></li>
-<li id="fn2"><p>C. Premebida, J. Carreira, J. Batista, and U. Nunes. Pedestrian detection combining RGB and dense LIDAR data. In IROS, pages 0–1. IEEE, Sep 2014. 1, 2</p></li>
-<li id="fn3"><p>A. Gonzalez, G. Villalonga, J. Xu, D. Vazquez, J. Amores, and A. Lopez. Multiview random forest of local experts combining rgb and lidar data for pedestrian detection. In IEEE Intelligent Vehicles Symposium (IV), 2015. 1, 2</p></li>
-<li id="fn4"><p>A. Gonzalez, G. Villalonga, J. Xu, D. Vazquez, J. Amores, and A. Lopez. Multiview random forest of local experts combining rgb and lidar data for pedestrian detection. In IEEE Intelligent Vehicles Symposium (IV), 2015. 1, 2M. Engelcke, D. Rao, D. Z.Wang, C. H. Tong, and I. Posner. Vote3deep: Fast object detection in 3d point clouds using efficient convolutional neural networks. In 2017 IEEE International Conference on Robotics and Automation (ICRA),</p></li>
-<li id="fn5"><p>X. Chen, H. Ma, J. Wan, B. Li, and T. Xia. Multi-view 3d object detection network for autonomous driving. In IEEE CVPR, 2017.</p></li>
+<li id="fn1"><p>X. Chen, H. Ma, J. Wan, B. Li, and T. Xia. Multi-view 3d object detection network for autonomous driving. In IEEE CVPR, 2017.</p></li>
 </ol>
 </section>
     </div>

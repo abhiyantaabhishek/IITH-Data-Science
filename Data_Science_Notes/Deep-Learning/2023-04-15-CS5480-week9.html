@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Abhishek Kumar Dubey">
-<meta name="dcterms.date" content="2023-03-18">
-<meta name="description" content="residual neural network,explainable AI">
+<meta name="dcterms.date" content="2023-04-15">
+<meta name="description" content="Autoencoders and Variational Autoencoder">
 
-<title>Deep Learning 6</title>
+<title>Deep Learning 9</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" rel="next">
-<link href="../../Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html" rel="prev">
+<link href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" rel="next">
+<link href="../../Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -94,11 +94,11 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Deep Learning 6">
-<meta property="og:description" content="residual neural network,explainable AI">
-<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/Deep-Learning/CS5480_images/VoiceAccess_56w2Jughz5.png">
-<meta property="og:image:height" content="229">
-<meta property="og:image:width" content="658">
+<meta property="og:title" content="Deep Learning 9">
+<meta property="og:description" content="Autoencoders and Variational Autoencoder">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/Deep-Learning/CS5480_images/Acrobat_A6vKJFHXk0.png">
+<meta property="og:image:height" content="276">
+<meta property="og:image:width" content="392">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -156,7 +156,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Deep Learning 6</h1>
+      <h1 class="quarto-secondary-nav-title">Deep Learning 9</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -167,10 +167,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Deep Learning 6</h1>
+      <h1 class="title d-none d-lg-block">Deep Learning 9</h1>
                   <div>
         <div class="description">
-          residual neural network,explainable AI
+          Autoencoders and Variational Autoencoder
         </div>
       </div>
                           <div class="quarto-categories">
@@ -192,7 +192,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">March 18, 2023</p>
+        <p class="date">April 15, 2023</p>
       </div>
     </div>
     
@@ -248,7 +248,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link active">Deep Learning 6</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link">Deep Learning 6</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -263,7 +263,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html" class="sidebar-item-text sidebar-link">Deep Learning 9</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html" class="sidebar-item-text sidebar-link active">Deep Learning 9</a>
   </div>
 </li>
       </ul>
@@ -384,14 +384,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reidual-nets" id="toc-reidual-nets" class="nav-link active" data-scroll-target="#reidual-nets"><span class="toc-section-number">1</span>  Reidual Nets</a></li>
-  <li><a href="#other-networks" id="toc-other-networks" class="nav-link" data-scroll-target="#other-networks"><span class="toc-section-number">2</span>  Other Networks</a></li>
-  <li><a href="#understanding-and-visualizing-cnns" id="toc-understanding-and-visualizing-cnns" class="nav-link" data-scroll-target="#understanding-and-visualizing-cnns"><span class="toc-section-number">3</span>  Understanding and Visualizing CNNs</a></li>
-  <li><a href="#understanding-convolutional-neural-network." id="toc-understanding-convolutional-neural-network." class="nav-link" data-scroll-target="#understanding-convolutional-neural-network."><span class="toc-section-number">4</span>  Understanding convolutional neural network.</a></li>
-  <li><a href="#optimization-to-image" id="toc-optimization-to-image" class="nav-link" data-scroll-target="#optimization-to-image"><span class="toc-section-number">5</span>  optimization to image</a></li>
-  <li><a href="#class-activation-mapping-cam" id="toc-class-activation-mapping-cam" class="nav-link" data-scroll-target="#class-activation-mapping-cam"><span class="toc-section-number">6</span>  Class Activation Mapping (CAM)</a></li>
-  <li><a href="#grad-cam-and-guided-grad-cam" id="toc-grad-cam-and-guided-grad-cam" class="nav-link" data-scroll-target="#grad-cam-and-guided-grad-cam"><span class="toc-section-number">7</span>  Grad CAM (and Guided Grad CAM)</a></li>
-  <li><a href="#grad-cam-for-image-captioning" id="toc-grad-cam-for-image-captioning" class="nav-link" data-scroll-target="#grad-cam-for-image-captioning"><span class="toc-section-number">8</span>  Grad CAM for Image Captioning</a></li>
+  <li><a href="#overview-of-autoencoders" id="toc-overview-of-autoencoders" class="nav-link active" data-scroll-target="#overview-of-autoencoders"><span class="toc-section-number">1</span>  Overview of Autoencoders</a></li>
+  <li><a href="#variational-autoencoder" id="toc-variational-autoencoder" class="nav-link" data-scroll-target="#variational-autoencoder"><span class="toc-section-number">2</span>  Variational Autoencoder</a></li>
+  <li><a href="#variational-autoencoders-the-math" id="toc-variational-autoencoders-the-math" class="nav-link" data-scroll-target="#variational-autoencoders-the-math"><span class="toc-section-number">3</span>  Variational Autoencoders : The Math</a></li>
+  <li><a href="#variational-autoencoders-inference" id="toc-variational-autoencoders-inference" class="nav-link" data-scroll-target="#variational-autoencoders-inference"><span class="toc-section-number">4</span>  Variational Autoencoders: Inference</a></li>
+  <li><a href="#reparametrization-trick" id="toc-reparametrization-trick" class="nav-link" data-scroll-target="#reparametrization-trick"><span class="toc-section-number">5</span>  Reparametrization Trick</a></li>
+  <li><a href="#kl-divergence-between-gaussians" id="toc-kl-divergence-between-gaussians" class="nav-link" data-scroll-target="#kl-divergence-between-gaussians"><span class="toc-section-number">6</span>  KL Divergence between Gaussians</a></li>
+  <li><a href="#training-with-backprop" id="toc-training-with-backprop" class="nav-link" data-scroll-target="#training-with-backprop"><span class="toc-section-number">7</span>  Training with Backprop</a></li>
+  <li><a href="#applications-of-vaes" id="toc-applications-of-vaes" class="nav-link" data-scroll-target="#applications-of-vaes"><span class="toc-section-number">8</span>  Applications of VAEs</a></li>
   </ul>
 </nav>
     </div>
@@ -401,156 +401,190 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
+<section id="overview-of-autoencoders" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="overview-of-autoencoders"><span class="header-section-number">1</span> Overview of Autoencoders</h2>
 <ul>
-<li>Do you know the deeper the model better it performs.</li>
-<li>Adding layer improves the performance.</li>
-<li>If we continue stacking deeper layers on a plane convolutional network.The training loss keeps decreasing.But the testing loss does not decrease as much.</li>
-<li>Deeper the network, gradients vanish quickly, thereby slowing the rate of change in initial layers. <br><br> <img src="CS5480_images/VoiceAccess_OLY3E5z45G.png" class="img-fluid"></li>
-</ul>
-<section id="reidual-nets" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="reidual-nets"><span class="header-section-number">1</span> Reidual Nets</h2>
-<p><img src="CS5480_images/VoiceAccess_56w2Jughz5.png" class="img-fluid"></p>
+<li>Autoencoder neural network:an unsupervised learning algorithm that applies backpropagation, setting target values to be equal to the inputs. ie it uses <span class="math inline">y^{(i)}=x^{(i)}</span></li>
+<li>we go from input to bottelneck layer.</li>
+<li>Tried to learn a function <span class="math inline">h_{w,b}(x)=x</span></li>
+<li>Learn an approximation to identity function, so as to make output <span class="math inline">\hat x</span> similar to <span class="math inline">x</span></li>
+<li>Decoder need not be a mirror reflection of the encoder.</li>
+<li>If input were completely random—say, each <span class="math inline">x_i</span> comes from an IID Gaussian independent of the other features—then very difficult</li>
+<li>If there is structure in data, e.g., if some input features are correlated, then this model will be able to discover correlations</li>
+<li>Often ends up learning a low-dimensional representation very similar to PCAs.</li>
+<li>Denoising Auto encoder
 <ul>
-<li><p>The deeper model should be able to perform at least as well as the shallower model.</p></li>
-<li><p>Solution is to use the network layer to fit a residual mapping instead of directly trying to fit a desired underlying nothing.</p></li>
-<li><p>use skip connection. Such a block is called residual block.</p></li>
-<li><p>Bypass some layers.</p></li>
-<li><p>Stack residual blocks, every residual block has 2, 3 x 3 convolution layers.</p></li>
-<li><p>No fully connected layer at the end.</p></li>
-<li><p>additional convolutional layer at the beginning</p></li>
-<li><p>Periodically double the filter.down sample reaching stride of two.</p></li>
-<li><p>Alex net had fully connected network at last.</p></li>
-<li><p>For deeper network use bottleneck layer to improve efficiency.</p></li>
-<li><p>Short circuit path provides a path for the gradient to flow deeper.</p></li>
-<li><p>Able to train very deep neural network</p></li>
-<li><p>deeper layer networks now achieve lower training error as expected.</p></li>
+<li>Add the noise in the input and the generate the original input, it helps noise to get removed</li>
+<li>Idea: Representation should be robust to introduction of noise:
+<ul>
+<li>Random assignment of subset of inputs to <span class="math inline">0</span>, with probability <span class="math inline">v</span></li>
+<li>Gaussian additive noise</li>
+</ul></li>
+<li>Reconstruction <span class="math inline">\hat x</span> computed from the corrupted input <span class="math inline">\hat x</span></li>
+<li>Loss function compares <span class="math inline">\hat x</span> reconstruction with the noiseless input <span class="math inline">\bf X</span></li>
+</ul></li>
 </ul>
 </section>
-<section id="other-networks" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="other-networks"><span class="header-section-number">2</span> Other Networks</h2>
-<p>Network in network.</p>
+<section id="variational-autoencoder" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="variational-autoencoder"><span class="header-section-number">2</span> Variational Autoencoder</h2>
+<p><img src="CS5480_images/notepad++_uu2Xk2QDrC.png" class="img-fluid"></p>
 <ul>
-<li>Between every convolution, there has MLP in between.</li>
-<li>these micro network within each convolutional layer helps to compute more abstract feature for local batches.</li>
-<li>micron network uses multilayer perceptron fully connected That is 1 x 1 convolutional layer</li>
-<li>this network was not so famous</li>
-</ul>
-<p>Wide residual network.</p>
+<li><p>Given an input, send it to encoder, force the encoder to take it to mean and std vector, (mean 0 std 1)</p></li>
+<li><p>Now we sample form the unit gaussian, and pass through the decoder, generate the image which looks similar to the original image.</p></li>
+<li><p>Now due this sampling , we can’t do back prop</p></li>
+<li><p>Leverage neural network to learn a latent variable model. <br> <span class="math inline">p(x)=\int p(x,z)~d z</span> where <span class="math inline">p(x,z)=p(x\mid z)p(z)</span><br> <span class="math inline">p(z)=</span> something simple, <span class="math inline">p(x\mid z)=g(z)</span> <br> <img src="CS5480_images/notepad++_EMKp6sM9jD.png" class="img-fluid"><br></p></li>
+<li><p>Where does <span class="math inline">z</span> come form? The classic directed model dilemma.</p></li>
+<li><p>Computing the posterior <span class="math inline">p(z \mid x)</span> is intractable.</p></li>
+<li><p>We need it to train the directed model.</p></li>
+<li><p>A Bayesian spin on an autoencoder!</p></li>
+<li><p>Assume oue data <span class="math inline">\left\{x^{(i)}\right\}_{i=1}^N</span> is generated like this. <br><br></p></li>
+<li><div class="columns">
+<div class="column" style="width:40%;">
+<p><img src="CS5480_images/notepad++_4dPrdemlfn.png" class="img-fluid"><br><br></p>
+</div><div class="column" style="width:60%;">
 <ul>
-<li>it argues that residuals are important factor not the depth.</li>
-<li>use wide residual block of F x K filters instead of F filter in each layer.</li>
-<li>50 layer wide residual network outperforms 152 layer original residual network.</li>
-<li>Increasing width at instead of depth is more computationally efficient because it helps in parallelization of the computation</li>
+<li>Intuition: <span class="math inline">\bf X</span> is an image, <span class="math inline">\bf z</span> gives class, orientation attributes, etc</li>
+<li>Problem : Estimate <span class="math inline">\theta</span> without access to latent states!</li>
 </ul>
-<p>Deep Networks with Stochastic Depth</p>
+</div>
+</div></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:60%;">
 <ul>
-<li>It reduces vanishing gradient and training time through short network during training.</li>
-<li>Randomly drop subset of layer during each training pass.</li>
-<li>It’s like dropout, but drops out the residual block.</li>
-<li>In every Iteration randomly drop one residual block.</li>
+<li>Prior: Assume <span class="math inline">p_\theta(z)</span> is a unit Gaussian.</li>
+<li>Conditional: Assume <span class="math inline">p_\theta(x \mid z)</span> is a diagonal Gaussian, predict mean and variance with neural net</li>
 </ul>
-<p>Dens net.</p>
+</div><div class="column" style="width:40%;">
+<p><img src="CS5480_images/chrome_50J29Omju4.png" class="img-fluid"></p>
+</div>
+</div>
+<p>By Bayes Rules the posterior is:</p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><span class="math display">p_\theta(z\mid x)=\frac{p_\theta(x\mid z)p_\theta(z)}{p_\theta(x)}</span></p>
 <ul>
-<li>Dense blocks where each layer is connected to every layer in feet forward fashion.</li>
-<li>Simply connect every layer with every layer. Let the neural network figure out.</li>
-<li>Alleviates Vanishing gradient, strengthens feature propagation,Encourages Feature Reuse.</li>
+<li>Use decoder network = <span class="math inline">p_\theta(x\mid z)</span></li>
+<li>Gaussian = <span class="math inline">p_\theta(z)</span></li>
+<li>Intractable integral = <span class="math inline">p_\theta(x)</span></li>
 </ul>
-<div class="alert alert-dismissible alert-info">
-<p>Top five means check if prediction is among the top five.</p>
+</div><div class="column" style="width:40%;">
+<p><img src="CS5480_images/chrome_VGlrCQ20KE.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img src="CS5480_images/mspaint_esUk2j4Q7v.png" class="img-fluid"></p>
+</div><div class="column" style="width:60%;">
+<ul>
+<li>Training like a normal autoencoder:
+<ul>
+<li>Reconstruction loss at the end, regularization toward prior in the middle.</li>
+</ul></li>
+<li>Mean and (diagonal) covariance of <span class="math inline">p_\theta(x \mid z)</span>
+<ul>
+<li>Should be close to data <span class="math inline">x</span></li>
+</ul></li>
+<li>Mean and (diagonal) covariance of <span class="math inline">q_\phi(z \mid x)</span>
+<ul>
+<li>should be close to prior <span class="math inline">p_\theta(z)</span></li>
+</ul></li>
+</ul>
+</div>
 </div>
 </section>
-<section id="understanding-and-visualizing-cnns" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="understanding-and-visualizing-cnns"><span class="header-section-number">3</span> Understanding and Visualizing CNNs</h2>
-<p>CNN Features are Generic</p>
+<section id="variational-autoencoders-the-math" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="variational-autoencoders-the-math"><span class="header-section-number">3</span> Variational Autoencoders : The Math</h2>
 <ul>
-<li>CNN features are generic, so we can reuse the CNN feature for the small problem.</li>
-<li>We can reuse the feature.That led to the notion of transfer learning.</li>
-<li>Initially train a CNN or any new network.On large database like Image net. Now use the network, for different problem.It is called transfer learning.</li>
-<li>Depending on the data, decide how many layer of the neural network we want to fine tune.</li>
-<li>This works because features are generic in earlier network.</li>
-<li>Extend to more number of losses just by fine tuning.</li>
-<li>Extend to new task. Extend from object classification to scene classification.</li>
-<li>Also can be used to extend to new datasets, if the data set is similar.</li>
+<li><p>Maximum Likelihood od dataset <span class="math inline">\left\{x^{\left(i\right)}\right\}_{i=1}^N</span></p>
+<p><span class="math display">\begin{align*}
+    \theta^{*}&amp;=\arg\operatorname*{max}_{\theta}\prod_{i=1}^{N}p_{\theta}(x^{(i)})\\
+    &amp;=\arg\operatorname*{max}_{\theta}\sum_{i=1}^{N}\log p_{\theta}(x^{(i)})\\
+\end{align*}</span></p></li>
+<li><p>Marginalize joint distribution <span class="math display">p_{\theta}(x^{(i)})=\int p_{\theta}(x^{(i)},z)d z = \int{p_{\theta}(x^{(i)}\mid z)p_{\theta}(z)d z}</span></p>
+<ul>
+<li>which is intractible integral</li>
+</ul></li>
+</ul>
+<p><span class="math display">\begin{align*}
+    \mathrm{log}\,p_{\theta}(x^{(i)})&amp;= \mathbf{E}_{z \sim q_{\phi}(z|x^{(i)})}\left[\log p_{\theta}(x^{(i)})\right] \quad (p_{\theta}(x^{i})\text{ does not depend on } z) \\
+    &amp;= \mathbf{E}_z \left[\log\frac{p_{\theta}(x^{(i)}\mid z)p_{\theta}(z)}{p_{\theta}(z\mid x^{(i)})}\right] \quad \text{ Bayes' Rule }\\
+    &amp;= \mathbf{E}_z \left[\log\frac{p_{\theta}(x^{(i)}\mid z)p_{\theta}(z)}{p_{\theta}(z\mid x^{(i)})}\frac{q_{\phi}(z\mid x^{(i)})}{q_{\phi}(z\mid x^{(i)})}\right] \text{ Multiply by constant }\\
+    &amp;= \mathbf{E}_{z}\left[\log p_{\theta}(x^{(i)}\mid z)\right]-\mathbf{E}_{z}\left[\log\frac{q_{\phi}(z\mid x^{(i)})}{p_{\theta}(z)}\right]+\mathbf{E}_{z}\left[\log\frac{q_{\phi}(z\mid x^{(i)})}{p_{\theta}(z\mid x^{(i)})}\right]\\
+    &amp;= \underbrace{\mathrm{\bf{E}}_{z}\left[\log p_{\theta}(x^{(i)}\mid z)\right]-D_{K L}(q_{\phi}(z\mid x^{(i)})\mid\mid p_{\theta}(z))}_{\mathcal{L}\big(x^{(i)},\theta,\phi\big) \text{ELBOW}} + \underbrace{D_{K L}({q_{\phi}}(z\mid x^{(i)})\mid\mid p_{\theta}(z\mid x^{(i)}))}_{\ge 0}
+\end{align*}</span></p>
+<ul>
+<li>Variational lower bound (elbow): <br> <span class="math inline">\mathrm{log}\,p_{\theta}(x^{(i)})\ge \mathcal {L}(x^{(i)},\theta,\phi)</span></li>
+<li>Training: Maximize lower bound <br> <span class="math inline">\displaystyle {\theta^{*},\phi^{*}}=\arg\operatorname*{max}_{\theta,\phi}\sum_{i=1}^{N}\mathcal{L}(x^{(i)},\theta,\phi)</span></li>
+<li><span class="math inline">\log p\theta(x^{(i)}\mid z)</span> : Here we do sampling with reparametrization trick, Reconstruct input data</li>
+<li><span class="math inline">D_{K L}(q_{\phi}(z\mid x^{(i)})\mid\mid p_{\theta}(z))</span> : Latent space should follow prior, Everything is Gaussian closed form solution.</li>
 </ul>
 </section>
-<section id="understanding-convolutional-neural-network." class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="understanding-convolutional-neural-network."><span class="header-section-number">4</span> Understanding convolutional neural network.</h2>
+<section id="variational-autoencoders-inference" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="variational-autoencoders-inference"><span class="header-section-number">4</span> Variational Autoencoders: Inference</h2>
 <ul>
-<li><p>Visualize patches that maximally activate neurons.</p></li>
-<li><p>visualize the weights.For example, by looking at the filter, we can say whether its edge detector.</p></li>
-<li><p>visualize the representation space. using t-SNE,</p></li>
-<li><p>Occlusion experiment.</p></li>
-<li><p>Deconvolution based approaches.</p></li>
-<li><p>Optimization over image approaches.</p></li>
-<li><p>Initial layer of neural network Weight looks like gabor-like filters.<br><br> <img src="CS5480_images/VoiceAccess_94HnFdJpvG.png" class="img-fluid"></p></li>
-</ul>
-<p>Occlusion experiment.</p>
-<ul>
-<li>Here we black out some of the area of the image and study the effect of this, on the output.<br><br> <img src="CS5480_images/VoiceAccess_UtPs9plrjC.png" class="img-fluid"></li>
-</ul>
-<p>DeConv approach.</p>
-<ul>
-<li>feed image to the network.</li>
-<li>Pick a layer set the gradient there to be all zero, except for one some neuron of interest.</li>
-<li>Back propagate to the image.<br><br> <img src="CS5480_images/VoiceAccess_kG4DK7uppb.png" class="img-fluid"></li>
-<li>In guided bank propagation, we guide the gradient.So that negative gradient doesn’t flow.An image looks little better.<br><br> <img src="CS5480_images/VoiceAccess_3BjmLGNuyD.png" class="img-fluid"></li>
-<li>In case of guided back propagation, we first zero out all those activation, which was negative just before rectified linear unit in case of forward pass.</li>
-<li>Then we zero out all those gradients which are negative while doing backward pass.</li>
-<li>this is explained in below picture:.<br><br> <img src="CS5480_images/VoiceAccess_Ve2wDPTSwQ.png" class="img-fluid"></li>
+<li><p>The VAE approach: introduced an inference model <span class="math inline">q_\phi(z \mid x)</span> that learns to approximates the intractable posterior <span class="math inline">p_\theta(z \mid x)</span> by optimizing the variational lower bound: <span class="math display">\mathcal{L}(\theta,\phi,x)=-D_{\mathrm{KL}}\left(q_{\phi}(z\mid x)\|\,p_{\theta}(z)\right)+\mathbb{E}_{q_{\phi}(z|x)}\left[\log p_{\theta}(x\mid z)\right]</span></p></li>
+<li><p>we parametrize <span class="math inline">q_\phi(z \mid x)</span> with another neural network:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img src="CS5480_images/Acrobat_iCbuPmblNP.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p><img src="CS5480_images/Acrobat_k8ErR94LSE.png" class="img-fluid"></p>
+</div>
+</div></li>
 </ul>
 </section>
-<section id="optimization-to-image" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="optimization-to-image"><span class="header-section-number">5</span> optimization to image</h2>
+<section id="reparametrization-trick" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="reparametrization-trick"><span class="header-section-number">5</span> Reparametrization Trick</h2>
 <ul>
-<li>can we find an image that maximizes some class score <br><br> <img src="CS5480_images/VoiceAccess_JgckJOT9eD.png" class="img-fluid"></li>
-<li>Score of a class c before softmax <span class="math inline">\arg \max_I S_c(I)-\lambda \vert| I \vert | ^2_2</span></li>
-</ul>
-<p>I start with black image are you using gradient descent on that image we maximize the score on output neuron</p>
-<ol type="1">
-<li>feed in zero</li>
-<li>Set the gradient of all vectors zero except the one which we are interested in and perform the back propagation.</li>
-<li>do the small input update</li>
-<li>go back to step 2</li>
-</ol>
-<p><img src="CS5480_images/VoiceAccess_M2LnjzYMpM.png" class="img-fluid"></p>
+<li><p>Problem with respect to the VLB: updating <span class="math inline">\phi</span> <span class="math display">\begin{align*}
+  \mathcal{L}_{\mathrm{VAE}}&amp;=\mathbb{E}_{q_\phi(z|x)}\left[\log\frac{p_{\theta}(z,x)}{q_{\phi}(z|x)}\right]\\
+  &amp;=-D_{\mathrm{KL}}(q_{\phi}(z|x)||p_{\theta}(z))+\mathbb{E}_{q_{\phi}(z|x)}[\log p_{\theta}(x|z)]
+\end{align*}</span></p></li>
+<li><p><span class="math inline">Z{\sim}q_{\phi}{\left(Z|X\right)}</span> : need to differentiate through the sampling process w.r.t <span class="math inline">\phi</span> (encoder is probablistic)</p></li>
+<li><p>Let’s consider <span class="math inline">z</span> to be real and <span class="math inline">q_{\phi}(z\mid x)=\mathcal {N}(z;\mu_{z}(x),\sigma_{z}(x))</span></p></li>
+<li><p>Parametrize <span class="math inline">z</span> as <span class="math inline">z=\mu_{z}(x)+\sigma_{z}(x)\epsilon_{z}</span> where <span class="math inline">\epsilon_{z}={\mathcal{N}}(0,1)</span></p></li>
+<li><p>variational inference: A concept where we replace one distribution with another approximation.</p></li>
+<li><p>What VAE’s can do</p>
 <ul>
-<li><p>visualize the data gradient <br><br> <img src="CS5480_images/VoiceAccess_c6LcbMI4lN.png" class="img-fluid"></p></li>
-<li><p>now we can use grab cut using the same approach for segmentation.<br><br> <img src="CS5480_images/VoiceAccess_B4tJeGqYxK.png" class="img-fluid"></p></li>
-<li><p>we can use this approach even for the object detection.</p></li>
-<li><p>we can minimize this code: <span class="math display">\mathbf{x}^{*}=\operatorname*{argmin}_{\mathbf{x}\in\mathbb{R}^{H}\times W\times C}\ell(\Phi(\mathbf{x}),\Phi_{0})+\lambda\mathcal{R}(\mathbf{x})</span> where <span class="math display">\ell(\Phi({\bf x}),\Phi_{0})=\|\Phi({\bf x})-\Phi_{0}\|^{2}</span></p>
-<p><img src="CS5480_images/VoiceAccess_f4pURXrnrV.png" class="img-fluid"></p></li>
+<li>change in the latent space and get the different image, like different pose, or rotation.</li>
+<li>VAE’s have more control on this as compared to GAN</li>
+</ul></li>
 </ul>
 </section>
-<section id="class-activation-mapping-cam" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="class-activation-mapping-cam"><span class="header-section-number">6</span> Class Activation Mapping (CAM)</h2>
+<section id="kl-divergence-between-gaussians" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="kl-divergence-between-gaussians"><span class="header-section-number">6</span> KL Divergence between Gaussians</h2>
+<p>The Kullback Leibler divergence between a Gaussian distribution <span class="math inline">p</span> with mean <span class="math inline">\mu_1</span> and variance <span class="math inline">\sigma_1^2</span> and a Gaussian distribution <span class="math inline">q</span> with mean <span class="math inline">\mu_2</span> and variance <span class="math inline">\sigma_2^2</span> is given by: <span class="math display">\mathrm{KL}(p,q)=\log{\frac{\sigma_{2}}{\sigma_{1}}}+{\frac{\sigma_{1}^{2}+(\mu_{1}-\mu_{2})^{2}}{2\sigma_{2}^{2}}}-{\frac{1}{2}}</span></p>
+</section>
+<section id="training-with-backprop" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="training-with-backprop"><span class="header-section-number">7</span> Training with Backprop</h2>
 <ul>
-<li>in this method we train a linear regression model for each and every class at the output layer</li>
-<li>we take the global average pooling from the layer which comes before the classification layer.</li>
-<li>now from this average pooling we construct a linear regression for each class.</li>
-<li>once we obtain the weight of each class we multiply the weight of each linear regression with the feature which we used for global leverage pooling.</li>
-<li>then we project this image what we obtain after multiplication to the original image to obtain class activation map. <br><br> <img src="CS5480_images/VoiceAccess_pYoJj8w6KL.png" class="img-fluid"></li>
+<li>Due to a reparametrization trick, we can simultaneously train both the generative model <span class="math inline">p_\theta(x \mid z)</span> and the inference model <span class="math inline">q_\phi(z \mid x)</span> by optimizing the variational bound using gradient back propagation.<br> Objective Function: <span class="math display">\mathcal{L(\theta,\phi,x)=-D_{\mathrm{KL}}\left(q_{\phi}(z\mid x)||\,p_{\theta}(z)\right)+\mathbb{E}_{q_{\phi}(z|x)}\left[\log p_{\theta}(x\mid z)\right]}</span> <br><br> <img src="CS5480_images/Acrobat_A6vKJFHXk0.png" class="img-fluid"></li>
 </ul>
 </section>
-<section id="grad-cam-and-guided-grad-cam" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="grad-cam-and-guided-grad-cam"><span class="header-section-number">7</span> Grad CAM (and Guided Grad CAM)</h2>
+<section id="applications-of-vaes" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="applications-of-vaes"><span class="header-section-number">8</span> Applications of VAEs</h2>
 <ul>
-<li>the class activation map requires to train a linear regression model can we avoid this.</li>
-<li>this issue is addressed by grad CAM.</li>
-<li>we use the weight which is already there in the network and we do the global average pulling of rectified convolutional layer, we multiply this with the weight of the fully connected layer and we do the same process as we did in class activation map to obtain the Heat map.<br><br> <img src="CS5480_images/VoiceAccess_fDl7XreUJh.png" class="img-fluid"></li>
+<li>Conditional VAE</li>
+<li>Semi supervised VAEs</li>
+<li>Importance-weighted VAEs</li>
+<li>Recurrent VAEs</li>
+<li>VAE + GAN</li>
+<li>Disentangled VAEs</li>
 </ul>
-</section>
-<section id="grad-cam-for-image-captioning" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="grad-cam-for-image-captioning"><span class="header-section-number">8</span> Grad CAM for Image Captioning</h2>
-<p><img src="CS5480_images/VoiceAccess_umQTVcf9zZ.png" class="img-fluid"></p>
-<p>Other methods</p>
+<p>Recent Developments in Deep Generative Models<br><br> <img src="CS5480_images/Acrobat_kpv9mHYS2C.png" class="img-fluid"></p>
 <ul>
-<li>Grad CAM++</li>
-<li>Integrated Gradients</li>
-<li>SmoothGrad</li>
-<li>LIME</li>
-<li>LRP</li>
-<li>DeepSHAP</li>
-<li>DeepLIFT</li>
+<li>GANs give sharper image, VAEs give blurry image reason is that we sample from a distribution</li>
+<li>So there are a variant where we combine both VAE and GAN</li>
+<li>Disentangled VAEs
+<ul>
+<li>knowing a true generative process is very important which VAEs does</li>
+<li>How to learn VAE so that the Latent space dimension correspond to some semantic.</li>
+</ul></li>
+</ul>
+<p>Following resources were referred in this notes:</p>
+<ul>
+<li><a href="https://lilianweng.github.io/posts/2021-07-11-diffusion-models/">lilianweng</a></li>
 </ul>
 <p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
@@ -695,13 +729,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning 5</span>
+      <a href="../../Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning 8</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" class="pagination-link">
-        <span class="nav-page-text">Deep Learning 7</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="pagination-link">
+        <span class="nav-page-text">Machine Learning 1</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
