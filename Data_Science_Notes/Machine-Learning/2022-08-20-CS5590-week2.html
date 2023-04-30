@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,9 +20,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,43 +50,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -175,54 +146,58 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <img src="../../logo.png" alt="" class="navbar-logo">
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../Data_Science_Notes/index.html" aria-current="page">
+    <a class="nav-link active" href="../../Data_Science_Notes/index.html" rel="" target="" aria-current="page">
  <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Notes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Data_Science_Hacks/index.html">
+    <a class="nav-link" href="../../Data_Science_Hacks/index.html" rel="" target="">
  <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Data Science Hacks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Data_Science_Projects/index.html">
+    <a class="nav-link" href="../../Data_Science_Projects/index.html" rel="" target="">
  <span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Data Science Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/" rel="" target=""><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Machine Learning 2</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html">Machine Learning 2</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav>
 </header>
@@ -230,7 +205,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Machine Learning 2</h1>
+      <h1 class="title">Machine Learning 2</h1>
                   <div>
         <div class="description">
           Classification Error, ROC/PR curve, KNN
@@ -265,173 +240,203 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../Data_Science_Notes/index.html" class="sidebar-item-text sidebar-link">Data Science Notes</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a href="../../Data_Science_Notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Science Notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Deep Learning</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Deep Learning</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" class="sidebar-item-text sidebar-link">Deep Learning 1</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html" class="sidebar-item-text sidebar-link">Deep Learning 2</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" class="sidebar-item-text sidebar-link">Deep Learning 3</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-11-CS5480-week4.html" class="sidebar-item-text sidebar-link">Deep Learning 4</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-11-CS5480-week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 5</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link">Deep Learning 6</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 6</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" class="sidebar-item-text sidebar-link">Deep Learning 7</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 7</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html" class="sidebar-item-text sidebar-link">Deep Learning 8</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 8</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html" class="sidebar-item-text sidebar-link">Deep Learning 9</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 9</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Machine Learning</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link active">Machine Learning 2</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Machine Learning 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">Machine Learning 3</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 5</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">Machine Learning 6</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 6</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">Machine Learning 7</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 7</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link">Machine Learning 8</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 8</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html" class="sidebar-item-text sidebar-link">Machine Learning 9</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 9</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Mathematics</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Algebra 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">Probability Theory 1</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Algebra 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">Probability Theory 3</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Algebra 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">Probability Theory 5</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 5</span></a>
   </div>
 </li>
       </ul>
@@ -441,32 +446,33 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#evaluation-measures" id="toc-evaluation-measures" class="nav-link active" data-scroll-target="#evaluation-measures"><span class="toc-section-number">1</span>  Evaluation Measures</a></li>
-  <li><a href="#is-accuracy-adequate" id="toc-is-accuracy-adequate" class="nav-link" data-scroll-target="#is-accuracy-adequate"><span class="toc-section-number">2</span>  Is accuracy adequate</a></li>
-  <li><a href="#classification-error" id="toc-classification-error" class="nav-link" data-scroll-target="#classification-error"><span class="toc-section-number">3</span>  Classification Error</a></li>
-  <li><a href="#utility-and-cost" id="toc-utility-and-cost" class="nav-link" data-scroll-target="#utility-and-cost"><span class="toc-section-number">4</span>  Utility and cost</a></li>
-  <li><a href="#roc-curve" id="toc-roc-curve" class="nav-link" data-scroll-target="#roc-curve"><span class="toc-section-number">5</span>  ROC curve</a></li>
-  <li><a href="#precision-recall-curve" id="toc-precision-recall-curve" class="nav-link" data-scroll-target="#precision-recall-curve"><span class="toc-section-number">6</span>  Precision Recall Curve</a></li>
-  <li><a href="#a-nice-way-to-define-precision-recall-etc." id="toc-a-nice-way-to-define-precision-recall-etc." class="nav-link" data-scroll-target="#a-nice-way-to-define-precision-recall-etc."><span class="toc-section-number">7</span>  A nice way to define precision recall etc.</a></li>
-  <li><a href="#roc-curve-vs-pr-curve" id="toc-roc-curve-vs-pr-curve" class="nav-link" data-scroll-target="#roc-curve-vs-pr-curve"><span class="toc-section-number">8</span>  ROC curve vs PR curve</a></li>
-  <li><a href="#other-performance-measures" id="toc-other-performance-measures" class="nav-link" data-scroll-target="#other-performance-measures"><span class="toc-section-number">9</span>  Other performance measures</a></li>
-  <li><a href="#important-points" id="toc-important-points" class="nav-link" data-scroll-target="#important-points"><span class="toc-section-number">10</span>  Important points</a></li>
-  <li><a href="#k-nearest-neighbors" id="toc-k-nearest-neighbors" class="nav-link" data-scroll-target="#k-nearest-neighbors"><span class="toc-section-number">11</span>  K-Nearest Neighbors</a>
+  <li><a href="#evaluation-measures" id="toc-evaluation-measures" class="nav-link active" data-scroll-target="#evaluation-measures"><span class="header-section-number">1</span> Evaluation Measures</a></li>
+  <li><a href="#is-accuracy-adequate" id="toc-is-accuracy-adequate" class="nav-link" data-scroll-target="#is-accuracy-adequate"><span class="header-section-number">2</span> Is accuracy adequate</a></li>
+  <li><a href="#classification-error" id="toc-classification-error" class="nav-link" data-scroll-target="#classification-error"><span class="header-section-number">3</span> Classification Error</a></li>
+  <li><a href="#utility-and-cost" id="toc-utility-and-cost" class="nav-link" data-scroll-target="#utility-and-cost"><span class="header-section-number">4</span> Utility and cost</a></li>
+  <li><a href="#roc-curve" id="toc-roc-curve" class="nav-link" data-scroll-target="#roc-curve"><span class="header-section-number">5</span> ROC curve</a></li>
+  <li><a href="#precision-recall-curve" id="toc-precision-recall-curve" class="nav-link" data-scroll-target="#precision-recall-curve"><span class="header-section-number">6</span> Precision Recall Curve</a></li>
+  <li><a href="#a-nice-way-to-define-precision-recall-etc." id="toc-a-nice-way-to-define-precision-recall-etc." class="nav-link" data-scroll-target="#a-nice-way-to-define-precision-recall-etc."><span class="header-section-number">7</span> A nice way to define precision recall etc.</a></li>
+  <li><a href="#roc-curve-vs-pr-curve" id="toc-roc-curve-vs-pr-curve" class="nav-link" data-scroll-target="#roc-curve-vs-pr-curve"><span class="header-section-number">8</span> ROC curve vs PR curve</a></li>
+  <li><a href="#other-performance-measures" id="toc-other-performance-measures" class="nav-link" data-scroll-target="#other-performance-measures"><span class="header-section-number">9</span> Other performance measures</a></li>
+  <li><a href="#important-points" id="toc-important-points" class="nav-link" data-scroll-target="#important-points"><span class="header-section-number">10</span> Important points</a></li>
+  <li><a href="#k-nearest-neighbors" id="toc-k-nearest-neighbors" class="nav-link" data-scroll-target="#k-nearest-neighbors"><span class="header-section-number">11</span> K-Nearest Neighbors</a>
   <ul>
-  <li><a href="#basic-idea" id="toc-basic-idea" class="nav-link" data-scroll-target="#basic-idea"><span class="toc-section-number">11.1</span>  basic idea</a></li>
-  <li><a href="#how-to-determinke-k" id="toc-how-to-determinke-k" class="nav-link" data-scroll-target="#how-to-determinke-k"><span class="toc-section-number">11.2</span>  How to determinke K</a></li>
-  <li><a href="#improvements" id="toc-improvements" class="nav-link" data-scroll-target="#improvements"><span class="toc-section-number">11.3</span>  Improvements</a></li>
-  <li><a href="#pros" id="toc-pros" class="nav-link" data-scroll-target="#pros"><span class="toc-section-number">11.4</span>  Pros</a></li>
-  <li><a href="#cons" id="toc-cons" class="nav-link" data-scroll-target="#cons"><span class="toc-section-number">11.5</span>  Cons</a></li>
-  <li><a href="#convergence-of-1-nn" id="toc-convergence-of-1-nn" class="nav-link" data-scroll-target="#convergence-of-1-nn"><span class="toc-section-number">11.6</span>  Convergence of 1-NN</a></li>
-  <li><a href="#density-estimation-using-knn" id="toc-density-estimation-using-knn" class="nav-link" data-scroll-target="#density-estimation-using-knn"><span class="toc-section-number">11.7</span>  Density Estimation using KNN</a></li>
-  <li><a href="#knn-example-using-sklearn" id="toc-knn-example-using-sklearn" class="nav-link" data-scroll-target="#knn-example-using-sklearn"><span class="toc-section-number">11.8</span>  KNN example using sklearn</a></li>
+  <li><a href="#basic-idea" id="toc-basic-idea" class="nav-link" data-scroll-target="#basic-idea"><span class="header-section-number">11.1</span> basic idea</a></li>
+  <li><a href="#how-to-determinke-k" id="toc-how-to-determinke-k" class="nav-link" data-scroll-target="#how-to-determinke-k"><span class="header-section-number">11.2</span> How to determinke K</a></li>
+  <li><a href="#improvements" id="toc-improvements" class="nav-link" data-scroll-target="#improvements"><span class="header-section-number">11.3</span> Improvements</a></li>
+  <li><a href="#pros" id="toc-pros" class="nav-link" data-scroll-target="#pros"><span class="header-section-number">11.4</span> Pros</a></li>
+  <li><a href="#cons" id="toc-cons" class="nav-link" data-scroll-target="#cons"><span class="header-section-number">11.5</span> Cons</a></li>
+  <li><a href="#convergence-of-1-nn" id="toc-convergence-of-1-nn" class="nav-link" data-scroll-target="#convergence-of-1-nn"><span class="header-section-number">11.6</span> Convergence of 1-NN</a></li>
+  <li><a href="#density-estimation-using-knn" id="toc-density-estimation-using-knn" class="nav-link" data-scroll-target="#density-estimation-using-knn"><span class="header-section-number">11.7</span> Density Estimation using KNN</a></li>
+  <li><a href="#knn-example-using-sklearn" id="toc-knn-example-using-sklearn" class="nav-link" data-scroll-target="#knn-example-using-sklearn"><span class="header-section-number">11.8</span> KNN example using sklearn</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -510,12 +516,12 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <section id="classification-error" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="classification-error"><span class="header-section-number">3</span> Classification Error</h2>
 <p><img src="CS5590_images/chrome_CNeo323E9V.png" class="img-fluid"></p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Tip
 </div>
 </div>
@@ -523,12 +529,12 @@ Tip
 <p>Precision = How many retrieved items are relevant? <br> Recall = How many relevant items are retrieved?</p>
 </div>
 </div>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Tip
 </div>
 </div>
@@ -575,12 +581,12 @@ Tip
 <li>False positive Rate (FPR) <span class="math inline">=P\left(\hat{Y} =1|\;Y=0\right)</span></li>
 <li>True Negative Rate (TNR)= <span class="math inline">=P\left(\hat{Y} =0|\;Y=0\right)</span> <br><br></li>
 </ul>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -790,12 +796,12 @@ target shape:  (150,)</code></pre>
 </div>
 </div>
 <p>chose the best value of K for final model.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Tip
 </div>
 </div>
@@ -871,9 +877,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -938,6 +958,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -995,6 +1101,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

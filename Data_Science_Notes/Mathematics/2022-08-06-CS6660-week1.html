@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -34,7 +34,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html" rel="next">
-<link href="../../Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html" rel="prev">
+<link href="../../Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -110,54 +110,58 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <img src="../../logo.png" alt="" class="navbar-logo">
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../Data_Science_Notes/index.html" aria-current="page">
+    <a class="nav-link active" href="../../Data_Science_Notes/index.html" rel="" target="" aria-current="page">
  <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Notes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Data_Science_Hacks/index.html">
+    <a class="nav-link" href="../../Data_Science_Hacks/index.html" rel="" target="">
  <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Data Science Hacks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Data_Science_Projects/index.html">
+    <a class="nav-link" href="../../Data_Science_Projects/index.html" rel="" target="">
  <span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Data Science Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/" rel="" target=""><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Probability Theory 1</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html">Mathematics</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html">Probability Theory 1</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav>
 </header>
@@ -165,7 +169,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Probability Theory 1</h1>
+      <h1 class="title">Probability Theory 1</h1>
                   <div>
         <div class="description">
           Basics, Bayes Theorem
@@ -200,173 +204,203 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../Data_Science_Notes/index.html" class="sidebar-item-text sidebar-link">Data Science Notes</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a href="../../Data_Science_Notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Science Notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Deep Learning</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Deep Learning</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" class="sidebar-item-text sidebar-link">Deep Learning 1</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html" class="sidebar-item-text sidebar-link">Deep Learning 2</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" class="sidebar-item-text sidebar-link">Deep Learning 3</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-11-CS5480-week4.html" class="sidebar-item-text sidebar-link">Deep Learning 4</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-11-CS5480-week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 5</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link">Deep Learning 6</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 6</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" class="sidebar-item-text sidebar-link">Deep Learning 7</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 7</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html" class="sidebar-item-text sidebar-link">Deep Learning 8</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 8</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html" class="sidebar-item-text sidebar-link">Deep Learning 9</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 9</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Machine Learning</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">Machine Learning 2</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">Machine Learning 3</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 5</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">Machine Learning 6</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 6</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">Machine Learning 7</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 7</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link">Machine Learning 8</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 8</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html" class="sidebar-item-text sidebar-link">Machine Learning 9</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 9</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Mathematics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Probability Theory 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Algebra 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link active">Probability Theory 1</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Algebra 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">Probability Theory 3</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Algebra 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">Probability Theory 5</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 5</span></a>
   </div>
 </li>
       </ul>
@@ -376,27 +410,28 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics"><span class="toc-section-number">1</span>  Basics</a>
+  <li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics"><span class="header-section-number">1</span> Basics</a>
   <ul>
-  <li><a href="#the-union-and-intersection" id="toc-the-union-and-intersection" class="nav-link" data-scroll-target="#the-union-and-intersection"><span class="toc-section-number">1.1</span>  The Union and intersection</a></li>
-  <li><a href="#complementary-events" id="toc-complementary-events" class="nav-link" data-scroll-target="#complementary-events"><span class="toc-section-number">1.2</span>  Complementary Events</a></li>
-  <li><a href="#simple-properties-of-events" id="toc-simple-properties-of-events" class="nav-link" data-scroll-target="#simple-properties-of-events"><span class="toc-section-number">1.3</span>  Simple Properties of events</a></li>
-  <li><a href="#definition-axioms-of-probability" id="toc-definition-axioms-of-probability" class="nav-link" data-scroll-target="#definition-axioms-of-probability"><span class="toc-section-number">1.4</span>  Definition (axioms of probability)</a></li>
-  <li><a href="#a-few-simple-facts" id="toc-a-few-simple-facts" class="nav-link" data-scroll-target="#a-few-simple-facts"><span class="toc-section-number">1.5</span>  A few simple facts</a></li>
-  <li><a href="#booles-inequality" id="toc-booles-inequality" class="nav-link" data-scroll-target="#booles-inequality"><span class="toc-section-number">1.6</span>  Boole’s inequality</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="toc-section-number">1.7</span>  Example</a></li>
-  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability"><span class="toc-section-number">1.8</span>  Conditional Probability</a></li>
-  <li><a href="#corollary" id="toc-corollary" class="nav-link" data-scroll-target="#corollary"><span class="toc-section-number">1.9</span>  Corollary</a></li>
-  <li><a href="#multiplication-rule" id="toc-multiplication-rule" class="nav-link" data-scroll-target="#multiplication-rule"><span class="toc-section-number">1.10</span>  Multiplication Rule</a></li>
-  <li><a href="#the-law-of-total-probability" id="toc-the-law-of-total-probability" class="nav-link" data-scroll-target="#the-law-of-total-probability"><span class="toc-section-number">1.11</span>  The law of total probability</a></li>
-  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><span class="toc-section-number">1.12</span>  Bayes’ Theorem</a></li>
-  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence"><span class="toc-section-number">1.13</span>  Independence</a></li>
+  <li><a href="#the-union-and-intersection" id="toc-the-union-and-intersection" class="nav-link" data-scroll-target="#the-union-and-intersection"><span class="header-section-number">1.1</span> The Union and intersection</a></li>
+  <li><a href="#complementary-events" id="toc-complementary-events" class="nav-link" data-scroll-target="#complementary-events"><span class="header-section-number">1.2</span> Complementary Events</a></li>
+  <li><a href="#simple-properties-of-events" id="toc-simple-properties-of-events" class="nav-link" data-scroll-target="#simple-properties-of-events"><span class="header-section-number">1.3</span> Simple Properties of events</a></li>
+  <li><a href="#definition-axioms-of-probability" id="toc-definition-axioms-of-probability" class="nav-link" data-scroll-target="#definition-axioms-of-probability"><span class="header-section-number">1.4</span> Definition (axioms of probability)</a></li>
+  <li><a href="#a-few-simple-facts" id="toc-a-few-simple-facts" class="nav-link" data-scroll-target="#a-few-simple-facts"><span class="header-section-number">1.5</span> A few simple facts</a></li>
+  <li><a href="#booles-inequality" id="toc-booles-inequality" class="nav-link" data-scroll-target="#booles-inequality"><span class="header-section-number">1.6</span> Boole’s inequality</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">1.7</span> Example</a></li>
+  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability"><span class="header-section-number">1.8</span> Conditional Probability</a></li>
+  <li><a href="#corollary" id="toc-corollary" class="nav-link" data-scroll-target="#corollary"><span class="header-section-number">1.9</span> Corollary</a></li>
+  <li><a href="#multiplication-rule" id="toc-multiplication-rule" class="nav-link" data-scroll-target="#multiplication-rule"><span class="header-section-number">1.10</span> Multiplication Rule</a></li>
+  <li><a href="#the-law-of-total-probability" id="toc-the-law-of-total-probability" class="nav-link" data-scroll-target="#the-law-of-total-probability"><span class="header-section-number">1.11</span> The law of total probability</a></li>
+  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><span class="header-section-number">1.12</span> Bayes’ Theorem</a></li>
+  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence"><span class="header-section-number">1.13</span> Independence</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -412,12 +447,12 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <section id="the-union-and-intersection" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="the-union-and-intersection"><span class="header-section-number">1.1</span> The Union and intersection</h3>
 <p>The union <span class="math inline">E\cup F\;</span> of events <span class="math inline">E</span> and <span class="math inline">F</span> always means <span class="math inline">E</span> OR <span class="math inline">F</span> , The intersection <span class="math inline">E\cap F</span> of events <span class="math inline">E</span> and <span class="math inline">F</span> always means <span class="math inline">E</span> AND <span class="math inline">F</span><br></p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Tip
 </div>
 </div>
@@ -460,12 +495,12 @@ Tip
 <section id="conditional-probability" class="level3" data-number="1.8">
 <h3 data-number="1.8" class="anchored" data-anchor-id="conditional-probability"><span class="header-section-number">1.8</span> Conditional Probability</h3>
 <p>Let <span class="math inline">F</span> be an Event with <span class="math inline">P\left\lbrace F\right\rbrace &gt;0</span> . then the conditional probability <span class="math inline">E</span> of given <span class="math inline">F</span> is defined as: <span class="math inline">P\left\lbrace E|F\right\rbrace :=\frac{P\left\lbrace E\cap F\right\rbrace }{P\left\lbrace F\right\rbrace }</span> <br></p>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -505,12 +540,12 @@ Note
 <section id="bayes-theorem" class="level3" data-number="1.12">
 <h3 data-number="1.12" class="anchored" data-anchor-id="bayes-theorem"><span class="header-section-number">1.12</span> Bayes’ Theorem</h3>
 <p>For any events <span class="math inline">E</span> and <span class="math inline">F</span> <br> <span class="math inline">P\left\lbrace F|E\right\rbrace =\frac{P\left\lbrace E|F\right\rbrace \ldotp P\left\lbrace F\right\rbrace }{P\left\lbrace E|F\right\rbrace \ldotp P\left\lbrace F\right\rbrace +P\left\lbrace E|F^c \right\rbrace \ldotp P\left\lbrace F^c \right\rbrace }</span><br></p>
-<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -522,12 +557,12 @@ Important
 <section id="independence" class="level3" data-number="1.13">
 <h3 data-number="1.13" class="anchored" data-anchor-id="independence"><span class="header-section-number">1.13</span> Independence</h3>
 <p>Event <span class="math inline">E</span> and <span class="math inline">F</span> are independent if <span class="math inline">P\left\lbrace E|F\right\rbrace =P\left\lbrace E\right\rbrace</span> or <span class="math inline">P\left\lbrace E\cap F\right\rbrace =P\left\lbrace E\right\rbrace \cdot P\left\lbrace F\right\rbrace</span><br></p>
-<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -574,9 +609,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -641,6 +690,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -684,8 +819,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Linear Algebra 3</span>
+      <a href="../../Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Machine Learning 9</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -698,6 +833,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

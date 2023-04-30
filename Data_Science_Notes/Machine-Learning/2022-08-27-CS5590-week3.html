@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,9 +20,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,43 +50,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -178,54 +149,58 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <img src="../../logo.png" alt="" class="navbar-logo">
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../Data_Science_Notes/index.html" aria-current="page">
+    <a class="nav-link active" href="../../Data_Science_Notes/index.html" rel="" target="" aria-current="page">
  <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Notes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Data_Science_Hacks/index.html">
+    <a class="nav-link" href="../../Data_Science_Hacks/index.html" rel="" target="">
  <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Data Science Hacks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Data_Science_Projects/index.html">
+    <a class="nav-link" href="../../Data_Science_Projects/index.html" rel="" target="">
  <span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Data Science Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/abhiyantaabhishek"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/" rel="" target=""><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Machine Learning 3</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html">Machine Learning 3</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav>
 </header>
@@ -233,7 +208,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title d-none d-lg-block">Machine Learning 3</h1>
+      <h1 class="title">Machine Learning 3</h1>
                   <div>
         <div class="description">
           Decision Trees, Naive Bayes, Bayesian Belief network
@@ -268,173 +243,203 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../Data_Science_Notes/index.html" class="sidebar-item-text sidebar-link">Data Science Notes</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a href="../../Data_Science_Notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Science Notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Deep Learning</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Deep Learning</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" class="sidebar-item-text sidebar-link">Deep Learning 1</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html" class="sidebar-item-text sidebar-link">Deep Learning 2</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" class="sidebar-item-text sidebar-link">Deep Learning 3</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-11-CS5480-week4.html" class="sidebar-item-text sidebar-link">Deep Learning 4</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-02-11-CS5480-week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html" class="sidebar-item-text sidebar-link">Deep Learning 5</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 5</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link">Deep Learning 6</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 6</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" class="sidebar-item-text sidebar-link">Deep Learning 7</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 7</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html" class="sidebar-item-text sidebar-link">Deep Learning 8</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 8</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html" class="sidebar-item-text sidebar-link">Deep Learning 9</a>
+  <a href="../../Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning 9</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Machine Learning</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">Machine Learning 1</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">Machine Learning 2</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link active">Machine Learning 3</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Machine Learning 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">Machine Learning 4</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">Machine Learning 5</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 5</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">Machine Learning 6</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-08-CS5590-week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 6</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">Machine Learning 7</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-15-CS5590-week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 7</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link">Machine Learning 8</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-10-29-CS5590-week8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 8</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html" class="sidebar-item-text sidebar-link">Machine Learning 9</a>
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning 9</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Mathematics</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">Linear Algebra 1</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">Linear Algebra 2</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">Linear Algebra 3</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Algebra 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">Probability Theory 1</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html" class="sidebar-item-text sidebar-link">Probability Theory 2</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Algebra 2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html" class="sidebar-item-text sidebar-link">Probability Theory 3</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 4</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-24-CS6660-week5.html" class="sidebar-item-text sidebar-link">Probability Theory 4</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Algebra 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">Probability Theory 5</a>
+  <a href="../../Data_Science_Notes/Mathematics/2022-10-15-CS6660-week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory 5</span></a>
   </div>
 </li>
       </ul>
@@ -444,28 +449,29 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link active" data-scroll-target="#decision-trees"><span class="toc-section-number">1</span>  Decision Trees</a>
+  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link active" data-scroll-target="#decision-trees"><span class="header-section-number">1</span> Decision Trees</a>
   <ul>
-  <li><a href="#how-to-generate-decision-tree" id="toc-how-to-generate-decision-tree" class="nav-link" data-scroll-target="#how-to-generate-decision-tree"><span class="toc-section-number">1.1</span>  How to generate decision tree</a></li>
-  <li><a href="#overfitting-and-generalization" id="toc-overfitting-and-generalization" class="nav-link" data-scroll-target="#overfitting-and-generalization"><span class="toc-section-number">1.2</span>  Overfitting and generalization</a></li>
-  <li><a href="#occams-razor-principle" id="toc-occams-razor-principle" class="nav-link" data-scroll-target="#occams-razor-principle"><span class="toc-section-number">1.3</span>  Occam’s Razor Principle</a></li>
-  <li><a href="#select-best-tree" id="toc-select-best-tree" class="nav-link" data-scroll-target="#select-best-tree"><span class="toc-section-number">1.4</span>  Select best tree</a></li>
-  <li><a href="#rule-extraction-from-trees" id="toc-rule-extraction-from-trees" class="nav-link" data-scroll-target="#rule-extraction-from-trees"><span class="toc-section-number">1.5</span>  Rule Extraction from Trees</a></li>
+  <li><a href="#how-to-generate-decision-tree" id="toc-how-to-generate-decision-tree" class="nav-link" data-scroll-target="#how-to-generate-decision-tree"><span class="header-section-number">1.1</span> How to generate decision tree</a></li>
+  <li><a href="#overfitting-and-generalization" id="toc-overfitting-and-generalization" class="nav-link" data-scroll-target="#overfitting-and-generalization"><span class="header-section-number">1.2</span> Overfitting and generalization</a></li>
+  <li><a href="#occams-razor-principle" id="toc-occams-razor-principle" class="nav-link" data-scroll-target="#occams-razor-principle"><span class="header-section-number">1.3</span> Occam’s Razor Principle</a></li>
+  <li><a href="#select-best-tree" id="toc-select-best-tree" class="nav-link" data-scroll-target="#select-best-tree"><span class="header-section-number">1.4</span> Select best tree</a></li>
+  <li><a href="#rule-extraction-from-trees" id="toc-rule-extraction-from-trees" class="nav-link" data-scroll-target="#rule-extraction-from-trees"><span class="header-section-number">1.5</span> Rule Extraction from Trees</a></li>
   </ul></li>
-  <li><a href="#naive-bayes" id="toc-naive-bayes" class="nav-link" data-scroll-target="#naive-bayes"><span class="toc-section-number">2</span>  Naive Bayes</a>
+  <li><a href="#naive-bayes" id="toc-naive-bayes" class="nav-link" data-scroll-target="#naive-bayes"><span class="header-section-number">2</span> Naive Bayes</a>
   <ul>
-  <li><a href="#formulation" id="toc-formulation" class="nav-link" data-scroll-target="#formulation"><span class="toc-section-number">2.1</span>  Formulation</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="toc-section-number">2.2</span>  Example</a></li>
-  <li><a href="#pros-and-cons" id="toc-pros-and-cons" class="nav-link" data-scroll-target="#pros-and-cons"><span class="toc-section-number">2.3</span>  Pros and Cons</a></li>
-  <li><a href="#practical-issues" id="toc-practical-issues" class="nav-link" data-scroll-target="#practical-issues"><span class="toc-section-number">2.4</span>  Practical Issues</a></li>
-  <li><a href="#bayesian-belief-network-bayesian-net" id="toc-bayesian-belief-network-bayesian-net" class="nav-link" data-scroll-target="#bayesian-belief-network-bayesian-net"><span class="toc-section-number">2.5</span>  Bayesian Belief network ( Bayesian net )</a></li>
-  <li><a href="#naive-bayes-classifier-category" id="toc-naive-bayes-classifier-category" class="nav-link" data-scroll-target="#naive-bayes-classifier-category"><span class="toc-section-number">2.6</span>  Naive Bayes Classifier category</a></li>
+  <li><a href="#formulation" id="toc-formulation" class="nav-link" data-scroll-target="#formulation"><span class="header-section-number">2.1</span> Formulation</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">2.2</span> Example</a></li>
+  <li><a href="#pros-and-cons" id="toc-pros-and-cons" class="nav-link" data-scroll-target="#pros-and-cons"><span class="header-section-number">2.3</span> Pros and Cons</a></li>
+  <li><a href="#practical-issues" id="toc-practical-issues" class="nav-link" data-scroll-target="#practical-issues"><span class="header-section-number">2.4</span> Practical Issues</a></li>
+  <li><a href="#bayesian-belief-network-bayesian-net" id="toc-bayesian-belief-network-bayesian-net" class="nav-link" data-scroll-target="#bayesian-belief-network-bayesian-net"><span class="header-section-number">2.5</span> Bayesian Belief network ( Bayesian net )</a></li>
+  <li><a href="#naive-bayes-classifier-category" id="toc-naive-bayes-classifier-category" class="nav-link" data-scroll-target="#naive-bayes-classifier-category"><span class="header-section-number">2.6</span> Naive Bayes Classifier category</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -657,150 +663,151 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <span id="cb4-17"><a href="#cb4-17"></a>df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>Attributes,data<span class="op">=</span>data)</span>
 <span id="cb4-18"><a href="#cb4-18"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Day</th>
-      <th>Outlook</th>
-      <th>Temperature</th>
-      <th>Humidity</th>
-      <th>Wind</th>
-      <th>Play Tennis</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>D1</td>
-      <td>Sunny</td>
-      <td>Hot</td>
-      <td>High</td>
-      <td>Weak</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>D2</td>
-      <td>Sunny</td>
-      <td>Hot</td>
-      <td>High</td>
-      <td>Strong</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>D3</td>
-      <td>Overcast</td>
-      <td>Hot</td>
-      <td>High</td>
-      <td>Weak</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>D4</td>
-      <td>Rain</td>
-      <td>Mild</td>
-      <td>High</td>
-      <td>Weak</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>D5</td>
-      <td>Rain</td>
-      <td>Cool</td>
-      <td>Normal</td>
-      <td>Weak</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>D6</td>
-      <td>Rain</td>
-      <td>Cool</td>
-      <td>Normal</td>
-      <td>Strong</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>D7</td>
-      <td>Overcast</td>
-      <td>Cool</td>
-      <td>Normal</td>
-      <td>Strong</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>D8</td>
-      <td>Sunny</td>
-      <td>Mild</td>
-      <td>High</td>
-      <td>Weak</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>D9</td>
-      <td>Sunny</td>
-      <td>Cool</td>
-      <td>Normal</td>
-      <td>Weak</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>D10</td>
-      <td>Rain</td>
-      <td>Mild</td>
-      <td>Normal</td>
-      <td>Weak</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>D11</td>
-      <td>Sunny</td>
-      <td>Mild</td>
-      <td>Normal</td>
-      <td>Strong</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>D12</td>
-      <td>Overcast</td>
-      <td>Mild</td>
-      <td>High</td>
-      <td>Strong</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>D13</td>
-      <td>Overcast</td>
-      <td>Hot</td>
-      <td>Normal</td>
-      <td>Weak</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>D14</td>
-      <td>Rain</td>
-      <td>Mild</td>
-      <td>High</td>
-      <td>Strong</td>
-      <td>No</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Day</th>
+<th data-quarto-table-cell-role="th">Outlook</th>
+<th data-quarto-table-cell-role="th">Temperature</th>
+<th data-quarto-table-cell-role="th">Humidity</th>
+<th data-quarto-table-cell-role="th">Wind</th>
+<th data-quarto-table-cell-role="th">Play Tennis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>D1</td>
+<td>Sunny</td>
+<td>Hot</td>
+<td>High</td>
+<td>Weak</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>D2</td>
+<td>Sunny</td>
+<td>Hot</td>
+<td>High</td>
+<td>Strong</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>D3</td>
+<td>Overcast</td>
+<td>Hot</td>
+<td>High</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>D4</td>
+<td>Rain</td>
+<td>Mild</td>
+<td>High</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>D5</td>
+<td>Rain</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>D6</td>
+<td>Rain</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>Strong</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>D7</td>
+<td>Overcast</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>Strong</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>D8</td>
+<td>Sunny</td>
+<td>Mild</td>
+<td>High</td>
+<td>Weak</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>D9</td>
+<td>Sunny</td>
+<td>Cool</td>
+<td>Normal</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>D10</td>
+<td>Rain</td>
+<td>Mild</td>
+<td>Normal</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>D11</td>
+<td>Sunny</td>
+<td>Mild</td>
+<td>Normal</td>
+<td>Strong</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>D12</td>
+<td>Overcast</td>
+<td>Mild</td>
+<td>High</td>
+<td>Strong</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>D13</td>
+<td>Overcast</td>
+<td>Hot</td>
+<td>Normal</td>
+<td>Weak</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>D14</td>
+<td>Rain</td>
+<td>Mild</td>
+<td>High</td>
+<td>Strong</td>
+<td>No</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -818,112 +825,106 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <span id="cb5-11"><a href="#cb5-11"></a>    all_tables<span class="op">=</span>all_tables<span class="op">+</span>table_styler._repr_html_()</span>
 <span id="cb5-12"><a href="#cb5-12"></a>display_html (all_tables,raw<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
 
-<style type="text/css">
-</style>
-<table id="T_5ee0d" style="display:inline">
-  <caption>Outlook</caption>
-  <thead>
-    <tr>
-      <th class="blank level0">&nbsp;</th>
-      <th id="T_5ee0d_level0_col0" class="col_heading level0 col0">Play_Tennis_No</th>
-      <th id="T_5ee0d_level0_col1" class="col_heading level0 col1">Play_Tennis_Yes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th id="T_5ee0d_level0_row0" class="row_heading level0 row0">Outlook_Sunny</th>
-      <td id="T_5ee0d_row0_col0" class="data row0 col0">3/5</td>
-      <td id="T_5ee0d_row0_col1" class="data row0 col1">2/9</td>
-    </tr>
-    <tr>
-      <th id="T_5ee0d_level0_row1" class="row_heading level0 row1">Outlook_Overcast</th>
-      <td id="T_5ee0d_row1_col0" class="data row1 col0">0/5</td>
-      <td id="T_5ee0d_row1_col1" class="data row1 col1">4/9</td>
-    </tr>
-    <tr>
-      <th id="T_5ee0d_level0_row2" class="row_heading level0 row2">Outlook_Rain</th>
-      <td id="T_5ee0d_row2_col0" class="data row2 col0">2/5</td>
-      <td id="T_5ee0d_row2_col1" class="data row2 col1">3/9</td>
-    </tr>
-  </tbody>
+<table id="T_5ee0d" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Outlook</caption>
+<thead>
+<tr class="header">
+<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th id="T_5ee0d_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Play_Tennis_No</th>
+<th id="T_5ee0d_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Play_Tennis_Yes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_5ee0d_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">Outlook_Sunny</td>
+<td id="T_5ee0d_row0_col0" class="data row0 col0">3/5</td>
+<td id="T_5ee0d_row0_col1" class="data row0 col1">2/9</td>
+</tr>
+<tr class="even">
+<td id="T_5ee0d_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">Outlook_Overcast</td>
+<td id="T_5ee0d_row1_col0" class="data row1 col0">0/5</td>
+<td id="T_5ee0d_row1_col1" class="data row1 col1">4/9</td>
+</tr>
+<tr class="odd">
+<td id="T_5ee0d_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">Outlook_Rain</td>
+<td id="T_5ee0d_row2_col0" class="data row2 col0">2/5</td>
+<td id="T_5ee0d_row2_col1" class="data row2 col1">3/9</td>
+</tr>
+</tbody>
 </table>
-<style type="text/css">
-</style>
-<table id="T_5a776" style="display:inline">
-  <caption>Temperature</caption>
-  <thead>
-    <tr>
-      <th class="blank level0">&nbsp;</th>
-      <th id="T_5a776_level0_col0" class="col_heading level0 col0">Play_Tennis_No</th>
-      <th id="T_5a776_level0_col1" class="col_heading level0 col1">Play_Tennis_Yes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th id="T_5a776_level0_row0" class="row_heading level0 row0">Temperature_Hot</th>
-      <td id="T_5a776_row0_col0" class="data row0 col0">2/5</td>
-      <td id="T_5a776_row0_col1" class="data row0 col1">2/9</td>
-    </tr>
-    <tr>
-      <th id="T_5a776_level0_row1" class="row_heading level0 row1">Temperature_Mild</th>
-      <td id="T_5a776_row1_col0" class="data row1 col0">2/5</td>
-      <td id="T_5a776_row1_col1" class="data row1 col1">4/9</td>
-    </tr>
-    <tr>
-      <th id="T_5a776_level0_row2" class="row_heading level0 row2">Temperature_Cool</th>
-      <td id="T_5a776_row2_col0" class="data row2 col0">1/5</td>
-      <td id="T_5a776_row2_col1" class="data row2 col1">3/9</td>
-    </tr>
-  </tbody>
+<table id="T_5a776" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Temperature</caption>
+<thead>
+<tr class="header">
+<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th id="T_5a776_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Play_Tennis_No</th>
+<th id="T_5a776_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Play_Tennis_Yes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_5a776_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">Temperature_Hot</td>
+<td id="T_5a776_row0_col0" class="data row0 col0">2/5</td>
+<td id="T_5a776_row0_col1" class="data row0 col1">2/9</td>
+</tr>
+<tr class="even">
+<td id="T_5a776_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">Temperature_Mild</td>
+<td id="T_5a776_row1_col0" class="data row1 col0">2/5</td>
+<td id="T_5a776_row1_col1" class="data row1 col1">4/9</td>
+</tr>
+<tr class="odd">
+<td id="T_5a776_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">Temperature_Cool</td>
+<td id="T_5a776_row2_col0" class="data row2 col0">1/5</td>
+<td id="T_5a776_row2_col1" class="data row2 col1">3/9</td>
+</tr>
+</tbody>
 </table>
-<style type="text/css">
-</style>
-<table id="T_6fe55" style="display:inline">
-  <caption>Humidity</caption>
-  <thead>
-    <tr>
-      <th class="blank level0">&nbsp;</th>
-      <th id="T_6fe55_level0_col0" class="col_heading level0 col0">Play_Tennis_No</th>
-      <th id="T_6fe55_level0_col1" class="col_heading level0 col1">Play_Tennis_Yes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th id="T_6fe55_level0_row0" class="row_heading level0 row0">Humidity_High</th>
-      <td id="T_6fe55_row0_col0" class="data row0 col0">4/5</td>
-      <td id="T_6fe55_row0_col1" class="data row0 col1">3/9</td>
-    </tr>
-    <tr>
-      <th id="T_6fe55_level0_row1" class="row_heading level0 row1">Humidity_Normal</th>
-      <td id="T_6fe55_row1_col0" class="data row1 col0">1/5</td>
-      <td id="T_6fe55_row1_col1" class="data row1 col1">6/9</td>
-    </tr>
-  </tbody>
+<table id="T_6fe55" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Humidity</caption>
+<thead>
+<tr class="header">
+<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th id="T_6fe55_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Play_Tennis_No</th>
+<th id="T_6fe55_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Play_Tennis_Yes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_6fe55_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">Humidity_High</td>
+<td id="T_6fe55_row0_col0" class="data row0 col0">4/5</td>
+<td id="T_6fe55_row0_col1" class="data row0 col1">3/9</td>
+</tr>
+<tr class="even">
+<td id="T_6fe55_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">Humidity_Normal</td>
+<td id="T_6fe55_row1_col0" class="data row1 col0">1/5</td>
+<td id="T_6fe55_row1_col1" class="data row1 col1">6/9</td>
+</tr>
+</tbody>
 </table>
-<style type="text/css">
-</style>
-<table id="T_28a5b" style="display:inline">
-  <caption>Wind</caption>
-  <thead>
-    <tr>
-      <th class="blank level0">&nbsp;</th>
-      <th id="T_28a5b_level0_col0" class="col_heading level0 col0">Play_Tennis_No</th>
-      <th id="T_28a5b_level0_col1" class="col_heading level0 col1">Play_Tennis_Yes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th id="T_28a5b_level0_row0" class="row_heading level0 row0">Wind_Weak</th>
-      <td id="T_28a5b_row0_col0" class="data row0 col0">2/5</td>
-      <td id="T_28a5b_row0_col1" class="data row0 col1">6/9</td>
-    </tr>
-    <tr>
-      <th id="T_28a5b_level0_row1" class="row_heading level0 row1">Wind_Strong</th>
-      <td id="T_28a5b_row1_col0" class="data row1 col0">3/5</td>
-      <td id="T_28a5b_row1_col1" class="data row1 col1">3/9</td>
-    </tr>
-  </tbody>
+<table id="T_28a5b" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Wind</caption>
+<thead>
+<tr class="header">
+<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th id="T_28a5b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Play_Tennis_No</th>
+<th id="T_28a5b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Play_Tennis_Yes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_28a5b_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">Wind_Weak</td>
+<td id="T_28a5b_row0_col0" class="data row0 col0">2/5</td>
+<td id="T_28a5b_row0_col1" class="data row0 col1">6/9</td>
+</tr>
+<tr class="even">
+<td id="T_28a5b_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">Wind_Strong</td>
+<td id="T_28a5b_row1_col0" class="data row1 col0">3/5</td>
+<td id="T_28a5b_row1_col1" class="data row1 col1">3/9</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
@@ -1013,9 +1014,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1080,6 +1095,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1137,6 +1238,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
