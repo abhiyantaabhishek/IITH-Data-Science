@@ -551,8 +551,14 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>while looking back - To find receptive field size <span class="math inline">r_{l-1}</span> of a layer <span class="math inline">l-1</span> : <span class="math display">r_{l-1}=r_l*s_l+(f_l-s_l)</span> here, <span class="math inline">l_l</span> is the receptive field size of the current layer<br> <span class="math inline">s_l</span> is the stride which brings to the current layer, <br> <span class="math inline">f_l</span> is the kernel size which brings to the current layer.<br></p>
-<p>while looking front - To find receptive filed size at next layer <span class="math display">r_{l+1}=f_l+s_l(r_l-1)</span></p>
+<p>First way</p>
+<ul>
+<li>To find receptive field size <span class="math inline">r_{l-1}</span> of a layer <span class="math inline">l-1</span> : <span class="math display">r_{l-1}=r_l*s_l+(f_l-s_l)</span> here, <span class="math inline">l_l</span> is the receptive field size of the current layer<br> <span class="math inline">s_l</span> is the stride which brings to the current layer, <br> <span class="math inline">f_l</span> is the kernel size which brings to the current layer.<br></li>
+</ul>
+<p>Another way</p>
+<ul>
+<li>To find receptive filed size a layer <span class="math display">r_{l}=f_l+s_l(r_l-1)</span></li>
+</ul>
 </div>
 </div>
 <p>Convolutional Layer</p>
