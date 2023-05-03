@@ -2,138 +2,130 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://localhost:4200/Data_Science_Projects/index.html</loc>
-    <lastmod>2023-05-01T00:04:10.698Z</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost:4200/Data_Science_Projects/CS6450_Impletemtation.html</loc>
-    <lastmod>2023-05-01T00:04:13.246Z</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost:4200/Data_Science_Projects/CS6450_proposal.html</loc>
-    <lastmod>2023-05-01T00:04:14.406Z</lastmod>
+    <lastmod>2023-05-03T02:32:21.802Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/about.html</loc>
-    <lastmod>2023-05-01T00:04:16.330Z</lastmod>
+    <lastmod>2023-05-03T02:32:22.466Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/index.html</loc>
-    <lastmod>2023-05-01T00:04:17.174Z</lastmod>
+    <lastmod>2023-05-03T02:32:23.242Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Hacks/2022-11-22-sk-learn model search.html</loc>
-    <lastmod>2023-05-01T00:04:18.990Z</lastmod>
+    <lastmod>2023-05-03T02:32:24.650Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Hacks/index.html</loc>
-    <lastmod>2023-05-01T00:04:19.902Z</lastmod>
+    <lastmod>2023-05-03T02:32:25.382Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html</loc>
-    <lastmod>2023-05-01T00:04:21.514Z</lastmod>
+    <lastmod>2023-05-03T02:32:26.570Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.html</loc>
-    <lastmod>2023-05-01T00:04:23.422Z</lastmod>
+    <lastmod>2023-05-03T02:32:28.070Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-10-15-CS5590-week7.html</loc>
-    <lastmod>2023-05-01T00:04:25.138Z</lastmod>
+    <lastmod>2023-05-03T02:32:29.366Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-10-08-CS5590-week6.html</loc>
-    <lastmod>2023-05-01T00:04:26.490Z</lastmod>
+    <lastmod>2023-05-03T02:32:30.406Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-10-29-CS5590-week8.html</loc>
-    <lastmod>2023-05-01T00:04:28.050Z</lastmod>
+    <lastmod>2023-05-03T02:32:31.662Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-11-05-CS5590-week9.html</loc>
-    <lastmod>2023-05-01T00:04:29.734Z</lastmod>
+    <lastmod>2023-05-03T02:32:32.974Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html</loc>
-    <lastmod>2023-05-01T00:04:30.934Z</lastmod>
+    <lastmod>2023-05-03T02:32:33.818Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.html</loc>
-    <lastmod>2023-05-01T00:04:32.330Z</lastmod>
+    <lastmod>2023-05-03T02:32:34.958Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html</loc>
-    <lastmod>2023-05-01T00:04:33.970Z</lastmod>
+    <lastmod>2023-05-03T02:32:36.238Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html</loc>
-    <lastmod>2023-05-01T00:04:35.154Z</lastmod>
+    <lastmod>2023-05-03T02:32:37.222Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-10-15-CS6660-week7.html</loc>
-    <lastmod>2023-05-01T00:04:36.758Z</lastmod>
+    <lastmod>2023-05-03T02:32:38.470Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html</loc>
-    <lastmod>2023-05-01T00:04:37.722Z</lastmod>
+    <lastmod>2023-05-03T02:32:39.226Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html</loc>
-    <lastmod>2023-05-01T00:04:38.746Z</lastmod>
+    <lastmod>2023-05-03T02:32:40.370Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html</loc>
-    <lastmod>2023-05-01T00:04:39.862Z</lastmod>
+    <lastmod>2023-05-03T02:32:41.243Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html</loc>
-    <lastmod>2023-05-01T00:04:41.106Z</lastmod>
+    <lastmod>2023-05-03T02:32:42.183Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-09-24-CS6660-week5.html</loc>
-    <lastmod>2023-05-01T00:04:42.846Z</lastmod>
+    <lastmod>2023-05-03T02:32:43.287Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html</loc>
-    <lastmod>2023-05-01T00:04:44.306Z</lastmod>
+    <lastmod>2023-05-03T02:32:44.651Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html</loc>
-    <lastmod>2023-05-01T00:04:45.474Z</lastmod>
+    <lastmod>2023-05-03T02:32:45.599Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week6.html</loc>
-    <lastmod>2023-05-01T00:04:46.694Z</lastmod>
+    <lastmod>2023-05-03T02:32:46.639Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html</loc>
-    <lastmod>2023-05-01T00:04:48.810Z</lastmod>
+    <lastmod>2023-05-03T02:32:48.447Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-02-11-CS5480-week4.html</loc>
-    <lastmod>2023-05-01T00:04:50.486Z</lastmod>
+    <lastmod>2023-05-03T02:32:50.039Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html</loc>
-    <lastmod>2023-05-01T00:04:52.642Z</lastmod>
+    <lastmod>2023-05-03T02:32:51.743Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html</loc>
-    <lastmod>2023-05-01T00:04:54.370Z</lastmod>
+    <lastmod>2023-05-03T02:32:53.123Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html</loc>
-    <lastmod>2023-05-01T00:04:55.934Z</lastmod>
+    <lastmod>2023-05-03T02:32:54.359Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html</loc>
-    <lastmod>2023-05-01T00:04:58.174Z</lastmod>
+    <lastmod>2023-05-03T02:32:55.563Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/Deep-Learning/2023-03-04-CS5480-week5.html</loc>
-    <lastmod>2023-05-01T00:04:59.846Z</lastmod>
+    <lastmod>2023-05-03T02:32:56.819Z</lastmod>
   </url>
   <url>
     <loc>http://localhost:4200/Data_Science_Notes/index.html</loc>
-    <lastmod>2023-05-01T00:05:03.014Z</lastmod>
+    <lastmod>2023-05-03T02:32:59.147Z</lastmod>
   </url>
 </urlset>
