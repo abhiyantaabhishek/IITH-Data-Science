@@ -1,21 +1,9 @@
 [
   {
-    "listing": "/Data_Science_Projects/index.html",
-    "items": []
-  },
-  {
-    "listing": "/index.html",
-    "items": []
-  },
-  {
-    "listing": "/Data_Science_Hacks/index.html",
-    "items": [
-      "/Data_Science_Hacks/2022-11-22-sk-learn model search.html"
-    ]
-  },
-  {
     "listing": "/Data_Science_Notes/index.html",
     "items": [
+      "/Data_Science_Notes/Reinforcement-Learning/2023-08-12-CS6140-week2.html",
+      "/Data_Science_Notes/Reinforcement-Learning/2023-08-05-CS6140-week1.html",
       "/Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html",
       "/Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html",
       "/Data_Science_Notes/Deep-Learning/2023-03-18-CS5480-week7.html",
@@ -33,8 +21,8 @@
       "/Data_Science_Notes/Mathematics/2022-10-01-CS6660-week6.html",
       "/Data_Science_Notes/Machine-Learning/2022-09-24-CS5590-week5.html",
       "/Data_Science_Notes/Mathematics/2022-09-24-CS6660-week5.html",
-      "/Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html",
       "/Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html",
+      "/Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html",
       "/Data_Science_Notes/Machine-Learning/2022-09-10-CS5590-week4.html",
       "/Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html",
       "/Data_Science_Notes/Machine-Learning/2022-08-27-CS5590-week3.html",
@@ -43,5 +31,22 @@
       "/Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html",
       "/Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html"
     ]
+  },
+  {
+    "listing": "/Data_Science_Projects/index.html",
+    "items": [
+      "/Data_Science_Projects/CS6450_Impletemtation.html",
+      "/Data_Science_Projects/CS6450_proposal.html"
+    ]
+  },
+  {
+    "listing": "/Data_Science_Hacks/index.html",
+    "items": [
+      "/Data_Science_Hacks/2022-11-22-sk-learn model search.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": []
   }
 ]

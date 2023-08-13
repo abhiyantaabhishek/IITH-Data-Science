@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../Data_Science_Projects/CS6450_Impletemtation.html" rel="next">
 <link href="../logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-listing/list.min.js"></script>
 <script src="../site_libs/quarto-listing/quarto-listing.js"></script>
@@ -60,7 +61,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script>
@@ -73,9 +75,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -121,6 +123,9 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Data Science Projects">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Projects/images/007402.png">
+<meta property="og:image:height" content="375">
+<meta property="og:image:width" content="1242">
 </head>
 
 <body class="nav-fixed">
@@ -201,7 +206,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="3D vehicle Detection">3D vehicle Detection <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -214,13 +219,101 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Author
+        </option>
+     </select>
+  </div>
     <div class="input-group input-group-sm quarto-listing-filter">
       <span class="input-group-text"><i class="bi bi-search"></i></span>
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
 <div class="list quarto-listing-default">
-
+<div class="quarto-post image-right" data-index="0" data-categories="3D vehicle Detection" data-listing-date-sort="1682726400000" data-listing-file-modified-sort="1691909764929" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15">
+<div class="thumbnail">
+<p><a href="../Data_Science_Projects/CS6450_Impletemtation.html"> <img src="../Data_Science_Projects/images/007402.png" class="thumbnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="../Data_Science_Projects/CS6450_Impletemtation.html">
+<h3 class="no-anchor listing-title">
+Point cloud based 3d object detection
+</h3>
+<div class="listing-subtitle">
+Y. Zhou and O. Tuzel,Voxelnet, IEEE Conference on CVPR, pp.&nbsp;4490-4499, 2018.
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('3D vehicle Detection'); return false;">
+3D vehicle Detection
+</div>
+</div>
+<a href="../Data_Science_Projects/CS6450_Impletemtation.html">
+<div class="listing-description">
+<p>IMPLEMENTATION</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="../Data_Science_Projects/CS6450_Impletemtation.html">
+<div class="listing-date">
+Apr 29, 2023
+</div>
+<div class="listing-author">
+Abhishek Kumar Dubey <br> cs22mds15010
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="3D vehicle Detection" data-listing-date-sort="1678579200000" data-listing-file-modified-sort="1691909764929" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10">
+<div class="thumbnail">
+<p><a href="../Data_Science_Projects/CS6450_proposal.html"> <img src="../Data_Science_Projects/images/Acrobat_UClLO5CYIH.png" class="thumbnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="../Data_Science_Projects/CS6450_proposal.html">
+<h3 class="no-anchor listing-title">
+Point cloud based 3d object detection
+</h3>
+<div class="listing-subtitle">
+Y. Zhou and O. Tuzel,Voxelnet, IEEE Conference on CVPR, pp.&nbsp;4490-4499, 2018.
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('3D vehicle Detection'); return false;">
+3D vehicle Detection
+</div>
+</div>
+<a href="../Data_Science_Projects/CS6450_proposal.html">
+<div class="listing-description">
+<p>PROPOSAL</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="../Data_Science_Projects/CS6450_proposal.html">
+<div class="listing-date">
+Mar 12, 2023
+</div>
+<div class="listing-author">
+Abhishek Kumar Dubey <br> cs22mds15010
+</div>
+</a>
+</div>
+</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
@@ -461,6 +554,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="abhiyantaabhishek/IITH-Data-Science" data-repo-id="R_kgDOILoB8A" data-category="Announcements" data-category-id="DIC_kwDOILoB8M4CSJcL" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script>
+<nav class="page-navigation column-page-left">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../Data_Science_Projects/CS6450_Impletemtation.html" class="pagination-link">
+        <span class="nav-page-text">Point cloud based 3d object detection</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
