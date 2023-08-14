@@ -22,8 +22,8 @@ website:
         file: index.qmd  
       - text: "{{< fa book-open-reader >}} Data Science Notes"
         file: Data_Science_Notes/index.qmd
-      - text: "{{< fa user-ninja >}} Data Science Hacks"
-        file: Data_Science_Hacks/index.qmd    
+      - text: "{{< fa user-ninja >}} Paper Study"
+        file: Paper_Study/index.qmd    
       - text: "{{< fa file-powerpoint >}} Data Science Projects"
         file: Data_Science_Projects/index.qmd           
       - href: about.qmd
@@ -34,10 +34,10 @@ website:
       - icon: linkedin
         href: https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/
   sidebar:  
-    - id: Data_science_hacks
+    - id: Paper_Study
       collapse-level: 1
       contents:
-        - auto: "Data_Science_Hacks/"
+        - auto: "Paper_Study/"
       background: "#CBE4FA"  # corr "#CBE4FA" 
     - id: Data_Science_Notes
       collapse-level: 1

@@ -63,7 +63,7 @@ Please visit other pages like
 	<button type="button" class="btn btn-primary" fdprocessedid="ds0j3o"><i class="fa-solid fa-book-open-reader"></i></button> 
 </a>   
 or 
-<a href="Data_Science_Hacks/" style="text-decoration: none"> 
+<a href="Paper_Study/" style="text-decoration: none"> 
 <button type="button" class="btn btn-success" fdprocessedid="dyj809"><i class="fa-solid fa-user-ninja"></i></button>
 </a>   
 or 

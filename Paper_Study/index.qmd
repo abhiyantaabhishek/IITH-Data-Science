@@ -1,5 +1,5 @@
 ---
-title: Data Science Hacks
+title: Paper Study
 listing:
   contents: .
   sort: "date desc"
