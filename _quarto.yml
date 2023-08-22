@@ -74,6 +74,11 @@ format:
     highlight-style: tango
     fig-align: center
     fig-responsive: true
+    # page-layout: full
+    grid:
+      # sidebar-width: 200px
+      body-width: 1000px
+      # margin-width: 200px
     
 
 

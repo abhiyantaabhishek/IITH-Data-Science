@@ -37,3 +37,21 @@
     background-attachment: fixed;
 
   }
+
+  /* img.img-fluid {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  } */
+
+    .img-fluid {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .figure-img{
+    margin-left: unset;
+    margin-right: unset;
+    display: unset;
+  }
