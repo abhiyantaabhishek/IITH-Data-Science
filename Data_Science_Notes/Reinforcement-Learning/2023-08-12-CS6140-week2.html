@@ -33,6 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-19-CS6140-week3.html" rel="next">
 <link href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-05-CS6140-week1.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -428,6 +429,12 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
  <span class="menu-text">Reinforcement Learning 2</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-19-CS6140-week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reinforcement Learning 3</span></a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -702,10 +709,10 @@ Important
 <p><span class="math display">\begin{align*}
     V(S) &amp;= \mathbb{E}\left(G_{t}|s_{t}=s\right)=\mathbb{E}\left(\sum_{k=0}^{\infty}\gamma^{k}r_{t+k+1}|s_{t}=s\right)\\
     &amp; =\mathbb{E}\left(r_{t+1}+\gamma r_{t+2}+\gamma^{2}r_{t+3}+\cdots|s_{t}=s\right)\\
-    &amp; =\underbrace{\mathbb{E}(r_{t+1}|s_{t}=s)+\sum_{k=1}^{\infty}\gamma^{k}\operatorname{E}(r_{t+k+1}|s_{t}=s)}_{\text{By linearity of conditional expectation }}  \\
+    &amp; =\underbrace{\mathbb{E}(r_{t+1}|s_{t}=s)+\sum_{k=1}^{\infty}\gamma^{k}\mathbb{E}(r_{t+k+1}|s_{t}=s)}_{\text{By linearity of conditional expectation }}  \\
     &amp; = \mathbb{E}(r_{t+1}|s_{t}=s)+\overbrace{\gamma\sum_{s^{\prime}\in{\mathcal{S}}}\underbrace{P(s^{\prime}|s)}_{\text{transition  probability}}}^{\text{take all transition in account }}  \underbrace{\sum_{k=0}^{\infty}\gamma^{k}\mathbb{E}\left(r_{t+k+1}|s_{t}=s,s_{t+1}=s^{\prime}\right)}_{\text{Count rewards again on reaching to s' form s}} \\
     &amp; = \mathbb{E}(r_{t+1}|s_{t}=s)+\gamma\sum_{s^{\prime}\in{\mathcal{S}}}P(s^{\prime}|s)\underbrace{\sum_{k=0}^{\infty}\gamma^{k}\mathbb{E}(r_{t+k+1}|s_{t+1}=s^{\prime})}_{\text{Using Markov property}}  \\
-    &amp; = \underbrace{\mathbb{E}(r_{t+1}+\gamma V(s_{t+1})|s_{t}=s)}_{\text{by the definition of value function }}
+    &amp; = \underbrace{\mathbb{E}(r_{t+1}+\gamma V(s_{t+1})|s_{t}=s)}_{\text{by the definition of value function and conditional expectation}}
 \end{align*}</span></p>
 </section>
 </section>
@@ -719,6 +726,7 @@ Important
 <h2 data-number="16" class="anchored" data-anchor-id="bellman-equation-for-markov-reward-process"><span class="header-section-number">16</span> Bellman Equation for Markov Reward Process</h2>
 <p><span class="math display">V(s)=\mathbb{E}(r_{t+1}+\gamma V(s_{t+1})|s_{t}=s)</span></p>
 <p>For any <span class="math inline">s' \in S</span> a successor state of <span class="math inline">s</span> with transition probability <span class="math inline">\mathcal P_{ss'}</span> , we can rewrite the above equation as (using definition of Expectation)</p>
+<div class="alert alert-dismissible alert-success">
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -729,8 +737,11 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<div class="alert alert-dismissible alert-danger">
 <p><span class="math display">V(s)=\mathbb{E}(r_{t+1}|s_{t}=s)+\gamma\sum_{s^{\prime}\in{\mathcal{S}}}{\mathcal{P}}_{s s^{\prime}}V(s^{\prime})</span></p>
+</div>
 <p>This is the Bellman Equation for value functions</p>
+</div>
 </div>
 </div>
 </section>
@@ -810,6 +821,23 @@ Note
 </ul></li>
 <li>When state <span class="math inline">S</span> is finite, the MDP is called finite state MDPs</li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>For finite horizon MDP and stochastic shortest path MDPs, one can use <span class="math inline">\gamma=1</span></li>
+<li>For finite and (certain) indefinite MDPs with at least absorbing state, we can take the discount factor to be 1</li>
+<li>for snake and ladder, we can’t say which state we will reach, and how many times we will reach to a state, so it is indefinite horizon MDP</li>
+</ul>
+</div>
+</div>
 <p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
@@ -1058,6 +1086,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-19-CS6140-week3.html" class="pagination-link">
+        <span class="nav-page-text">Reinforcement Learning 3</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

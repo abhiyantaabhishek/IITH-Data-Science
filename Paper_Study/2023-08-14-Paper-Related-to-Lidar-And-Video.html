@@ -8,9 +8,9 @@
 
 <meta name="author" content="Abhishek Kumar Dubey">
 <meta name="dcterms.date" content="2023-08-14">
-<meta name="description" content="LiDAR">
+<meta name="description" content="3D Object Detection for Self-Driving Cars Using Video and LiDAR, An Ablation Study">
 
-<title>LiDAR</title>
+<title>3D Object Detection for Self-Driving Cars Using Video and LiDAR, An Ablation Study</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,7 +23,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -76,10 +95,26 @@ gtag('js', new Date());
 gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="LiDAR">
-<meta property="og:description" content="LiDAR">
+<meta property="og:title" content="3D Object Detection for Self-Driving Cars Using Video and LiDAR, An Ablation Study">
+<meta property="og:description" content="3D Object Detection for Self-Driving Cars Using Video and LiDAR, An Ablation Study">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -142,7 +177,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Paper_Study/index.html">Paper Study</a></li><li class="breadcrumb-item"><a href="../Paper_Study/2023-08-14-Paper-Related-to-Lidar-And-Video.html">LiDAR</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Paper_Study/index.html">Paper Study</a></li><li class="breadcrumb-item"><a href="../Paper_Study/2023-08-14-Paper-Related-to-Lidar-And-Video.html">3D Object Detection for Self-Driving Cars Using Video and LiDAR, An Ablation Study</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -152,10 +187,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">LiDAR</h1>
+      <h1 class="title">3D Object Detection for Self-Driving Cars Using Video and LiDAR, An Ablation Study</h1>
                   <div>
         <div class="description">
-          LiDAR
+          3D Object Detection for Self-Driving Cars Using Video and LiDAR, An Ablation Study
         </div>
       </div>
                           <div class="quarto-categories">
@@ -202,7 +237,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Paper_Study/2023-08-14-Paper-Related-to-Lidar-And-Video.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">LiDAR</span></a>
+ <span class="menu-text">3D Object Detection for Self-Driving Cars Using Video and LiDAR, An Ablation Study</span></a>
   </div>
 </li>
       </ul>
@@ -213,13 +248,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#papers" id="toc-papers" class="nav-link active" data-scroll-target="#papers"><span class="header-section-number">1</span> Papers</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -227,13 +256,47 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="papers" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="papers"><span class="header-section-number">1</span> Papers</h2>
+<div class="callout callout-style-default callout-caution callout-titled" title="Citation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Citation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="citation" data-cites="DBLP:journals/sensors/SalmaneVKMDCSV23">Salmane et al. (<a href="#ref-DBLP:journals/sensors/SalmaneVKMDCSV23" role="doc-biblioref">2023</a>)</span></p>
+<p><a href="https://www.mdpi.com/1424-8220/23/6/3223">Paper link</a></p>
+</div>
+</div>
+<ul>
+<li>A 3D bounding box is represented by seven parameters <span class="citation" data-cites="DBLP:conf/cvpr/QiLWSG18">(<a href="#ref-DBLP:conf/cvpr/QiLWSG18" role="doc-biblioref">Qi et al. 2018</a>)</span>: <span class="math inline">(x,y,z,h,w,l,\theta)</span> These parameters consist of the object’s central coordinates <span class="math inline">(x,y,z)</span>, its dimensions (height, width, and length), and its orientation angle <span class="math inline">\theta</span>.</li>
+<li><span class="citation" data-cites="DBLP:conf/cvpr/Chen0SJ20">Chen et al. (<a href="#ref-DBLP:conf/cvpr/Chen0SJ20" role="doc-biblioref">2020</a>)</span> introduced a one-stage stereo-based 3D detection system that simultaneously estimates depth and identifies 3D objects using an end-to-end learning approach. They assert that their method surpasses earlier stereo-based 3D detectors and even rivals certain LiDAR-based techniques on the KITTI 3D object detection leaderboard.</li>
+<li><span class="citation" data-cites="DBLP:conf/iros/LiKW20">Li, Ku, and Waslander (<a href="#ref-DBLP:conf/iros/LiKW20" role="doc-biblioref">2020</a>)</span>, addressed the issue of significant variability in depth estimation accuracy when using a video sensor. They introduce CG-Stereo, a confidence-guided stereo 3D object detection system. This pipeline employs distinct decoders for foreground and background pixels during the depth estimation process and utilizes confidence estimation from the depth estimation network as a form of soft attention in the 3D object detection. The authors contend that their method surpasses all leading stereo-based 3D detectors on the KITTI benchmark.</li>
+<li>Another compelling approach found in scholarly work involves integrating LiDAR with a stereo camera. Such techniques leverage LiDAR’s ability to enhance the visual data captured by the camera by introducing concepts of dimension and distance pertaining to various objects within the environment. Specifically, the method outlined by <span class="citation" data-cites="DBLP:conf/cvpr/WangCGHCW19">Wang et al. (<a href="#ref-DBLP:conf/cvpr/WangCGHCW19" role="doc-biblioref">2019</a>)</span> capitalizes on the capability to recreate a 3D setting from stereo camera images. This allows for the derivation of a depth map from the stereo camera data, which is then augmented with measurements from the LiDAR sensor, such as height, width, length, and orientation angle.</li>
+</ul>
 
 
-</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-DBLP:conf/cvpr/Chen0SJ20" class="csl-entry" role="listitem">
+Chen, Yilun, Shu Liu, Xiaoyong Shen, and Jiaya Jia. 2020. <span>“<span>DSGN:</span> Deep Stereo Geometry Network for 3D Object Detection.”</span> In <em>2020 <span>IEEE/CVF</span> Conference on Computer Vision and Pattern Recognition, <span>CVPR</span> 2020, Seattle, WA, USA, June 13-19, 2020</em>, 12533–42. Computer Vision Foundation / <span>IEEE</span>. <a href="https://doi.org/10.1109/CVPR42600.2020.01255">https://doi.org/10.1109/CVPR42600.2020.01255</a>.
+</div>
+<div id="ref-DBLP:conf/iros/LiKW20" class="csl-entry" role="listitem">
+Li, Chengyao, Jason Ku, and Steven L. Waslander. 2020. <span>“Confidence Guided Stereo 3D Object Detection with Split Depth Estimation.”</span> In <em><span>IEEE/RSJ</span> International Conference on Intelligent Robots and Systems, <span>IROS</span> 2020, Las Vegas, NV, USA, October 24, 2020 - January 24, 2021</em>, 5776–83. <span>IEEE</span>. <a href="https://doi.org/10.1109/IROS45743.2020.9341188">https://doi.org/10.1109/IROS45743.2020.9341188</a>.
+</div>
+<div id="ref-DBLP:conf/cvpr/QiLWSG18" class="csl-entry" role="listitem">
+Qi, Charles R., Wei Liu, Chenxia Wu, Hao Su, and Leonidas J. Guibas. 2018. <span>“Frustum PointNets for 3D Object Detection from <span>RGB-D</span> Data.”</span> In <em>2018 <span>IEEE</span> Conference on Computer Vision and Pattern Recognition, <span>CVPR</span> 2018, Salt Lake City, UT, USA, June 18-22, 2018</em>, 918–27. Computer Vision Foundation / <span>IEEE</span> Computer Society. <a href="https://doi.org/10.1109/CVPR.2018.00102">https://doi.org/10.1109/CVPR.2018.00102</a>.
+</div>
+<div id="ref-DBLP:journals/sensors/SalmaneVKMDCSV23" class="csl-entry" role="listitem">
+Salmane, Houssam, Josué Manuel Rivera Velázquez, Louahdi Khoudour, Nguyen Anh Minh Mai, Pierre Duthon, Alain Crouzil, Guillaume Saint-Pierre, and Sergio A. Velastin. 2023. <span>“3D Object Detection for Self-Driving Cars Using Video and LiDAR: An Ablation Study.”</span> <em>Sensors</em> 23 (6): 3223. <a href="https://doi.org/10.3390/s23063223">https://doi.org/10.3390/s23063223</a>.
+</div>
+<div id="ref-DBLP:conf/cvpr/WangCGHCW19" class="csl-entry" role="listitem">
+Wang, Yan, Wei-Lun Chao, Divyansh Garg, Bharath Hariharan, Mark E. Campbell, and Kilian Q. Weinberger. 2019. <span>“Pseudo-LiDAR from Visual Depth Estimation: Bridging the Gap in 3D Object Detection for Autonomous Driving.”</span> In <em><span>IEEE</span> Conference on Computer Vision and Pattern Recognition, <span>CVPR</span> 2019, Long Beach, CA, USA, June 16-20, 2019</em>, 8445–53. Computer Vision Foundation / <span>IEEE</span>. <a href="https://doi.org/10.1109/CVPR.2019.00864">https://doi.org/10.1109/CVPR.2019.00864</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
