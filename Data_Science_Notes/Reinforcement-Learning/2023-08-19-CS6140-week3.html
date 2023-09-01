@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Abhishek Kumar Dubey">
-<meta name="dcterms.date" content="2023-08-12">
-<meta name="description" content="Markov Reward Process,Morkov Decision Process, Transition Probability, Markov Chain,Value Function, Bellman Equation">
+<meta name="dcterms.date" content="2023-08-18">
+<meta name="description" content="Value Functions with Policy, Decomposition of State Value Function, MDP with Policy, Optimal Policy, Solution to an MDP, Greedy Policy">
 
 <title>Reinforcement Learning 3</title>
 <style>
@@ -33,6 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-26-CS6140-week4.html" rel="next">
 <link href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-12-CS6140-week2.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -95,10 +96,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Reinforcement Learning 3">
-<meta property="og:description" content="Markov Reward Process,Morkov Decision Process, Transition Probability, Markov Chain,Value Function, Bellman Equation">
-<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/Reinforcement-Learning/CS6140_images/Acrobat_TLEDVUQcXo.png">
-<meta property="og:image:height" content="155">
-<meta property="og:image:width" content="466">
+<meta property="og:description" content="Value Functions with Policy, Decomposition of State Value Function, MDP with Policy, Optimal Policy, Solution to an MDP, Greedy Policy">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/Reinforcement-Learning/CS6140_images/Acrobat_9thkiyFyb5.png">
+<meta property="og:image:height" content="203">
+<meta property="og:image:width" content="271">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -174,7 +175,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <h1 class="title">Reinforcement Learning 3</h1>
                   <div>
         <div class="description">
-          Markov Reward Process,Morkov Decision Process, Transition Probability, Markov Chain,Value Function, Bellman Equation
+          Value Functions with Policy, Decomposition of State Value Function, MDP with Policy, Optimal Policy, Solution to an MDP, Greedy Policy
         </div>
       </div>
                           <div class="quarto-categories">
@@ -196,7 +197,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 12, 2023</p>
+        <p class="date">August 18, 2023</p>
       </div>
     </div>
     
@@ -434,6 +435,12 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
  <span class="menu-text">Reinforcement Learning 3</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-26-CS6140-week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reinforcement Learning 4</span></a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -460,6 +467,9 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <li><a href="#solution-to-an-mdp" id="toc-solution-to-an-mdp" class="nav-link" data-scroll-target="#solution-to-an-mdp"><span class="header-section-number">10</span> Solution to an MDP</a></li>
   <li><a href="#finding-an-optimal-policy" id="toc-finding-an-optimal-policy" class="nav-link" data-scroll-target="#finding-an-optimal-policy"><span class="header-section-number">11</span> Finding an Optimal Policy</a></li>
   <li><a href="#greedy-optimal-policy" id="toc-greedy-optimal-policy" class="nav-link" data-scroll-target="#greedy-optimal-policy"><span class="header-section-number">12</span> Greedy (Optimal) Policy</a></li>
+  <li><a href="#greedy-policy" id="toc-greedy-policy" class="nav-link" data-scroll-target="#greedy-policy"><span class="header-section-number">13</span> Greedy Policy</a></li>
+  <li><a href="#relationship-between-v_cdot-and-q_cdot" id="toc-relationship-between-v_cdot-and-q_cdot" class="nav-link" data-scroll-target="#relationship-between-v_cdot-and-q_cdot"><span class="header-section-number">14</span> Relationship between <span class="math inline">V_*(\cdot)</span> and <span class="math inline">Q_*(\cdot)</span></a></li>
+  <li><a href="#policy-iteration" id="toc-policy-iteration" class="nav-link" data-scroll-target="#policy-iteration"><span class="header-section-number">15</span> Policy Iteration</a></li>
   </ul>
 </nav>
     </div>
@@ -523,7 +533,7 @@ Note
 <p>The state-value function can be decomposed into immediate reward plus discounted value of successor state</p>
 <p><span class="math display">V^{\pi}(s)=\mathbb{E}_{\pi}(r_{t+1}+\gamma V^{\pi}(s_{t+1})|s_{t}=s)</span></p>
 <p>Expanding the expectation, with <span class="math inline">{\cal R}_{s s^{\prime}}^{a}={\cal R}(s,a,s^{\prime})</span> we get:</p>
-<p><span class="math display">\mathbb{E}_{\pi}[r_{t+1}]s_{t}=s]=\sum_{a}\pi(a|s)\sum_{s^{\prime}}{\mathcal{P}}_{s s^{\prime}}^{a}{\mathcal{R}}_{s s^{\prime}}^{a} \tag{1}</span></p>
+<p><span class="math display">\mathbb{E}_{\pi}[r_{t+1}|s_{t}=s]=\sum_{a}\pi(a|s)\sum_{s^{\prime}}{\mathcal{P}}_{s s^{\prime}}^{a}{\mathcal{R}}_{s s^{\prime}}^{a} \tag{1}</span></p>
 <p>and</p>
 <p><span class="math display">\mathbb{E}_{\pi}[\gamma V^{\pi}(s_{t+1})|s_{t}=s]=\sum_{a}\pi(a|s)\sum_{s^{\prime}}p_{s s^{\prime}}^{a}\gamma V^{\pi}(s^{\prime}) \tag{2}</span></p>
 <p>using equation <span class="math inline">(1)</span> and <span class="math inline">(2)</span> we get</p>
@@ -713,6 +723,40 @@ Note
     1 &amp;\text{if } a=\argmax_{a\in \mathcal A} Q_*(s,a) \\
     0 &amp;\text{if } \text{otherwise}
 \end{cases}</span></p>
+</section>
+<section id="greedy-policy" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="greedy-policy"><span class="header-section-number">13</span> Greedy Policy</h2>
+<p>For a given <span class="math inline">Q^\pi(\cdot,\cdot)</span>, define <span class="math inline">\pi'(s)</span> as follows</p>
+<p><span class="math display">\pi'(s) = \operatorname{greedy}(Q)= \begin{cases}
+    1 &amp;\text{if } a=\argmax_{a\in \mathcal A} Q^\pi(s,a) \\
+    0 &amp;\text{if } \text{otherwise}
+\end{cases}</span></p>
+<p>For a given <span class="math inline">V^\pi(\cdot)</span> define <span class="math inline">\pi'(s)</span> as follows</p>
+<p><span class="math display">\pi'(s) = \operatorname{greedy}(V)= \begin{cases}
+    1 &amp;\text{if } a=\arg\operatorname*{max}_{a\in A}\left[\sum_{s^{\prime}\in S}\mathcal{P}_{s s^{\prime}}^{a}\left(\mathcal{R}_{s s^{\prime}}^{a}+\gamma V^{\pi}(s^{\prime})\right)\right] \\
+    0 &amp;\text{if } \text{otherwise}
+\end{cases}</span></p>
+</section>
+<section id="relationship-between-v_cdot-and-q_cdot" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="relationship-between-v_cdot-and-q_cdot"><span class="header-section-number">14</span> Relationship between <span class="math inline">V_*(\cdot)</span> and <span class="math inline">Q_*(\cdot)</span></h2>
+<p>Using definition of <span class="math inline">V_*(s)</span> and <span class="math inline">Q_*(s,a)</span> we can arrive at the following relationship :</p>
+<p><span class="math display">V_*(s)=\max_a Q_*(s,a)</span> <span class="math display">Q_*(s,a)=\sum_{s^{\prime}\in{\mathcal{S}}}{\mathcal{P}}_{s s^{\prime}}^{a}\left[{\mathcal{R}}_{s s^{\prime}}^{a}+\gamma V_*(s^{\prime})\right]</span></p>
+<p>Explanation : <span class="math display">V_*(s)=\underbrace{\max_a}_{\substack{\text{no need to take into account all the actions} \\ \text{just take max as max is optimal}}} Q_*(s,a)</span></p>
+<p><span class="math display">Q^{\pi}(s,a)=\sum_{s^{\prime}\in{\mathcal{S}}}{\mathcal{P}}_{s s^{\prime}}^{a}\left[\underbrace{{\mathcal{R}}_{s s^{\prime}}^{a}}_{\substack{\text{reward for taking an}\\ \text{action in current state}}} +\underbrace{\gamma V_*(s^{\prime})}_{\substack{\text{follow the optimum  policy}\\ \text{from next state}}} \right]</span></p>
+</section>
+<section id="policy-iteration" class="level2" data-number="15">
+<h2 data-number="15" class="anchored" data-anchor-id="policy-iteration"><span class="header-section-number">15</span> Policy Iteration</h2>
+<p>Is there a way to arrive at <span class="math inline">\pi_*</span> starting from an arbitrary policy <span class="math inline">\pi</span>, The answer is policy iteration.</p>
+<ul>
+<li>Evaluate the policy <span class="math inline">\pi</span>
+<ul>
+<li>Compute <span class="math inline">V^{\pi}(s)=\mathbb{E}_{\pi}(r_{t+1}+\gamma r_{t+2}+\gamma^{2}r_{t+3}+\cdot\cdot\cdot\cdot\vert s_{t}=s)</span></li>
+</ul></li>
+<li>Improve the policy <span class="math inline">\pi</span>
+<ul>
+<li><span class="math inline">\pi^{\prime}(s)=\operatorname{greedy}(V^{\pi}(s))</span></li>
+</ul></li>
+</ul>
 <p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
@@ -961,6 +1005,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-26-CS6140-week4.html" class="pagination-link">
+        <span class="nav-page-text">Reinforcement Learning 4</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

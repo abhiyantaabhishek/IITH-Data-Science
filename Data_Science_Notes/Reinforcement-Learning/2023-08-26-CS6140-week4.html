@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Abhishek Kumar Dubey">
-<meta name="dcterms.date" content="2022-08-06">
-<meta name="description" content="Training Error, Generalization Error">
+<meta name="dcterms.date" content="2023-08-26">
+<meta name="description" content="Value Functions with Policy, Decomposition of State Value Function, MDP with Policy, Optimal Policy, Solution to an MDP, Greedy Policy">
 
-<title>Machine Learning 1</title>
+<title>Reinforcement Learning 4</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html" rel="next">
-<link href="../../Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html" rel="prev">
+<link href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-19-CS6140-week3.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -95,11 +94,11 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Machine Learning 1">
-<meta property="og:description" content="Training Error, Generalization Error">
-<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/Machine-Learning/CS5590_images/MATLAB_ljcLgT0iTJ.png">
-<meta property="og:image:height" content="308">
-<meta property="og:image:width" content="474">
+<meta property="og:title" content="Reinforcement Learning 4">
+<meta property="og:description" content="Value Functions with Policy, Decomposition of State Value Function, MDP with Policy, Optimal Policy, Solution to an MDP, Greedy Policy">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/Reinforcement-Learning/CS6140_images/Acrobat_9thkiyFyb5.png">
+<meta property="og:image:height" content="203">
+<meta property="og:image:width" content="271">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -162,7 +161,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html">Machine Learning</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html">Machine Learning 1</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-05-CS6140-week1.html">Reinforcement Learning</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-26-CS6140-week4.html">Reinforcement Learning 4</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -172,14 +171,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Machine Learning 1</h1>
+      <h1 class="title">Reinforcement Learning 4</h1>
                   <div>
         <div class="description">
-          Training Error, Generalization Error
+          Value Functions with Policy, Decomposition of State Value Function, MDP with Policy, Optimal Policy, Solution to an MDP, Greedy Policy
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Machine Learning</div>
+                <div class="quarto-category">Reinforcement Learning</div>
               </div>
                   </div>
   </div>
@@ -197,7 +196,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">August 6, 2022</p>
+        <p class="date">August 26, 2023</p>
       </div>
     </div>
     
@@ -286,16 +285,16 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Data_Science_Notes/Machine-Learning/2022-08-06-CS5590-week1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Machine Learning 1</span></a>
   </div>
 </li>
@@ -410,13 +409,13 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">Reinforcement Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-05-CS6140-week1.html" class="sidebar-item-text sidebar-link">
@@ -437,7 +436,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-26-CS6140-week4.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-26-CS6140-week4.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Reinforcement Learning 4</span></a>
   </div>
 </li>
@@ -455,12 +454,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#types-of-ml" id="toc-types-of-ml" class="nav-link active" data-scroll-target="#types-of-ml"><span class="header-section-number">1</span> Types of ML</a></li>
-  <li><a href="#iid-assumption" id="toc-iid-assumption" class="nav-link" data-scroll-target="#iid-assumption"><span class="header-section-number">2</span> IID Assumption</a></li>
-  <li><a href="#types-of-models" id="toc-types-of-models" class="nav-link" data-scroll-target="#types-of-models"><span class="header-section-number">3</span> Types of Models</a></li>
-  <li><a href="#classifier-evaluation" id="toc-classifier-evaluation" class="nav-link" data-scroll-target="#classifier-evaluation"><span class="header-section-number">4</span> Classifier evaluation</a></li>
-  <li><a href="#stratified-sampling" id="toc-stratified-sampling" class="nav-link" data-scroll-target="#stratified-sampling"><span class="header-section-number">5</span> Stratified sampling</a></li>
-  <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection"><span class="header-section-number">6</span> Model Selection</a></li>
+  <li><a href="#exact-method-value-and-policy-iteration" id="toc-exact-method-value-and-policy-iteration" class="nav-link active" data-scroll-target="#exact-method-value-and-policy-iteration"><span class="header-section-number">1</span> Exact method: Value and policy Iteration</a></li>
   </ul>
 </nav>
     </div>
@@ -470,85 +464,10 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="types-of-ml" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="types-of-ml"><span class="header-section-number">1</span> Types of ML</h2>
-<ul>
-<li>Supervised Learning
-<ul>
-<li>classification, regression</li>
-</ul></li>
-<li>Unsupervised learning</li>
-<li>Other settings of ML
-<ul>
-<li>Reinforcement learning</li>
-<li>Semi-supervised learning</li>
-<li>Active learning,Transfer learning,Structured learning</li>
-</ul></li>
-<li>Dimensionality Reduction (unsupervised Learning)
-<ul>
-<li>Large sample size is required for high dimensional data</li>
-<li>Query accuracy and efficiency degrade rapidly as the dimension increases</li>
-<li>strategies:
-<ul>
-<li>Feature reduction, Feature selection, Manifold learning, Kernel learning</li>
-</ul></li>
-</ul></li>
-</ul>
-<p><img src="CS5590_images/MATLAB_z9KdPL77lT.png" class="img-fluid"></p>
-</section>
-<section id="iid-assumption" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="iid-assumption"><span class="header-section-number">2</span> IID Assumption</h2>
-<ul>
-<li>Identically independently distributed : This is the assumption that the training data and testing data comes from the same distribution</li>
-</ul>
-</section>
-<section id="types-of-models" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="types-of-models"><span class="header-section-number">3</span> Types of Models</h2>
-<ul>
-<li>Induction : Model Learns by Induction, ( creating it’s own rules for example, if we do extensive research while buying mobile, we create set rules, it is called induction).</li>
-<li>Transductions: Model learns from references ( for example, if we ask our friends about mobile and we buy according to their suggestion, it is called Transduction).</li>
-<li>Online : data could be a stream, data keeps coming over time.</li>
-<li>Offline: data is already acquired and trained offline.</li>
-<li>Generative: Learns the distribution, the model learns joint probability distribution.</li>
-<li>Discriminative:Learns to discriminate without learning distribution.</li>
-<li>Parametric : The model have parameters like <span class="math inline">\mu</span> and <span class="math inline">\sigma</span></li>
-<li>Non parametric: The model doesn’t have parameters, as in K nearest neighbor (KNN)</li>
-</ul>
-</section>
-<section id="classifier-evaluation" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="classifier-evaluation"><span class="header-section-number">4</span> Classifier evaluation</h2>
-<p><img src="CS5590_images/MATLAB_ljcLgT0iTJ.png" class="img-fluid"></p>
-<ul>
-<li>Training Error
-<ul>
-<li>Not very useful</li>
-<li>Relatively easy to obtain low error</li>
-<li><span class="math inline">E_{\mathrm{train}} =\frac{1}{n}\sum_{i=1}^n \mathrm{error}\left(f_D \left(X_i \right),y_i \right)</span></li>
-</ul></li>
-<li>Generalization Error
-<ul>
-<li>Measure of how well do we do on unseen data</li>
-<li><span class="math inline">E_{\mathrm{gen}} =\int \mathrm{error}\left(f_D \left(X\right),y\right)p\left(y,X\right)\mathrm{dX}</span></li>
-</ul></li>
-</ul>
-</section>
-<section id="stratified-sampling" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="stratified-sampling"><span class="header-section-number">5</span> Stratified sampling</h2>
-<ul>
-<li>First stratify instances by class, then randomly select instances from each class proportionally</li>
-<li>It ensures that the proportion of each class remains same in training and validation set.</li>
-</ul>
-</section>
-<section id="model-selection" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="model-selection"><span class="header-section-number">6</span> Model Selection</h2>
-<ul>
-<li>Re-Substitution : not useful as it suggests to re- substitute the train data for validation as well</li>
-<li>K - Fold cross-validation : Divide the data in K fold using stratified sampling, and the select some set for training and some for validation in each iteration.</li>
-<li>Leave-one-out
-<ul>
-<li>N-fold cross-validation</li>
-</ul></li>
-</ul>
+<section id="exact-method-value-and-policy-iteration" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="exact-method-value-and-policy-iteration"><span class="header-section-number">1</span> Exact method: Value and policy Iteration</h2>
+<p>Value Iteration</p>
+<p>tail of optimal shuld be optimal</p>
 <p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
@@ -792,14 +711,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning 9</span>
+      <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-19-CS6140-week3.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Reinforcement Learning 3</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Data_Science_Notes/Machine-Learning/2022-08-20-CS5590-week2.html" class="pagination-link">
-        <span class="nav-page-text">Machine Learning 2</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

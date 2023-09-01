@@ -1,23 +1,24 @@
 [
   {
-    "listing": "/Paper_Study/index.html",
-    "items": [
-      "/Paper_Study/2023-08-14-Paper-Related-to-Lidar-And-Video.html"
-    ]
+    "listing": "/index.html",
+    "items": []
   },
   {
     "listing": "/Data_Science_Projects/index.html",
     "items": []
   },
   {
-    "listing": "/index.html",
-    "items": []
+    "listing": "/Paper_Study/index.html",
+    "items": [
+      "/Paper_Study/2023-08-14-Paper-Related-to-Lidar-And-Video.html"
+    ]
   },
   {
     "listing": "/Data_Science_Notes/index.html",
     "items": [
-      "/Data_Science_Notes/Reinforcement-Learning/2023-08-12-CS6140-week2.html",
+      "/Data_Science_Notes/Reinforcement-Learning/2023-08-26-CS6140-week4.html",
       "/Data_Science_Notes/Reinforcement-Learning/2023-08-19-CS6140-week3.html",
+      "/Data_Science_Notes/Reinforcement-Learning/2023-08-12-CS6140-week2.html",
       "/Data_Science_Notes/Reinforcement-Learning/2023-08-05-CS6140-week1.html",
       "/Data_Science_Notes/Deep-Learning/2023-04-15-CS5480-week9.html",
       "/Data_Science_Notes/Deep-Learning/2023-04-01-CS5480-week8.html",
