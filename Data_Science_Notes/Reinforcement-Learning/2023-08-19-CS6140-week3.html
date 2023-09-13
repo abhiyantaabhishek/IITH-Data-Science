@@ -441,6 +441,18 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
  <span class="menu-text">Reinforcement Learning 4</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-09-02-CS6140-week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reinforcement Learning 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-09-09-CS6140-week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reinforcement Learning 6</span></a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -742,7 +754,7 @@ Note
 <p>Using definition of <span class="math inline">V_*(s)</span> and <span class="math inline">Q_*(s,a)</span> we can arrive at the following relationship :</p>
 <p><span class="math display">V_*(s)=\max_a Q_*(s,a)</span> <span class="math display">Q_*(s,a)=\sum_{s^{\prime}\in{\mathcal{S}}}{\mathcal{P}}_{s s^{\prime}}^{a}\left[{\mathcal{R}}_{s s^{\prime}}^{a}+\gamma V_*(s^{\prime})\right]</span></p>
 <p>Explanation : <span class="math display">V_*(s)=\underbrace{\max_a}_{\substack{\text{no need to take into account all the actions} \\ \text{just take max as max is optimal}}} Q_*(s,a)</span></p>
-<p><span class="math display">Q^{\pi}(s,a)=\sum_{s^{\prime}\in{\mathcal{S}}}{\mathcal{P}}_{s s^{\prime}}^{a}\left[\underbrace{{\mathcal{R}}_{s s^{\prime}}^{a}}_{\substack{\text{reward for taking an}\\ \text{action in current state}}} +\underbrace{\gamma V_*(s^{\prime})}_{\substack{\text{follow the optimum  policy}\\ \text{from next state}}} \right]</span></p>
+<p><span class="math display">Q_*(s,a)=\sum_{s^{\prime}\in{\mathcal{S}}}{\mathcal{P}}_{s s^{\prime}}^{a}\left[\underbrace{{\mathcal{R}}_{s s^{\prime}}^{a}}_{\substack{\text{reward for taking an}\\ \text{action in current state}}} +\underbrace{\gamma V_*(s^{\prime})}_{\substack{\text{follow the optimum  policy}\\ \text{from next state}}} \right]</span></p>
 </section>
 <section id="policy-iteration" class="level2" data-number="15">
 <h2 data-number="15" class="anchored" data-anchor-id="policy-iteration"><span class="header-section-number">15</span> Policy Iteration</h2>

@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Abhishek Kumar Dubey">
-<meta name="dcterms.date" content="2022-09-03">
-<meta name="description" content="System of equation">
+<meta name="dcterms.date" content="2023-09-02">
+<meta name="description" content="Value Functions with Policy, Decomposition of State Value Function, MDP with Policy, Optimal Policy, Solution to an MDP, Greedy Policy">
 
-<title>Linear Algebra 1</title>
+<title>Reinforcement Learning 5</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html" rel="next">
-<link href="../../Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html" rel="prev">
+<link href="../../Data_Science_Notes/Reinforcement-Learning/2023-09-09-CS6140-week6.html" rel="next">
+<link href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-26-CS6140-week4.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -95,11 +95,11 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Linear Algebra 1">
-<meta property="og:description" content="System of equation">
-<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/Mathematics/CS6660_images/Acrobat_DdKtM5v6Sg.png">
-<meta property="og:image:height" content="248">
-<meta property="og:image:width" content="463">
+<meta property="og:title" content="Reinforcement Learning 5">
+<meta property="og:description" content="Value Functions with Policy, Decomposition of State Value Function, MDP with Policy, Optimal Policy, Solution to an MDP, Greedy Policy">
+<meta property="og:image" content="http://localhost:4200/Data_Science_Notes/Reinforcement-Learning/CS6140_images/Acrobat_9thkiyFyb5.png">
+<meta property="og:image:height" content="203">
+<meta property="og:image:width" content="271">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -162,7 +162,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html">Mathematics</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html">Linear Algebra 1</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-05-CS6140-week1.html">Reinforcement Learning</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Reinforcement-Learning/2023-09-02-CS6140-week5.html">Reinforcement Learning 5</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -172,14 +172,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Linear Algebra 1</h1>
+      <h1 class="title">Reinforcement Learning 5</h1>
                   <div>
         <div class="description">
-          System of equation
+          Value Functions with Policy, Decomposition of State Value Function, MDP with Policy, Optimal Policy, Solution to an MDP, Greedy Policy
         </div>
       </div>
                           <div class="quarto-categories">
-                <div class="quarto-category">Linear Algebra</div>
+                <div class="quarto-category">Reinforcement Learning</div>
               </div>
                   </div>
   </div>
@@ -197,7 +197,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 3, 2022</p>
+        <p class="date">September 2, 2023</p>
       </div>
     </div>
     
@@ -351,13 +351,13 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
  <span class="menu-text">Mathematics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html" class="sidebar-item-text sidebar-link">
@@ -372,7 +372,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linear Algebra 1</span></a>
   </div>
 </li>
@@ -410,13 +410,13 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">Reinforcement Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-05-CS6140-week1.html" class="sidebar-item-text sidebar-link">
@@ -443,7 +443,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-09-02-CS6140-week5.html" class="sidebar-item-text sidebar-link">
+  <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-09-02-CS6140-week5.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Reinforcement Learning 5</span></a>
   </div>
 </li>
@@ -467,7 +467,19 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#system-of-linear-equations" id="toc-system-of-linear-equations" class="nav-link active" data-scroll-target="#system-of-linear-equations"><span class="header-section-number">1</span> system of Linear equations</a></li>
+  <li><a href="#dp-algorithms-a-closer-look" id="toc-dp-algorithms-a-closer-look" class="nav-link active" data-scroll-target="#dp-algorithms-a-closer-look"><span class="header-section-number">1</span> DP Algorithms: A closer Look</a>
+  <ul>
+  <li><a href="#terminology" id="toc-terminology" class="nav-link" data-scroll-target="#terminology"><span class="header-section-number">1.1</span> Terminology</a></li>
+  <li><a href="#schematic-view" id="toc-schematic-view" class="nav-link" data-scroll-target="#schematic-view"><span class="header-section-number">1.2</span> Schematic View</a></li>
+  <li><a href="#drawbacks-of-dp-algorithms" id="toc-drawbacks-of-dp-algorithms" class="nav-link" data-scroll-target="#drawbacks-of-dp-algorithms"><span class="header-section-number">1.3</span> Drawbacks of DP Algorithms</a></li>
+  </ul></li>
+  <li><a href="#model-free-prediction-monte-carlo-methods" id="toc-model-free-prediction-monte-carlo-methods" class="nav-link" data-scroll-target="#model-free-prediction-monte-carlo-methods"><span class="header-section-number">2</span> Model Free Prediction : Monte Carlo Methods</a>
+  <ul>
+  <li><a href="#mc-key-idea" id="toc-mc-key-idea" class="nav-link" data-scroll-target="#mc-key-idea"><span class="header-section-number">2.1</span> MC: key Idea</a></li>
+  <li><a href="#mc-policy-evaluation" id="toc-mc-policy-evaluation" class="nav-link" data-scroll-target="#mc-policy-evaluation"><span class="header-section-number">2.2</span> MC: Policy Evaluation</a></li>
+  <li><a href="#mc-evaluation-schematics" id="toc-mc-evaluation-schematics" class="nav-link" data-scroll-target="#mc-evaluation-schematics"><span class="header-section-number">2.3</span> MC: Evaluation schematics</a></li>
+  <li><a href="#first-visit-monte-carlo-policy-evaluation" id="toc-first-visit-monte-carlo-policy-evaluation" class="nav-link" data-scroll-target="#first-visit-monte-carlo-policy-evaluation"><span class="header-section-number">2.4</span> First-visit Monte Carlo Policy Evaluation</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -477,40 +489,70 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
-<section id="system-of-linear-equations" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="system-of-linear-equations"><span class="header-section-number">1</span> system of Linear equations</h2>
+<section id="dp-algorithms-a-closer-look" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="dp-algorithms-a-closer-look"><span class="header-section-number">1</span> DP Algorithms: A closer Look</h2>
+<section id="terminology" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="terminology"><span class="header-section-number">1.1</span> Terminology</h3>
+<p>Let us consider the policy evaluation formula <br><br></p>
+<p><span class="math display">V_{k+1}(s)\leftarrow\sum_{a}\pi(s,a)\sum_{s^{\prime}}\mathcal{P}_{s s^{\prime}}^{a}\left[\mathcal{R}_{s s^{\prime}}^{a}+\gamma V_{k}(s^{\prime})\right]</span></p>
+<p><img src="CS6140_images/2023-09-03_06-38.png" class="img-fluid"></p>
+</section>
+<section id="schematic-view" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="schematic-view"><span class="header-section-number">1.2</span> Schematic View</h3>
+<p><img src="CS6140_images/2023-09-03_06-40.png" class="img-fluid"></p>
+<p><span class="math display">V(s) = \sum_{a}\pi(s,a)\sum_{s^{\prime}}\mathcal{P}_{s s^{\prime}}^{a}\left[\mathcal{R}_{s s^{\prime}}^{a}+\gamma V(s^{\prime})\right]</span></p>
+<p><span class="math display">V_{k+1}(s)\leftarrow\sum_{a}\pi(s,a)\sum_{s^{\prime}}\mathcal{P}_{s s^{\prime}}^{a}\left[\mathcal{R}_{s s^{\prime}}^{a}+\gamma V_{k}(s^{\prime})\right]</span></p>
+</section>
+<section id="drawbacks-of-dp-algorithms" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="drawbacks-of-dp-algorithms"><span class="header-section-number">1.3</span> Drawbacks of DP Algorithms</h3>
 <ul>
-<li>Let us see some Systems of linear equations<br>
+<li>Requires full prior knowledge of the dynamics of the environment</li>
+<li>Can be implemented only on small or medium sized discrete state spaces
 <ul>
-<li>A company produce products <span class="math inline">N_1, \dots ,N_n</span> for which resources <span class="math inline">R_1, \dots ,R_m</span> are required. To produce a unit of porduct <span class="math inline">N_j, a_{ij}</span> units of resources <span class="math inline">R_i</span> are needed, where <span class="math inline">i=1,\dots ,m</span> and <span class="math inline">j=1, \dots ,n</span>. <br> The objective is to find an optimal production plan, i.e., a plan of how many units <span class="math inline">x_j</span> of product <span class="math inline">N_j</span> should be produced if a total of <span class="math inline">b_i</span> units of resource <span class="math inline">R_i</span> are available and (ideally) no resources are left over.<br> write system of equation of the same <span class="math display">\left\lbrace \begin{array}{c}
-  a_{11}x_1 + \dots +a_{1n}x_n =b_1\\
-  \vdots \\
-  a_{m1}x_1+\dots +a_{mn}x_n=b_n
-  \end{array}\right.</span></li>
-<li>John received an inheritance of <span class="math inline">\$12000</span> that he divided in three parts and invested in three ways: in a money market fund paying <span class="math inline">3\%</span> annual interest; in municipal bonds paying <span class="math inline">4\%</span> of annual interest; and in mutual fund paying <span class="math inline">7\%</span> of interest, john invested <span class="math inline">\$4,000</span> more in mutual funds than in municipal bonds. He earned <span class="math inline">\$670</span> in interest the first year.How much did john invest in each type of found <span class="math display">\left\lbrace \begin{array}{c}
-  x+y+z=12000\\
-  0.03x+0.04y+0.07z=670 \\
-  -x+z=4000
-  \end{array}\right.\\
-   </span></li>
-<li>solution of above question: <span class="math inline">x=3500,y=1000,z=7500</span></li>
+<li>For large problems, DP suffers from Bellman’s curse of dimensionality</li>
+</ul></li>
+<li>DP uses full width back-ups
+<ul>
+<li>Every successor state and action is considered</li>
 </ul></li>
 </ul>
-<p><img src="CS6660_images/chrome_eVuQqkmGsE.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="model-free-prediction-monte-carlo-methods" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="model-free-prediction-monte-carlo-methods"><span class="header-section-number">2</span> Model Free Prediction : Monte Carlo Methods</h2>
+<section id="mc-key-idea" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="mc-key-idea"><span class="header-section-number">2.1</span> MC: key Idea</h3>
+<p><span class="math display">\begin{align*}
+  V^{\pi}(s)\quad &amp; \stackrel{\mathrm{def}}{=}\quad\mathbb{E}_{\pi}(G_{t}|s_{t}=s)=\mathbb{E}_{\pi}\left(\sum_{k=0}^{\infty}\gamma^{k}r_{t+k+1}|s_{t}=s\right)  \\
+  &amp;= \quad \mathbb E_\pi[r_{t+1}, \gamma V^\pi (s_{t+1})|s_t=S]
+\end{align*}</span></p>
 <ul>
-<li><p>If there are more variables than equations than there <strong>might be</strong> infinitely many solutions.</p></li>
-<li><p>If <span class="math inline">AX=b</span> has infinitely many solutions then to find other solutions we find <span class="math inline">Y</span> such that <span class="math inline">AY=b</span>, then we can write <span class="math inline">A(X+Y)=b</span> as <span class="math inline">A(X+Y)=AX+AY=AX</span> because <span class="math inline">AY=0</span> here, <span class="math inline">X+Y</span> is another solution here.<br> If <span class="math inline">AX=b</span> and <span class="math inline">AY=0</span> then <span class="math inline">A(X+Y)=b</span></p></li>
-<li><p>Particular and general solutions</p>
-<ul>
-<li><span class="math inline">1</span>. Find a particular solution to <span class="math inline">AX=b</span></li>
-<li><span class="math inline">2</span>. Find all the solutions to <span class="math inline">AX=0</span></li>
-<li><span class="math inline">3</span>. Combine the solution from step <span class="math inline">1</span> and <span class="math inline">2</span> to get the general solution</li>
-</ul></li>
-<li><p>For Example, consider <br><br> <span class="math inline">{\left[\begin{array}{l l l}{1}&amp;{0}&amp;{8}&amp;{-4}\\ {0}&amp;{1}&amp;{2}&amp;{12}\end{array}\right]} {\left[\begin{array}{l}{x_1}\\ {x_2}\end{array}\right]}={\left[\begin{array}{l}{42}\\ {8}\end{array}\right]}</span><br><br> solution for <span class="math inline">AX=b</span> (particular solution) <br><br> <span class="math inline">{\left[\begin{array}{l l l}{1}&amp;{0}&amp;{8}&amp;{-4}\\ {0}&amp;{1}&amp;{2}&amp;{12}\end{array}\right]} {\left[\begin{array}{l}{x_1}\\ {x_2}\end{array}\right]}={\left[\begin{array}{l}{48}\\ {8}\end{array}\right]}</span><br><br> is given by <br><br> <span class="math inline">{\left[\begin{array}{l}{x_1}\\ {x_2}\end{array}\right]}={\left[\begin{array}{l}{42}\\ {8}\end{array}\right]}</span><br><br> Now we find solution for <span class="math inline">AX=0</span> (general solution )<br><br> <span class="math inline">{\left[\begin{array}{l l l}{1}&amp;{0}&amp;{8}&amp;{-4}\\ {0}&amp;{1}&amp;{2}&amp;{12}\end{array}\right]} {\left[\begin{array}{l}{x_1}\\ {x_2}\end{array}\right]}={\left[\begin{array}{l}{0}\\ {0}\end{array}\right]}</span><br><br> We can find that there are two vectors which satisfy it <br><br> <span class="math inline">{\left[\begin{array}{l}{x_1}\\ {x_2}\\ {x_3}\\ {x_4} \end{array}\right]}={\left[\begin{array}{l}{8}\\ {2}\\ {-1}\\ {0}\end{array}\right]}</span><br><br> <span class="math inline">{\left[\begin{array}{l}{x_1}\\ {x_2}\\ {x_3}\\ {x_4} \end{array}\right]}={\left[\begin{array}{l}{-4}\\ {12}\\ {0}\\ {-1}\end{array}\right]}</span><br><br> We can represent the final solution by combining particular and general solution<br><br> <span class="math display">\left\{x\in\mathbb{R}^{4}:x= {\left[\begin{array}{r}{42}\\ {8}\\ {0}\\ {0} \end{array}\right]}    + \lambda_{1}{\left[\begin{array}{r}{8}\\ {2}\\ {-1}\\ {0} \end{array}\right]}   + \lambda_{2}{\left[\begin{array}{r}{-4}\\ {12}\\ {0}\\ {-1} \end{array}\right]},\;\;\ \lambda_{1},\lambda_{2}\in\mathbb{R}\right\}</span></p></li>
+<li>To estimate the expectations use samples</li>
 </ul>
-<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Srijith, IIT Hyderabad }}}}</span></p>
+</section>
+<section id="mc-policy-evaluation" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="mc-policy-evaluation"><span class="header-section-number">2.2</span> MC: Policy Evaluation</h3>
+<ul>
+<li>Goal : Evaluate <span class="math inline">V^\pi (s)</span> using experiences (or trajectories) under policy <span class="math inline">\pi</span> <span class="math display">s_0,a_0,r_0,s_1,a_1,r_1,\cdots,s_T</span></li>
+<li>Recall that <span class="math display">V^{\pi}(s) =\mathbb{E}_{\pi}(G_{t}|s_{t}=s)=\color{red}\mathbb{E}_{\pi}\left(\sum_{k=0}^{\infty}\gamma^{k}r_{t+k+1}|s_{t}=s\right) </span></li>
+<li>The idea is to calculate sample mean return <span class="math inline">(G_t)</span> starting from state <span class="math inline">s</span> instead of expected mean return.</li>
+</ul>
+</section>
+<section id="mc-evaluation-schematics" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="mc-evaluation-schematics"><span class="header-section-number">2.3</span> MC: Evaluation schematics</h3>
+<p><img src="CS6140_images/2023-09-03_07-23.png" class="img-fluid"></p>
+<ul>
+<li>Use <span class="math inline">G_1</span> to update <span class="math inline">V^\pi(s_1)</span></li>
+<li>Use <span class="math inline">G_2</span> to update <span class="math inline">V^\pi(s_2)</span></li>
+<li>Use <span class="math inline">G_3</span> to update <span class="math inline">V^\pi(s_3)</span></li>
+</ul>
+</section>
+<section id="first-visit-monte-carlo-policy-evaluation" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="first-visit-monte-carlo-policy-evaluation"><span class="header-section-number">2.4</span> First-visit Monte Carlo Policy Evaluation</h3>
+<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -751,13 +793,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Data_Science_Notes/Mathematics/2022-08-13-CS6660-week2.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Probability Theory 2</span>
+      <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-08-26-CS6140-week4.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Reinforcement Learning 4</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html" class="pagination-link">
-        <span class="nav-page-text">Probability Theory 3</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-09-09-CS6140-week6.html" class="pagination-link">
+        <span class="nav-page-text">Reinforcement Learning 6</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
