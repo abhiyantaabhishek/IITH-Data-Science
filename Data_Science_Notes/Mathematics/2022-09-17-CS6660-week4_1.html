@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -25,7 +25,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -36,7 +36,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +87,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -96,6 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -111,7 +118,7 @@ gtag('js', new Date());
 gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -126,7 +133,34 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Probability Theory 3">
@@ -139,73 +173,73 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../logo.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../Data_Science_Notes/index.html" rel="" target="" aria-current="page">
- <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Notes</span></a>
+    <a class="nav-link active" href="../../Data_Science_Notes/index.html" aria-current="page"> 
+<span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Notes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Paper_Study/index.html" rel="" target="">
- <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Paper Study</span></a>
+    <a class="nav-link" href="../../Paper_Study/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Paper Study</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Data_Science_Projects/index.html" rel="" target="">
- <span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Data Science Projects</span></a>
+    <a class="nav-link" href="../../Data_Science_Projects/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Data Science Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/abhiyantaabhishek" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html">Mathematics</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html">Probability Theory 3</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html">Mathematics</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html">Probability Theory 3</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Mathematics/2022-08-06-CS6660-week1.html">Mathematics</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_1.html">Probability Theory 3</a></li></ol></nav>
       <h1 class="title">Probability Theory 3</h1>
                   <div>
         <div class="description">
@@ -241,23 +275,23 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../Data_Science_Notes/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Science Notes</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Deep Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -320,9 +354,9 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -385,9 +419,9 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Mathematics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -444,9 +478,9 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Reinforcement Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -487,6 +521,12 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
  <span class="menu-text">Reinforcement Learning 6</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-09-16-CS6140-week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reinforcement Learning 6</span></a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -494,7 +534,7 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -504,17 +544,17 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
   <li><a href="#bernoulli-binomial" id="toc-bernoulli-binomial" class="nav-link active" data-scroll-target="#bernoulli-binomial"><span class="header-section-number">1</span> Bernoulli, Binomial</a>
   <ul>
   <li><a href="#expectation-displaystyle-ex-np" id="toc-expectation-displaystyle-ex-np" class="nav-link" data-scroll-target="#expectation-displaystyle-ex-np"><span class="header-section-number">1.1</span> Expectation <span class="math inline">\displaystyle EX =np</span></a></li>
-  <li><a href="#variance-displaystyle-mathrmvar-x-np1-p" id="toc-variance-displaystyle-mathrmvar-x-np1-p" class="nav-link" data-scroll-target="#variance-displaystyle-mathrmvar-x-np1-p"><span class="header-section-number">1.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X = np(1-p)</span></a></li>
+  <li><a href="#variance-displaystyle-mathrmvar-x-np1-p" id="toc-variance-displaystyle-mathrmvar-x-np1-p" class="nav-link" data-scroll-target="#variance-displaystyle-mathrmvar-x-np1-p"><span class="header-section-number">1.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X  =  np(1-p)</span></a></li>
   </ul></li>
   <li><a href="#poisson" id="toc-poisson" class="nav-link" data-scroll-target="#poisson"><span class="header-section-number">2</span> Poisson</a>
   <ul>
   <li><a href="#expectation-displaystyle-ex-lambda" id="toc-expectation-displaystyle-ex-lambda" class="nav-link" data-scroll-target="#expectation-displaystyle-ex-lambda"><span class="header-section-number">2.1</span> Expectation <span class="math inline">\displaystyle EX =\lambda</span></a></li>
-  <li><a href="#variance-displaystyle-mathrmvar-x-lambda" id="toc-variance-displaystyle-mathrmvar-x-lambda" class="nav-link" data-scroll-target="#variance-displaystyle-mathrmvar-x-lambda"><span class="header-section-number">2.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X = \lambda</span></a></li>
+  <li><a href="#variance-displaystyle-mathrmvar-x-lambda" id="toc-variance-displaystyle-mathrmvar-x-lambda" class="nav-link" data-scroll-target="#variance-displaystyle-mathrmvar-x-lambda"><span class="header-section-number">2.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X  = \lambda</span></a></li>
   </ul></li>
   <li><a href="#geometric" id="toc-geometric" class="nav-link" data-scroll-target="#geometric"><span class="header-section-number">3</span> Geometric</a>
   <ul>
   <li><a href="#expectation-displaystyle-ex-frac1p" id="toc-expectation-displaystyle-ex-frac1p" class="nav-link" data-scroll-target="#expectation-displaystyle-ex-frac1p"><span class="header-section-number">3.1</span> Expectation <span class="math inline">\displaystyle EX =\frac{1}{p}</span></a></li>
-  <li><a href="#variance-displaystyle-mathrmvar-x-frac1-pp2" id="toc-variance-displaystyle-mathrmvar-x-frac1-pp2" class="nav-link" data-scroll-target="#variance-displaystyle-mathrmvar-x-frac1-pp2"><span class="header-section-number">3.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X = \frac{1-p}{p^2}</span></a></li>
+  <li><a href="#variance-displaystyle-mathrmvar-x-frac1-pp2" id="toc-variance-displaystyle-mathrmvar-x-frac1-pp2" class="nav-link" data-scroll-target="#variance-displaystyle-mathrmvar-x-frac1-pp2"><span class="header-section-number">3.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X  = \frac{1-p}{p^2}</span></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -525,13 +565,14 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 
 
 
+
 <section id="bernoulli-binomial" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="bernoulli-binomial"><span class="header-section-number">1</span> Bernoulli, Binomial</h2>
 <ul>
 <li>Definition: <br> Suppose that <span class="math inline">n</span> independent trails are performed, each succeeding with probability <span class="math inline">p</span>. Let <span class="math inline">X</span> count the number of success within the <span class="math inline">n</span> trails. Then <span class="math inline">X</span> has the Binomial distribution with parameters <span class="math inline">n</span> and <span class="math inline">p</span> of, in short <span class="math inline">X~\mathrm{Binom}\left(n,p\right)</span><br> <span class="math inline">\displaystyle p\left(i\right)=P\left\lbrace X=i\right\rbrace = {n \choose i} \times p^i \times {\left(1-p\right)}^{n-i} ,\;\;\;\;i=0,1,\ldotp \ldotp \ldotp \ldotp ,n</span><br></li>
 </ul>
-<div class="cell" data-execution_count="90">
-<details>
+<div id="cell-3" class="cell" data-execution_count="90">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> math</span>
@@ -553,7 +594,11 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <span id="cb1-18"><a href="#cb1-18"></a>plt.legend()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="2022-09-17-CS6660-week4_1_files/figure-html/cell-2-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="2022-09-17-CS6660-week4_1_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <ul>
@@ -568,25 +613,29 @@ gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 <ul>
 <li><span class="math inline">\boxed {EX = np}</span><br><br>
 <ul>
-<li>proof (using trick): <br><br> Trick : <span class="math inline">\displaystyle i=\frac{d}{dt}{{t}}^{i}{\Big|}_{t=1}\,</span> <br><br> <span class="math inline">\displaystyle EX =\sum_{i=0}^n {n \choose i} \times i \times p^i \times (1-p)^{n-i}</span> <br><br> using the trick we get <br><br> <span class="math inline">\displaystyle EX =\frac{d}{dt} \left( \sum_{i=0}^n {n \choose i} \times t^{i} \times p^i \times (1-p)^{n-i} \right) {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle EX =\frac{d}{dt} \left( \sum_{i=0}^n {n \choose i} \times {(tp)}^{i} \times (1-p)^{n-i} \right) {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle EX =\frac{d}{dt} \left( tp+1-p \right)^n {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle EX =n \left( tp+1-p \right)^{n-1}\cdot p {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle EX =n p</span> <br><br> <br><br><br>
+<li>proof (using trick): <br><br> Trick : <span class="math inline">\displaystyle i=\frac{d}{dt}{{t}}^{i}{\Big|}_{t=1}\,</span> <br><br> <span class="math inline">\displaystyle EX =\sum_{i=0}^n {n \choose i} \times i  \times p^i \times (1-p)^{n-i}</span> <br><br> using the trick we get <br><br> <span class="math inline">\displaystyle EX =\frac{d}{dt}  \left(  \sum_{i=0}^n {n \choose i} \times  t^{i}  \times p^i \times (1-p)^{n-i}   \right)  {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle EX =\frac{d}{dt}  \left(  \sum_{i=0}^n {n \choose i} \times  {(tp)}^{i}   \times (1-p)^{n-i}   \right)  {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle EX =\frac{d}{dt}  \left( tp+1-p  \right)^n  {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle EX =n \left( tp+1-p  \right)^{n-1}\cdot p  {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle EX =n p</span> <br><br> <br><br><br>
 </li>
-<li>Proof (normal way) : <br><br> <span class="math inline">\displaystyle EX =\sum_{i=0}^n {n \choose i} \times i \times p^i \times (1-p)^{n-i}</span> <br><br> we can start the sum from <span class="math inline">1</span> as <span class="math inline">0^{\text{th}}</span> term will become zero <br><br> <span class="math inline">\displaystyle EX =\sum_{i=1}^n {n \choose i} \times i \times p^i \times (1-p)^{n-i}</span> <br><br> we know that <br><br> <span class="math inline">\displaystyle i \cdot {n \choose i} = n \cdot {n-1 \choose i-1}</span><br><br> so we get <br><br> <span class="math inline">\displaystyle EX =\sum_{i=1}^n n \times {n-1 \choose i-1} \times p^i \times (1-p)^{n-i}</span> <br><br> <span class="math inline">\displaystyle EX =np \sum_{i=1}^n {n-1 \choose i-1} \times p^{i-1} \times (1-p)^{n-i}</span> <br><br> <span class="math inline">\displaystyle EX =np \sum_{i=1}^n {n-1 \choose i-1} \times p^{i-1} \times (1-p)^{(n-1)-(i-1)}</span> <br><br> Consider <span class="math inline">n-1=m</span> and <span class="math inline">i-1=j</span>, we get <br><br> <span class="math inline">\displaystyle EX =np \sum_{j=0}^n {m \choose j} \times p^{j} \times (1-p)^{m-j}</span> <br><br> <span class="math inline">\displaystyle EX =np \underbrace{\sum_{j=0}^n {m \choose j} \times p^{j} \times (1-p)^{m-j}}_{=1}</span> <br><br> <span class="math inline">\displaystyle EX =np</span></li>
+<li>Proof (normal way) : <br><br> <span class="math inline">\displaystyle EX =\sum_{i=0}^n {n \choose i} \times i  \times p^i \times (1-p)^{n-i}</span> <br><br> we can start the sum from <span class="math inline">1</span> as <span class="math inline">0^{\text{th}}</span> term will become zero <br><br> <span class="math inline">\displaystyle EX =\sum_{i=1}^n {n \choose i} \times i  \times p^i \times (1-p)^{n-i}</span> <br><br> we know that <br><br> <span class="math inline">\displaystyle i \cdot {n \choose i} = n \cdot {n-1 \choose i-1}</span><br><br> so we get <br><br> <span class="math inline">\displaystyle EX =\sum_{i=1}^n  n \times {n-1 \choose i-1}  \times p^i \times (1-p)^{n-i}</span> <br><br> <span class="math inline">\displaystyle EX =np \sum_{i=1}^n  {n-1 \choose i-1}  \times p^{i-1} \times (1-p)^{n-i}</span> <br><br> <span class="math inline">\displaystyle EX =np \sum_{i=1}^n  {n-1 \choose i-1}  \times p^{i-1} \times (1-p)^{(n-1)-(i-1)}</span> <br><br> Consider <span class="math inline">n-1=m</span> and <span class="math inline">i-1=j</span>, we get <br><br> <span class="math inline">\displaystyle EX =np \sum_{j=0}^n  {m \choose j}  \times p^{j} \times (1-p)^{m-j}</span> <br><br> <span class="math inline">\displaystyle EX =np \underbrace{\sum_{j=0}^n  {m \choose j}  \times p^{j} \times (1-p)^{m-j}}_{=1}</span> <br><br> <span class="math inline">\displaystyle EX =np</span></li>
 </ul></li>
 </ul>
 </section>
 <section id="variance-displaystyle-mathrmvar-x-np1-p" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-np1-p"><span class="header-section-number">1.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X = np(1-p)</span></h3>
+<h3 data-number="1.2" class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-np1-p"><span class="header-section-number">1.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X  =  np(1-p)</span></h3>
 <ul>
 <li><span class="math inline">\boxed {\mathrm{Var} X = np(1-p)}</span> <br><br>
 <ul>
-<li>proof (using trick): <br> Trick : <span class="math inline">\displaystyle i(i-1)=\frac{d}{dt^2}{{t}}^{i}{\Big|}_{t=1}\,</span> <br><br> First find <span class="math inline">E[X(X-1)]</span><br><br> <span class="math inline">\displaystyle E[X(X-1)] =\sum_{i=0}^n {n \choose i} \times i\times(i-1) \times p^i \times (1-p)^{n-i}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] =\sum_{i=0}^n {n \choose i} \times \frac{d}{dt^2}{{t}}^{i}{\Big|}_{t=1} \times p^i \times (1-p)^{n-i} \;\;\;</span> We got this using the trick <br><br> <span class="math inline">\displaystyle E[X(X-1)] =\frac{d}{dt^2} \left( \sum_{i=0}^n {n \choose i} \times {{t}}^{i} \times p^i \times (1-p)^{n-i} \right) {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] =\frac{d}{dt^2} \left( tp + (1-p) \right)^n {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] = n(n-1) \left( tp + 1-p \right)^{n-2}p\cdot p {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] = n(n-1)p^2</span> <br><br><br>
-Now, <br> <span class="math inline">\displaystyle \mathrm{Var} X = E(X^2)-(EX)^2</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X = \left( E(X^2)-E(X) \right)+ \left(E(X)- (EX)^2 \right)</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X = E\left[X^2-X\right] + \left(E(X)- (EX)^2 \right)</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X = E\left[ X(X-1) \right] + \left(E(X)- (EX)^2 \right)</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X = n(n-1)p^2 + np- (np)^2</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X = (np)^2-np^2 + np- (np)^2</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X = -np^2 + np</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X = np(1-p)</span> <br><br><br><br></li>
-<li>Proof (normal way) : <br><br> <span class="math inline">\displaystyle \mathrm{Var} X = E(X^2)-(EX)^2</span> <br><br> First we find <span class="math inline">E(X^2)</span><br><br> <span class="math inline">\displaystyle E(X^2) =\sum_{i=0}^n {n \choose i} \times i^2 \times p^i \times (1-p)^{n-i}</span> <br><br> we can start the sum from <span class="math inline">1</span> as <span class="math inline">0^{\text{th}}</span> term will become zero <br><br> <span class="math inline">\displaystyle E(X^2) =\sum_{i=1}^n {n \choose i} \times i^2 \times p^i \times (1-p)^{n-i}</span> <br><br> we know that <br><br> <span class="math inline">\displaystyle i \cdot i \cdot {n \choose i} = n \cdot i \cdot{n-1 \choose i-1}</span><br><br><br>
-so we get <br><br> <span class="math inline">\displaystyle E(X^2) =\sum_{i=1}^n n \cdot i \cdot{n-1 \choose i-1} \times p^i \times (1-p)^{n-i}</span> <br><br> <span class="math inline">\displaystyle E(X^2) =n \cdot p \sum_{i=1}^n i \cdot{n-1 \choose i-1} \times p^{i-1} \times (1-p)^{n-i}</span> <br><br> <span class="math inline">\displaystyle E(X^2) =n \cdot p \sum_{i=1}^n i \cdot{n-1 \choose i-1} \times p^{i-1} \times (1-p)^{(n-1)-(i-1)}</span> <br><br> Consider <span class="math inline">n-1=m</span> and <span class="math inline">i-1=j</span>, we get <br><br> <span class="math inline">\displaystyle E(X^2) =n \cdot p \sum_{j=0}^n \left( j+1 \right) \cdot{m \choose j} \times p^{j} \times (1-p)^{m-j}</span> <br><br> <span class="math inline">\displaystyle E(X^2) =n \cdot p \underbrace{ \sum_{j=0}^n j \cdot{m \choose j} \times p^{j} \times (1-p)^{m-j} }_{\text{same as we did in expectation,so it's }mp} \\ \;\;\;\;\;\;\;\;\;\;\;\; +n \cdot p \underbrace{\sum_{j=0}^n {m \choose j} \times p^{j} \times (1-p)^{m-j}}_{\text{sum of all probability  }=1}</span> <br><br> <span class="math inline">\displaystyle E(X^2) =n \cdot p \times m\cdot p+n \cdot p</span><br><br> <span class="math inline">\displaystyle E(X^2) =n \cdot p \times (n-1)\cdot p+ n \cdot p</span><br><br> <span class="math inline">\displaystyle E(X^2) =(np)^2-np^2+np</span><br><br> <span class="math inline">\displaystyle E(X^2) =(np)^2+np(1-p)</span><br><br><br>
-Now, <br><br> <span class="math inline">\displaystyle \mathrm{Var} X = E(X^2) - (EX)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var} X = (np)^2+np(1-p) -(np)^2</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X = np(1-p)</span> <br><br></li>
-<li>Proof (yet another way, considering events are independent):<br><br> if <span class="math inline">Y</span> is just a Bernoulli trail, <br> <span class="math inline">Y=\left\lbrace \begin{array}{ll} 1, &amp; \mathrm{with}\;\mathrm{probability}\;P\\ 0, &amp; \mathrm{with}\;\mathrm{probability}\;1-P \end{array}\right.</span><br><br>
-<span class="math inline">\mathrm{VarY}={\mathrm{EY}}^2 -{\left(\mathrm{EY}\right)}^2 =\left(1^2 \cdot P +0^2 \cdot (1-P) \right)-P^2 \\ \;\;\;\;\;\;\;\;\;\;=P \cdot \left(1-P \right)</span><br><br>
-Let <span class="math inline">X</span> be multiple copies of independent <span class="math inline">Y</span> If all <span class="math inline">Y</span> are independent the we can say <br> <span class="math inline">\displaystyle \mathrm{Var}\left( \sum_{i=1}^n Y_i \right) = \sum_{i=1}^n \mathrm{Var}\left( Y_i \right)</span><br> Proof of above statement:<br> Consider only <span class="math inline">2</span> Events <span class="math inline">Y_1</span> and <span class="math inline">Y_2</span> for simplicity<br> <span class="math inline">\displaystyle \mathrm{Var}(Y_1+Y_2) = E\left[(Y_1+Y_2)^2 \right] - \left(E[Y_1+Y_2]\right)^2</span><br> <span class="math inline">\displaystyle = E\left[Y_1^2 + 2Y_1Y_2 + Y_2^2 \right] - \left((EY_1)^2+2(EY_1)(EY_2)+(EY_2)^2\right)</span><br> <span class="math inline">\displaystyle = E(Y_1^2) + 2E(Y_1Y_2) + E(Y_2^2) -(EY_1)^2-2(EY_1)(EY_2)-(EY_2)^2</span><br> <span class="math inline">\displaystyle = E(Y_1^2) -(EY_1)^2 + E(Y_2^2)-(EY_2)^2 + 2(EY_1)(EY_2) -2(EY_1)(EY_2)</span><br> <span class="math inline">\displaystyle =\mathrm{Var}Y_1+\mathrm{Var}Y_2</span><br> In Above proof we used <span class="math inline">2E(Y_1Y_2)=2(EY_1)(EY_2)</span><br> We can do that if the 2 events are independent<br> Proof of the same:<br> <span class="math inline">\displaystyle E(Y_1Y_2)= \sum_{Y_1}\sum_{Y_2} Y_1 Y_2 P(Y_1=y_1,Y_2=y_2)</span><br> <span class="math inline">\displaystyle E(Y_1Y_2)= \sum_{Y_1}\sum_{Y_2} Y_1 Y_2 P(Y_1=y_1)P(Y_2=y_2)\;\;</span> as <span class="math inline">Y_1</span> and <span class="math inline">Y2</span> are independent <br> <span class="math inline">\displaystyle E(Y_1Y_2)= \sum_{Y_1}Y_1 P(Y_1=y_1) \sum_{Y_2} Y_2 P(Y_2=y_2)</span> <br> <span class="math inline">\displaystyle E(Y_1Y_2)= E(Y_1) E(Y_2)</span> <br><br> Hence we can say,<br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \mathrm{Var}\left( \sum_{i=1}^n Y_i \right) = \sum_{i=1}^n \mathrm{Var}\left( Y_i \right) = np(1-p) \;\;\;</span> Considering all <span class="math inline">Y_i</span> has variance of <span class="math inline">p(1-p)</span> <br></li>
+<li>proof (using trick): <br> Trick : <span class="math inline">\displaystyle i(i-1)=\frac{d}{dt^2}{{t}}^{i}{\Big|}_{t=1}\,</span> <br><br> First find <span class="math inline">E[X(X-1)]</span><br><br> <span class="math inline">\displaystyle E[X(X-1)] =\sum_{i=0}^n {n \choose i} \times i\times(i-1)  \times p^i \times (1-p)^{n-i}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] =\sum_{i=0}^n {n \choose i} \times  \frac{d}{dt^2}{{t}}^{i}{\Big|}_{t=1}   \times p^i \times (1-p)^{n-i} \;\;\;</span> We got this using the trick <br><br> <span class="math inline">\displaystyle E[X(X-1)] =\frac{d}{dt^2} \left( \sum_{i=0}^n {n \choose i} \times  {{t}}^{i}   \times p^i \times (1-p)^{n-i} \right)  {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] =\frac{d}{dt^2} \left(   tp  + (1-p) \right)^n  {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] = n(n-1) \left(   tp  + 1-p \right)^{n-2}p\cdot p  {\Big|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] = n(n-1)p^2</span> <br><br><br>
+Now, <br> <span class="math inline">\displaystyle \mathrm{Var} X  = E(X^2)-(EX)^2</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X  = \left( E(X^2)-E(X) \right)+ \left(E(X)- (EX)^2 \right)</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X  =  E\left[X^2-X\right] + \left(E(X)- (EX)^2 \right)</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X  =  E\left[ X(X-1) \right] + \left(E(X)- (EX)^2 \right)</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X  =  n(n-1)p^2 + np- (np)^2</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X  =  (np)^2-np^2 + np- (np)^2</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X  =  -np^2 + np</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X  =  np(1-p)</span> <br><br><br><br></li>
+<li>Proof (normal way) : <br><br> <span class="math inline">\displaystyle \mathrm{Var} X  = E(X^2)-(EX)^2</span> <br><br> First we find <span class="math inline">E(X^2)</span><br><br> <span class="math inline">\displaystyle E(X^2) =\sum_{i=0}^n {n \choose i} \times i^2  \times p^i \times (1-p)^{n-i}</span> <br><br> we can start the sum from <span class="math inline">1</span> as <span class="math inline">0^{\text{th}}</span> term will become zero <br><br> <span class="math inline">\displaystyle E(X^2) =\sum_{i=1}^n {n \choose i} \times i^2  \times p^i \times (1-p)^{n-i}</span> <br><br> we know that <br><br> <span class="math inline">\displaystyle i \cdot i \cdot {n \choose i} = n \cdot i \cdot{n-1 \choose i-1}</span><br><br><br>
+so we get <br><br> <span class="math inline">\displaystyle E(X^2) =\sum_{i=1}^n n \cdot i \cdot{n-1 \choose i-1}   \times p^i \times (1-p)^{n-i}</span> <br><br> <span class="math inline">\displaystyle E(X^2) =n \cdot p \sum_{i=1}^n  i \cdot{n-1 \choose i-1}   \times p^{i-1} \times (1-p)^{n-i}</span> <br><br> <span class="math inline">\displaystyle E(X^2) =n \cdot p \sum_{i=1}^n  i \cdot{n-1 \choose i-1}   \times p^{i-1} \times (1-p)^{(n-1)-(i-1)}</span> <br><br> Consider <span class="math inline">n-1=m</span> and <span class="math inline">i-1=j</span>, we get <br><br> <span class="math inline">\displaystyle E(X^2) =n \cdot p \sum_{j=0}^n  \left( j+1 \right) \cdot{m \choose j}   \times p^{j} \times (1-p)^{m-j}</span> <br><br> <span class="math inline">\displaystyle E(X^2) =n \cdot p \underbrace{ \sum_{j=0}^n  j \cdot{m \choose j}   \times p^{j} \times (1-p)^{m-j} }_{\text{same as we did in expectation,so it's }mp}   \\ \;\;\;\;\;\;\;\;\;\;\;\; +n \cdot p \underbrace{\sum_{j=0}^n {m \choose j}   \times p^{j} \times (1-p)^{m-j}}_{\text{sum of all probability  }=1}</span> <br><br> <span class="math inline">\displaystyle E(X^2) =n \cdot p \times m\cdot p+n \cdot p</span><br><br> <span class="math inline">\displaystyle E(X^2) =n \cdot p \times (n-1)\cdot p+ n \cdot p</span><br><br> <span class="math inline">\displaystyle E(X^2) =(np)^2-np^2+np</span><br><br> <span class="math inline">\displaystyle E(X^2) =(np)^2+np(1-p)</span><br><br><br>
+Now, <br><br> <span class="math inline">\displaystyle \mathrm{Var} X  = E(X^2) - (EX)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var} X  = (np)^2+np(1-p) -(np)^2</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var} X  = np(1-p)</span> <br><br></li>
+<li>Proof (yet another way, considering events are independent):<br><br> if <span class="math inline">Y</span> is just a Bernoulli trail, <br> <span class="math inline">Y=\left\lbrace \begin{array}{ll}
+1, &amp; \mathrm{with}\;\mathrm{probability}\;P\\
+0, &amp; \mathrm{with}\;\mathrm{probability}\;1-P
+\end{array}\right.</span><br><br>
+<span class="math inline">\mathrm{VarY}={\mathrm{EY}}^2 -{\left(\mathrm{EY}\right)}^2 =\left(1^2 \cdot P +0^2 \cdot (1-P) \right)-P^2
+\\ \;\;\;\;\;\;\;\;\;\;=P \cdot \left(1-P \right)</span><br><br>
+Let <span class="math inline">X</span> be multiple copies of independent <span class="math inline">Y</span> If all <span class="math inline">Y</span> are independent the we can say <br> <span class="math inline">\displaystyle \mathrm{Var}\left( \sum_{i=1}^n Y_i \right) =  \sum_{i=1}^n  \mathrm{Var}\left( Y_i \right)</span><br> Proof of above statement:<br> Consider only <span class="math inline">2</span> Events <span class="math inline">Y_1</span> and <span class="math inline">Y_2</span> for simplicity<br> <span class="math inline">\displaystyle \mathrm{Var}(Y_1+Y_2) = E\left[(Y_1+Y_2)^2 \right] - \left(E[Y_1+Y_2]\right)^2</span><br> <span class="math inline">\displaystyle  = E\left[Y_1^2 + 2Y_1Y_2 + Y_2^2 \right] - \left((EY_1)^2+2(EY_1)(EY_2)+(EY_2)^2\right)</span><br> <span class="math inline">\displaystyle  = E(Y_1^2) + 2E(Y_1Y_2) + E(Y_2^2)  -(EY_1)^2-2(EY_1)(EY_2)-(EY_2)^2</span><br> <span class="math inline">\displaystyle  = E(Y_1^2) -(EY_1)^2  + E(Y_2^2)-(EY_2)^2 + 2(EY_1)(EY_2)  -2(EY_1)(EY_2)</span><br> <span class="math inline">\displaystyle  =\mathrm{Var}Y_1+\mathrm{Var}Y_2</span><br> In Above proof we used <span class="math inline">2E(Y_1Y_2)=2(EY_1)(EY_2)</span><br> We can do that if the 2 events are independent<br> Proof of the same:<br> <span class="math inline">\displaystyle  E(Y_1Y_2)= \sum_{Y_1}\sum_{Y_2} Y_1 Y_2 P(Y_1=y_1,Y_2=y_2)</span><br> <span class="math inline">\displaystyle  E(Y_1Y_2)= \sum_{Y_1}\sum_{Y_2} Y_1 Y_2 P(Y_1=y_1)P(Y_2=y_2)\;\;</span> as <span class="math inline">Y_1</span> and <span class="math inline">Y2</span> are independent <br> <span class="math inline">\displaystyle  E(Y_1Y_2)= \sum_{Y_1}Y_1 P(Y_1=y_1) \sum_{Y_2}  Y_2 P(Y_2=y_2)</span> <br> <span class="math inline">\displaystyle  E(Y_1Y_2)= E(Y_1) E(Y_2)</span> <br><br> Hence we can say,<br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \mathrm{Var}\left( \sum_{i=1}^n Y_i \right) =  \sum_{i=1}^n  \mathrm{Var}\left( Y_i \right) = np(1-p) \;\;\;</span> Considering all <span class="math inline">Y_i</span> has variance of <span class="math inline">p(1-p)</span> <br></li>
 </ul></li>
 </ul>
 </section>
@@ -596,8 +645,8 @@ Let <span class="math inline">X</span> be multiple copies of independent <span c
 <ul>
 <li>Definition <br> Fix a positive real number <span class="math inline">\lambda</span>. The random variable <span class="math inline">X</span> is Poisson distributed with parameter <span class="math inline">\lambda</span>, in short <span class="math inline">X ∼ \mathrm{Poi}(\lambda)</span>, if it is non-negative integer valued, and its mass function is <br><br> <span class="math inline">\displaystyle \rho (i) = P\left\{ X=i \right\} = \frac{\lambda^i}{i!} e^{-\lambda}\;\;\;\;\;i=0,1,2,\dots</span> <br><br></li>
 </ul>
-<div class="cell" data-execution_count="91">
-<details>
+<div id="cell-13" class="cell" data-execution_count="91">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> math</span>
@@ -620,64 +669,68 @@ Let <span class="math inline">X</span> be multiple copies of independent <span c
 <span id="cb2-19"><a href="#cb2-19"></a>plt.legend()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="2022-09-17-CS6660-week4_1_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="2022-09-17-CS6660-week4_1_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <ul>
 <li><p>Take <span class="math inline">Y \sim \mathrm{Binom}(n, p)</span> with large <span class="math inline">n</span>, small <span class="math inline">p</span>, such that <span class="math inline">np \simeq \lambda</span>. Then <span class="math inline">Y</span> is approximately <span class="math inline">\mathrm{Poisson}(\lambda)</span> distributed.</p></li>
-<li><p>Proof of Poisson formula <br> Binomial formula:<br> <span class="math inline">\displaystyle p\left(i\right)=P\left\lbrace X=i\right\rbrace = {n \choose i} \times p^i \times {\left(1-p\right)}^{n-i}</span><br><br> we say that poisson is approximation of binomial when <span class="math inline">n \rightarrow \infty</span>, and <span class="math inline">\lambda =np \Rightarrow p=\frac{\lambda}{n}</span> so we get<br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \lim_{n \rightarrow \infty}{n \choose i} \times \left( \frac{\lambda}{n} \right)^i \times {\left( 1-\frac{\lambda}{n} \right)}^{n-i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \lim_{n \rightarrow \infty} \frac{n!}{i!(n-i)!}\times \left( \frac{\lambda}{n} \right)^i \times {\left( 1-\frac{\lambda}{n} \right)}^{n-i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \lim_{n \rightarrow \infty} \frac{n \cdot (n-1)\cdot (n-2) \dots \cdot (n-i+1)!}{i!} \times \left( \frac{\lambda}{n} \right)^i \times {\left( 1-\frac{\lambda}{n} \right)}^{n-i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \lim_{n \rightarrow \infty} \frac{n \cdot (n-1)\cdot (n-2) \dots \cdot (n-i+1)!}{i!} \times \left( \frac{\lambda}{n} \right)^i \times {\left( 1-\frac{\lambda}{n} \right)}^{n} {\left( 1-\frac{\lambda}{n} \right)}^{i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \frac{\lambda^i}{i!} \lim_{n \rightarrow \infty} \frac{\overbrace{n \cdot (n-1)\cdot (n-2) \dots \cdot (n-i+1)!}^{i\;\;\text{ terms}} }{n^i} \times {\left( 1-\frac{\lambda}{n} \right)}^{n} {\left( 1-\frac{\lambda}{n} \right)}^{i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \frac{\lambda^i}{i!} \lim_{n \rightarrow \infty} \frac{n^i +\dots}{n^i} \times \lim_{n \rightarrow \infty}{\left( 1-\frac{\lambda}{n} \right)}^{n} \times \lim_{n \rightarrow \infty}{\left( 1-\frac{\lambda}{n} \right)}^{i}</span><br><br> We know that <span class="math inline">\displaystyle \;\; \lim_{n \rightarrow \infty}{\left( 1+\frac{a}{x} \right)}^{x} = e^a</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \frac{\lambda^i}{i!} \underbrace{\lim_{n \rightarrow \infty} \frac{n^i +\dots}{n^i}}_{=1} \times \underbrace{\lim_{n \rightarrow \infty}{\left( 1-\frac{\lambda}{n} \right)}^{n}}_{e^{-\lambda}} \times \underbrace{\lim_{n \rightarrow \infty}{\left( 1-\frac{\lambda}{n} \right)}^{i}}_{=1,\;i \text{ is very small } }</span><br><br> <span class="math inline">\boxed{\displaystyle \rho \left(i\right) = \frac{\lambda^i}{i!} e^{-\lambda}}</span></p></li>
+<li><p>Proof of Poisson formula <br> Binomial formula:<br> <span class="math inline">\displaystyle p\left(i\right)=P\left\lbrace X=i\right\rbrace = {n \choose i} \times p^i \times {\left(1-p\right)}^{n-i}</span><br><br> we say that poisson is approximation of binomial when <span class="math inline">n \rightarrow \infty</span>, and <span class="math inline">\lambda =np \Rightarrow p=\frac{\lambda}{n}</span> so we get<br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \lim_{n \rightarrow \infty}{n \choose i} \times \left( \frac{\lambda}{n} \right)^i \times {\left( 1-\frac{\lambda}{n} \right)}^{n-i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \lim_{n \rightarrow \infty} \frac{n!}{i!(n-i)!}\times \left( \frac{\lambda}{n} \right)^i \times {\left( 1-\frac{\lambda}{n} \right)}^{n-i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \lim_{n \rightarrow \infty} \frac{n \cdot (n-1)\cdot (n-2) \dots \cdot (n-i+1)!}{i!} \times \left( \frac{\lambda}{n} \right)^i \times {\left( 1-\frac{\lambda}{n} \right)}^{n-i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \lim_{n \rightarrow \infty} \frac{n \cdot (n-1)\cdot (n-2) \dots \cdot (n-i+1)!}{i!} \times \left( \frac{\lambda}{n} \right)^i \times {\left( 1-\frac{\lambda}{n} \right)}^{n} {\left( 1-\frac{\lambda}{n} \right)}^{i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \frac{\lambda^i}{i!}  \lim_{n \rightarrow \infty} \frac{\overbrace{n \cdot (n-1)\cdot (n-2) \dots \cdot (n-i+1)!}^{i\;\;\text{ terms}} }{n^i}  \times {\left( 1-\frac{\lambda}{n} \right)}^{n} {\left( 1-\frac{\lambda}{n} \right)}^{i}</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \frac{\lambda^i}{i!}  \lim_{n \rightarrow \infty} \frac{n^i +\dots}{n^i}  \times  \lim_{n \rightarrow \infty}{\left( 1-\frac{\lambda}{n} \right)}^{n} \times  \lim_{n \rightarrow \infty}{\left( 1-\frac{\lambda}{n} \right)}^{i}</span><br><br> We know that <span class="math inline">\displaystyle \;\; \lim_{n \rightarrow \infty}{\left( 1+\frac{a}{x} \right)}^{x} = e^a</span><br><br> <span class="math inline">\displaystyle \rho \left(i\right) = \frac{\lambda^i}{i!}  \underbrace{\lim_{n \rightarrow \infty} \frac{n^i +\dots}{n^i}}_{=1}   \times  \underbrace{\lim_{n \rightarrow \infty}{\left( 1-\frac{\lambda}{n} \right)}^{n}}_{e^{-\lambda}}  \times  \underbrace{\lim_{n \rightarrow \infty}{\left( 1-\frac{\lambda}{n} \right)}^{i}}_{=1,\;i \text{ is very small } }</span><br><br> <span class="math inline">\boxed{\displaystyle \rho \left(i\right) = \frac{\lambda^i}{i!} e^{-\lambda}}</span></p></li>
 </ul>
 <section id="expectation-displaystyle-ex-lambda" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="expectation-displaystyle-ex-lambda"><span class="header-section-number">2.1</span> Expectation <span class="math inline">\displaystyle EX =\lambda</span></h3>
 <ul>
-<li><span class="math inline">\boxed {EX = \lambda}</span><br><br> <span class="math inline">EX = \displaystyle \sum_{i=0}^\infty i \times \rho(i) = \sum_{i=0}^\infty i \times \frac{\lambda^i}{i!} e^{-\lambda}</span><br><br> <span class="math inline">EX = \displaystyle \sum_{i=1}^\infty i \times \frac{\lambda^i}{i!} e^{-\lambda}</span><br><br> <span class="math inline">EX = \displaystyle \lambda \sum_{i=1}^\infty i \times \frac{\lambda^{i-1}}{i!} e^{-\lambda}</span><br><br> <span class="math inline">EX = \displaystyle \lambda \sum_{i=1}^\infty \frac{\lambda^{i-1}}{(i-1)!} e^{-\lambda}</span><br><br> consider <span class="math inline">i-1=j</span> <br><br> <span class="math inline">EX = \displaystyle \lambda \underbrace{\sum_{j=0}^\infty \frac{\lambda^{j}}{j!} e^{-\lambda}}_{=1}</span><br><br><br>
-<span class="math inline">EX = \displaystyle \lambda</span><br><br></li>
+<li><span class="math inline">\boxed {EX = \lambda}</span><br><br> <span class="math inline">EX = \displaystyle \sum_{i=0}^\infty i \times \rho(i) = \sum_{i=0}^\infty i \times \frac{\lambda^i}{i!} e^{-\lambda}</span><br><br> <span class="math inline">EX = \displaystyle  \sum_{i=1}^\infty i \times \frac{\lambda^i}{i!} e^{-\lambda}</span><br><br> <span class="math inline">EX = \displaystyle  \lambda \sum_{i=1}^\infty i \times \frac{\lambda^{i-1}}{i!} e^{-\lambda}</span><br><br> <span class="math inline">EX = \displaystyle  \lambda \sum_{i=1}^\infty \frac{\lambda^{i-1}}{(i-1)!} e^{-\lambda}</span><br><br> consider <span class="math inline">i-1=j</span> <br><br> <span class="math inline">EX = \displaystyle  \lambda \underbrace{\sum_{j=0}^\infty \frac{\lambda^{j}}{j!} e^{-\lambda}}_{=1}</span><br><br><br>
+<span class="math inline">EX = \displaystyle  \lambda</span><br><br></li>
 </ul>
 </section>
 <section id="variance-displaystyle-mathrmvar-x-lambda" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-lambda"><span class="header-section-number">2.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X = \lambda</span></h3>
+<h3 data-number="2.2" class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-lambda"><span class="header-section-number">2.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X  = \lambda</span></h3>
 <ul>
-<li><span class="math inline">\boxed {\mathrm{Var} X = \lambda}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]=\sum_{i=0}^n i(i-1)\rho(i)</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]=\sum_{i=0}^n i(i-1) \frac{\lambda ^i}{i!}e^{-\lambda}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]=\sum_{i=2}^n i(i-1) \frac{\lambda ^i}{i!}e^{-\lambda}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]=\sum_{i=2}^n \frac{\lambda ^i}{(i-2)!}e^{-\lambda}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]= \lambda ^2\sum_{i=2}^n \frac{\lambda ^{i-2}}{(i-2)!}e^{-\lambda}</span> <br><br> Consder <span class="math inline">i-2=j</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]= \lambda ^2\underbrace{\sum_{j=0}^n \frac{\lambda ^{j}}{j!}e^{-\lambda}}_{=1}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]= \lambda ^2</span> <br><br> Now, <br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E(X^2)-(EX)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E\left[X(X-1)\right] +EX-(EX)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \lambda^2 +\lambda-\lambda^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \lambda</span><br><br></li>
+<li><span class="math inline">\boxed {\mathrm{Var} X = \lambda}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]=\sum_{i=0}^n i(i-1)\rho(i)</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]=\sum_{i=0}^n i(i-1) \frac{\lambda ^i}{i!}e^{-\lambda}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]=\sum_{i=2}^n i(i-1) \frac{\lambda ^i}{i!}e^{-\lambda}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]=\sum_{i=2}^n  \frac{\lambda ^i}{(i-2)!}e^{-\lambda}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]= \lambda ^2\sum_{i=2}^n  \frac{\lambda ^{i-2}}{(i-2)!}e^{-\lambda}</span> <br><br> Consder <span class="math inline">i-2=j</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]= \lambda ^2\underbrace{\sum_{j=0}^n  \frac{\lambda ^{j}}{j!}e^{-\lambda}}_{=1}</span> <br><br> <span class="math inline">\displaystyle E\left[X(X-1)\right]= \lambda ^2</span> <br><br> Now, <br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E(X^2)-(EX)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E\left[X(X-1)\right] +EX-(EX)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \lambda^2 +\lambda-\lambda^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \lambda</span><br><br></li>
 </ul>
 </section>
 </section>
 <section id="geometric" class="level2 page-columns page-full" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="geometric"><span class="header-section-number">3</span> Geometric</h2>
 <ul>
-<li>Definition <br> Suppose that independent trials, each succeeding with probability <span class="math inline">p</span>, are repeated until the first success. The total number <span class="math inline">X</span> of trials made has the <span class="math inline">\mathrm{Geometric}(p)</span> distribution (in short, <span class="math inline">X \sim \mathrm{Geom}(p)</span>). <br> <span class="math inline">X</span> can take on positive integers, with probabilities <br><br> <span class="math inline">\boxed{ \displaystyle \rho(i) = (1-p)^{i-1} \cdot p}</span> <span class="math inline">\;\;\;\;\; i=1,2,3,\dots</span><br><br> That is a function, we verify by <span class="math inline">\rho(i) \ge 0</span> and <br><br> <span class="math inline">\displaystyle \sum_{i=1}^\infty \rho(i) = \sum_{i=1}^\infty (1-p)^{i-1} \cdot p = \frac{p}{1-(1-p)}=1</span><br><br></li>
+<li>Definition <br> Suppose that independent trials, each succeeding with probability <span class="math inline">p</span>, are repeated until the first success. The total number <span class="math inline">X</span> of trials made has the <span class="math inline">\mathrm{Geometric}(p)</span> distribution (in short, <span class="math inline">X \sim \mathrm{Geom}(p)</span>). <br> <span class="math inline">X</span> can take on positive integers, with probabilities <br><br> <span class="math inline">\boxed{ \displaystyle  \rho(i) = (1-p)^{i-1} \cdot p}</span> <span class="math inline">\;\;\;\;\; i=1,2,3,\dots</span><br><br> That is a function, we verify by <span class="math inline">\rho(i) \ge 0</span> and <br><br> <span class="math inline">\displaystyle \sum_{i=1}^\infty \rho(i) = \sum_{i=1}^\infty (1-p)^{i-1} \cdot p = \frac{p}{1-(1-p)}=1</span><br><br></li>
 <li>Remarks <br> For a Geometric<span class="math inline">(p)</span> random variable and any <span class="math inline">k \ge 1</span> we have <br> <span class="math inline">P \left\{ X \ge k \right\}=(1-p)^{k-1}</span> (We have at least <span class="math inline">k-1</span> failures).</li>
-<li>Corollary <br> The Geometric random variable is (discrete) memory-less :for every <span class="math inline">k \ge 1 , n \ge 0</span><br><br> <span class="math inline">\displaystyle P \left\{ X \ge n + k \mid X&gt;n \right\}=P \left\{ X \ge k \right\}</span><br><br> Proof : <br> <span class="math inline">\displaystyle P \left\{ X \ge n + k \mid X&gt;n \right\}= \frac {P\left\{ X \ge n + k \right\} \cap P\left\{X&gt;n \right\}}{P\left\{X&gt;n \right\}}</span><br> if <span class="math inline">X \ge n+k</span> then <span class="math inline">X</span> is also greater than <span class="math inline">n</span> as <span class="math inline">k</span> is at least <span class="math inline">1</span><br> <span class="math inline">\displaystyle P \left\{ X \ge n + k \mid X&gt;n \right\}= \frac {P\left\{ X \ge n + k \right\} }{P\left\{X&gt;n \right\}}</span><br> <span class="math inline">\displaystyle P \left\{ X \ge n + k \mid X&gt;n \right\}= \frac {(1-p)^{n+k-1} }{(1-p)^n}= (1-p)^{k-1}=P \left\{ X&gt;k \right\}</span><br></li>
+<li>Corollary <br> The Geometric random variable is (discrete) memory-less :for every <span class="math inline">k \ge 1 , n \ge 0</span><br><br> <span class="math inline">\displaystyle  P \left\{ X \ge n + k \mid X&gt;n  \right\}=P \left\{ X \ge k \right\}</span><br><br> Proof : <br> <span class="math inline">\displaystyle  P \left\{ X \ge n + k \mid X&gt;n  \right\}= \frac {P\left\{ X \ge n + k \right\} \cap P\left\{X&gt;n  \right\}}{P\left\{X&gt;n  \right\}}</span><br> if <span class="math inline">X \ge n+k</span> then <span class="math inline">X</span> is also greater than <span class="math inline">n</span> as <span class="math inline">k</span> is at least <span class="math inline">1</span><br> <span class="math inline">\displaystyle  P \left\{ X \ge n + k \mid X&gt;n  \right\}= \frac {P\left\{ X \ge n + k \right\} }{P\left\{X&gt;n  \right\}}</span><br> <span class="math inline">\displaystyle  P \left\{ X \ge n + k \mid X&gt;n  \right\}= \frac {(1-p)^{n+k-1} }{(1-p)^n}= (1-p)^{k-1}=P \left\{ X&gt;k  \right\}</span><br></li>
 </ul>
 <section id="expectation-displaystyle-ex-frac1p" class="level3 page-columns page-full" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="expectation-displaystyle-ex-frac1p"><span class="header-section-number">3.1</span> Expectation <span class="math inline">\displaystyle EX =\frac{1}{p}</span></h3>
 <ul class="page-columns page-full">
 <li class="page-columns page-full"><span class="math inline">\boxed {EX = \frac{1}{p}}</span><br><br>
 <ul class="page-columns page-full">
-<li><p>proof (using trick): <br><br> Trick : <span class="math inline">\displaystyle i=\frac{d}{dt}{{t}}^{i}{\Big|}_{t=1}\,</span> <br><br> <span class="math inline">\displaystyle EX = \sum_{i=1}^\infty i \cdot (1-p)^{i-1} \cdot p</span> <br><br> <span class="math inline">\displaystyle EX = \sum_{i=0}^\infty \frac{d}{dt}{t}^{i}{\Big|}_{t=1} (1-p)^{i-1} \cdot p</span> <br><br> <span class="math inline">\displaystyle EX = \frac{d}{dt} \left( \sum_{i=0}^\infty {t}^{i} (1-p)^{i-1} \cdot p \right) {\Bigg|}_{t=1}</span><br><br> <span class="math inline">\displaystyle EX = \frac{d}{dt} \left( \frac{p}{1-p}\sum_{i=0}^\infty {t}^{i} (1-p)^{i} \right) {\Bigg|}_{t=1}</span><br><br> <span class="math inline">\displaystyle EX = \frac{p}{1-p} \cdot \frac{d}{dt} \left( \frac{1}{1-t(1-p)} \right) {\Bigg|}_{t=1}</span><br><br> <span class="math inline">\displaystyle EX = \frac{p}{1-p} \cdot \left( \frac{1-p}{\left(1-t(1-p)\right)^2} \right) {\Bigg|}_{t=1}</span><br><br> <span class="math inline">\displaystyle EX = \frac{1}{p}</span></p></li>
-<li class="page-columns page-full"><p>Proof (normal way):<br><br> <span class="math inline">\displaystyle EX = \sum_{i=1}^\infty i \cdot (1-p)^{i-1} \cdot p</span> <br><br></p>
+<li><p>proof (using trick): <br><br> Trick : <span class="math inline">\displaystyle i=\frac{d}{dt}{{t}}^{i}{\Big|}_{t=1}\,</span> <br><br> <span class="math inline">\displaystyle EX =  \sum_{i=1}^\infty i \cdot  (1-p)^{i-1} \cdot p</span> <br><br> <span class="math inline">\displaystyle EX =  \sum_{i=0}^\infty \frac{d}{dt}{t}^{i}{\Big|}_{t=1}   (1-p)^{i-1} \cdot p</span> <br><br> <span class="math inline">\displaystyle EX =  \frac{d}{dt} \left( \sum_{i=0}^\infty {t}^{i}   (1-p)^{i-1} \cdot p \right)  {\Bigg|}_{t=1}</span><br><br> <span class="math inline">\displaystyle EX =  \frac{d}{dt} \left( \frac{p}{1-p}\sum_{i=0}^\infty {t}^{i}   (1-p)^{i}  \right)  {\Bigg|}_{t=1}</span><br><br> <span class="math inline">\displaystyle EX =  \frac{p}{1-p} \cdot \frac{d}{dt} \left(   \frac{1}{1-t(1-p)}   \right)  {\Bigg|}_{t=1}</span><br><br> <span class="math inline">\displaystyle EX =  \frac{p}{1-p} \cdot  \left(   \frac{1-p}{\left(1-t(1-p)\right)^2}   \right)  {\Bigg|}_{t=1}</span><br><br> <span class="math inline">\displaystyle EX =  \frac{1}{p}</span></p></li>
+<li class="page-columns page-full"><p>Proof (normal way):<br><br> <span class="math inline">\displaystyle EX =  \sum_{i=1}^\infty i \cdot  (1-p)^{i-1} \cdot p</span> <br><br></p>
 <div class="column-screen-inset">
 <p><span class="math display">\begin{align*}{}
 EX &amp;=   p + 2 \cdot (1-p)\cdot p + 3 \cdot (1-p)^2 \cdot p+\cdots  &amp;   \qquad (1) \\
 EX(1-p) &amp;=  \qquad\;\;\; (1-p)\cdot p + 2 \cdot (1-p)^2\cdot p + 3 \cdot (1-p)^3 \cdot p +\cdots &amp;  \qquad (2)
 \end{align*}</span></p>
 </div>
-<p>Subtracting equation <span class="math inline">(1)</span> from <span class="math inline">(2)</span> we get <br><br> <span class="math inline">\displaystyle p \cdot EX = p + (1-p)\cdot p + (1-p)^2 \cdot p +\cdots</span><br><br> <span class="math inline">\displaystyle EX = 1 + (1-p) + (1-p)^2 +\cdots</span><br><br> <span class="math inline">\displaystyle EX = \frac{1}{1-(1-p)}</span><br><br> <span class="math inline">\displaystyle EX = \frac{1}{p}</span></p></li>
+<p>Subtracting equation <span class="math inline">(1)</span> from <span class="math inline">(2)</span> we get <br><br> <span class="math inline">\displaystyle p \cdot EX = p +  (1-p)\cdot p + (1-p)^2 \cdot p +\cdots</span><br><br> <span class="math inline">\displaystyle  EX = 1 +  (1-p) + (1-p)^2  +\cdots</span><br><br> <span class="math inline">\displaystyle EX = \frac{1}{1-(1-p)}</span><br><br> <span class="math inline">\displaystyle EX = \frac{1}{p}</span></p></li>
 </ul></li>
 </ul>
 </section>
 <section id="variance-displaystyle-mathrmvar-x-frac1-pp2" class="level3 page-columns page-full" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-frac1-pp2"><span class="header-section-number">3.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X = \frac{1-p}{p^2}</span></h3>
+<h3 data-number="3.2" class="anchored" data-anchor-id="variance-displaystyle-mathrmvar-x-frac1-pp2"><span class="header-section-number">3.2</span> Variance <span class="math inline">\displaystyle \mathrm{Var} X  = \frac{1-p}{p^2}</span></h3>
 <ul class="page-columns page-full">
 <li class="page-columns page-full"><span class="math inline">\boxed {\mathrm{Var} X = \frac{1-p}{p^2}}</span> <br><br>
 <ul class="page-columns page-full">
-<li><p>Proof (using trick);<br><br> Trick : <span class="math inline">\displaystyle i(i-1)=\frac{d}{dt^2}{{t}}^{i}{\Big|}_{t=1}\,</span> <br><br> First find <span class="math inline">E[X(X-1)]</span><br><br> <span class="math inline">\displaystyle E[X(X-1)] =\sum_{i=1}^\infty i\times(i-1) \times (1-p)^{i-1} \times p</span> <br><br><br>
-<span class="math inline">\displaystyle E[X(X-1)] =\sum_{i=1}^\infty \frac{d}{dt^2}{t}^{i}{\Big|}_{t=1} \times (1-p)^{i-1} \times p</span> <br><br><br>
+<li><p>Proof (using trick);<br><br> Trick : <span class="math inline">\displaystyle i(i-1)=\frac{d}{dt^2}{{t}}^{i}{\Big|}_{t=1}\,</span> <br><br> First find <span class="math inline">E[X(X-1)]</span><br><br> <span class="math inline">\displaystyle E[X(X-1)] =\sum_{i=1}^\infty  i\times(i-1)   \times (1-p)^{i-1} \times p</span> <br><br><br>
+<span class="math inline">\displaystyle E[X(X-1)] =\sum_{i=1}^\infty  \frac{d}{dt^2}{t}^{i}{\Big|}_{t=1}   \times (1-p)^{i-1} \times p</span> <br><br><br>
 <span class="math inline">\displaystyle E[X(X-1)] =p \frac{d}{dt^2} \left( \sum_{i=1}^\infty{t}^{i}(1-p)^{i-1} \right) {\Bigg|}_{t=1}</span> <br><br><br>
 <span class="math inline">\displaystyle E[X(X-1)] = \frac{p}{1-p} \cdot \frac{d}{dt^2} \left( \sum_{i=1}^\infty{t}^{i}(1-p)^{i} \right) {\Bigg|}_{t=1}</span> <br><br><br>
-<span class="math inline">\displaystyle E[X(X-1)] = \frac{p}{1-p} \cdot \frac{d}{dt^2} \left( \frac{1}{1-t(1-p)} \right) {\Bigg|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] = \frac{p}{1-p} \cdot \left( \frac{2(1-p)(1-p)}{(\left( 1-t(1-p) \right)^3 } \right) {\Bigg|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] = \frac{p}{1-p} \cdot \left( \frac{2(1-p)(1-p)}{p^3 } \right)</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] = \left( \frac{2(1-p)}{p^2 } \right)</span> <br><br> Now, <br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E(X^2)-(EX)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E\left[X(X-1)\right] +EX-(EX)^2</span><br><br><br>
+<span class="math inline">\displaystyle E[X(X-1)] = \frac{p}{1-p} \cdot \frac{d}{dt^2} \left( \frac{1}{1-t(1-p)} \right) {\Bigg|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] = \frac{p}{1-p} \cdot  \left( \frac{2(1-p)(1-p)}{(\left( 1-t(1-p) \right)^3 } \right) {\Bigg|}_{t=1}</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] = \frac{p}{1-p} \cdot  \left( \frac{2(1-p)(1-p)}{p^3 } \right)</span> <br><br> <span class="math inline">\displaystyle E[X(X-1)] =  \left( \frac{2(1-p)}{p^2 } \right)</span> <br><br> Now, <br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E(X^2)-(EX)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E\left[X(X-1)\right] +EX-(EX)^2</span><br><br><br>
 <span class="math inline">\displaystyle \mathrm{Var}X = \left( \frac{2(1-p)}{p^2 } \right) + \frac{1}{p} -\left( \frac{1}{p} \right)^2</span><br><br><br>
 <span class="math inline">\displaystyle \mathrm{Var}X = \left( \frac{2-2p}{p^2 } \right) + \frac{1}{p} -\left( \frac{1}{p} \right)^2</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \frac{2-2p+p-1}{p^2}</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \frac{1-p}{p^2}</span><br><br></p></li>
-<li class="page-columns page-full"><p>proof (normal way):<br><br> we first solve for <span class="math inline">E(X^2)</span><br><br> <span class="math inline">\displaystyle E(X^2) = \left( \sum_{i=1}^\infty i^2 \times (1-p)^{i-1} \times p \right)</span> <br><br></p>
+<li class="page-columns page-full"><p>proof (normal way):<br><br> we first solve for <span class="math inline">E(X^2)</span><br><br> <span class="math inline">\displaystyle  E(X^2) = \left( \sum_{i=1}^\infty  i^2   \times (1-p)^{i-1} \times p \right)</span> <br><br></p>
 <div class="column-screen-inset">
 <p><span class="math display">\begin{align*}{}
   E(X^2) &amp;=   p + 4 \cdot (1-p) \cdot p + 9 \cdot (1-p)^2 \cdot p + \cdots  &amp;     (3) \\
@@ -685,10 +738,10 @@ EX(1-p) &amp;=  \qquad\;\;\; (1-p)\cdot p + 2 \cdot (1-p)^2\cdot p + 3 \cdot (1-
 \end{align*}</span></p>
 </div>
 <p><br><br> subtracting eqution <span class="math inline">(4)</span> from equation <span class="math inline">(3)</span> <br><br><br>
-<span class="math inline">\displaystyle E(X^2) = p+3 \cdot (1-p) + 5 \cdot (1-p)^2 + 7 \cdot (1-p)^3 + \cdots</span><br><br> This is AGP, the sum is given by <span class="math inline">s_{\infty}=\frac{a}{1-r}+\frac{dr}{(1-r)^2}, \;\;\;\;</span> for <span class="math inline">r&lt;1</span><br><br> In our case <span class="math inline">r=(1-p),\;a=1,\;d=2\;</span> so we get, <br><br> <span class="math inline">\displaystyle E(X^2) =\frac{1}{1-(1-p)}+\frac{2\cdot (1-p)}{(1-(1-p))^2}</span><br><br> <span class="math inline">\displaystyle E(X^2) =\frac{1}{p}+\frac{2-2p}{p^2}</span><br><br> <span class="math inline">\displaystyle E(X^2) =\frac{p+2-2p}{p^2}</span><br><br> <span class="math inline">\displaystyle E(X^2) =\frac{2-p}{p^2}</span><br><br> <span class="math inline">\displaystyle \mathrm{Var}X = E(X^2) - (EX)^2</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \frac{2-p}{p^2} - \left(\frac{1}{p}\right)^2</span> <br><br> <span class="math inline">\displaystyle \mathrm{Var}X = \frac{1-p}{p^2}</span> <br><br></p></li>
+<span class="math inline">\displaystyle E(X^2) = p+3 \cdot (1-p) + 5 \cdot (1-p)^2 + 7 \cdot (1-p)^3 + \cdots</span><br><br> This is AGP, the sum is given by <span class="math inline">s_{\infty}=\frac{a}{1-r}+\frac{dr}{(1-r)^2}, \;\;\;\;</span> for <span class="math inline">r&lt;1</span><br><br> In our case <span class="math inline">r=(1-p),\;a=1,\;d=2\;</span> so we get, <br><br> <span class="math inline">\displaystyle E(X^2) =\frac{1}{1-(1-p)}+\frac{2\cdot (1-p)}{(1-(1-p))^2}</span><br><br> <span class="math inline">\displaystyle E(X^2) =\frac{1}{p}+\frac{2-2p}{p^2}</span><br><br> <span class="math inline">\displaystyle E(X^2) =\frac{p+2-2p}{p^2}</span><br><br> <span class="math inline">\displaystyle E(X^2) =\frac{2-p}{p^2}</span><br><br> <span class="math inline">\displaystyle  \mathrm{Var}X = E(X^2) - (EX)^2</span> <br><br> <span class="math inline">\displaystyle  \mathrm{Var}X = \frac{2-p}{p^2} - \left(\frac{1}{p}\right)^2</span> <br><br> <span class="math inline">\displaystyle  \mathrm{Var}X = \frac{1-p}{p^2}</span> <br><br></p></li>
 </ul></li>
 </ul>
-<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Subruk, IIT Hyderabad }}}}</span></p>
+<p><br><br><br> <span class="math inline">\tiny  {\textcolor{#808080}{\boxed{\text{Reference: Dr. Subruk, IIT Hyderabad }}}}</span></p>
 
 
 </section>
@@ -730,18 +783,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -773,11 +815,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("http:\/\/localhost:4200\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -787,8 +868,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -800,7 +890,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -844,6 +1057,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -869,6 +1083,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -930,14 +1170,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="abhiyantaabhishek/IITH-Data-Science" data-repo-id="R_kgDOILoB8A" data-category="Announcements" data-category-id="DIC_kwDOILoB8M4CSJcL" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="pagination-link">
+      <a href="../../Data_Science_Notes/Mathematics/2022-09-03-CS6660-week3.html" class="pagination-link" aria-label="Linear Algebra 1">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Linear Algebra 1</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html" class="pagination-link">
+      <a href="../../Data_Science_Notes/Mathematics/2022-09-17-CS6660-week4_2.html" class="pagination-link" aria-label="Linear Algebra 2">
         <span class="nav-page-text">Linear Algebra 2</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -945,7 +1187,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-left">
+<p>Copyright 2022, Abhishek Kumar Dubey</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
@@ -967,6 +1211,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

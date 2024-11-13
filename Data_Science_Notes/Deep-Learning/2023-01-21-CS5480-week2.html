@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -25,7 +25,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -36,7 +36,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -60,7 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -87,7 +87,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -96,6 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -111,7 +118,7 @@ gtag('js', new Date());
 gtag('config', 'G-5ZQX02R26E', { 'anonymize_ip': true});
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <script type="text/javascript">
 window.PlotlyConfig = {MathJaxConfig: 'local'};
@@ -130,7 +137,7 @@ require(['plotly'], function(Plotly) {
 </script>
 
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -145,7 +152,34 @@ require(['plotly'], function(Plotly) {
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Deep Learning 2">
@@ -158,73 +192,73 @@ require(['plotly'], function(Plotly) {
 <body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../logo.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text"><i class="fa-solid fa-house" aria-label="house"></i> Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../Data_Science_Notes/index.html" rel="" target="" aria-current="page">
- <span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Notes</span></a>
+    <a class="nav-link active" href="../../Data_Science_Notes/index.html" aria-current="page"> 
+<span class="menu-text"><i class="fa-solid fa-book-open-reader" aria-label="book-open-reader"></i> Data Science Notes</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Paper_Study/index.html" rel="" target="">
- <span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Paper Study</span></a>
+    <a class="nav-link" href="../../Paper_Study/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-user-ninja" aria-label="user-ninja"></i> Paper Study</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Data_Science_Projects/index.html" rel="" target="">
- <span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Data Science Projects</span></a>
+    <a class="nav-link" href="../../Data_Science_Projects/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-file-powerpoint" aria-label="file-powerpoint"></i> Data Science Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text"><i class="fa-solid fa-address-card" aria-label="address-card"></i> About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/abhiyantaabhishek" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/abhiyantaabhishek"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/abhishek-kumar-dubey-585a86179/"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html">Deep Learning</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html">Deep Learning 2</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html">Deep Learning</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html">Deep Learning 2</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
+    <div class="quarto-title column-body"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../Data_Science_Notes/index.html">Data Science Notes</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html">Deep Learning</a></li><li class="breadcrumb-item"><a href="../../Data_Science_Notes/Deep-Learning/2023-01-21-CS5480-week2.html">Deep Learning 2</a></li></ol></nav>
       <h1 class="title">Deep Learning 2</h1>
                   <div>
         <div class="description">
@@ -260,23 +294,23 @@ require(['plotly'], function(Plotly) {
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../Data_Science_Notes/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Science Notes</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Deep Learning</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -339,9 +373,9 @@ require(['plotly'], function(Plotly) {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -404,9 +438,9 @@ require(['plotly'], function(Plotly) {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Mathematics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -463,9 +497,9 @@ require(['plotly'], function(Plotly) {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Reinforcement Learning</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -506,6 +540,12 @@ require(['plotly'], function(Plotly) {
  <span class="menu-text">Reinforcement Learning 6</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../Data_Science_Notes/Reinforcement-Learning/2023-09-16-CS6140-week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reinforcement Learning 6</span></a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -513,7 +553,7 @@ require(['plotly'], function(Plotly) {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -544,6 +584,7 @@ require(['plotly'], function(Plotly) {
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
+
 
 
 
@@ -1021,8 +1062,8 @@ Guide-Line to Chose activation Function
 </ul>
 </div></li>
 </ul>
-<div class="cell" data-execution_count="59">
-<details>
+<div id="cell-37" class="cell" data-execution_count="59">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
@@ -1044,7 +1085,6 @@ Guide-Line to Chose activation Function
 <span id="cb1-18"><a href="#cb1-18"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-
 <div>                            <div id="1d771e4e-7b24-4d6e-9d6f-40d5fcbea4df" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("1d771e4e-7b24-4d6e-9d6f-40d5fcbea4df")) {                    Plotly.newPlot(                        "1d771e4e-7b24-4d6e-9d6f-40d5fcbea4df",                        [{"x":[-5.0,-4.795918367346939,-4.591836734693878,-4.387755102040816,-4.183673469387755,-3.979591836734694,-3.7755102040816326,-3.571428571428571,-3.36734693877551,-3.163265306122449,-2.9591836734693877,-2.7551020408163263,-2.5510204081632653,-2.3469387755102042,-2.142857142857143,-1.9387755102040813,-1.7346938775510203,-1.5306122448979593,-1.3265306122448979,-1.1224489795918364,-0.9183673469387754,-0.7142857142857144,-0.5102040816326525,-0.3061224489795915,-0.1020408163265305,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"y":[0.0066928509242848554,0.008195682245394699,0.010032555186013372,0.012276025071468199,0.015013569057033847,0.018350241705691772,0.022411596418032444,0.02734678679618289,0.033331686533853294,0.040571758423092276,0.04930425596537221,0.059799151969359574,0.07235796333544683,0.08730940263865966,0.10500058502026482,0.12578244121862014,0.14998816555871142,0.1779041247108555,0.209733821699624,0.2455573055902638,0.2852906753756516,0.32865254651727,0.3751456852515014,0.424061486151752,0.4745119079463219,0.5254880920536781,0.575938513848248,0.624854314748499,0.6713474534827301,0.7147093246243483,0.7544426944097363,0.790266178300376,0.8220958752891444,0.8500118344412885,0.87421755878138,0.8949994149797352,0.9126905973613403,0.9276420366645531,0.9402008480306404,0.9506957440346279,0.9594282415769078,0.9666683134661466,0.9726532132038171,0.9775884035819675,0.9816497582943083,0.9849864309429661,0.9877239749285319,0.9899674448139867,0.9918043177546053,0.9933071490757153],"type":"scatter","xaxis":"x","yaxis":"y"},{"x":[-5.0,-4.795918367346939,-4.591836734693878,-4.387755102040816,-4.183673469387755,-3.979591836734694,-3.7755102040816326,-3.571428571428571,-3.36734693877551,-3.163265306122449,-2.9591836734693877,-2.7551020408163263,-2.5510204081632653,-2.3469387755102042,-2.142857142857143,-1.9387755102040813,-1.7346938775510203,-1.5306122448979593,-1.3265306122448979,-1.1224489795918364,-0.9183673469387754,-0.7142857142857144,-0.5102040816326525,-0.3061224489795915,-0.1020408163265305,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"y":[-0.9999092042625951,-0.9998634415507954,-0.9997946159642279,-0.999691107575254,-0.9995354456794231,-0.9993013676153218,-0.9989494050572058,-0.9984202681165271,-0.9976249455842615,-0.9964299299508876,-0.9946352534407366,-0.9919420332830022,-0.9879049562527997,-0.9818637011172895,-0.9728461661125113,-0.9594367963458108,-0.939608189243296,-0.9105293071885276,-0.8683988338721091,-0.8084190680766979,-0.7251241351036911,-0.6133572603953827,-0.470104194194287,-0.29690544684776476,-0.10168812436848527,0.10168812436848527,0.29690544684776476,0.47010419419428773,0.6133572603953827,0.7251241351036911,0.8084190680766983,0.8683988338721091,0.9105293071885276,0.939608189243296,0.9594367963458108,0.9728461661125113,0.9818637011172895,0.9879049562527997,0.9919420332830023,0.9946352534407366,0.9964299299508876,0.9976249455842615,0.9984202681165271,0.9989494050572058,0.9993013676153218,0.9995354456794231,0.999691107575254,0.9997946159642279,0.9998634415507954,0.9999092042625951],"type":"scatter","xaxis":"x2","yaxis":"y2"},{"x":[-5.0,-4.795918367346939,-4.591836734693878,-4.387755102040816,-4.183673469387755,-3.979591836734694,-3.7755102040816326,-3.571428571428571,-3.36734693877551,-3.163265306122449,-2.9591836734693877,-2.7551020408163263,-2.5510204081632653,-2.3469387755102042,-2.142857142857143,-1.9387755102040813,-1.7346938775510203,-1.5306122448979593,-1.3265306122448979,-1.1224489795918364,-0.9183673469387754,-0.7142857142857144,-0.5102040816326525,-0.3061224489795915,-0.1020408163265305,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"y":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"type":"scatter","xaxis":"x3","yaxis":"y3"},{"x":[-5.0,-4.795918367346939,-4.591836734693878,-4.387755102040816,-4.183673469387755,-3.979591836734694,-3.7755102040816326,-3.571428571428571,-3.36734693877551,-3.163265306122449,-2.9591836734693877,-2.7551020408163263,-2.5510204081632653,-2.3469387755102042,-2.142857142857143,-1.9387755102040813,-1.7346938775510203,-1.5306122448979593,-1.3265306122448979,-1.1224489795918364,-0.9183673469387754,-0.7142857142857144,-0.5102040816326525,-0.3061224489795915,-0.1020408163265305,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"y":[-0.5,-0.4795918367346939,-0.4591836734693878,-0.4387755102040816,-0.41836734693877553,-0.39795918367346944,-0.3775510204081633,-0.35714285714285715,-0.33673469387755106,-0.3163265306122449,-0.29591836734693877,-0.2755102040816326,-0.25510204081632654,-0.23469387755102045,-0.2142857142857143,-0.19387755102040816,-0.17346938775510204,-0.15306122448979595,-0.1326530612244898,-0.11224489795918365,-0.09183673469387754,-0.07142857142857144,-0.05102040816326525,-0.030612244897959152,-0.010204081632653052,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"type":"scatter","xaxis":"x4","yaxis":"y4"},{"x":[-5.0,-4.795918367346939,-4.591836734693878,-4.387755102040816,-4.183673469387755,-3.979591836734694,-3.7755102040816326,-3.571428571428571,-3.36734693877551,-3.163265306122449,-2.9591836734693877,-2.7551020408163263,-2.5510204081632653,-2.3469387755102042,-2.142857142857143,-1.9387755102040813,-1.7346938775510203,-1.5306122448979593,-1.3265306122448979,-1.1224489795918364,-0.9183673469387754,-0.7142857142857144,-0.5102040816326525,-0.3061224489795915,-0.1020408163265305,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"y":[-4.966310265004573,-4.9586829675033615,-4.949328863092571,-4.93785700568645,-4.923787939684302,-4.906533661570005,-4.885373044852443,-4.85942170125514,-4.827595018531553,-4.788562830105934,-4.7406938219996055,-4.6819873535818655,-4.609989842657312,-4.521692220282109,-4.4134041695287465,-4.280599892125506,-4.117728956930945,-3.9179843248314334,-3.673017854878351,-3.37259140150874,-3.0041489207825816,-2.5522917022152347,-1.9981347940079763,-1.3185177240683155,-0.485036529639849,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"type":"scatter","xaxis":"x5","yaxis":"y5"},{"x":[-5.0,-4.795918367346939,-4.591836734693878,-4.387755102040816,-4.183673469387755,-3.979591836734694,-3.7755102040816326,-3.571428571428571,-3.36734693877551,-3.163265306122449,-2.9591836734693877,-2.7551020408163263,-2.5510204081632653,-2.3469387755102042,-2.142857142857143,-1.9387755102040813,-1.7346938775510203,-1.5306122448979593,-1.3265306122448979,-1.1224489795918364,-0.9183673469387754,-0.7142857142857144,-0.5102040816326525,-0.3061224489795915,-0.1020408163265305,0.1020408163265305,0.3061224489795915,0.5102040816326534,0.7142857142857144,0.9183673469387754,1.1224489795918373,1.3265306122448983,1.5306122448979593,1.7346938775510203,1.9387755102040813,2.1428571428571432,2.3469387755102042,2.5510204081632653,2.755102040816327,2.959183673469388,3.163265306122449,3.36734693877551,3.571428571428571,3.775510204081632,3.979591836734695,4.183673469387756,4.387755102040817,4.591836734693878,4.795918367346939,5.0],"y":[-0.03346425462142428,-0.03930582301362764,-0.04606785544597978,-0.053864191640115563,-0.06281187054473344,-0.0730264720940795,-0.08461521096604085,-0.09766709570065317,-0.11223935261399579,-0.12833923582814905,-0.1459003492852851,-0.1647527656298682,-0.18458664116185416,-0.20490982251930331,-0.22500125361485318,-0.24386391664834514,-0.2601835524998055,-0.27230223170028905,-0.2782183349076645,-0.27562554709111237,-0.2620016406511086,-0.2347518189409072,-0.19140085982219437,-0.12981474065869947,-0.04841958244350218,0.05362123388302832,0.17630770832089204,0.31880322181045884,0.4795338953448072,0.6563657062876668,0.8468234325007249,1.0483122773372338,1.25831001319767,1.4745103250512146,1.6949115935557364,1.9178558892422901,2.1420289529909007,2.366433767001411,2.5903492751864587,2.8132833241841033,3.0349260702943,3.255107586161514,3.473761475727918,3.690894993115591,3.9065653646406155,4.120861598843023,4.333890910400702,4.545768879247898,4.756612544333311,4.966535745378576],"type":"scatter","xaxis":"x6","yaxis":"y6"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,0.45]},"yaxis":{"anchor":"x","domain":[0.7777777777777778,1.0]},"xaxis2":{"anchor":"y2","domain":[0.55,1.0]},"yaxis2":{"anchor":"x2","domain":[0.7777777777777778,1.0]},"xaxis3":{"anchor":"y3","domain":[0.0,0.45]},"yaxis3":{"anchor":"x3","domain":[0.3888888888888889,0.6111111111111112]},"xaxis4":{"anchor":"y4","domain":[0.55,1.0]},"yaxis4":{"anchor":"x4","domain":[0.3888888888888889,0.6111111111111112]},"xaxis5":{"anchor":"y5","domain":[0.0,0.45]},"yaxis5":{"anchor":"x5","domain":[0.0,0.22222222222222224]},"xaxis6":{"anchor":"y6","domain":[0.55,1.0]},"yaxis6":{"anchor":"x6","domain":[0.0,0.22222222222222224]},"annotations":[{"font":{"size":16},"showarrow":false,"text":"Sigmoid","x":0.225,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"tanh","x":0.775,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"ReLU","x":0.225,"xanchor":"center","xref":"paper","y":0.6111111111111112,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Leaky ReLU","x":0.775,"xanchor":"center","xref":"paper","y":0.6111111111111112,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"ELU","x":0.225,"xanchor":"center","xref":"paper","y":0.22222222222222224,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"swish","x":0.775,"xanchor":"center","xref":"paper","y":0.22222222222222224,"yanchor":"bottom","yref":"paper"}],"showlegend":false},                        {"responsive": true}                    ).then(function(){
                             
 var gd = document.getElementById('1d771e4e-7b24-4d6e-9d6f-40d5fcbea4df');
@@ -1143,7 +1183,7 @@ Important
 <p>A multilayer network of neurons with a single hidden layer can be used to approximate any continuous function to any desired precision.<br> In other words, there is a guarantee that for any function <span class="math inline">f(x): \mathbb{R}^n \rightarrow \mathbb{R}^m</span>, we can always find a neural network (with <span class="math inline">1</span> hidden layer containing enough neurons) whose output <span class="math inline">g(x)</span> satisfies <span class="math inline">| g(x)-f(x)| &lt; \epsilon</span></p>
 </div>
 </div>
-<p><br><br><br> <span class="math inline">\tiny {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
+<p><br><br><br> <span class="math inline">\tiny  {\textcolor{#808080}{\boxed{\text{Reference: Dr. Vineeth, IIT Hyderabad }}}}</span></p>
 
 
 </section>
@@ -1184,18 +1224,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1227,11 +1256,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("http:\/\/localhost:4200\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1241,8 +1309,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1254,7 +1331,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1298,6 +1498,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1323,6 +1524,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1384,14 +1611,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="abhiyantaabhishek/IITH-Data-Science" data-repo-id="R_kgDOILoB8A" data-category="Announcements" data-category-id="DIC_kwDOILoB8M4CSJcL" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" class="pagination-link">
+      <a href="../../Data_Science_Notes/Deep-Learning/2023-01-07-CS5480-week1.html" class="pagination-link" aria-label="Deep Learning 1">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning 1</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" class="pagination-link">
+      <a href="../../Data_Science_Notes/Deep-Learning/2023-02-04-CS5480-week3.html" class="pagination-link" aria-label="Deep Learning 3">
         <span class="nav-page-text">Deep Learning 3</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1399,7 +1628,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Copyright 2022, Abhishek Kumar Dubey</div>   
+    <div class="nav-footer-left">
+<p>Copyright 2022, Abhishek Kumar Dubey</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
@@ -1421,6 +1652,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 
