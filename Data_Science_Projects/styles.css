@@ -7,3 +7,30 @@
 .border-thick {
   border-width: 3px;
 }
+p {
+  text-align:justify !important
+}
+
+li {
+  text-align:justify !important
+}
+
+.reveal h2{
+  font-size: calc(1.5em );
+  text-transform: none !important;
+}
+
+.reveal h1{
+  text-transform: none !important;
+}
+
+
+.reveal.smaller .slides h1 {
+  font-size: calc(2em );
+  /* text-transform: capitalize ; */
+}
+
+.reveal.smaller .slides h2 {
+  font-size: calc(1.5em );
+  /* text-transform: capitalize ; */
+}

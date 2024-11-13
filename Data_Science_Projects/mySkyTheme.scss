@@ -12,9 +12,12 @@ $body-color: #333 !default;
 $link-color: #3b759e !default;
 $selection-bg: #134674 !default;
 
+
+
+
 // headings
 $presentation-heading-font: "Quicksand", sans-serif !default;
-$presentation-heading-text-transform: capitalize !default;
+// $presentation-heading-text-transform: capitalize !default;
 $presentation-heading-font-weight: normal !default;
 $presentation-heading-letter-spacing: -0.08em;
 
@@ -25,8 +28,13 @@ $code-block-bg: transparent !default;
 /*-- scss:mixins --*/
 
 // Background generator
+// @mixin bodyBackground() {
+//   @include radial-gradient(#add9e4, #f7fbfc);
+// }
+
+// Background generator
 @mixin bodyBackground() {
-  @include radial-gradient(#add9e4, #f7fbfc);
+  @include radial-gradient(#ffffff, #ffffff);
 }
 
 /*-- scss:rules --*/
